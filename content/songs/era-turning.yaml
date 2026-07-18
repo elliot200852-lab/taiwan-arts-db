@@ -1,0 +1,574 @@
+songs:
+  - id: lu-gang-xiao-zhen
+    title: 鹿港小鎮
+    year: 1982
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 羅大佑
+      composer: 羅大佑
+      original_singer: 羅大佑
+    hook: 羅大佑唱經濟起飛下小鎮青年的失落，掀起樂壇黑色旋風。
+    listen:
+      - url: https://www.youtube.com/watch?v=Xgjny7YFMD4
+        label: 羅大佑原唱（滾石唱片 ROCK RECORDS 官方 MV）
+        source_type: official
+        version: original
+    note: 收於 1982 年首張專輯《之乎者也》，歌詞探討臺灣經濟起飛後的社會劇烈變遷。
+    sources:
+      - 1982 年《之乎者也》、鹿港小鎮探討經濟起飛後社會變遷：https://zh.wikipedia.org/zh-tw/羅大佑
+
+  - id: zhi-hu-zhe-ye
+    title: 之乎者也
+    year: 1982
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 羅大佑
+      composer: 羅大佑
+      original_singer: 羅大佑
+    hook: 羅大佑首張專輯的同名批判之作，敲響校園民歌的喪鐘。
+    listen:
+      - url: https://www.youtube.com/watch?v=G6LuR2h4o-Y
+        label: 羅大佑原唱（Lo Ta-yu 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1982 年 4 月發表的首張國語創作專輯同名曲，被評為「1975–1993 臺灣流行音樂百張最佳專輯」榜首。
+    sources:
+      - 1982 年《之乎者也》震撼歌壇、黑色旋風、百張最佳專輯榜首：https://zh.wikipedia.org/zh-tw/羅大佑
+
+  - id: guang-yin-de-gu-shi
+    title: 光陰的故事
+    year: 1982
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 羅大佑
+      composer: 羅大佑
+      original_singer: 羅大佑
+    hook: 羅大佑寫時光流逝，成為橫跨世代傳唱的青春記憶。
+    listen:
+      - url: https://www.youtube.com/watch?v=lmwGAOpqP1s
+        label: 羅大佑原唱（Lo Ta-yu 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 羅大佑作品，1981 年先為張艾嘉專輯所寫，後收於自己的創作專輯。
+    sources:
+      - 羅大佑創作、1981 年製作張艾嘉專輯：https://zh.wikipedia.org/zh-tw/羅大佑
+
+  - id: tong-nian
+    title: 童年
+    year: 1982
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 羅大佑
+      composer: 羅大佑
+      original_singer: 羅大佑
+    hook: 羅大佑寫童年的池塘、蟬鳴與課本，清亮又帶著惆悵。
+    listen:
+      - url: https://www.youtube.com/watch?v=8OTar5SNpYw
+        label: 羅大佑原唱（Lo Ta-yu 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 羅大佑作品，收於 1982 年《之乎者也》專輯。
+    sources:
+      - 羅大佑創作生平：https://zh.wikipedia.org/zh-tw/羅大佑
+
+  - id: lian-qu-1980
+    title: 戀曲1980
+    year: 1982
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 羅大佑
+      composer: 羅大佑
+      original_singer: 羅大佑
+    hook: 羅大佑戀曲系列的起點，唱自由與愛情的兩難。
+    listen:
+      - url: https://www.youtube.com/watch?v=2nry60MCU8U
+        label: 羅大佑原唱（滾石唱片 ROCK RECORDS 官方 MV）
+        source_type: official
+        version: original
+    note: 收於 1982 年《之乎者也》，是羅大佑「戀曲」系列的第一首。
+    sources:
+      - 羅大佑戀曲系列、1982 年《之乎者也》：https://zh.wikipedia.org/zh-tw/羅大佑
+
+  - id: ya-xi-ya-de-gu-er
+    title: 亞細亞的孤兒
+    year: 1983
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 羅大佑
+      composer: 羅大佑
+      original_singer: 羅大佑
+    hook: 借吳濁流小說之名，以嗩吶唱出臺灣的國際處境。
+    listen:
+      - url: https://www.youtube.com/watch?v=BLk9LoH6lfY
+        label: 羅大佑原唱（Lo Ta-yu 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 收於 1983 年《未來的主人翁》，歌名取自作家吳濁流的同名小說，以吉他與嗩吶伴奏；適值美中斷交，一度為國民黨文工會關切，後成為電影《異域》主題歌。
+    sources:
+      - 1983 年《未來的主人翁》、吳濁流小說名、嗩吶伴奏、文工會關切：https://zh.wikipedia.org/zh-tw/羅大佑
+
+  - id: wei-lai-de-zhu-ren-weng
+    title: 未來的主人翁
+    year: 1983
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 羅大佑
+      composer: 羅大佑
+      original_singer: 羅大佑
+    hook: 羅大佑對時局與教育的批判，唱給下一代。
+    listen:
+      - url: https://www.youtube.com/watch?v=qSmT2NTuuGE
+        label: 羅大佑原唱（Lo Ta-yu 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1983 年第二張國語創作專輯同名曲，針對民族、時局與傳統社會進行批判與反省。
+    sources:
+      - 1983 年《未來的主人翁》針對時局傳統的批判：https://zh.wikipedia.org/zh-tw/羅大佑
+
+  - id: ai-ren-tong-zhi
+    title: 愛人同志
+    year: 1988
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 羅大佑
+      composer: 羅大佑
+      original_singer: 羅大佑
+    hook: 羅大佑赴港後的名作，把革命辭彙寫進情歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=5ZWOKKgsx-4
+        label: 羅大佑原唱（滾石唱片 ROCK RECORDS 官方 MV）
+        source_type: official
+        version: original
+    note: 1988 年專輯《愛人同志》同名曲，是羅大佑商業上最成功的一張專輯，也是電影《棋王》主題曲。
+    sources:
+      - 1988 年《愛人同志》專輯港臺銷量與地位：https://zh.wikipedia.org/zh-tw/羅大佑
+
+  - id: yi-yang-de-yue-guang
+    title: 一樣的月光
+    year: 1983
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 吳念真、羅大佑
+      original_singer: 蘇芮
+    hook: 電影搭錯車主打歌，黑衣蘇芮把批判唱成搖滾。
+    listen:
+      - url: https://www.youtube.com/watch?v=VVkxCAe-zgw
+        label: 蘇芮原唱（Julie Sue 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1983 年蘇芮首張個人專輯主打歌，也是電影《搭錯車》插曲，專輯由李壽全製作。歌詞承襲羅大佑對社會現象的批判，造就「黑色蘇芮」旋風。
+    sources:
+      - 1983 年蘇芮首張專輯主打、電影搭錯車、李壽全製作、黑色蘇芮：https://zh.wikipedia.org/zh-tw/一樣的月光
+
+  - id: shi-fou
+    title: 是否
+    year: 1983
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 羅大佑
+      composer: 羅大佑
+      original_singer: 蘇芮
+    hook: 電影搭錯車插曲，羅大佑詞曲，蘇芮低啞嗓音的代表作。
+    listen:
+      - url: https://www.youtube.com/watch?v=huHYtUkwNMM
+        label: 蘇芮原唱（Julie Sue 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1983 年電影《搭錯車》插曲，收於蘇芮首張同名概念專輯。
+    sources:
+      - 蘇芮首張搭錯車專輯：https://zh.wikipedia.org/zh-tw/一樣的月光
+
+  - id: jiu-gan-tang-mai-wu
+    title: 酒矸倘賣無
+    year: 1983
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 侯德健
+      composer: 侯德健
+      original_singer: 蘇芮
+    hook: 電影搭錯車主題曲，歌名是收破爛的吆喝聲。
+    listen:
+      - url: https://www.youtube.com/watch?v=_n-cZ2Sik9M
+        label: 蘇芮原唱（蘇芮 Julie Sue 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1983 年電影《搭錯車》主題曲，歌名「酒矸倘賣無」是臺語裡收購空酒瓶的沿街吆喝聲，呼應片中拾荒維生的啞叔。
+    sources:
+      - 電影搭錯車以眷村拾荒老兵為背景、蘇芮幕後配唱：https://zh.wikipedia.org/zh-tw/搭錯車
+
+  - id: qing-gen-wo-lai
+    title: 請跟我來
+    year: 1983
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 梁弘志
+      composer: 梁弘志
+      original_singer: 蘇芮、虞戡平
+    hook: 電影搭錯車插曲，蘇芮與虞戡平的深情對唱。
+    listen:
+      - url: https://www.youtube.com/watch?v=ZO6MdfL00xc
+        label: 蘇芮、虞戡平原唱（Julie Sue 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1983 年電影《搭錯車》插曲，梁弘志詞曲，由蘇芮與導演虞戡平對唱。
+    sources:
+      - 電影搭錯車、虞戡平執導：https://zh.wikipedia.org/zh-tw/搭錯車
+
+  - id: tian-tian-tian-lan
+    title: 天天天藍
+    year: 1982
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 卓以玉
+      composer: 陳立鷗
+      original_singer: 潘越雲
+    hook: 潘越雲清亮嗓音的成名作，滾石早期的招牌。
+    listen:
+      - url: https://www.youtube.com/watch?v=j5Dt5MhlPsM
+        label: 潘越雲原唱（滾石唱片 ROCK RECORDS 官方 MV）
+        source_type: official
+        version: original
+    note: 1982 年潘越雲同名專輯主打，是滾石唱片早期的代表作之一。
+    sources:
+      - 潘越雲《天天天藍》滾石官方 MV：https://www.youtube.com/watch?v=j5Dt5MhlPsM
+
+  - id: shou-zhe-yang-guang-shou-zhe-ni
+    title: 守著陽光守著你
+    year: 1983
+    era: era-turning
+    language: 國語
+    credits:
+      original_singer: 潘越雲
+    hook: 潘越雲唱守候與等待，溫柔而堅定。
+    listen:
+      - url: https://www.youtube.com/watch?v=6gxiMmgAJMQ
+        label: 潘越雲原唱（滾石唱片 ROCK RECORDS 官方 MV）
+        source_type: official
+        version: original
+    note: 潘越雲同名電影主題曲，滾石唱片時期名作。
+    sources:
+      - 潘越雲《守著陽光守著你》滾石官方 MV：https://www.youtube.com/watch?v=6gxiMmgAJMQ
+
+  - id: ye-bai-he-ye-you-chun-tian
+    title: 野百合也有春天
+    year: 1983
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 羅大佑
+      composer: 羅大佑
+      original_singer: 潘越雲
+    hook: 羅大佑詞曲、潘越雲演唱，唱平凡人也有春天。
+    listen:
+      - url: https://www.youtube.com/watch?v=GSoLwHTXRmM
+        label: 潘越雲原唱（滾石唱片 ROCK RECORDS 官方 MV）
+        source_type: official
+        version: original
+    note: 羅大佑詞曲，潘越雲演唱，入選「臺灣流行音樂百張最佳專輯」相關名單。
+    sources:
+      - 潘越雲《野百合也有春天》滾石官方 MV：https://www.youtube.com/watch?v=GSoLwHTXRmM
+
+  - id: sheng-ming-zhong-de-jing-ling
+    title: 生命中的精靈
+    year: 1986
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 李宗盛
+      composer: 李宗盛
+      original_singer: 李宗盛
+    hook: 李宗盛從幕後製作走到台前的首張個人專輯主打。
+    listen:
+      - url: https://www.youtube.com/watch?v=jCPwfsRGLqk
+        label: 李宗盛原唱（滾石唱片 ROCK RECORDS 官方 MV）
+        source_type: official
+        version: original
+    note: 1986 年李宗盛首張個人專輯《生命中的精靈》主打曲，此時他已是滾石重要的幕後製作人。
+    sources:
+      - 李宗盛《生命中的精靈》滾石官方 MV：https://www.youtube.com/watch?v=jCPwfsRGLqk
+
+  - id: ji-mo-nan-nai
+    title: 寂寞難耐
+    year: 1986
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 李宗盛
+      composer: 李宗盛
+      original_singer: 李宗盛
+    hook: 李宗盛以自剖式的口白唱法，寫都會人的寂寞。
+    listen:
+      - url: https://www.youtube.com/watch?v=M3k9PhyNEto
+        label: 李宗盛原唱（滾石唱片 ROCK RECORDS 官方 MV）
+        source_type: official
+        version: original
+    note: 收於 1986 年《生命中的精靈》專輯，是李宗盛半說半唱風格的早期代表作。
+    sources:
+      - 李宗盛《寂寞難耐》滾石官方 MV：https://www.youtube.com/watch?v=M3k9PhyNEto
+
+  - id: xin-qing
+    title: 心情
+    year: 1983
+    era: era-turning
+    language: 國語
+    credits:
+      original_singer: 鄭怡
+    hook: 李宗盛製作、鄭怡演唱，唱出一代人的清新心情。
+    listen:
+      - url: https://www.youtube.com/watch?v=9RngPWK0pXk
+        label: 鄭怡原唱（鄭怡 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 鄭怡演唱，由當時剛嶄露頭角的李宗盛製作，是李宗盛製作生涯的重要作品。
+    sources:
+      - 鄭怡《心情》官方 Topic：https://www.youtube.com/watch?v=9RngPWK0pXk
+
+  - id: meng-tuo-ling
+    title: 夢駝鈴
+    year: 1982
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 小軒
+      composer: 譚健常
+      original_singer: 費玉清
+    hook: 費玉清清亮嗓音唱大漠與長城，氣象開闊。
+    listen:
+      - url: https://www.youtube.com/watch?v=Az5qJPoewtw
+        label: 費玉清原唱（Fei Yu-ching 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 小軒作詞、譚健常作曲，是費玉清 1980 年代的代表作之一。
+    sources:
+      - 費玉清《夢駝鈴》官方 Topic：https://www.youtube.com/watch?v=Az5qJPoewtw
+
+  - id: zui-hou-yi-ye
+    title: 最後一夜
+    year: 1984
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 慎芝
+      composer: 陳志遠
+      original_singer: 蔡琴
+    hook: 電影金大班的最後一夜主題曲，慎芝填詞、蔡琴演繹。
+    listen:
+      - url: https://www.youtube.com/watch?v=gXsknl5M8sk
+        label: 蔡琴原唱（Tsai Chin 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1984 年電影《金大班的最後一夜》主題曲，慎芝作詞、陳志遠作曲，是蔡琴「絲絨嗓音」的代表作。
+    sources:
+      - 蔡琴《最後一夜》官方 Topic：https://www.youtube.com/watch?v=gXsknl5M8sk
+
+  - id: li-tioh-lim-nai
+    title: 你著忍耐
+    year: 1983
+    era: era-turning
+    language: 台語
+    credits:
+      original_singer: 江蕙
+    hook: 江蕙出道時期的作品，唱底層勞工與女性的無奈。
+    listen:
+      - url: https://www.youtube.com/watch?v=Bo0JO34VMfY
+        label: 江蕙原唱（Jody Chiang 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1983 年 5 月江蕙第二張臺語專輯《你著忍耐》同名曲，唱出底層勞工與時下女性的無奈；戒嚴時期臺語歌唯一的流通管道只有夜市，因此「歌雖紅、人卻不紅」。
+    sources:
+      - 1983 年江蕙《你著忍耐》、戒嚴時期臺語歌只在夜市流通：https://zh.wikipedia.org/zh-tw/江蕙
+
+  - id: sioh-piat-e-hai-huann
+    title: 惜別的海岸
+    year: 1984
+    era: era-turning
+    language: 台語
+    credits:
+      original_singer: 江蕙
+    hook: 江蕙首次走紅的臺語專輯主打，唱海岸邊的離別。
+    listen:
+      - url: https://www.youtube.com/watch?v=XesGaDpBgLA
+        label: 江蕙原唱（Jody Chiang 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1984 年 1 月江蕙推出第四張臺語專輯《惜別的海岸》，她首次嚐到走紅的滋味。
+    sources:
+      - 1984 年江蕙《惜別的海岸》首次走紅：https://zh.wikipedia.org/zh-tw/江蕙
+
+  - id: sim-su-siang-lang-tsai
+    title: 心事誰人知
+    year: 1982
+    era: era-turning
+    language: 台語
+    credits:
+      lyricist: 蔡振南
+      composer: 蔡振南
+      original_singer: 沈文程
+    hook: 沈文程出道破百萬張，被稱為臺語歌壇的國歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=Xcf3ux4QSUk
+        label: 沈文程原唱（Shen Wen-cheng 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1982 年沈文程被愛莉亞唱片董事長蔡振南挖掘，出版首張專輯《心事誰人知》，蔡振南作曲填詞，未經媒體宣傳就在各大夜市熱賣破百萬張，被稱為臺語流行歌壇的「國歌」。
+    sources:
+      - 1982 年沈文程《心事誰人知》、蔡振南詞曲、夜市熱賣破百萬：https://zh.wikipedia.org/zh-tw/沈文程
+
+  - id: tsit-ki-sio-hoo-suann
+    title: 一支小雨傘
+    year: 1982
+    era: era-turning
+    language: 台語
+    credits:
+      original_singer: 洪榮宏
+    hook: 洪榮宏十九歲的成名曲，臺語歌重新站起的先聲。
+    listen:
+      - url: https://www.youtube.com/watch?v=5_eXogZgr48
+        label: 洪榮宏原唱（滾石唱片 ROCK RECORDS 官方 Audio）
+        source_type: official
+        version: original
+    note: 洪榮宏是臺語歌手洪一峰的長子，十九歲以《一支小雨傘》成名，在沈文程之前是較早的臺語歌手，對臺語歌地位的確立有重要貢獻。
+    sources:
+      - 洪榮宏十九歲以《一支小雨傘》成名、臺語歌地位：https://zh.wikipedia.org/zh-tw/洪榮宏
+
+  - id: ai-tsing-e-phian-tsu
+    title: 愛情的騙子我問你
+    year: 1986
+    era: era-turning
+    language: 台語
+    credits:
+      original_singer: 陳小雲
+    hook: 陳小雲的臺語舞曲名作，帶起夜市卡拉OK熱潮。
+    listen:
+      - url: https://www.youtube.com/watch?v=7LbV38BeE9E
+        label: 陳小雲原唱（陳小雲 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1980 年代中期陳小雲的臺語舞曲代表作，本曲發表年為概值。
+    sources:
+      - 陳小雲《愛情的騙子我問你》官方 Topic：https://www.youtube.com/watch?v=7LbV38BeE9E
+
+  - id: ai-piann-tsiah-e-iann
+    title: 愛拚才會贏
+    year: 1988
+    era: era-turning
+    language: 台語
+    credits:
+      lyricist: 陳百潭
+      composer: 陳百潭
+      original_singer: 葉啟田
+    hook: 葉啟田唱打拚的信念，成為經濟奇蹟年代的座右銘。
+    listen:
+      - url: https://www.youtube.com/watch?v=Pf3Ecmnonik
+        label: 葉啟田原唱（葉啟田 官方 Topic 頻道）
+        source_type: official
+        version: original
+    banned: 戒嚴時代曾送行政院新聞局審查未通過，因為審查人員認為「拚」屬於暴力詞彙；直到解嚴後新聞局取消流行歌曲送審制度，此曲才得以問世。
+    note: 1988 年由陳百潭詞曲、葉啟田原唱、吉馬唱片發行，正逢臺灣拚經濟的年代，成為傳唱至今的臺語金曲。
+    sources:
+      - 1988 年葉啟田《愛拚才會贏》、送審被擋、解嚴後取消送審才問世：https://zh.wikipedia.org/zh-tw/愛拚才會贏
+
+  - id: zhang-sheng-xiang-qi
+    title: 掌聲響起
+    year: 1986
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 陳桂芬
+      composer: 陳進興
+      original_singer: 鳳飛飛
+    hook: 鳳飛飛唱幕前幕後的辛酸與掌聲，跨世代傳唱。
+    listen:
+      - url: https://www.youtube.com/watch?v=m2W5v-KoGJ8
+        label: 鳳飛飛原唱（Feng Fei Fei 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1986 年 9 月發行，陳桂芬作詞、陳進興作曲，後來曾於總統就職典禮上演唱。
+    sources:
+      - 1986 年鳳飛飛《掌聲響起》、詞曲作者：https://zh.wikipedia.org/zh-tw/掌聲響起
+
+  - id: ming-tian-hui-geng-hao
+    title: 明天會更好
+    year: 1985
+    era: era-turning
+    language: 國語
+    credits:
+      composer: 羅大佑
+      original_singer: 群星
+    hook: 六十位歌手合唱的公益金曲，卻捲入選舉的風波。
+    listen:
+      - url: https://www.youtube.com/watch?v=s6T4DXRKYHM
+        label: 群星合唱原版（滾石唱片 ROCK RECORDS 官方 MV）
+        source_type: official
+        version: original
+    note: 1985 年受美國《We Are the World》公益風潮啟發，由羅大佑作曲、多人作詞、陳志遠編曲，蔡琴、蘇芮、潘越雲、費玉清、江蕙、齊秦等六十位歌手合唱。原策劃有作為國民黨選舉造勢之意，羅大佑事後表示有「被騙」之感；因歌詞寫實描寫社會灰暗面，反而未被採為選舉形象歌曲。
+    sources:
+      - 1985 年創作背景、六十位歌手、羅大佑作曲、被國民黨用作選舉造勢的爭議：https://zh.wikipedia.org/zh-tw/明天會更好
+
+  - id: zhi-you-fen-li
+    title: 只有分離
+    year: 1982
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 曹俊鴻
+      composer: 曹俊鴻
+      original_singer: 黃鶯鶯
+    hook: 黃鶯鶯加盟寶麗金的專輯主打，蟬聯排行榜冠軍三個月。
+    listen:
+      - url: https://www.youtube.com/watch?v=lXdRdYJTQuY
+        label: 黃鶯鶯原唱（Tracy Huang 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1982 年 4 月黃鶯鶯加盟寶麗金唱片推出《只有分離》專輯，同名曲蟬聯「綜藝 100」國語流行歌曲暢銷排行榜冠軍三個月。
+    sources:
+      - 1982 年黃鶯鶯《只有分離》專輯、排行榜冠軍：https://zh.wikipedia.org/zh-tw/黃鶯鶯
+
+  - id: du-ni
+    title: 讀你
+    year: 1988
+    era: era-turning
+    language: 國語
+    credits:
+      lyricist: 梁弘志
+      composer: 梁弘志
+      original_singer: 蔡琴
+    hook: 梁弘志詞曲，蔡琴溫暖的嗓音把愛人讀成一首詩。
+    listen:
+      - url: https://www.youtube.com/watch?v=po1mXFxrqiE
+        label: 蔡琴原唱（Tsai Chin 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 梁弘志作詞作曲，收於蔡琴 1988 年的專輯，是她絲絨嗓音的代表作之一。
+    sources:
+      - 梁弘志詞曲、蔡琴演唱：https://zh.wikipedia.org/zh-tw/梁弘志
+
+  - id: qing-ping-guo-le-yuan
+    title: 青蘋果樂園
+    year: 1989
+    era: era-turning
+    language: 國語
+    credits:
+      original_singer: 小虎隊
+    hook: 小虎隊出道曲，把青春偶像團體帶進臺灣樂壇。
+    listen:
+      - url: https://www.youtube.com/watch?v=cBzng1trRE0
+        label: 小虎隊原唱（The Little Tigers 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1989 年小虎隊的出道曲，旋律改編自日本偶像團體少年隊的作品，開啟臺灣青春偶像團體的年代。
+    sources:
+      - 小虎隊《青蘋果樂園》官方 Topic：https://www.youtube.com/watch?v=cBzng1trRE0

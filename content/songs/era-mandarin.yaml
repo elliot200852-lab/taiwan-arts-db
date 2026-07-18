@@ -1,0 +1,453 @@
+songs:
+  - id: yi-nan-wang
+    title: 意難忘
+    year: 1963
+    era: era-mandarin
+    language: 國語
+    credits:
+      lyricist: 慎芝
+      original_singer: 美黛
+    hook: 群星會招牌歌，慎芝把日本旋律填成國語詞，唱遍整個電視年代。
+    listen:
+      - url: https://www.youtube.com/watch?v=U9TuAV8k4iI
+        label: 美黛原唱（Mei Tai 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1963 年 1 月由美黛發表，慎芝填詞，旋律改編自日本歌曲，是台視「群星會」時期最具代表性的招牌曲。
+    sources:
+      - 發表年、美黛演唱、慎芝填詞：https://zh.wikipedia.org/zh-tw/意難忘
+
+  - id: yi-jian-ni-jiu-xiao
+    title: 一見你就笑
+    year: 1967
+    era: era-mandarin
+    language: 國語
+    credits:
+      original_singer: 鄧麗君
+    people: [teresa-teng]
+    hook: 少女鄧麗君在歌廳走唱時的招牌歌，清純活潑一鳴驚人。
+    listen:
+      - url: https://www.youtube.com/watch?v=iVEONT6gSdg
+        label: 鄧麗君原唱（Teresa Teng 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 鄧麗君初中時在「國之賓」歌廳駐唱時期的招牌歌，1967 年前後灌錄，發表年為概值。
+    sources:
+      - 鄧麗君歌廳駐唱時期招牌歌〈一見你就笑〉：https://zh.wikipedia.org/zh-hant/鄧麗君
+
+  - id: ku-jiu-man-bei
+    title: 苦酒滿杯
+    year: 1967
+    era: era-mandarin
+    language: 國語
+    credits:
+      lyricist: 慎芝
+      original_singer: 謝雷
+    hook: 改編自臺語老歌，卻被警總認定歌詞影射時局而查禁。
+    listen:
+      - url: https://www.youtube.com/watch?v=wkw6u85EO8o
+        label: 謝雷原唱（麗歌唱片 Life Records Chinese 官方頻道）
+        source_type: official
+        version: original
+    banned: 戒嚴時期警備總部認為歌詞暗示「臺灣人民苦酒滿杯」而查禁，唱片公司改換封面歌名續售，越禁越紅，半年賣破百萬張。
+    note: 1967 年謝雷在海山唱片的成名曲，改編自臺語歌《悲戀的酒杯》，由慎芝改填國語詞。
+    sources:
+      - 1967 年海山唱片、慎芝改詞、改編自《悲戀的酒杯》、遭警總查禁與換名續售：https://zh.wikipedia.org/zh-tw/謝雷_(歌手)
+
+  - id: fu-xin-de-ren
+    title: 負心的人
+    year: 1967
+    era: era-mandarin
+    language: 國語
+    credits:
+      composer: 左宏元
+      original_singer: 姚蘇蓉
+    hook: 「盈淚歌后」姚蘇蓉的成名曲，把負心之痛唱得纏綿。
+    listen:
+      - url: https://www.youtube.com/watch?v=89muKrTws5Y
+        label: 姚蘇蓉原唱（Yao, Su Rong 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1966 年姚蘇蓉獲正聲電台歌唱比賽冠軍後簽入海山唱片，以〈負心的人〉一炮而紅；此曲屬她與作曲家左宏元合作的「姚派唱法」。
+    sources:
+      - 姚蘇蓉成名曲、與左宏元合作的姚派唱法代表作：https://zh.wikipedia.org/zh-tw/姚蘇蓉
+
+  - id: lei-de-xiao-hua
+    title: 淚的小花
+    year: 1969
+    era: era-mandarin
+    language: 國語
+    credits:
+      original_singer: 青山
+    hook: 青山在麗歌時期的成名曲，低迴的男聲風靡港臺。
+    listen:
+      - url: https://www.youtube.com/watch?v=5XyhkTb51bQ
+        label: 青山原唱（Ching Shan 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 青山 1968 年與麗歌唱片簽約後灌錄的成名曲之一，發表年為概值。
+    sources:
+      - 青山 1968 年簽約麗歌、成名曲多在麗歌灌錄：https://zh.wikipedia.org/zh-tw/青山_(歌手)
+
+  - id: xun-meng-yuan
+    title: 尋夢園
+    year: 1969
+    era: era-mandarin
+    language: 國語
+    credits:
+      original_singer: 青山
+    hook: 青山與范婉曲的螢幕情侶組合，唱紅的抒情名曲。
+    listen:
+      - url: https://www.youtube.com/watch?v=_ZDKSoxRhbs
+        label: 青山原唱（Ching Shan 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 青山經《群星會》製作人慎芝安排與范婉曲搭檔成為「歌唱情侶」，此為其麗歌時期名曲；發表年為概值。
+    sources:
+      - 青山與范婉曲的歌唱情侶組合、麗歌時期：https://zh.wikipedia.org/zh-tw/青山_(歌手)
+
+  - id: jing-jing
+    title: 晶晶
+    year: 1969
+    era: era-mandarin
+    language: 國語
+    credits:
+      original_singer: 鄧麗君
+    people: [teresa-teng]
+    hook: 中視開播第一檔連續劇的主題曲，鄧麗君的早期代表作。
+    listen:
+      - url: https://www.youtube.com/watch?v=vO6v0bpSTZo
+        label: 鄧麗君原唱（邓丽君 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1969 年中國電視公司開播首檔連續劇《晶晶》的主題曲，由鄧麗君演唱，是她走唱時期的代表作之一。
+    sources:
+      - 1969 年鄧麗君演唱中視開播首檔連續劇《晶晶》主題曲：https://zh.wikipedia.org/zh-hant/鄧麗君
+
+  - id: jin-tian-bu-hui-jia
+    title: 今天不回家
+    year: 1969
+    era: era-mandarin
+    language: 國語
+    credits:
+      composer: 左宏元
+      original_singer: 姚蘇蓉
+    hook: 電影同名主題曲紅遍東南亞，也讓姚蘇蓉戴上「禁唱歌后」之名。
+    listen:
+      - url: https://www.youtube.com/watch?v=WbU-oWW0qXI
+        label: 姚蘇蓉原唱（麗歌唱片 Life Records Chinese 官方頻道）
+        source_type: official
+        version: original
+    banned: 姚蘇蓉在戒嚴年代因多首歌曲遭禁而有「禁唱歌后」之稱，一度連歌星證都被吊銷、遠走星馬。
+    note: 1969 年電影《今天不回家》同名主題曲，左宏元作曲，讓姚蘇蓉紅遍東南亞。
+    sources:
+      - 電影主題曲、左宏元作曲、姚蘇蓉「禁唱歌后」：https://zh.wikipedia.org/zh-tw/姚蘇蓉
+
+  - id: xiang-wu-you-xiang-hua
+    title: 像霧又像花
+    year: 1969
+    era: era-mandarin
+    language: 國語
+    credits:
+      composer: 左宏元
+      original_singer: 姚蘇蓉
+    hook: 姚蘇蓉與作曲家左宏元合作的「姚派唱法」代表作。
+    listen:
+      - url: https://www.youtube.com/watch?v=ba0_BX7Irm0
+        label: 姚蘇蓉原唱（麗歌唱片 Life Records Chinese 官方頻道）
+        source_type: official
+        version: original
+    note: 姚蘇蓉與左宏元合作的「姚派唱法」名曲之一，發表年為概值。
+    sources:
+      - 與左宏元合作的姚派唱法代表作：https://zh.wikipedia.org/zh-tw/姚蘇蓉
+
+  - id: wang-shi-zhi-neng-hui-wei
+    title: 往事只能回味
+    year: 1970
+    era: era-mandarin
+    language: 國語
+    credits:
+      lyricist: 林煌坤
+      composer: 劉家昌
+      original_singer: 尤雅
+    hook: 劉家昌譜曲、尤雅一炮而紅，玉女歌星的時代之聲。
+    listen:
+      - url: https://www.youtube.com/watch?v=TmF7-V6vFJA
+        label: 尤雅原唱（麗歌唱片 Life Records Chinese 官方版）
+        source_type: official
+        version: original
+    note: 1970 年由劉家昌譜曲、林煌坤填詞、海山唱片發行，讓十六、七歲的尤雅一炮而紅，她也成為劉家昌第一個正式學生。
+    sources:
+      - 1970 年劉家昌譜曲、林煌坤填詞、尤雅演唱一炮而紅：https://zh.wikipedia.org/zh-tw/尤雅
+
+  - id: zhu-ni-xing-fu
+    title: 祝你幸福
+    year: 1972
+    era: era-mandarin
+    language: 國語
+    credits:
+      original_singer: 鳳飛飛
+    hook: 「帽子歌后」鳳飛飛加盟海山的首張專輯主打，唱祝福。
+    listen:
+      - url: https://www.youtube.com/watch?v=AIcWy2GMhtA
+        label: 鳳飛飛原唱（可登唱片 Coden Records 官方頻道）
+        source_type: official
+        version: original
+    note: 1972 年 1 月鳳飛飛加盟海山唱片，3 月推出個人首張專輯《祝你幸福》，是她走紅的起點。
+    sources:
+      - 1972 年鳳飛飛加盟海山、首張專輯《祝你幸福》：https://zh.wikipedia.org/zh-tw/鳳飛飛
+
+  - id: wo-zen-neng-li-kai-ni
+    title: 我怎能離開你
+    year: 1973
+    era: era-mandarin
+    language: 國語
+    credits:
+      composer: 左宏元
+      original_singer: 鄧麗君
+    people: [teresa-teng]
+    hook: 瓊瑤電影《彩雲飛》插曲，鄧麗君柔情的代表作之一。
+    listen:
+      - url: https://www.youtube.com/watch?v=ZgbYRBoLCMc
+        label: 鄧麗君原唱（Teresa Teng 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1973 年瓊瑤電影《彩雲飛》插曲，古月（左宏元）作曲，鄧麗君演唱。
+    sources:
+      - 鄧麗君、電影彩雲飛歌曲：https://zh.wikipedia.org/zh-hant/鄧麗君
+
+  - id: qian-yan-wan-yu
+    title: 千言萬語
+    year: 1973
+    era: era-mandarin
+    language: 國語
+    credits:
+      composer: 左宏元
+      original_singer: 鄧麗君
+    people: [teresa-teng]
+    hook: 電影《彩雲飛》主題曲，左宏元譜曲、鄧麗君深情演繹。
+    listen:
+      - url: https://www.youtube.com/watch?v=Q976RMQep8A
+        label: 鄧麗君原唱（Teresa Teng 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1973 年瓊瑤電影《彩雲飛》主題曲，古月（左宏元）作曲，是鄧麗君最傳唱的國語歌之一。
+    sources:
+      - 鄧麗君的歌曲《千言萬語》：https://zh.wikipedia.org/zh-tw/千言萬語
+
+  - id: xin-you-qian-qian-jie
+    title: 心有千千結
+    year: 1973
+    era: era-mandarin
+    language: 國語
+    credits:
+      composer: 蔡榮吉
+      original_singer: 尤雅
+    hook: 瓊瑤同名電影主題曲，尤雅唱少女心裡解不開的結。
+    listen:
+      - url: https://www.youtube.com/watch?v=4eSQ-yrbuG4
+        label: 尤雅原唱（尤雅 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 瓊瑤電影《心有千千結》主題曲，蔡榮吉作曲（據尤雅條目；電影配樂另記顧嘉煇，主題曲與配樂為不同職掌），收於尤雅的首本名曲之列。
+    sources:
+      - 蔡榮吉為尤雅所作《心有千千結》：https://zh.wikipedia.org/zh-tw/尤雅
+
+  - id: yue-liang-dai-biao-wo-de-xin
+    title: 月亮代表我的心
+    year: 1973
+    era: era-mandarin
+    language: 國語
+    credits:
+      lyricist: 孫儀
+      composer: 翁清溪
+      original_singer: 陳芬蘭
+    people: [teresa-teng]
+    hook: 陳芬蘭最先錄唱，經鄧麗君重唱後成為傳唱全球的華語金曲。
+    listen:
+      - url: https://www.youtube.com/watch?v=IgvDMB5fR-8
+        label: 鄧麗君翻唱（Teresa Teng 官方 Topic 頻道）
+        source_type: official
+        version: famous_cover
+    note: 孫儀作詞、翁清溪作曲，陳芬蘭在 1973 年 5 月專輯《夢鄉》最先錄唱；1977 年鄧麗君重新演繹後傳遍華人世界。陳芬蘭原唱在合格官方頻道未見，故收鄧麗君著名翻唱版。
+    sources:
+      - 孫儀詞、翁清溪曲、陳芬蘭 1973 年首唱、鄧麗君唱紅：https://zh.wikipedia.org/zh-tw/月亮代表我的心
+
+  - id: ai-shen
+    title: 愛神
+    year: 1973
+    era: era-mandarin
+    language: 國語
+    credits:
+      original_singer: 崔苔菁
+    hook: 台視綜藝天后崔苔菁的歌，見證電視造星的年代。
+    listen:
+      - url: https://www.youtube.com/watch?v=m3c2I0gTa80
+        label: 崔苔菁原唱（崔苔菁 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 崔苔菁 1969 年成為台視基本歌星、1971 年於海山唱片發行首張專輯，是「翠笛銀箏」時代的電視綜藝天后；本曲發表年為概值。
+    sources:
+      - 崔苔菁台視歌星、海山唱片、綜藝天后：https://zh.wikipedia.org/zh-tw/崔苔菁
+
+  - id: nuo-yan
+    title: 諾言
+    year: 1975
+    era: era-mandarin
+    language: 國語
+    credits:
+      composer: 劉家昌
+      original_singer: 劉文正
+    hook: 「偶像始祖」劉文正的出道曲，劉家昌一手打造。
+    listen:
+      - url: https://www.youtube.com/watch?v=tvl0-_KMaMI
+        label: 劉文正原唱（Liu Wen Cheng 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1975 年劉文正以劉家昌打造的《諾言》出道，他被譽為華語歌壇「偶像始祖」。
+    sources:
+      - 劉文正 1970 年代代表性男歌手、偶像始祖：https://zh.wikipedia.org/zh-tw/劉文正
+
+  - id: zai-shui-yi-fang
+    title: 在水一方
+    year: 1975
+    era: era-mandarin
+    language: 國語
+    credits:
+      lyricist: 瓊瑤
+      composer: 林家慶
+      original_singer: 江蕾
+    people: [teresa-teng]
+    hook: 瓊瑤電影主題曲，江蕾原唱、鄧麗君翻唱後傳唱更廣。
+    listen:
+      - url: https://www.youtube.com/watch?v=9d2HY6xPCYw
+        label: 鄧麗君翻唱（Teresa Teng 官方 Topic 頻道）
+        source_type: official
+        version: famous_cover
+    note: 1975 年瓊瑤電影《在水一方》主題曲，瓊瑤作詞、林家慶作曲，原唱江蕾。江蕾原唱在合格官方頻道未見，故收鄧麗君著名翻唱版。
+    sources:
+      - 瓊瑤作詞、林家慶作曲、電影《在水一方》主題曲：https://zh.wikipedia.org/zh-tw/在水一方_(電影)
+
+  - id: he-ri-jun-zai-lai
+    title: 何日君再來
+    year: 1937
+    era: era-mandarin
+    language: 國語
+    credits:
+      lyricist: 黃嘉謨
+      composer: 劉雪庵
+      original_singer: 周璇
+    people: [teresa-teng]
+    hook: 一九三七年的老歌，被國民政府疑為暗喚而查禁的名曲。
+    listen:
+      - url: https://www.youtube.com/watch?v=Vw-3_Q3RVqs
+        label: 鄧麗君翻唱（Teresa Teng 官方 Topic 頻道）
+        source_type: official
+        version: famous_cover
+    banned: 國民政府一度將歌名的「君」諧音為八路「軍」、疑其暗喚「何日軍再來」而禁播；對岸也以「上海墮落生活寫照」為由查禁，作曲者劉雪庵更因此被劃為右派——同一首歌在海峽兩邊都被禁過。
+    note: 1937 年上海電影《三星伴月》插曲，黃嘉謨作詞、劉雪庵作曲、周璇原唱。1978 年鄧麗君重新翻唱成為當代最流行版本，也在戒嚴的臺灣與對岸間流傳。周璇原唱在合格官方頻道未見，故收鄧麗君著名翻唱版。
+    sources:
+      - 詞曲作者、周璇原唱、1937 年發表、兩岸禁歌史與鄧麗君翻唱：https://zh.wikipedia.org/zh-tw/何日君再來
+
+  - id: ping-guo-hua
+    title: 蘋果花
+    year: 1968
+    era: era-mandarin
+    language: 國語
+    credits:
+      original_singer: 楊燕
+    hook: 「蘋果花歌后」楊燕的招牌曲，改編自日本旋律。
+    listen:
+      - url: https://www.youtube.com/watch?v=fpFY7yEtrCM
+        label: 楊燕原唱（楊燕 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 楊燕因此曲得「蘋果花歌后」之名，旋律改編自日本歌曲《蘋果追分》；發表年為概值。
+    sources:
+      - 楊燕「蘋果花歌后」、改編日本歌曲：https://zh.wikipedia.org/zh-tw/意難忘
+
+  - id: shen-mi-nu-lang
+    title: 神秘女郎
+    year: 1969
+    era: era-mandarin
+    language: 國語
+    credits:
+      original_singer: 冉肖玲
+    hook: 冉肖玲低柔嗓音唱紅的國語小調。
+    listen:
+      - url: https://www.youtube.com/watch?v=jTYzIWuNGUU
+        label: 冉肖玲原唱（Ran Xiao Ling 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 冉肖玲是 1960 年代末至 1970 年代的國語歌手，本曲發表年為概值。
+    sources:
+      - 冉肖玲與 1970 年代國語歌壇（同期歌星並列）：https://zh.wikipedia.org/zh-tw/崔苔菁
+
+  - id: you-shi-huang-hun
+    title: 又是黃昏
+    year: 1973
+    era: era-mandarin
+    language: 國語
+    credits:
+      original_singer: 余天
+    hook: 「寶島歌王」余天群星會出身後的抒情名曲。
+    listen:
+      - url: https://www.youtube.com/watch?v=Kw8Rl1YmM6A
+        label: 余天原唱（Yu Tien 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 余天 1964 年自台視「群星會」嶄露頭角，有「寶島歌王」之稱；本曲發表年為概值。
+    sources:
+      - 余天群星會出身、寶島歌王：https://zh.wikipedia.org/zh-tw/余天
+
+  - id: feng-yang-hua-gu
+    title: 鳳陽花鼓
+    year: 1967
+    era: era-mandarin
+    language: 國語
+    credits:
+      original_singer: 鄧麗君
+    people: [teresa-teng]
+    hook: 鄧麗君一九六七年首張專輯的同名曲，改編自傳統民謠。
+    listen:
+      - url: https://www.youtube.com/watch?v=LnUhlnyeiVI
+        label: 鄧麗君原唱（Teresa Teng 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 1967 年鄧麗君加盟宇宙唱片，發行個人第一張專輯《鄧麗君之歌第一集·鳳陽花鼓》，同名曲改編自傳統民謠。
+    sources:
+      - 1967 年鄧麗君首張專輯《鳳陽花鼓》：https://zh.wikipedia.org/zh-hant/鄧麗君
+
+  - id: qing-nan-shou
+    title: 情難守
+    year: 1970
+    era: era-mandarin
+    language: 國語
+    credits:
+      original_singer: 青山
+    hook: 青山在麗歌時期的抒情作品，唱難以守住的情。
+    listen:
+      - url: https://www.youtube.com/watch?v=4WKFjqJze-Y
+        label: 青山原唱（麗歌唱片 Life Records Chinese 官方版）
+        source_type: official
+        version: original
+    note: 青山麗歌唱片時期的抒情名曲，發表年為概值。
+    sources:
+      - 青山麗歌時期成名曲：https://zh.wikipedia.org/zh-tw/青山_(歌手)
+
+  - id: man-li
+    title: 蔓莉
+    year: 1969
+    era: era-mandarin
+    language: 國語
+    credits:
+      original_singer: 謝雷
+    hook: 謝雷低沉嗓音演繹的懷念小調。
+    listen:
+      - url: https://www.youtube.com/watch?v=DEdVFdqO-6A
+        label: 謝雷原唱（謝雷 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 謝雷是臺灣第一位出版國語專輯的男歌手，本曲為其成名後的名曲之一，發表年為概值。
+    sources:
+      - 謝雷生平與國語歌壇地位：https://zh.wikipedia.org/zh-tw/謝雷_(歌手)
