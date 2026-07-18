@@ -1,0 +1,577 @@
+songs:
+  - id: bin-tsu-a-tshau
+    title: 民主阿草
+    year: 1989
+    era: era-new-taiwanese
+    language: 台語
+    credits:
+      original_singer: 黑名單工作室
+    hook: 解嚴後黑名單工作室的抗議之作，被稱台灣最後一首禁歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=YHrLnLg53tQ
+        label: 黑名單工作室原唱（YouTube 官方 Topic 頻道）
+        source_type: official
+        version: original
+    banned: 解嚴已兩年，新聞局雖核准歌詞，卻通知全國電台不得宣傳播放，一般視為台灣最後一首受官方壓制的禁歌。
+    note: 收錄於黑名單工作室 1989 年專輯《抓狂歌》（滾石／真言社），全台語演唱，融合搖滾與饒舌，開創新台語歌運動。
+    sources:
+      - 《抓狂歌》發行、全台語、新台語歌運動：https://zh.wikipedia.org/zh-tw/%E6%8A%93%E7%8B%82%E6%AD%8C
+      - 〈民主阿草〉禁歌史（新聞局暗中封殺）：https://storystudio.tw/article/gushi/black-list
+
+  - id: hiong-tsian-tsau
+    title: 向前走
+    year: 1990
+    era: era-new-taiwanese
+    language: 台語
+    credits:
+      lyricist: 林強
+      composer: 林強
+      original_singer: 林強
+    hook: 林強把台語歌從悲情改寫成北上打拚的進行曲。
+    listen:
+      - url: https://www.youtube.com/watch?v=gD14iiXq7Xw
+        label: 林強原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 林強 1990 年首張台語專輯《向前走》，賣出四十多萬張，MV 拍於台北車站，唱外地青年北上打拚，是新台語歌運動的代表作。
+    sources:
+      - 《向前走》發行、銷量、火車與北上意象：https://zh.wikipedia.org/zh-tw/%E5%90%91%E5%89%8D%E8%B5%B0
+      - 〈向前走〉與九〇年代島國集體欲望：https://www.verse.com.tw/article/chorus-10-limgiong
+
+  - id: tshun-hong-siau-lian-hiann
+    title: 春風少年兄
+    year: 1992
+    era: era-new-taiwanese
+    language: 台語
+    credits:
+      lyricist: 林強
+      composer: 林強
+      original_singer: 林強
+    hook: 林強唱少年人的意氣，延續新台語歌的活力。
+    listen:
+      - url: https://www.youtube.com/watch?v=aXOqPZdDeRE
+        label: 林強原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於林強 1992 年專輯《春風少年兄》，延續《向前走》的搖滾能量。
+    sources:
+      - 官方 MV（演唱者與專輯）：https://www.youtube.com/watch?v=aXOqPZdDeRE
+
+  - id: e-poo-e-tshut-hi
+    title: 下午的一齣戲
+    year: 1990
+    era: era-new-taiwanese
+    language: 台語
+    credits:
+      lyricist: 陳明章
+      composer: 陳明章
+      original_singer: 陳明章
+    hook: 陳明章唱走唱藝人的落寞，一齣戲演給沒人的觀眾席。
+    listen:
+      - url: https://www.youtube.com/watch?v=_URika29uXU
+        label: 陳明章原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 陳明章 1990 年同名專輯代表作，寫野台戲藝人在觀眾散去後的孤獨。陳明章曾為電影《戀戀風塵》配樂，是新台語歌重要的創作者。
+    sources:
+      - 官方 MV（演唱者與專輯）：https://www.youtube.com/watch?v=_URika29uXU
+
+  - id: i-si-lan-e-po-pue
+    title: 伊是咱的寶貝
+    year: 1993
+    era: era-new-taiwanese
+    language: 台語
+    credits:
+      lyricist: 陳明章
+      composer: 陳明章
+      original_singer: 陳明章
+    hook: 陳明章寫的搖籃曲，後來成為社會運動最常合唱的歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=Oj_s9_u_V7E
+        label: 陳明章親唱（陳明章官方頻道《台灣的囡仔歌》重錄版）
+        source_type: official
+        version: original
+    note: 陳明章 1993 年受勵馨基金會之邀為「拯救雛妓」活動創作，後成為 2004 年「二二八百萬人手牽手護台灣」等社會運動最常合唱的歌。listen 為陳明章官方頻道《台灣的囡仔歌》專輯的後年重錄版，非 1993 首版。
+    sources:
+      - 〈伊是咱的寶貝〉創作緣起、勵馨基金會、社會運動傳唱：https://zh.wikipedia.org/zh-tw/%E4%BC%8A%E6%98%AF%E5%92%B1%E7%9A%84%E5%AF%B6%E8%B2%9D
+
+  - id: lang-ren-qing-ge
+    title: 浪人情歌
+    year: 1994
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      lyricist: 伍佰
+      composer: 伍佰
+      original_singer: 伍佰 & China Blue
+    hook: 伍佰沙啞嗓音唱失戀，成為 KTV 傳唱不墜的搖滾情歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=OPkqtboFFYI
+        label: 伍佰 & China Blue 原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於伍佰 & China Blue 1994 年專輯《浪人情歌》。伍佰以搖滾與台客美學，成為橫跨台語與國語的天王。
+    sources:
+      - 官方 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=OPkqtboFFYI
+
+  - id: tong-ku-de-ren
+    title: 痛哭的人
+    year: 1994
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      lyricist: 伍佰
+      composer: 伍佰
+      original_singer: 伍佰 & China Blue
+    hook: 伍佰唱心碎到底的男人，是他早期最烈的搖滾。
+    listen:
+      - url: https://www.youtube.com/watch?v=P8fqHvr82-o
+        label: 伍佰 & China Blue 原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於伍佰 & China Blue 1994 年專輯《浪人情歌》。
+    sources:
+      - 官方 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=P8fqHvr82-o
+
+  - id: last-dance
+    title: Last Dance
+    year: 1996
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      lyricist: 伍佰
+      composer: 伍佰
+      original_singer: 伍佰 & China Blue
+    hook: 伍佰寫最後一支舞的纏綿，多年後又因劇集翻紅。
+    listen:
+      - url: https://www.youtube.com/watch?v=7jYDYon4sGQ
+        label: 伍佰 & China Blue 原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於伍佰 & China Blue 1996 年專輯《愛情的盡頭》，2015 年因電視劇《我可能不會愛你》再度翻紅。
+    sources:
+      - 官方 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=7jYDYon4sGQ
+
+  - id: nuo-wei-de-sen-lin
+    title: 挪威的森林
+    year: 1996
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      lyricist: 伍佰
+      composer: 伍佰
+      original_singer: 伍佰 & China Blue
+    hook: 伍佰把村上春樹的書名寫成歌，唱一段回不去的愛。
+    listen:
+      - url: https://www.youtube.com/watch?v=gPpZJlE0Ca8
+        label: 伍佰 & China Blue 原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於伍佰 & China Blue 1996 年專輯《愛情的盡頭》，歌名借自村上春樹同名小說。
+    sources:
+      - 官方 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=gPpZJlE0Ca8
+
+  - id: se-kai-te-it-ting
+    title: 世界第一等
+    year: 1997
+    era: era-new-taiwanese
+    language: 台語
+    credits:
+      lyricist: 武雄
+      composer: 伍佰
+      original_singer: 伍佰 & China Blue
+    hook: 伍佰以台語唱兄弟情義，成為江湖味十足的國民歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=jPu3u8kfxCw
+        label: 伍佰 & China Blue 原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 1997 年台語作品，武雄作詞、伍佰作曲，成為選舉造勢與尾牙必唱的台語金曲。
+    sources:
+      - 官方 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=jPu3u8kfxCw
+
+  - id: liu-long-kau-tam-tsui
+    title: 流浪到淡水
+    year: 1997
+    era: era-new-taiwanese
+    language: 台語
+    credits:
+      lyricist: 陳明章
+      composer: 陳明章
+      original_singer: 金門王、李炳輝
+    hook: 兩位走唱的盲人歌手，把街頭的豁達唱進千家萬戶。
+    listen:
+      - url: https://www.youtube.com/watch?v=9plPMDcD4dU
+        label: 金門王、李炳輝原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 金門王與李炳輝兩位視障走唱歌手，以那卡西方式在茶室走唱二十年。1997 年首張專輯《流浪到淡水》首年銷量達六十萬張。陳明章作詞作曲。
+    sources:
+      - 金門王與李炳輝生平、走唱背景、《流浪到淡水》銷量：https://zh.wikipedia.org/zh-tw/%E9%87%91%E9%96%80%E7%8E%8B
+
+  - id: tsiu-au-e-sim-siann
+    title: 酒後的心聲
+    year: 1993
+    era: era-new-taiwanese
+    language: 台語
+    credits:
+      original_singer: 江蕙
+    hook: 江蕙唱酒後的孤單，是九〇年代台語歌后的招牌悲歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=Y1H22SMnS5M
+        label: 江蕙原唱（Timeless Music 授權型錄復刻頻道）
+        source_type: other
+        version: original
+    note: 江蕙同名專輯《酒後的心聲》獲第 5 屆金曲獎最佳演唱專輯。江蕙是九〇年代最具代表性的台語女歌手。listen 頻道為可辨識的商業型錄復刻發行商 Timeless Music（非個人上傳）。詞曲作者史料未逐一查證，故 credits 僅列演唱者。
+    sources:
+      - 江蕙生平、《酒後的心聲》與第 5 屆金曲獎：https://zh.wikipedia.org/zh-tw/%E6%B1%9F%E8%95%99
+
+  - id: siong-sim-tsiu-tiam
+    title: 傷心酒店
+    year: 1993
+    era: era-new-taiwanese
+    language: 台語
+    credits:
+      original_singer: 江蕙、施文彬
+    hook: 江蕙與施文彬對唱酒店裡的傷心，紅遍大街小巷。
+    listen:
+      - url: https://www.youtube.com/watch?v=Jl0CAEZn9II
+        label: 江蕙、施文彬原唱（Timeless Music 授權型錄復刻頻道・官方 KARAOKE 版）
+        source_type: other
+        version: original
+    note: 1993 年由點將唱片發行，收錄於江蕙專輯《感情放一邊》，江蕙與施文彬對唱。listen 頻道為可辨識的商業型錄復刻發行商 Timeless Music（非個人上傳）。詞曲作者史料未逐一查證，故 credits 僅列演唱者。
+    sources:
+      - 《傷心酒店》1993 年發行、點將唱片、江蕙與施文彬合唱：https://zh.wikipedia.org/zh-tw/%E6%96%BD%E6%96%87%E5%BD%AC
+
+  - id: hue-na-li-ki
+    title: 花若離枝
+    year: 1997
+    era: era-new-taiwanese
+    language: 台語
+    credits:
+      lyricist: 蔡振南
+      composer: 陳小霞
+      original_singer: 蘇芮
+    hook: 蘇芮唱一段花落般的愛情，蔡振南的台語歌詩名作。
+    listen:
+      - url: https://www.youtube.com/watch?v=X_F-fU4y5Cg
+        label: 蘇芮原唱（豐華唱片官方頻道）
+        source_type: official
+        version: original
+    note: 1997 年蘇芮原唱，蔡振南作詞、陳小霞作曲。蘇芮以此曲獲 1998 年金曲獎最佳方言女演唱人，蔡振南獲最佳作詞人。後亦有江蕙等多人翻唱。
+    sources:
+      - 官方 MV（原唱蘇芮、詞曲）：https://www.youtube.com/watch?v=X_F-fU4y5Cg
+      - 1998 年第 9 屆金曲獎最佳方言女演唱人（蘇芮）、最佳作詞人（蔡振南）：https://zh.wikipedia.org/zh-tw/%E8%98%87%E8%8A%AE
+
+  - id: huann-hi-tio-ho
+    title: 歡喜就好
+    year: 1994
+    era: era-new-taiwanese
+    language: 台語
+    credits:
+      original_singer: 陳雷
+    hook: 陳雷用詼諧的台語唱知足常樂，成為國民口頭禪。
+    listen:
+      - url: https://www.youtube.com/watch?v=ahVGWxLe-Hw
+        label: 陳雷原唱（YouTube 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 陳雷 1994 年 6 月同名專輯，由龍吟唱片、金圓唱片發行，創下百萬銷量。詞曲作者史料未逐一查證，故 credits 僅列演唱者。
+    sources:
+      - 陳雷《歡喜就好》1994 年發行、百萬銷量：https://zh.wikipedia.org/zh-tw/%E9%99%B3%E9%9B%B7_(%E6%AD%8C%E6%89%8B)
+
+  - id: yi-chang-you-xi-yi-chang-meng
+    title: 一場遊戲一場夢
+    year: 1987
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      lyricist: 王文清
+      composer: 王文清
+      original_singer: 王傑
+    hook: 王傑滄桑的嗓音唱破碎的愛，紅遍華語歌壇。
+    listen:
+      - url: https://www.youtube.com/watch?v=8G6lsET9zko
+        label: 王傑原唱（Dave Wang 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 王傑 1987 年出道成名曲。
+    sources:
+      - 官方 Topic 音檔（演唱者、詞曲）：https://www.youtube.com/watch?v=8G6lsET9zko
+      - 出道年與成名曲：https://zh.wikipedia.org/zh-tw/%E7%8E%8B%E5%82%91
+
+  - id: wo-de-wei-lai-bu-shi-meng
+    title: 我的未來不是夢
+    year: 1988
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      lyricist: 陳家麗
+      composer: 翁孝良
+      original_singer: 張雨生
+    hook: 張雨生高亢的嗓音唱年輕人的夢，成為勵志經典。
+    listen:
+      - url: https://www.youtube.com/watch?v=lTxZmhAoSGU
+        label: 張雨生原唱（滾石唱片官方頻道・Lyric Video）
+        source_type: official
+        version: original
+    note: 1988 年黑松沙士廣告曲，張雨生因此走紅。listen 為滾石官方 Lyric Video。
+    sources:
+      - 官方 Lyric Video（演唱者、詞曲、廣告曲來歷）：https://www.youtube.com/watch?v=lTxZmhAoSGU
+
+  - id: da-hai
+    title: 大海
+    year: 1992
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      lyricist: 陳大力
+      composer: 陳大力、陳秀男
+      original_singer: 張雨生
+    hook: 張雨生把失去的愛唱給大海，高音成為一代記憶。
+    listen:
+      - url: https://www.youtube.com/watch?v=EXaLvBGqQww
+        label: 張雨生原唱（Timeless Music 授權型錄復刻頻道）
+        source_type: other
+        version: original
+    note: 張雨生 1992 年代表作。listen 頻道為可辨識的商業型錄復刻發行商 Timeless Music（非個人上傳）。
+    sources:
+      - 官方復刻 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=EXaLvBGqQww
+
+  - id: meng-xing-shi-fen
+    title: 夢醒時分
+    year: 1989
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      lyricist: 李宗盛
+      composer: 李宗盛
+      original_singer: 陳淑樺
+    hook: 李宗盛寫給陳淑樺的都會情歌，唱清醒後的成熟。
+    listen:
+      - url: https://www.youtube.com/watch?v=nku5zFMZAdU
+        label: 陳淑樺原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 李宗盛詞曲，陳淑樺演唱，1989 年成為都會國語流行歌的里程碑。
+    sources:
+      - 官方 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=nku5zFMZAdU
+
+  - id: wo-shi-yi-zhi-xiao-xiao-niao
+    title: 我是一隻小小鳥
+    year: 1990
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      lyricist: 李宗盛
+      composer: 李宗盛
+      original_singer: 趙傳
+    hook: 趙傳唱小人物想飛卻飛不高的心情，激勵無數人。
+    listen:
+      - url: https://www.youtube.com/watch?v=9eN9I6E-8xI
+        label: 趙傳現場演唱（相信音樂官方頻道・趙傳×五月天）
+        source_type: official
+        version: live
+    note: 李宗盛為趙傳所寫，1990 年發表。原始 MV 在合格頻道未見，改收相信音樂官方上傳、趙傳本人與五月天合作的現場版。
+    sources:
+      - 官方現場影片（原唱趙傳演出）：https://www.youtube.com/watch?v=9eN9I6E-8xI
+
+  - id: shui-shou
+    title: 水手
+    year: 1992
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      lyricist: 鄭智化
+      composer: 鄭智化
+      original_singer: 鄭智化
+    hook: 鄭智化唱逆風而行的堅強，成為勵志歌的代名詞。
+    listen:
+      - url: https://www.youtube.com/watch?v=P1JUS4emI2s
+        label: 鄭智化原唱（Timeless Music 授權型錄復刻頻道）
+        source_type: other
+        version: original
+    note: 鄭智化 1992 年代表作。listen 頻道為可辨識的商業型錄復刻發行商 Timeless Music（非個人上傳）。
+    sources:
+      - 官方復刻 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=P1JUS4emI2s
+
+  - id: xing-xing-dian-deng
+    title: 星星點燈
+    year: 1992
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      lyricist: 鄭智化
+      composer: 鄭智化
+      original_singer: 鄭智化
+    hook: 鄭智化唱在黑暗裡尋光的少年，溫暖了失意的人。
+    listen:
+      - url: https://www.youtube.com/watch?v=tFXGhrHRLiA
+        label: 鄭智化原唱（Timeless Music 授權型錄復刻頻道）
+        source_type: other
+        version: original
+    note: 鄭智化 1992 年代表作。listen 頻道為可辨識的商業型錄復刻發行商 Timeless Music（非個人上傳）。
+    sources:
+      - 官方復刻 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=tFXGhrHRLiA
+
+  - id: hua-xin
+    title: 花心
+    year: 1993
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      lyricist: 厲曼婷
+      composer: 喜納昌吉
+      original_singer: 周華健
+    hook: 周華健翻唱沖繩民謠，把聚散寫成溫柔的情歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=IZ8-K3YPVN0
+        label: 周華健原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 曲調取自沖繩歌手喜納昌吉的作品，厲曼婷重新填上國語詞，周華健 1993 年演唱走紅。
+    sources:
+      - 官方 MV（演唱者、詞曲、取材來源）：https://www.youtube.com/watch?v=IZ8-K3YPVN0
+
+  - id: xin-tai-ruan
+    title: 心太軟
+    year: 1996
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      lyricist: 小蟲
+      composer: 小蟲
+      original_singer: 任賢齊
+    hook: 任賢齊唱心軟的男人，紅遍兩岸三地的國民金曲。
+    listen:
+      - url: https://www.youtube.com/watch?v=ZSWeurc1yMw
+        label: 任賢齊原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 小蟲詞曲，任賢齊 1996 年演唱，是九〇年代後期華語圈傳唱度最高的歌曲之一。
+    sources:
+      - 官方 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=ZSWeurc1yMw
+
+  - id: jie-mei
+    title: 姊妹
+    year: 1996
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      original_singer: 張惠妹
+    hook: 張惠妹出道曲，爆發力十足的嗓音唱姊妹情深。
+    listen:
+      - url: https://www.youtube.com/watch?v=OO60xtWjLRw
+        label: 張惠妹原唱（豐華唱片官方頻道）
+        source_type: official
+        version: original
+    note: 張惠妹 1996 年首張專輯《姊妹》主打歌。張惠妹為台東卑南族歌手，一出道即以爆發力唱腔轟動全台。
+    sources:
+      - 官方 MV（演唱者、出道專輯）：https://www.youtube.com/watch?v=OO60xtWjLRw
+      - 張惠妹生平與作品：https://zh.wikipedia.org/zh-tw/%E5%BC%B5%E6%83%A0%E5%A6%B9
+
+  - id: ting-hai
+    title: 聽海
+    year: 1997
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      original_singer: 張惠妹
+    hook: 張惠妹把思念寫成一封寄給大海的信，傳唱至今。
+    listen:
+      - url: https://www.youtube.com/watch?v=mLk61pfiHQ0
+        label: 張惠妹原唱（豐華唱片官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於張惠妹 1997 年專輯《牽手》，是她最具代表性的抒情曲之一。
+    sources:
+      - 官方 MV（演唱者、專輯）：https://www.youtube.com/watch?v=mLk61pfiHQ0
+
+  - id: wo-ke-yi-bao-ni-ma
+    title: 我可以抱你嗎
+    year: 1999
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      original_singer: 張惠妹
+    hook: 張惠妹唱愛到盡頭的最後請求，催淚的世紀末情歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=oj3NFUBO1U8
+        label: 張惠妹原唱（豐華唱片官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於張惠妹 1999 年專輯《我可以抱你嗎？愛人》。
+    sources:
+      - 官方 MV（演唱者、專輯）：https://www.youtube.com/watch?v=oj3NFUBO1U8
+
+  - id: tsi-bing-kah-tshun-kiau
+    title: 志明與春嬌
+    year: 1999
+    era: era-new-taiwanese
+    language: 台語
+    credits:
+      lyricist: 阿信
+      composer: 阿信
+      original_singer: 五月天
+    hook: 五月天出道曲，用台語唱一對戀人的爭吵與心軟。
+    listen:
+      - url: https://www.youtube.com/watch?v=5VUUGZ1-nlY
+        label: 五月天原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於五月天 1999 年首張同名專輯，是他們最早走紅的台語作品。
+    sources:
+      - 官方 MV（演唱者、詞曲、出道專輯）：https://www.youtube.com/watch?v=5VUUGZ1-nlY
+
+  - id: yong-bao
+    title: 擁抱
+    year: 1999
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      lyricist: 阿信
+      composer: 阿信
+      original_singer: 五月天
+    hook: 五月天首張專輯的溫柔搖滾，唱夜裡渴望的擁抱。
+    listen:
+      - url: https://www.youtube.com/watch?v=lvDa3r1pNuE
+        label: 五月天原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於五月天 1999 年首張同名專輯。
+    sources:
+      - 官方 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=lvDa3r1pNuE
+
+  - id: fei-ji-chang-de-10-30
+    title: 飛機場的10:30
+    year: 1997
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      original_singer: 陶喆
+    hook: 陶喆帶進 R&B 唱法，把候機的孤單唱得很時髦。
+    listen:
+      - url: https://www.youtube.com/watch?v=GurozK-HRTw
+        label: 陶喆原唱（Timeless Music 授權型錄復刻頻道）
+        source_type: other
+        version: original
+    note: 收錄於陶喆 1997 年首張同名專輯，把美式 R&B 帶進華語流行樂。listen 頻道為可辨識的商業型錄復刻發行商 Timeless Music（非個人上傳）。
+    sources:
+      - 官方復刻 MV（演唱者、專輯）：https://www.youtube.com/watch?v=GurozK-HRTw
+
+  - id: xiao-wei
+    title: 小薇
+    year: 1998
+    era: era-new-taiwanese
+    language: 國語
+    credits:
+      original_singer: 黃品源
+    hook: 黃品源唱一個叫小薇的女孩，成為卡拉 OK 必點。
+    listen:
+      - url: https://www.youtube.com/watch?v=Zt_HOLER96k
+        label: 黃品源原唱（滾石唱片官方頻道・滾石愛情故事）
+        source_type: official
+        version: original
+    note: 黃品源 1998 年代表作，是九〇年代末最普及的卡拉 OK 傳唱曲之一。
+    sources:
+      - 官方 MV（演唱者、專輯）：https://www.youtube.com/watch?v=Zt_HOLER96k

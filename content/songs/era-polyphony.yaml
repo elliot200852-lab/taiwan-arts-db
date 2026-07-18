@@ -1,0 +1,536 @@
+songs:
+  - id: hai-yang
+    title: 海洋
+    year: 1999
+    era: era-polyphony
+    language: 國語
+    credits:
+      lyricist: 陳建年
+      composer: 陳建年
+      original_singer: 陳建年
+    hook: 台東的警察陳建年以這張專輯拿下二〇〇〇年金曲歌王。
+    listen:
+      - url: https://www.youtube.com/watch?v=zDjRtY0xqr0
+        label: 陳建年原唱（角頭音樂官方頻道）
+        source_type: official
+        version: original
+    note: 專輯《海洋》1999 年底發行，2000 年獲第 11 屆金曲獎最佳國語男演唱人。發表年跨在世紀之交，本庫依 SONGS-SPEC 候選名冊將其列入眾聲喧嘩期，以其 2000 年獲獎與影響為錨。
+    sources:
+      - 陳建年生平、卑南族南王部落出身、以《海洋》獲 2000 年金曲歌王時仍為警察：https://zh.wikipedia.org/zh-tw/%E9%99%B3%E5%BB%BA%E5%B9%B4_(%E6%AD%8C%E6%89%8B)
+      - 官方 MV（收錄專輯、演唱者、角頭音樂編號 TCM003）：https://www.youtube.com/watch?v=zDjRtY0xqr0
+
+  - id: da-di-qing-huai
+    title: 大地情懷
+    year: 2002
+    era: era-polyphony
+    language: 國語
+    credits:
+      lyricist: 陳建年
+      composer: 陳建年
+      original_singer: 陳建年
+    hook: 陳建年唱台東的山與海，把部落的從容寫進旋律。
+    listen:
+      - url: https://www.youtube.com/watch?v=nnkcSJla5zw
+        label: 陳建年原唱（角頭音樂官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於陳建年 2002 年專輯《大地》（角頭音樂 TCM020）。
+    sources:
+      - 官方 MV（收錄專輯、演唱者、角頭音樂編號 TCM020）：https://www.youtube.com/watch?v=nnkcSJla5zw
+      - 陳建年生平與創作：https://zh.wikipedia.org/zh-tw/%E9%99%B3%E5%BB%BA%E5%B9%B4_(%E6%AD%8C%E6%89%8B)
+
+  - id: ye-huo
+    title: 野火
+    year: 2001
+    era: era-polyphony
+    language: 國語
+    credits:
+      original_singer: 紀曉君
+    hook: 卑南族的紀曉君從古謠走進流行，唱出新世代的原住民聲音。
+    listen:
+      - url: https://www.youtube.com/watch?v=PTcgTJF97Og
+        label: 紀曉君原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於紀曉君 2001 年專輯《野火 春風》。紀曉君為台東卑南族南王部落歌手，以吟唱古謠起家。詞曲作者史料未逐一查證，故 credits 僅列演唱者。
+    sources:
+      - 官方 MV（收錄專輯與演唱者）：https://www.youtube.com/watch?v=PTcgTJF97Og
+
+  - id: tai-ping-yang-de-feng
+    title: 太平洋的風
+    year: 2005
+    era: era-polyphony
+    language: 國語
+    credits:
+      lyricist: 胡德夫
+      composer: 胡德夫
+      original_singer: 胡德夫
+    hook: 胡德夫唱島嶼與海風，二〇〇六年拿下金曲最佳作詞。
+    listen:
+      - url: https://www.youtube.com/watch?v=1orwkijmkIU
+        label: 胡德夫原唱（野火樂集官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於胡德夫 2005 年首張個人專輯《匆匆》。胡德夫為卑南族，民歌運動的先聲，隔了三十年才出第一張個人專輯。
+    sources:
+      - 官方 MV（收錄專輯與演唱者）：https://www.youtube.com/watch?v=1orwkijmkIU
+      - 胡德夫生平與《匆匆》專輯：https://zh.wikipedia.org/zh-tw/%E8%83%A1%E5%BE%B7%E5%A4%AB
+
+  - id: kiuk-fa-ya-hang-kiun
+    title: 菊花夜行軍
+    year: 2001
+    era: era-polyphony
+    language: 客語
+    credits:
+      lyricist: 鍾永豐
+      composer: 林生祥
+      original_singer: 交工樂隊
+    hook: 交工樂隊為美濃反水庫而唱，把客家庄的心事寫成史詩。
+    listen:
+      - url: https://www.youtube.com/watch?v=yMbS0iIliqc
+        label: 交工樂隊／生祥樂隊官方頻道・十五週年紀念影片
+        source_type: official
+        version: live
+    note: 收錄於交工樂隊 2001 年同名專輯，錄於美濃菸樓，引入嗩吶與改造月琴。乾淨的錄音室版在合格頻道未見，改收樂團官方頻道（今名生祥樂隊）的十五週年紀念影片。林生祥以此專輯獲 2002 年金曲獎最佳樂團。
+    sources:
+      - 交工樂隊、美濃反水庫運動、《菊花夜行軍》專輯與金曲獎：https://zh.wikipedia.org/zh-hant/%E4%BA%A4%E5%B7%A5%E6%A8%82%E9%9A%8A
+      - 官方頻道紀念影片（收錄專輯與演出者）：https://www.youtube.com/watch?v=yMbS0iIliqc
+
+  - id: zung-shu
+    title: 種樹
+    year: 2006
+    era: era-polyphony
+    language: 客語
+    credits:
+      lyricist: 鍾永豐
+      composer: 林生祥
+      original_singer: 林生祥
+    hook: 林生祥唱農人種樹，把對土地的想像唱回最前緣。
+    listen:
+      - url: https://www.youtube.com/watch?v=ryAPBKGIwmE
+        label: 林生祥演唱（中華文化總會・2019 總統府音樂會）
+        source_type: foundation
+        version: live
+    note: 收錄於林生祥 2006 年專輯《種樹》。錄音室版在合格頻道未見，改收 2019 年總統府音樂會現場版（中華文化總會官方上傳）。
+    sources:
+      - 林生祥與交工樂隊脈絡：https://zh.wikipedia.org/zh-hant/%E4%BA%A4%E5%B7%A5%E6%A8%82%E9%9A%8A
+      - 現場演出（演唱者與曲目）：https://www.youtube.com/watch?v=ryAPBKGIwmE
+
+  - id: amis
+    title: 阿米斯
+    year: 2012
+    era: era-polyphony
+    language: 族語（阿美）
+    credits:
+      lyricist: 舒米恩
+      composer: 舒米恩
+      original_singer: 舒米恩
+    hook: 舒米恩以阿美語唱部落青年，讓族語重新登上舞台。
+    listen:
+      - url: https://www.youtube.com/watch?v=5pam-KLnqHU
+        label: 舒米恩原唱（YouTube 官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 收錄於舒米恩 2012 年阿美語專輯《阿米斯 AMIS》。舒米恩為台東都蘭部落阿美族創作歌手。
+    sources:
+      - 官方 Topic 頻道音檔（演唱者與曲目）：https://www.youtube.com/watch?v=5pam-KLnqHU
+
+  - id: malikasaw
+    title: 快樂搖擺
+    year: 2012
+    era: era-polyphony
+    language: 族語（卑南）
+    credits:
+      original_singer: 桑布伊
+    hook: 桑布伊以卑南語古調入歌，唱出土地與生命的力量。
+    listen:
+      - url: https://www.youtube.com/watch?v=OJAqwpdvFCQ
+        label: 桑布伊原唱（Sangpuy 官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於桑布伊 2012 年首張專輯《Dalan 路》。桑布伊為台東卑南族知本部落歌手，作品多取材傳統祭歌，詞曲多為傳統改編故 credits 僅列演唱者。
+    sources:
+      - 官方 MV（演唱者與專輯）：https://www.youtube.com/watch?v=OJAqwpdvFCQ
+
+  - id: carefree-life
+    title: 輕快的生活
+    year: 2011
+    era: era-polyphony
+    language: 族語（阿美）
+    credits:
+      lyricist: 以莉·高露
+      composer: 以莉·高露
+      original_singer: 以莉·高露
+    hook: 以莉·高露以阿美語唱日常，拿下金曲最佳原住民語專輯。
+    listen:
+      - url: https://www.youtube.com/watch?v=OMT9YutYMuU
+        label: 以莉·高露原唱（風潮音樂官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於以莉·高露 2011 年專輯《輕快的生活》，獲第 23 屆金曲獎最佳原住民語專輯與最佳原住民語歌手。
+    sources:
+      - 官方 MV（演唱者、專輯、金曲獎）：https://www.youtube.com/watch?v=OMT9YutYMuU
+
+  - id: ni-wa-wa
+    title: 泥娃娃
+    year: 2000
+    era: era-polyphony
+    language: 國語
+    credits:
+      original_singer: 巴奈
+    hook: 巴奈把一首兒歌重新唱過，唱出漂泊與追問自己是誰。
+    listen:
+      - url: https://www.youtube.com/watch?v=sIh7ZvBHCQ4
+        label: 巴奈原唱（角頭音樂官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於巴奈 2000 年首張專輯《泥娃娃》（角頭音樂 TCM008）。巴奈重新詮釋一首流傳已久的兒歌，唱法沉緩。巴奈為卑南與阿美族歌手。
+    sources:
+      - 官方 MV（演唱者、專輯、角頭音樂編號 TCM008）：https://www.youtube.com/watch?v=sIh7ZvBHCQ4
+
+  - id: thank-you
+    title: Thank You
+    year: 2019
+    era: era-polyphony
+    language: 混合（排灣語／英語）
+    credits:
+      original_singer: 阿爆（阿仍仍）
+    hook: 阿爆以排灣語專輯拿下金曲年度專輯，讓族語站上主流。
+    listen:
+      - url: https://www.youtube.com/watch?v=4cAp_IdqOuM
+        label: 阿爆原唱（阿爆官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於阿爆（阿仍仍）2019 年排灣語專輯《kinakaian 母親的舌頭》，該專輯獲第 31 屆金曲獎最佳原住民語專輯與年度專輯。本曲並用排灣語與英語。
+    sources:
+      - 阿爆生平、排灣族、《kinakaian》專輯與金曲年度專輯：https://zh.wikipedia.org/zh-tw/%E9%98%BF%E7%88%86
+      - 官方 MV（演唱者與曲目）：https://www.youtube.com/watch?v=4cAp_IdqOuM
+
+  - id: shen-qi-bai-ma
+    title: 身騎白馬
+    year: 2009
+    era: era-polyphony
+    language: 國語
+    credits:
+      lyricist: 徐佳瑩
+      composer: 徐佳瑩、蘇通達
+      original_singer: 徐佳瑩
+    hook: 徐佳瑩把歌仔戲七字調唱進流行歌，傳統回到最前緣。
+    listen:
+      - url: https://www.youtube.com/watch?v=VzXOT26_Da8
+        label: 徐佳瑩原唱（亞神音樂官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於徐佳瑩 2009 年首張專輯。副歌取自歌仔戲《薛平貴與王寶釧》的七字調古詞，源自其師蘇通達的電音歌仔戲實驗。
+    sources:
+      - 《身騎白馬》融合歌仔戲七字調、與《薛平貴與王寶釧》淵源、蘇通達電音歌仔戲：https://zh.wikipedia.org/zh-tw/%E6%88%91%E8%BA%AB%E9%A8%8E%E7%99%BD%E9%A6%AC
+      - 官方 MV（演唱者與版本）：https://www.youtube.com/watch?v=VzXOT26_Da8
+
+  - id: hi-a
+    title: 魚仔
+    year: 2017
+    era: era-polyphony
+    language: 台語
+    credits:
+      lyricist: 盧廣仲
+      composer: 盧廣仲
+      original_singer: 盧廣仲
+    hook: 盧廣仲為電視劇寫的台語歌，唱紅了一整個夏天。
+    listen:
+      - url: https://www.youtube.com/watch?v=ybfWYpYhTQQ
+        label: 盧廣仲原唱（添翼音樂官方頻道）
+        source_type: official
+        version: original
+    note: 電視劇《花甲男孩轉大人》主題曲，2017 年發表，隔年獲金曲獎年度歌曲與最佳作曲人。
+    sources:
+      - 官方 MV（演唱者、劇集主題曲）：https://www.youtube.com/watch?v=ybfWYpYhTQQ
+      - 盧廣仲生平與《魚仔》：https://zh.wikipedia.org/zh-tw/%E7%9B%A7%E5%BB%A3%E4%BB%B2
+
+  - id: qing-tian
+    title: 晴天
+    year: 2003
+    era: era-polyphony
+    language: 國語
+    credits:
+      lyricist: 周杰倫
+      composer: 周杰倫
+      original_singer: 周杰倫
+    hook: 周杰倫自寫自唱的校園情歌，寫青春裡的猶豫與遺憾。
+    listen:
+      - url: https://www.youtube.com/watch?v=DYptgVvkVLQ
+        label: 周杰倫原唱（周杰倫官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於周杰倫 2003 年專輯《葉惠美》。周杰倫是二〇〇〇年後華語流行樂最具代表性的創作歌手。
+    sources:
+      - 官方 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=DYptgVvkVLQ
+      - 周杰倫生平與作品：https://zh.wikipedia.org/zh-tw/%E5%91%A8%E6%9D%B0%E5%80%AB
+
+  - id: mei-gui-shao-nian
+    title: 玫瑰少年
+    year: 2018
+    era: era-polyphony
+    language: 國語
+    credits:
+      lyricist: 蔡依林、阿信
+      composer: 剃刀蔣、蔡依林
+      original_singer: 蔡依林
+    hook: 蔡依林為葉永鋕而唱，二〇一九年拿下金曲年度歌曲。
+    listen:
+      - url: https://www.youtube.com/watch?v=feOq6MWeUXA
+        label: 蔡依林原唱（蔡依林官方頻道・Official Dance Video）
+        source_type: official
+        version: original
+    note: 收錄於蔡依林 2018 年專輯《Ugly Beauty》，以葉永鋕事件為創作靈感，為性別氣質不同者發聲，獲第 30 屆金曲獎年度歌曲。
+    sources:
+      - 《玫瑰少年》發行、葉永鋕事件、金曲年度歌曲：https://zh.wikipedia.org/zh-tw/%E7%8E%AB%E7%91%B0%E5%B0%91%E5%B9%B4_(%E6%AD%8C%E6%9B%B2)
+      - 官方影片（演唱者與版本）：https://www.youtube.com/watch?v=feOq6MWeUXA
+
+  - id: to-su-thinn-kng
+    title: 島嶼天光
+    year: 2014
+    era: era-polyphony
+    language: 台語
+    credits:
+      lyricist: 楊大正
+      composer: 楊大正
+      original_singer: 滅火器
+    hook: 為太陽花學運而寫的台語歌，五十萬人在街頭合唱。
+    listen:
+      - url: https://www.youtube.com/watch?v=-w24iJG28qI
+        label: 滅火器原唱（滅火器官方頻道）
+        source_type: official
+        version: original
+    note: 2014 年為太陽花學運創作，3 月 30 日反服貿遊行約五十萬人合唱。《島嶼天光搖滾版》獲第 26 屆金曲獎最佳年度歌曲。
+    sources:
+      - 《島嶼天光》創作、太陽花學運、金曲年度歌曲：https://zh.wikipedia.org/zh-tw/%E5%B3%B6%E5%B6%BC%E5%A4%A9%E5%85%89
+      - 官方 MV（演唱者與曲目）：https://www.youtube.com/watch?v=-w24iJG28qI
+
+  - id: long-tsu-hue-thau
+    title: 浪子回頭
+    year: 2017
+    era: era-polyphony
+    language: 台語
+    credits:
+      original_singer: 茄子蛋
+    hook: 茄子蛋唱浪蕩與回頭，讓台語歌在年輕世代重新流行。
+    listen:
+      - url: https://www.youtube.com/watch?v=x3bDhtuC5yk
+        label: 茄子蛋原唱（茄子蛋官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於茄子蛋 2017 年首張專輯《卡通人物》。茄子蛋以台語搖滾唱市井小人物，帶動新一波台語歌熱潮。
+    sources:
+      - 官方 MV（演唱者與專輯）：https://www.youtube.com/watch?v=x3bDhtuC5yk
+      - 茄子蛋生平與作品：https://zh.wikipedia.org/zh-tw/%E8%8C%84%E5%AD%90%E8%9B%8B
+
+  - id: da-feng-chui
+    title: 大風吹
+    year: 2016
+    era: era-polyphony
+    language: 國語
+    credits:
+      original_singer: 草東沒有派對
+    hook: 草東沒有派對唱世代的無力與憤怒，成為年輕人的共鳴。
+    listen:
+      - url: https://www.youtube.com/watch?v=HqmpIQ9l-uA
+        label: 草東沒有派對原唱（草東官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於草東沒有派對 2016 年首張專輯《醜奴兒》，該專輯橫掃 2017 年金曲獎多項大獎，是獨立樂團擠進主流的指標。
+    sources:
+      - 官方 MV（演唱者與專輯）：https://www.youtube.com/watch?v=HqmpIQ9l-uA
+      - 草東沒有派對與《醜奴兒》金曲獎：https://zh.wikipedia.org/zh-tw/%E8%8D%89%E6%9D%B1%E6%B2%92%E6%9C%89%E6%B4%BE%E5%B0%8D
+
+  - id: jue-jiang
+    title: 倔強
+    year: 2004
+    era: era-polyphony
+    language: 國語
+    credits:
+      lyricist: 阿信
+      composer: 阿信
+      original_singer: 五月天
+    hook: 五月天唱不服輸的少年心，成為一代人的加油歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=R2s-H_crYkc
+        label: 五月天原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於五月天 2004 年專輯《神的孩子都在跳舞》。五月天從新臺語歌與樂團年代出道，2000 年後成為華語最大的搖滾樂團。
+    sources:
+      - 官方 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=R2s-H_crYkc
+      - 五月天生平與作品：https://zh.wikipedia.org/zh-tw/%E4%BA%94%E6%9C%88%E5%A4%A9
+
+  - id: tu-ran-hao-xiang-ni
+    title: 突然好想你
+    year: 2008
+    era: era-polyphony
+    language: 國語
+    credits:
+      lyricist: 阿信
+      composer: 阿信
+      original_singer: 五月天
+    hook: 五月天寫想念一個人的深夜，傳唱成國民情歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=GtDRcXtDg-4
+        label: 五月天原唱（相信音樂官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於五月天 2008 年專輯《後青春期的詩》。
+    sources:
+      - 官方 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=GtDRcXtDg-4
+
+  - id: xiao-qing-ge
+    title: 小情歌
+    year: 2006
+    era: era-polyphony
+    language: 國語
+    credits:
+      lyricist: 吳青峰
+      composer: 吳青峰
+      original_singer: 蘇打綠
+    hook: 蘇打綠吳青峰的清亮嗓音，把校園樂團帶進大舞台。
+    listen:
+      - url: https://www.youtube.com/watch?v=in8NNzwFa-s
+        label: 蘇打綠原唱（蘇打綠官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於蘇打綠 2006 年專輯《小宇宙》。蘇打綠自校園獨立樂團出身，逐步走進主流。
+    sources:
+      - 官方 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=in8NNzwFa-s
+      - 蘇打綠生平與作品：https://zh.wikipedia.org/zh-tw/%E8%98%87%E6%89%93%E7%B6%A0
+
+  - id: tian-hei-hei
+    title: 天黑黑
+    year: 2000
+    era: era-polyphony
+    language: 國語
+    credits:
+      lyricist: 廖瑩如
+      composer: 李偲菘
+      original_singer: 孫燕姿
+    hook: 孫燕姿翻新一首老童謠的意象，唱都市女孩的心事。
+    listen:
+      - url: https://www.youtube.com/watch?v=DOH5uhwn5F4
+        label: 孫燕姿原唱（YouTube 官方 Topic 頻道，影片標題為英譯 The Dark Day）
+        source_type: official
+        version: original
+    note: 收錄於孫燕姿 2000 年首張專輯《孫燕姿》。歌名借用台灣同名老童謠的意象，寫都會女子的心情。官方 Topic 音檔的影片標題顯示為英譯名 The Dark Day。
+    sources:
+      - 官方 Topic 頻道音檔（演唱者與曲目）：https://www.youtube.com/watch?v=DOH5uhwn5F4
+      - 孫燕姿生平與作品：https://zh.wikipedia.org/zh-tw/%E5%AD%AB%E7%87%95%E5%A7%BF
+
+  - id: san-tian-san-ye
+    title: 三天三夜
+    year: 2000
+    era: era-polyphony
+    language: 國語
+    credits:
+      original_singer: 張惠妹
+    hook: 張惠妹的勁歌熱舞，唱出世紀之交的自信與奔放。
+    listen:
+      - url: https://www.youtube.com/watch?v=NFHb0OwmE-0
+        label: 張惠妹原唱（豐華唱片官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於張惠妹 2000 年專輯《不顧一切》（2000 年 12 月發行）。張惠妹為卑南族歌手，從新臺語歌年代出道後成為華語最具人氣的女歌手之一。詞曲作者史料版本不一，故 credits 僅列演唱者。
+    sources:
+      - 《三天三夜》發行年、收錄專輯《不顧一切》：https://zh.wikipedia.org/zh-tw/%E4%B8%89%E5%A4%A9%E4%B8%89%E5%A4%9C
+      - 官方 MV（演唱者與曲目）：https://www.youtube.com/watch?v=NFHb0OwmE-0
+
+  - id: bao-bei
+    title: 寶貝
+    year: 2006
+    era: era-polyphony
+    language: 國語
+    credits:
+      lyricist: 張懸
+      composer: 張懸
+      original_singer: 張懸
+    hook: 張懸抱著吉他唱的搖籃曲，溫柔了一整個獨立音樂年代。
+    listen:
+      - url: https://www.youtube.com/watch?v=TsriGIW30po
+        label: 張懸原唱（金曲年代 GOLDEN ERA・Sony Music Taiwan 官方典藏頻道）
+        source_type: official
+        version: original
+    note: 收錄於張懸 2006 年首張專輯《My Life Will…》。連結為索尼音樂台灣（Sony Music Taiwan）官方典藏頻道「金曲年代 GOLDEN ERA」上傳的官方版本。
+    sources:
+      - 官方頻道影片（演唱者、專輯）：https://www.youtube.com/watch?v=TsriGIW30po
+      - 張懸生平與作品：https://zh.wikipedia.org/zh-tw/%E5%BC%B5%E6%87%B8
+
+  - id: lu-xing-de-yi-yi
+    title: 旅行的意義
+    year: 2004
+    era: era-polyphony
+    language: 國語
+    credits:
+      lyricist: 陳綺貞
+      composer: 陳綺貞
+      original_singer: 陳綺貞
+    hook: 陳綺貞唱離開與追尋，成為文藝青年的代表曲。
+    listen:
+      - url: https://www.youtube.com/watch?v=tv95k0zqnaA
+        label: 陳綺貞原唱（添翼音樂官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於陳綺貞 2004 年專輯《華麗的冒險》。陳綺貞為獨立創作歌手的代表人物。
+    sources:
+      - 官方 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=tv95k0zqnaA
+      - 陳綺貞生平與作品：https://zh.wikipedia.org/zh-tw/%E9%99%B3%E7%B6%BA%E8%B2%9E
+
+  - id: jiang-nan
+    title: 江南
+    year: 2004
+    era: era-polyphony
+    language: 國語
+    credits:
+      lyricist: 姚若龍
+      composer: 林俊傑
+      original_singer: 林俊傑
+    hook: 林俊傑把江南水鄉唱成情歌，紅遍整個華語世界。
+    listen:
+      - url: https://www.youtube.com/watch?v=G97_rOdHcnY
+        label: 林俊傑原唱（太合音樂官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於林俊傑 2004 年專輯《第二天堂》。連結為持有此期版權的太合音樂官方頻道。
+    sources:
+      - 官方 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=G97_rOdHcnY
+      - 林俊傑生平與作品：https://zh.wikipedia.org/zh-tw/%E6%9E%97%E4%BF%8A%E5%82%91
+
+  - id: wo-hai-nian-qing
+    title: 我還年輕 我還年輕
+    year: 2018
+    era: era-polyphony
+    language: 國語
+    credits:
+      original_singer: 老王樂隊
+    hook: 老王樂隊唱年輕的迷惘，成為地下樂團的世代之聲。
+    listen:
+      - url: https://www.youtube.com/watch?v=oCQnAxrkTUc
+        label: 老王樂隊原唱（老王樂隊官方頻道）
+        source_type: official
+        version: original
+    note: 老王樂隊 2018 年作品，唱年輕世代的迷惘與掙扎，在獨立樂團圈廣為傳唱。
+    sources:
+      - 官方 MV（演唱者與曲目）：https://www.youtube.com/watch?v=oCQnAxrkTUc
+
+  - id: ai-ren-cuo-guo
+    title: 愛人錯過
+    year: 2019
+    era: era-polyphony
+    language: 國語
+    credits:
+      lyricist: 潘雲安
+      composer: 潘雲安
+      original_singer: 告五人
+    hook: 告五人唱錯過的愛情，讓獨立樂團的歌傳進大眾耳裡。
+    listen:
+      - url: https://www.youtube.com/watch?v=6D79CYTxvOM
+        label: 告五人原唱（告五人官方頻道）
+        source_type: official
+        version: original
+    note: 告五人 2019 年作品。告五人自宜蘭出發，是二〇一〇年代末最受歡迎的新生代獨立樂團之一。
+    sources:
+      - 官方 MV（演唱者、詞曲）：https://www.youtube.com/watch?v=6D79CYTxvOM
