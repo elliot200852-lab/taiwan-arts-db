@@ -49,8 +49,11 @@ content/songs/era-<slug>.md    # 八個時代頁敘事（frontmatter＋正文＋
 content/songs/era-<slug>.yaml  # 歌曲登記簿分片（該期歌曲；邏輯上全線一本，
                                #   build 讀入全部分片、check_songs 跨片驗 id 唯一）
 docs/research/research-s*.md   # 每批派工的研究筆記（取捨、查證、放棄理由）
+docs/research/musicians-roster.md  # 音樂人人物誌候選名冊（滾動累積，見下）
 scripts/check_songs.py         # schema＋連結驗證（S1 基建，見 §6）
 ```
+
+**音樂人註記（David 2026-07-18 追加）**：之後要做「音樂人人物誌」（S3 單獨寫頁，讓讀者對文章裡的音樂人有興趣時能讀到他的故事）。今晚各批寫手交件時，把該期**重要的歌手與音樂創作人**登記進 `docs/research/musicians-roster.md`（append，不動別批的段落），每人一行：`姓名｜期別｜角色（作詞/作曲/演唱/樂團）｜一句話為何重要｜關聯歌 id`。已有人物頁者標記（已有頁）。只註記不寫頁——這份名冊就是 S3 的選人清單。
 
 （2026-07-18 Fable 修訂：登記簿由單一 songs.yaml 改為每期一片，讓多批 agent 平行交件不互相改同一檔；除檔案位置外 schema 與紀律不變，本檔下文的「登記簿」指全部分片的聯集。）
 
