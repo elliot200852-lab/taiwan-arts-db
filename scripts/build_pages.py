@@ -21,6 +21,13 @@ Markdown 子集（受限轉換，刻意不吃完整 Markdown）：
   - 作品清單 `- **作品名**（年代）｜說明` → works-list（｜與 timeline 的
     ｜同為結構分隔符，不會出現在輸出文字裡）。
 
+領域標籤（2026-07-18 David 拍板，Phase 1 雛形）：
+  frontmatter `tags`（第一個為主要領域）→ 人物頁 hero 顯示可點 chips，
+  連回 `../index.html#field-<tag>`；首頁人物 tab 上方同步生成「全部＋
+  出現過的領域」篩選列（見 index.md `people[].tags`）。首頁 hash 路由
+  擴充支援 `#field-<tag>` 深連結／返回鍵，與既有 `#general`/`#people`
+  共存。Phase 2 分領域獨立頁上線後，同一批標籤與 URL 設計原樣承接。
+
 頁面骨架照 templates/index.html、templates/person.html 的定案結構
 （class 名、區塊順序）；首頁 tab 的 hash-router <script> 直接從
 templates/index.html 抽出，單一來源。
@@ -214,6 +221,14 @@ def render_storyteller(blocks: list[str], path: Path) -> str:
     return "\n".join(quotes)
 
 
+def render_tag_chips(tags: list[str]) -> str:
+    """人物頁 hero 的領域標籤 chips；連回首頁篩選列（Phase 2 分領域頁上線前的雛形）。"""
+    return "\n".join(
+        f'        <a class="tag-chip" href="../index.html#field-{esc(t)}">{esc(t)}</a>'
+        for t in tags
+    )
+
+
 def render_footnotes(blocks: list[str], path: Path) -> str:
     items: list[str] = []
     for block in blocks:
@@ -245,6 +260,9 @@ PERSON_PAGE = """<!DOCTYPE html>
       <h1>{name}</h1>
       <p class="ph-years">{years}</p>
       <p class="ph-field">{tagline}</p>
+      <div class="tag-chips">
+{tag_chips}
+      </div>
       <div class="lede"><p>{lede}</p></div>
     </header>
 
@@ -305,7 +323,7 @@ PERSON_PAGE = """<!DOCTYPE html>
 
 def build_person(md_path: Path) -> tuple[str, str]:
     fm, body = split_frontmatter(md_path)
-    for key in ("slug", "name", "years", "field", "tagline", "lede", "portrait", "geo", "source", "credit"):
+    for key in ("slug", "name", "years", "field", "tagline", "lede", "portrait", "geo", "source", "credit", "tags"):
         if key not in fm:
             die(f"{md_path.name}：frontmatter 缺 `{key}`")
     sections = split_sections(body, md_path)
@@ -323,6 +341,7 @@ def build_person(md_path: Path) -> tuple[str, str]:
         field=esc(fm["field"]),
         years=esc(fm["years"]),
         tagline=esc(fm["tagline"]),
+        tag_chips=render_tag_chips(fm["tags"]),
         lede=inline(fm["lede"]),
         who_heading=esc(titles[0]),
         who=inline(who_blocks[0]),
@@ -373,6 +392,9 @@ INDEX_PAGE = """<!DOCTYPE html>
 
     <!-- 人物 -->
     <section class="tab-panel" data-panel="people" role="tabpanel">
+      <div class="field-filters" role="group" aria-label="依領域篩選人物">
+{filters}
+      </div>
       <div class="person-cards" id="person-cards">
 {cards}
       </div>
@@ -392,6 +414,27 @@ def extract_index_script() -> str:
     if not m:
         die("templates/index.html 找不到 <script> 區塊")
     return m.group(1)
+
+
+def build_field_filters(people: list[dict]) -> str:
+    """首頁人物 tab 上方的領域篩選列：「全部」＋出現過的領域各一顆
+    （依人物出現順序去重）；分領域完整頁面上線前的雛形，chip 對應
+    `#field-<tag>` hash（見 templates/index.html 的 hash-router）。"""
+    seen: list[str] = []
+    for p in people:
+        for t in p["tags"]:
+            if t not in seen:
+                seen.append(t)
+    chips = [
+        '        <button type="button" class="field-chip active" '
+        'data-field="all" aria-pressed="true">全部</button>'
+    ]
+    for t in seen:
+        chips.append(
+            f'        <button type="button" class="field-chip" '
+            f'data-field="{esc(t)}" aria-pressed="false">{esc(t)}</button>'
+        )
+    return "\n".join(chips)
 
 
 def build_index() -> str:
@@ -415,8 +458,9 @@ def build_index() -> str:
 
     cards: list[str] = []
     for p in fm["people"]:
+        tags_attr = esc(" ".join(p["tags"]))
         cards.append(
-            f'        <a class="person-card" href="pages/{esc(p["slug"])}.html">\n'
+            f'        <a class="person-card" href="pages/{esc(p["slug"])}.html" data-tags="{tags_attr}">\n'
             f'          <span class="pc-name">{esc(p["name"])}</span>'
             f'<span class="pc-years">{esc(p["years"])}</span>\n'
             f'          <span class="pc-field">{esc(p["field"])}</span>\n'
@@ -430,6 +474,7 @@ def build_index() -> str:
         site_title=esc(fm["site_title"]),
         site_sub=esc(fm["site_sub"]),
         intro="\n".join(intro_parts),
+        filters=build_field_filters(fm["people"]),
         cards="\n".join(cards),
         script=extract_index_script(),
     )

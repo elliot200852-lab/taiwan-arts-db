@@ -15,7 +15,9 @@
     <p>人文與藝術資料庫 · 教師備課用</p>
   </header>
 
-  <!-- 試點先開「總論」「人物」兩個 tab，之後擴「分領域」。
+  <!-- 試點先開「總論」「人物」兩個 tab，之後擴「分領域」——
+       「人物」tab 上方的領域篩選列（field-filters）是分領域頁面上線前的雛形，
+       chip 對應 #field-<tag> hash，Phase 2 分領域獨立頁上線後同一組標籤承接。
        外連 tab 用 <a>、內部 tab 用 <button data-tab>；JS 選擇器只抓 .geo-tab[data-tab]，
        外連不會被 hash 路由劫持（照 taiwan-geo-db 首頁同款做法）。 -->
   <nav class="geo-tabs" role="tablist" aria-label="首頁導覽">
@@ -36,9 +38,16 @@
 
     <!-- 人物 -->
     <section class="tab-panel" data-panel="people" role="tabpanel">
+      <!-- 領域篩選列：「全部」＋出現過的領域（依人物 tags 出現順序去重）各一顆 chip。
+           點擊由 JS 篩選下方卡片並把 hash 換成 #field-<tag>（「全部」回 #people）。 -->
+      <div class="field-filters" role="group" aria-label="依領域篩選人物">
+        <button type="button" class="field-chip active" data-field="all" aria-pressed="true">全部</button>
+        <button type="button" class="field-chip" data-field="美術" aria-pressed="false">美術</button>
+      </div>
       <div class="person-cards" id="person-cards">
-        <!-- 每位人物一張卡；由內容組生成時逐一填入 -->
-        <a class="person-card" href="pages/FILL_ME-person-id.html">
+        <!-- 每位人物一張卡；由內容組生成時逐一填入。data-tags＝frontmatter tags 空白分隔，
+             供 JS 篩選比對（見下方 hash-router script） -->
+        <a class="person-card" href="pages/FILL_ME-person-id.html" data-tags="美術">
           <span class="pc-name">〔姓名〕</span><span class="pc-years">〔1895–1947〕</span>
           <span class="pc-field">〔領域，如：文學 · 小說〕</span>
         </a>
@@ -47,13 +56,30 @@
   </main>
 
   <script>
-    // 首頁分頁 hash 路由（#general / #people）。
-    // 支援瀏覽器上一頁、深連結；照 taiwan-geo-db 首頁同款模式。
+    // 首頁分頁 hash 路由（#general / #people / #field-<領域>）。
+    // #field-<領域>：進站或 hashchange 讀到 → 啟動「人物」tab＋套用該領域篩選；
+    // 點篩選 chip 會把 hash 換成 #field-<領域>（「全部」回 #people）。
+    // 支援瀏覽器上一頁、深連結；照 taiwan-geo-db 首頁同款模式擴充。
     (function () {
       var TABS = ['general', 'people'];
       var buttons = document.querySelectorAll('.geo-tab[data-tab]');
       var panels = document.querySelectorAll('.tab-panel');
-      function activate(name, push) {
+      var fieldChips = document.querySelectorAll('.field-chip[data-field]');
+      var cards = document.querySelectorAll('.person-card');
+
+      function applyFilter(field) {
+        fieldChips.forEach(function (c) {
+          var on = c.getAttribute('data-field') === field;
+          c.classList.toggle('active', on);
+          c.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        cards.forEach(function (card) {
+          var tags = (card.getAttribute('data-tags') || '').split(' ');
+          card.style.display = (field === 'all' || tags.indexOf(field) > -1) ? '' : 'none';
+        });
+      }
+
+      function activateTab(name) {
         if (TABS.indexOf(name) < 0) name = 'general';
         buttons.forEach(function (b) {
           var on = b.getAttribute('data-tab') === name;
@@ -63,17 +89,40 @@
         panels.forEach(function (p) {
           p.classList.toggle('active', p.getAttribute('data-panel') === name);
         });
-        if (push && ('#' + name) !== location.hash) {
-          history.pushState(null, '', '#' + name);
+      }
+
+      function route(hash, push) {
+        var name = (hash || '').replace('#', '');
+        var field = null;
+        if (name.indexOf('field-') === 0) {
+          field = name.slice('field-'.length);
+          name = 'people';
+        }
+        activateTab(name);
+        if (name === 'people') {
+          applyFilter(field || 'all');
+        }
+        if (push) {
+          var target = '#' + (field ? 'field-' + field : name);
+          if (target !== location.hash) {
+            history.pushState(null, '', target);
+          }
         }
       }
+
       buttons.forEach(function (b) {
-        b.addEventListener('click', function () { activate(b.getAttribute('data-tab'), true); });
+        b.addEventListener('click', function () { route(b.getAttribute('data-tab'), true); });
+      });
+      fieldChips.forEach(function (c) {
+        c.addEventListener('click', function () {
+          var field = c.getAttribute('data-field');
+          route(field === 'all' ? 'people' : 'field-' + field, true);
+        });
       });
       window.addEventListener('hashchange', function () {
-        activate((location.hash || '').replace('#', ''), false);
+        route(location.hash, false);
       });
-      activate((location.hash || '').replace('#', '') || 'general', false);
+      route(location.hash, false);
     })();
   </script>
 </body>

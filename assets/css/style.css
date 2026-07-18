@@ -130,6 +130,35 @@ a.person-card:hover { background: var(--focus); border-color: var(--gold); trans
 .person-card .pc-years { font-size: .82rem; color: var(--ink-soft); margin-left: .4rem; }
 .person-card .pc-field { display: block; font-size: .88rem; color: var(--plum); margin-top: .2rem; }
 
+/* 領域篩選列（人物 tab 上方；分領域頁面上線前的雛形，chip 對應 #field-<tag>） */
+.field-filters {
+  max-width: 960px;
+  margin: 1.4rem auto 0;
+  padding: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: center;
+}
+.field-chip {
+  font-family: var(--serif);
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .4rem 1.1rem;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.field-chip:hover { color: var(--indigo-deep); border-color: var(--indigo); }
+.field-chip.active {
+  color: var(--paper);
+  background: var(--indigo);
+  border-color: var(--indigo-deep);
+}
+
 /* ---------- 內容頁 ---------- */
 .page-wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.2rem 4rem; }
 
@@ -164,6 +193,28 @@ a.person-card:hover { background: var(--focus); border-color: var(--gold); trans
   letter-spacing: .05em;
 }
 .person-hero .ph-field { color: var(--plum); font-size: 1rem; margin: 0 0 .8rem; }
+
+/* 領域標籤 chips（人物頁 hero）：同 .field-chip 家族，縮小版，連回首頁 #field-<tag> */
+.tag-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: 0 0 1rem;
+}
+.tag-chip {
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--indigo-deep);
+  background: var(--paper-2);
+  border: 1px solid var(--indigo);
+  border-radius: 999px;
+  padding: .25rem .85rem;
+  text-decoration: none;
+  transition: background .15s, color .15s, transform .15s;
+}
+.tag-chip:hover { background: var(--indigo); color: var(--paper); transform: translateY(-1px); }
 
 /* 主文區塊（他是誰／生平與時代／作品與聽看入口） */
 .person-sec { margin: 2.4rem 0; }
@@ -317,4 +368,6 @@ sup.fn-ref a { text-decoration: none; }
   .geo-tabs { gap: .2rem; }
   .geo-tab { font-size: .98rem; padding: .5rem .85rem; }
   .person-cards { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .field-chip { font-size: .85rem; padding: .35rem .85rem; }
+  .tag-chip { font-size: .8rem; padding: .2rem .7rem; }
 }
