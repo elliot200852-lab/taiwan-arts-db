@@ -144,6 +144,7 @@ songs:
 硬規則：
 
 - 連結必須直達單曲（YouTube 單支影片、典藏單頁），不收歌單頁、搜尋結果頁、首頁。
+- **典藏站內播放頁可當 `listen[0]` 主連結**（2026-07-19 試點批裁定）：「歌名即連結」指向可直接播放的單曲頁即可，不限 YouTube（David 原話「YouTube 或其他可直接點擊的連結」）。老錄音破解點＝臺史博「臺灣音聲一百年」REST API：`https://audio.nmth.gov.tw/wp-json/wp/v2/search?search=<關鍵字>&subtype=nmth_new_item`，典藏單頁帶播放器與詞曲／年份，curl 200 後入簿（source_type: archive）。1930 年代原唱曲盤 YouTube 幾乎只剩個人上傳，靠此路線才收得到原唱。
 - 每條 `label` 寫明「誰的版本＋來源機構」，讓老師課前不用點開就知道會放出什麼。
 - 不內嵌播放器、不下載音檔、不轉存任何音訊——本庫只放連結。
 - 驗證：`check_songs.py` 對 YouTube 連結打 oEmbed（`https://www.youtube.com/oembed?url=…`，404＝影片不存在即 fail）、其他網址驗 HTTP 200。**通過驗證只代表連結活著，不代表來源合格——來源合格性由盲驗 agent 逐條人工判**（§7）。
