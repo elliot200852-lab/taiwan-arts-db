@@ -451,9 +451,12 @@ svg.tw-map {
   fill: var(--ink);
 }
 
-/* pin：<a>／<g> 包 shape＋title；hover 提示游標可點、色澤加深 */
+/* pin：<a>／<g> 包 shape＋title；hover 提示游標可點、色澤加深。
+   transform-box: fill-box 必留——SVG 預設拿整張 view-box 當 transform-origin
+   參考框，hover 縮放會把離圖中心遠的 pin 彈飛（游標追不到＝抖動、點不到，
+   2026-07-18 驗收修正）。 */
 .pin { cursor: pointer; }
-.pin .pin-shape { transition: transform .12s, opacity .12s; transform-origin: center; }
+.pin .pin-shape { transition: transform .12s, opacity .12s; transform-box: fill-box; transform-origin: center; }
 .pin:hover .pin-shape, .pin:focus .pin-shape { transform: scale(1.35); }
 .pin-person .pin-shape { fill: var(--indigo); stroke: var(--paper); stroke-width: 1.2; }
 .pin-place .pin-shape {
@@ -468,6 +471,7 @@ svg.tw-map {
   stroke: var(--paper);
   stroke-width: 1.2;
   transition: transform .12s;
+  transform-box: fill-box;
   transform-origin: center;
 }
 .pin-cluster:hover .pin-shape, .pin-cluster:focus .pin-shape { transform: scale(1.2); }
