@@ -270,7 +270,7 @@ PERSON_PAGE = """<!DOCTYPE html>
       <h2>{who_heading}</h2>
       <p>{who}</p>
     </section>
-
+{story}
     <section class="person-sec bio">
       <h2>生平與時代</h2>
 {bio}
@@ -309,7 +309,7 @@ PERSON_PAGE = """<!DOCTYPE html>
 
     <footer class="page-foot">
       <div class="license">
-        本頁內容改作自 <a href="{source_url}" target="_blank" rel="noopener">{source_title}</a>（CC BY-SA 4.0），依同條款釋出改作內容。
+        {license_line}
       </div>
       <div class="credit">
         {credit}
@@ -323,14 +323,38 @@ PERSON_PAGE = """<!DOCTYPE html>
 
 def build_person(md_path: Path) -> tuple[str, str]:
     fm, body = split_frontmatter(md_path)
-    for key in ("slug", "name", "years", "field", "tagline", "lede", "portrait", "geo", "source", "credit", "tags"):
+    for key in ("slug", "name", "years", "field", "tagline", "lede", "portrait", "geo", "credit", "tags"):
         if key not in fm:
             die(f"{md_path.name}：frontmatter 缺 `{key}`")
+    # source 選配：有 → 改作自 Taiwan.md 專文（代換規則 1）；無 → 本庫原創編寫（代換規則 2）。
+    src = fm.get("source")
+    if src:
+        if "title" not in src or "url" not in src:
+            die(f"{md_path.name}：source 需含 title 與 url")
+        license_line = (
+            f'本頁內容改作自 <a href="{esc(src["url"])}" target="_blank" rel="noopener">'
+            f"{esc(src['title'])}</a>（CC BY-SA 4.0），依同條款釋出改作內容。"
+        )
+    else:
+        license_line = "本頁由本資料庫依公開來源原創編寫（逐條見「出處」），以 CC BY-SA 4.0 釋出。"
     sections = split_sections(body, md_path)
     titles = [t for t, _ in sections]
     expected_tail = ["生平與時代", "作品與聽看入口", "教學素材", "說書稿切分提示", "出處"]
+    # 「一個小故事」為選配區段（有出處才寫、絕不編造——David 2026-07-18），
+    # 位置固定在 他是誰 之後。
+    story_html = ""
+    if len(titles) >= 2 and titles[1] == "一個小故事":
+        story_paras = "\n".join(f"      <p>{inline(b)}</p>" for b in sections[1][1])
+        story_html = (
+            '\n    <section class="person-sec story">\n'
+            "      <h2>一個小故事</h2>\n"
+            f"{story_paras}\n"
+            "    </section>\n"
+        )
+        sections = [sections[0]] + sections[2:]
+        titles = [t for t, _ in sections]
     if len(titles) != 6 or titles[0] not in WHO_HEADINGS or titles[1:] != expected_tail:
-        die(f"{md_path.name}：`## ` 區段應依序為 他是誰/她是誰、{'、'.join(expected_tail)}；實得 {titles}")
+        die(f"{md_path.name}：`## ` 區段應依序為 他是誰/她是誰、（選配）一個小故事、{'、'.join(expected_tail)}；實得 {titles}")
 
     who_blocks = sections[0][1]
     if len(who_blocks) != 1:
@@ -345,6 +369,7 @@ def build_person(md_path: Path) -> tuple[str, str]:
         lede=inline(fm["lede"]),
         who_heading=esc(titles[0]),
         who=inline(who_blocks[0]),
+        story=story_html,
         bio=render_bio(sections[1][1], fm["portrait"], md_path),
         works=render_works(sections[2][1], md_path),
         geo_text=inline(fm["geo"]["text"]),
@@ -354,8 +379,7 @@ def build_person(md_path: Path) -> tuple[str, str]:
         teaching=render_teaching(sections[3][1], md_path),
         storyteller=render_storyteller(sections[4][1], md_path),
         footnotes=render_footnotes(sections[5][1], md_path),
-        source_url=esc(fm["source"]["url"]),
-        source_title=esc(fm["source"]["title"]),
+        license_line=license_line,
         credit=inline(fm["credit"]),
     )
     return fm["slug"], html_out

@@ -371,3 +371,14 @@ sup.fn-ref a { text-decoration: none; }
   .field-chip { font-size: .85rem; padding: .35rem .85rem; }
   .tag-chip { font-size: .8rem; padding: .2rem .7rem; }
 }
+
+/* 一個小故事 — 說書引子框（2026-07-18 David：每位人物配一則有出處的動人小故事） */
+.person-sec.story {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--indigo);
+  border-radius: 10px;
+  padding: 1.3rem 1.5rem 1.1rem;
+}
+.person-sec.story > h2 { margin-top: 0; font-size: 1.25rem; color: var(--indigo-deep); }
+.person-sec.story p { margin: .6rem 0; }
