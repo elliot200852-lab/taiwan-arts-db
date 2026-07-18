@@ -54,7 +54,7 @@ BUILD = ROOT / "_build"
 TEMPLATES = ROOT / "templates"
 
 PERSON_SECTIONS = ["who", "bio", "works", "teaching", "storyteller", "footnotes"]
-WHO_HEADINGS = ("他是誰", "她是誰")
+WHO_HEADINGS = ("他是誰", "她是誰", "他們是誰")
 CORE_NOTE = "本資料庫的核心：探究問題、跨科連結，與可直接帶進課堂的素材。"
 
 # 領域中文名稱 → 分領域頁 slug（2026-07-18 拍板，6 個固定集合；見 handoff）。

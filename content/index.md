@@ -244,6 +244,168 @@ people:
     field: 建築 · 田中央
     tags: [建築]
     tagline: 耶魯畢業卻住進宜蘭稻田，蓋出可以走上屋頂看風景的房子。
+  - slug: chun-chun
+    name: 純純
+    years: 1914–1943
+    field: 音樂 · 台語流行歌謠演唱
+    tags: [音樂]
+    tagline: 臺灣第一位臺語流行女歌手，《望春風》《雨夜花》原唱，二十九歲早逝。
+  - slug: li-lin-chiu
+    name: 李臨秋
+    years: 1909–1979
+    field: 音樂 · 台語歌謠作詞
+    tags: [音樂]
+    tagline: 在戲院端茶倒水的年輕人，二十五歲寫下《望春風》的歌詞。
+  - slug: chou-tien-wang
+    name: 周添旺
+    years: 1910–1988
+    field: 音樂 · 台語歌謠作詞
+    tags: [音樂]
+    tagline: 《雨夜花》《月夜愁》作詞，古倫美亞唱片文藝部長。
+  - slug: chen-ta-ju
+    name: 陳達儒
+    years: 1917–1992
+    field: 音樂 · 台語歌謠作詞
+    tags: [音樂]
+    tagline: 一生近三百首臺語歌詞，《白牡丹》《心酸酸》《安平追想曲》都出自他筆。
+  - slug: hsu-shih
+    name: 許石
+    years: 1919–1980
+    field: 音樂 · 台語歌謠與民謠採集
+    tags: [音樂]
+    tagline: 寫《安平追想曲》的作曲家，更扛著錄音機環島，搶救沒有樂譜的老歌。
+  - slug: yang-san-lang
+    name: 楊三郎
+    years: 1919–1989
+    field: 音樂 · 台語歌謠
+    tags: [音樂]
+    tagline: 在基隆的雨裡吹出《港都夜雨》的作曲家，寫盡戰後港邊的離別。
+  - slug: hung-i-feng
+    name: 洪一峰
+    years: 1927–2010
+    field: 音樂 · 台語歌謠
+    tags: [音樂]
+    tagline: 「寶島歌王」，《思慕的人》的詞曲與歌喉，把才華一一傳給了兒子。
+  - slug: wen-hsia
+    name: 文夏
+    years: 1928–2022
+    field: 音樂 · 台語歌謠
+    tags: [音樂]
+    tagline: 混血歌天王，把日本旋律填成台語歌，最拚的一天隨片登台十八場。
+  - slug: lu-chuan-sheng
+    name: 呂泉生
+    years: 1916–2008
+    field: 音樂 · 合唱與藝術歌曲
+    tags: [音樂]
+    tagline: 「台灣合唱之父」，帶榮星兒童合唱團三十四年，讓台灣的歌被大聲唱出來。
+  - slug: chi-lu-hsia
+    name: 紀露霞
+    years: 1936–
+    field: 音樂 · 台語歌謠
+    tags: [音樂]
+    tagline: 「寶島歌后」，六年錄近千首歌，卻在最紅時為家庭走下舞台。
+  - slug: shen-chih
+    name: 慎芝
+    years: 1928–1988
+    field: 音樂 · 流行歌詞
+    tags: [音樂]
+    tagline: 《群星會》主持人，一支筆填了近千首歌詞，從第一首歌陪台灣到「最後一夜」。
+  - slug: feng-fei-fei
+    name: 鳳飛飛
+    years: 1953–2012
+    field: 音樂 · 流行歌曲
+    tags: [音樂]
+    tagline: 桃園大溪的「帽子歌后」，被工廠女工當偶像的「勞工天使」。
+  - slug: li-shuang-tse
+    name: 李雙澤
+    years: 1949–1977
+    field: 音樂 · 民歌
+    tags: [音樂]
+    tagline: 在淡江喊出「唱自己的歌」，二十八歲為救溺水的人葬身大海。
+  - slug: hu-te-fu
+    name: 胡德夫
+    years: 1950–
+    field: 音樂 · 民歌與原住民歌謠
+    tags: [音樂]
+    tagline: 卑南族歌者，民歌運動的先聲，也是原住民運動的號角。
+  - slug: lo-ta-yu
+    name: 羅大佑
+    years: 1954–
+    field: 音樂 · 華語搖滾與抗議歌曲
+    tags: [音樂]
+    tagline: 棄醫從樂的「黑色羅大佑」，第一個把批判寫進流行歌。
+  - slug: chiang-hui
+    name: 江蕙
+    years: 1961–
+    field: 音樂 · 台語流行歌
+    tags: [音樂]
+    tagline: 從北投走唱起家的台語天后，一張唱片讓台語歌翻身。
+  - slug: lim-giong
+    name: 林強
+    years: 1964–
+    field: 音樂 · 台語搖滾與電影配樂
+    tags: [音樂]
+    tagline: 用《向前走》把台語歌唱成搖滾，再轉身成電影配樂大師。
+  - slug: chen-ming-chang
+    name: 陳明章
+    years: 1956–
+    field: 音樂 · 新台語歌與電影配樂
+    tags: [音樂]
+    tagline: 從北投戲棚腳長出來的吟遊詩人，寫出土地的聲音。
+  - slug: chang-yu-sheng
+    name: 張雨生
+    years: 1966–1997
+    field: 音樂 · 流行歌與音樂製作
+    tags: [音樂]
+    tagline: 澎湖雨夜出生的高音歌手，31 歲留下滿手好歌。
+  - slug: kinmen-wang-li-ping-hui
+    name: 金門王與李炳輝
+    years: 金門王 1953–2002 · 李炳輝 1949–
+    field: 音樂 · 那卡西走唱
+    tags: [音樂]
+    tagline: 兩位看不見的走唱歌手，唱紅一首《流浪到淡水》。
+  - slug: chen-chien-nien
+    name: 陳建年
+    years: 1967–
+    field: 音樂 · 卑南族創作歌謠
+    tags: [音樂]
+    tagline: 白天在派出所當警察，晚上抱吉他寫歌，外公留下的旋律成了《海洋》。
+  - slug: lin-sheng-hsiang
+    name: 林生祥
+    years: 1971–
+    field: 音樂 · 客語創作
+    tags: [音樂]
+    tagline: 為家鄉水庫爭議返鄉美濃，把客家八音和嗩吶帶上搖滾舞台。
+  - slug: chung-yung-feng
+    name: 鍾永豐
+    years: 1964–
+    field: 音樂 · 客語詩詞
+    tags: [音樂]
+    tagline: 美濃菸農之子，把農村運動與客家庄的人和土地寫成詩，交給林生祥譜曲。
+  - slug: abao
+    name: 阿爆（阿仍仍）
+    years: 1981–
+    field: 音樂 · 排灣族流行電音
+    tags: [音樂]
+    tagline: 排灣族名 Aljenljeng，和媽媽一句一句寫詞，把排灣族語做成電音舞曲。
+  - slug: sangpuy
+    name: 桑布伊
+    years: 1976–
+    field: 音樂 · 卑南族創作歌謠
+    tags: [音樂]
+    tagline: 卑南族名 Sangpuy，歌是跟部落老人一句一句學來的，兩度拿下金曲年度專輯。
+  - slug: blacklist-studio
+    name: 黑名單工作室
+    years: 1989–
+    field: 音樂 · 新台語歌運動
+    tags: [音樂]
+    tagline: 以王明輝為核心，1989 年用《抓狂歌》唱出解嚴前後的台灣。
+  - slug: eggplantegg
+    name: 茄子蛋
+    years: 2012–
+    field: 音樂 · 台語搖滾
+    tags: [音樂]
+    tagline: 三個台北組團的年輕人，寫出《浪子回頭》，把台語歌唱成新一代的搖滾浪漫。
 ---
 
 ## 總論

@@ -4,7 +4,7 @@
 #   - person：slug 必填（對應 content/people/<slug>.md）；place：slug 省略
 #   - county：taiwan-geo-db 縣市/鄉鎮頁 slug（見 taiwan-geo-db/site/pages/）
 #   - lat/lng：本島＋離島 sanity range 21.8–25.4 / 119.3–122.1（金門例外 lng 118.3–118.5，本檔未用到）
-# person 40 筆（人物試點全數）＋ place 25 筆（領域頁與人物頁正文寫到的地標，去重）＝ 65 pins
+# person 67 筆（人物試點 40＋S3 音樂人 27）＋ place 25 筆（領域頁與人物頁正文寫到的地標，去重）＝ 92 pins
 # 由工程 agent 平行實作首頁地圖 tab；本檔只管資料，不動樣式/腳本。
 
 pins:
@@ -408,6 +408,277 @@ pins:
     lat: 22.899
     lng: 120.735
     hook: 文學 · 客家鄉土作家
+
+  # ————— person（S3 音樂人，27）—————
+  - type: person
+    name: 純純
+    slug: chun-chun
+    link: pages/chun-chun.html
+    county: taipei
+    locality: 大稻埕
+    lat: 25.056
+    lng: 121.510
+    hook: 音樂 · 台語流行歌謠演唱
+
+  - type: person
+    name: 李臨秋
+    slug: li-lin-chiu
+    link: pages/li-lin-chiu.html
+    county: taipei
+    locality: 大稻埕
+    lat: 25.055
+    lng: 121.509
+    hook: 音樂 · 台語歌謠作詞
+
+  - type: person
+    name: 周添旺
+    slug: chou-tien-wang
+    link: pages/chou-tien-wang.html
+    county: taipei
+    locality: 艋舺
+    lat: 25.037
+    lng: 121.500
+    hook: 音樂 · 台語歌謠作詞
+
+  - type: person
+    name: 陳達儒
+    slug: chen-ta-ju
+    link: pages/chen-ta-ju.html
+    county: taipei
+    locality: 艋舺
+    lat: 25.038
+    lng: 121.501
+    hook: 音樂 · 台語歌謠作詞
+
+  - type: person
+    name: 許石
+    slug: hsu-shih
+    link: pages/hsu-shih.html
+    county: tainan
+    locality: 台南市區
+    lat: 22.997
+    lng: 120.203
+    hook: 音樂 · 台語歌謠與民謠採集
+
+  - type: person
+    name: 楊三郎
+    slug: yang-san-lang
+    link: pages/yang-san-lang.html
+    county: new-taipei
+    locality: 永和
+    lat: 25.0113
+    lng: 121.5140
+    hook: 音樂 · 台語歌謠
+
+  - type: person
+    name: 洪一峰
+    slug: hung-i-feng
+    link: pages/hung-i-feng.html
+    county: new-taipei
+    locality: 淡水
+    lat: 25.1716
+    lng: 121.4390
+    hook: 音樂 · 台語歌謠
+
+  - type: person
+    name: 文夏
+    slug: wen-hsia
+    link: pages/wen-hsia.html
+    county: tainan
+    locality: 麻豆
+    lat: 23.1817
+    lng: 120.2480
+    hook: 音樂 · 台語歌謠
+
+  - type: person
+    name: 呂泉生
+    slug: lu-chuan-sheng
+    link: pages/lu-chuan-sheng.html
+    county: taichung
+    locality: 神岡
+    lat: 24.2570
+    lng: 120.6620
+    hook: 音樂 · 合唱與藝術歌曲
+
+  - type: person
+    name: 紀露霞
+    slug: chi-lu-hsia
+    link: pages/chi-lu-hsia.html
+    county: taipei
+    locality: 艋舺
+    lat: 25.0375
+    lng: 121.4998
+    hook: 音樂 · 台語歌謠
+
+  - type: person
+    name: 慎芝
+    slug: shen-chih
+    link: pages/shen-chih.html
+    county: taichung
+    locality: 東勢
+    lat: 24.258
+    lng: 120.828
+    hook: 音樂 · 流行歌詞
+
+  - type: person
+    name: 鳳飛飛
+    slug: feng-fei-fei
+    link: pages/feng-fei-fei.html
+    county: taoyuan
+    locality: 大溪
+    lat: 24.881
+    lng: 121.287
+    hook: 音樂 · 流行歌曲
+
+  - type: person
+    name: 李雙澤
+    slug: li-shuang-tse
+    link: pages/li-shuang-tse.html
+    county: new-taipei
+    locality: 淡水
+    lat: 25.169
+    lng: 121.441
+    hook: 音樂 · 民歌
+
+  - type: person
+    name: 胡德夫
+    slug: hu-te-fu
+    link: pages/hu-te-fu.html
+    county: taitung
+    locality: 太麻里
+    lat: 22.614
+    lng: 121.008
+    hook: 音樂 · 民歌與原住民歌謠
+
+  - type: person
+    name: 羅大佑
+    slug: lo-ta-yu
+    link: pages/lo-ta-yu.html
+    county: taipei
+    locality: 台北
+    lat: 25.046
+    lng: 121.517
+    hook: 音樂 · 華語搖滾
+
+  - type: person
+    name: 江蕙
+    slug: chiang-hui
+    link: pages/chiang-hui.html
+    county: taipei
+    locality: 北投
+    lat: 25.132
+    lng: 121.501
+    hook: 音樂 · 台語流行歌
+
+  - type: person
+    name: 林強
+    slug: lim-giong
+    link: pages/lim-giong.html
+    county: changhua
+    locality: 彰化
+    lat: 24.081
+    lng: 120.541
+    hook: 音樂 · 台語搖滾與電影配樂
+
+  - type: person
+    name: 陳明章
+    slug: chen-ming-chang
+    link: pages/chen-ming-chang.html
+    county: taipei
+    locality: 北投
+    lat: 25.137
+    lng: 121.503
+    hook: 音樂 · 新台語歌與電影配樂
+
+  - type: person
+    name: 張雨生
+    slug: chang-yu-sheng
+    link: pages/chang-yu-sheng.html
+    county: penghu
+    locality: 馬公
+    lat: 23.566
+    lng: 119.579
+    hook: 音樂 · 流行歌與音樂製作
+
+  - type: person
+    name: 金門王與李炳輝
+    slug: kinmen-wang-li-ping-hui
+    link: pages/kinmen-wang-li-ping-hui.html
+    county: new-taipei
+    locality: 淡水
+    lat: 25.169
+    lng: 121.446
+    hook: 音樂 · 那卡西走唱
+
+  - type: person
+    name: 陳建年
+    slug: chen-chien-nien
+    link: pages/chen-chien-nien.html
+    county: taitung
+    locality: 卑南南王部落
+    lat: 22.774
+    lng: 121.113
+    hook: 音樂 · 卑南族創作歌謠
+
+  - type: person
+    name: 林生祥
+    slug: lin-sheng-hsiang
+    link: pages/lin-sheng-hsiang.html
+    county: kaohsiung
+    locality: 美濃
+    lat: 22.897
+    lng: 120.541
+    hook: 音樂 · 客語創作
+
+  - type: person
+    name: 鍾永豐
+    slug: chung-yung-feng
+    link: pages/chung-yung-feng.html
+    county: kaohsiung
+    locality: 美濃
+    lat: 22.900
+    lng: 120.535
+    hook: 音樂 · 客語詩詞
+
+  - type: person
+    name: 阿爆（阿仍仍）
+    slug: abao
+    link: pages/abao.html
+    county: taitung
+    locality: 金峰嘉蘭
+    lat: 22.610
+    lng: 120.920
+    hook: 音樂 · 排灣族流行電音
+
+  - type: person
+    name: 桑布伊
+    slug: sangpuy
+    link: pages/sangpuy.html
+    county: taitung
+    locality: 知本
+    lat: 22.706
+    lng: 121.061
+    hook: 音樂 · 卑南族創作歌謠
+
+  - type: person
+    name: 黑名單工作室
+    slug: blacklist-studio
+    link: pages/blacklist-studio.html
+    county: taipei
+    locality: 台北
+    lat: 25.047
+    lng: 121.517
+    hook: 音樂 · 新台語歌運動
+
+  - type: person
+    name: 茄子蛋
+    slug: eggplantegg
+    link: pages/eggplantegg.html
+    county: taipei
+    locality: 台北
+    lat: 25.052
+    lng: 121.540
+    hook: 音樂 · 台語搖滾
 
   # ————— place（25）—————
   - type: place
