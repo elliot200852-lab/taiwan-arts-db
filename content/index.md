@@ -118,6 +118,132 @@ people:
     field: 電影 · 導演
     tags: [電影]
     tagline: 用長鏡頭慢慢看臺灣，讓世界跟著看見。
+  - slug: lin-yu-shan
+    name: 林玉山
+    years: 1907–2004
+    field: 美術 · 膠彩畫
+    tags: [美術]
+    tagline: 台展三少年之一，為了畫好一隻老虎跑遍馬戲團與動物園。
+  - slug: shih-wei-liang
+    name: 史惟亮
+    years: 1926–1977
+    field: 音樂 · 民族音樂
+    tags: [音樂]
+    tagline: 辦了臺灣第一所音樂圖書館，走進山裡採集就要失傳的歌。
+  - slug: hsu-tsang-houei
+    name: 許常惠
+    years: 1929–2001
+    field: 音樂 · 現代音樂
+    tags: [音樂]
+    tagline: 在巴黎學前衛作曲，聽見陳達的歌卻掉了淚，找到民間音樂的靈魂。
+  - slug: yeh-tao
+    name: 葉陶
+    years: 1905–1970
+    field: 文學 · 社會運動者
+    tags: [文學]
+    tagline: 脫下教職打赤腳走進農村，潑辣勇敢到被叫作「鱸鰻查某」。
+  - slug: huang-chun-hsiung
+    name: 黃俊雄
+    years: 1933–
+    field: 戲曲偶戲 · 電視布袋戲
+    tags: [戲曲偶戲]
+    tagline: 把布袋戲搬上電視，《雲州大儒俠》紅到全臺灣工廠停工。
+  - slug: yang-li-hua
+    name: 楊麗花
+    years: 1944–
+    field: 戲曲偶戲 · 歌仔戲
+    tags: [戲曲偶戲, 電影]
+    tagline: 歌仔戲班長大的女孩，成了電視上家家戶戶都認得的小生。
+  - slug: tsai-jui-yueh
+    name: 蔡瑞月
+    years: 1921–2005
+    field: 舞蹈 · 現代舞
+    tags: [舞蹈]
+    tagline: 坐船回臺在甲板上跳舞，被關進監獄仍在牢裡教獄友跳舞。
+  - slug: ho-chi-ming
+    name: 何基明
+    years: 1916–1994
+    field: 電影 · 導演
+    tags: [電影]
+    tagline: 拍出臺灣第一部三十五釐米台語片，掀起台語片盛世。
+  - slug: wei-te-sheng
+    name: 魏德聖
+    years: 1969–
+    field: 電影 · 導演
+    tags: [電影]
+    tagline: 一部《海角七號》讓全臺灣重新走進戲院看國片。
+  - slug: yuma-taru
+    name: 尤瑪·達陸
+    years: 1963–
+    field: 工藝 · 泰雅染織
+    tags: [工藝]
+    tagline: 跑了上百個部落，把泰雅族快要失傳的織布找了回來。
+  - slug: chen-wan-neng
+    name: 陳萬能
+    years: 1942–
+    field: 工藝 · 錫工藝
+    tags: [工藝]
+    tagline: 錫器沒落的年代，用一對新設計的燭台把整門手藝救了回來。
+  - slug: shih-hsiu-chu
+    name: 施秀菊
+    years: 1956–
+    field: 工藝 · 排灣族琉璃珠
+    tags: [工藝]
+    tagline: 帶著部落的單親媽媽燒琉璃珠，讓傳家寶留在部落。
+  - slug: su-ching-liang
+    name: 蘇清良
+    years: 1935–2023
+    field: 工藝 · 土水修造（泥作）
+    tags: [工藝, 建築]
+    tagline: 老古蹟的牆、灰、瓦都有他的手跡，人間國寶的泥作司阜。
+  - slug: hsieh-ching-lai
+    name: 謝景來
+    years: 1910–2011
+    field: 工藝 · 客家藍衫
+    tags: [工藝]
+    tagline: 一百多歲仍親手裁布，染出客家藍衫那份「硬頸」的挺。
+  - slug: huang-tu-shan
+    name: 黃塗山
+    years: 1926–2020
+    field: 工藝 · 竹編
+    tags: [工藝]
+    tagline: 把一根竹子剖成細絲編了七十多年，臺灣竹編一代宗師。
+  - slug: hung-yang
+    name: 洪鴦
+    years: 1853–1941
+    field: 工藝 · 藺草編織
+    tags: [工藝]
+    tagline: 為了替生病的孩子遮陽，編出臺灣第一頂藺草帽。
+  - slug: hung-kun-fu
+    name: 洪坤福
+    years: 1865–1945
+    field: 工藝 · 剪黏與交趾陶
+    tags: [工藝, 建築]
+    tagline: 廟頂上活靈活現的剪黏人物，「南何北洪」北邊的宗師。
+  - slug: yeh-wang
+    name: 葉王
+    years: 1826–1887
+    field: 工藝 · 交趾陶
+    tags: [工藝, 建築]
+    tagline: 臺灣第一位本土交趾陶大師，捏的小陶偶後來成了國寶。
+  - slug: chen-ying-pin
+    name: 陳應彬
+    years: 1864–1944
+    field: 建築 · 大木作
+    tags: [建築]
+    tagline: 漳派大木宗師，北港朝天宮那座飛起來的屋頂是他的招牌。
+  - slug: wang-ta-hung
+    name: 王大閎
+    years: 1917–2018
+    field: 建築 · 現代建築
+    tags: [建築]
+    tagline: 臺灣現代建築之父，國父紀念館那道翹起來的屋簷是他的手筆。
+  - slug: huang-sheng-yuan
+    name: 黃聲遠
+    years: 1963–
+    field: 建築 · 田中央
+    tags: [建築]
+    tagline: 耶魯畢業卻住進宜蘭稻田，蓋出可以走上屋頂看風景的房子。
 ---
 
 ## 總論
