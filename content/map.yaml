@@ -1,0 +1,636 @@
+# 臺灣藝文地圖 — 首頁地圖大頭針資料層（Phase 2B）
+# 2026-07-18 建檔。schema 固定：pins[].{type, name, slug?, link, county, locality?, lat, lng, hook}
+#   - type: person｜place
+#   - person：slug 必填（對應 content/people/<slug>.md）；place：slug 省略
+#   - county：taiwan-geo-db 縣市/鄉鎮頁 slug（見 taiwan-geo-db/site/pages/）
+#   - lat/lng：本島＋離島 sanity range 21.8–25.4 / 119.3–122.1（金門例外 lng 118.3–118.5，本檔未用到）
+# person 40 筆（人物試點全數）＋ place 25 筆（領域頁與人物頁正文寫到的地標，去重）＝ 65 pins
+# 由工程 agent 平行實作首頁地圖 tab；本檔只管資料，不動樣式/腳本。
+
+pins:
+  # ————— person（40）—————
+  - type: person
+    name: 陳澄波
+    slug: chen-cheng-po
+    link: pages/chen-cheng-po.html
+    county: chiayi-city
+    locality: 嘉義市
+    lat: 23.480
+    lng: 120.449
+    hook: 美術 · 油畫
+
+  - type: person
+    name: 陳達
+    slug: chen-da
+    link: pages/chen-da.html
+    county: pingtung
+    locality: 恆春
+    lat: 22.000
+    lng: 120.744
+    hook: 音樂 · 恆春民謠
+
+  - type: person
+    name: 陳進
+    slug: chen-jin
+    link: pages/chen-jin.html
+    county: hsinchu-city
+    locality: 香山
+    lat: 24.775
+    lng: 120.933
+    hook: 美術 · 膠彩畫
+
+  - type: person
+    name: 陳萬能
+    slug: chen-wan-neng
+    link: pages/chen-wan-neng.html
+    county: changhua
+    locality: 鹿港
+    lat: 24.057
+    lng: 120.433
+    hook: 工藝 · 錫工藝
+
+  - type: person
+    name: 陳應彬
+    slug: chen-ying-pin
+    link: pages/chen-ying-pin.html
+    county: yunlin
+    locality: 北港
+    lat: 23.569
+    lng: 120.303
+    hook: 建築 · 大木作
+
+  - type: person
+    name: 江文也
+    slug: chiang-wen-yeh
+    link: pages/chiang-wen-yeh.html
+    county: taipei
+    locality: 大稻埕
+    lat: 25.056
+    lng: 121.510
+    hook: 音樂 · 作曲
+
+  - type: person
+    name: 鄧雨賢
+    slug: deng-yu-hsien
+    link: pages/deng-yu-hsien.html
+    county: taoyuan
+    locality: 龍潭
+    lat: 24.863
+    lng: 121.214
+    hook: 音樂 · 台語歌謠
+
+  - type: person
+    name: 何基明
+    slug: ho-chi-ming
+    link: pages/ho-chi-ming.html
+    county: taichung
+    locality: 臺中市
+    lat: 24.147
+    lng: 120.674
+    hook: 電影 · 導演
+
+  - type: person
+    name: 侯孝賢
+    slug: hou-hsiao-hsien
+    link: pages/hou-hsiao-hsien.html
+    county: kaohsiung
+    locality: 鳳山
+    lat: 22.628
+    lng: 120.360
+    hook: 電影 · 導演
+
+  - type: person
+    name: 謝景來
+    slug: hsieh-ching-lai
+    link: pages/hsieh-ching-lai.html
+    county: kaohsiung
+    locality: 美濃
+    lat: 22.900
+    lng: 120.736
+    hook: 工藝 · 客家藍衫
+
+  - type: person
+    name: 許常惠
+    slug: hsu-tsang-houei
+    link: pages/hsu-tsang-houei.html
+    county: changhua
+    locality: 和美
+    lat: 24.081
+    lng: 120.533
+    hook: 音樂 · 現代音樂
+
+  - type: person
+    name: 黃俊雄
+    slug: huang-chun-hsiung
+    link: pages/huang-chun-hsiung.html
+    county: yunlin
+    locality: 虎尾
+    lat: 23.709
+    lng: 120.433
+    hook: 戲曲偶戲 · 電視布袋戲
+
+  - type: person
+    name: 黃海岱
+    slug: huang-hai-dai
+    link: pages/huang-hai-dai.html
+    county: yunlin
+    locality: 西螺
+    lat: 23.798
+    lng: 120.463
+    hook: 戲曲偶戲 · 布袋戲
+
+  - type: person
+    name: 黃聲遠
+    slug: huang-sheng-yuan
+    link: pages/huang-sheng-yuan.html
+    county: yilan-yilan
+    locality: 宜蘭市
+    lat: 24.757
+    lng: 121.753
+    hook: 建築 · 田中央
+
+  - type: person
+    name: 黃塗山
+    slug: huang-tu-shan
+    link: pages/huang-tu-shan.html
+    county: nantou
+    locality: 竹山
+    lat: 23.762
+    lng: 120.679
+    hook: 工藝 · 竹編
+
+  - type: person
+    name: 黃土水
+    slug: huang-tu-shui
+    link: pages/huang-tu-shui.html
+    county: taipei
+    locality: 艋舺
+    lat: 25.035
+    lng: 121.500
+    hook: 美術 · 雕塑
+
+  - type: person
+    name: 洪坤福
+    slug: hung-kun-fu
+    link: pages/hung-kun-fu.html
+    county: taipei
+    locality: 大龍峒
+    lat: 25.072
+    lng: 121.515
+    hook: 工藝 · 剪黏與交趾陶
+
+  - type: person
+    name: 洪通
+    slug: hung-tung
+    link: pages/hung-tung.html
+    county: tainan
+    locality: 北門
+    lat: 23.263
+    lng: 120.108
+    hook: 美術 · 素人畫
+
+  - type: person
+    name: 洪鴦
+    slug: hung-yang
+    link: pages/hung-yang.html
+    county: miaoli
+    locality: 苑裡
+    lat: 24.455
+    lng: 120.647
+    hook: 工藝 · 藺草編織
+
+  - type: person
+    name: 朱銘
+    slug: ju-ming
+    link: pages/ju-ming.html
+    county: miaoli
+    locality: 通霄
+    lat: 24.491
+    lng: 120.680
+    hook: 美術 · 雕塑
+
+  - type: person
+    name: 郭雪湖
+    slug: kuo-hsueh-hu
+    link: pages/kuo-hsueh-hu.html
+    county: taipei
+    locality: 大稻埕
+    lat: 25.056
+    lng: 121.510
+    hook: 美術 · 膠彩畫
+
+  - type: person
+    name: 賴和
+    slug: lai-he
+    link: pages/lai-he.html
+    county: changhua
+    locality: 彰化市
+    lat: 24.081
+    lng: 120.539
+    hook: 文學 · 醫師作家
+
+  - type: person
+    name: 李梅樹
+    slug: li-mei-shu
+    link: pages/li-mei-shu.html
+    county: new-taipei
+    locality: 三峽
+    lat: 24.935
+    lng: 121.369
+    hook: 美術 · 油畫與廟宇重建
+
+  - type: person
+    name: 李天祿
+    slug: li-tien-lu
+    link: pages/li-tien-lu.html
+    county: taipei
+    locality: 大稻埕
+    lat: 25.056
+    lng: 121.510
+    hook: 戲曲偶戲 · 布袋戲
+
+  - type: person
+    name: 廖瓊枝
+    slug: liao-chiung-chih
+    link: pages/liao-chiung-chih.html
+    county: keelung
+    locality: 基隆市
+    lat: 25.128
+    lng: 121.739
+    hook: 戲曲偶戲 · 歌仔戲
+
+  - type: person
+    name: 林懷民
+    slug: lin-hwai-min
+    link: pages/lin-hwai-min.html
+    county: chiayi-county
+    locality: 新港
+    lat: 23.546
+    lng: 120.348
+    hook: 舞蹈 · 現代舞
+
+  - type: person
+    name: 林玉山
+    slug: lin-yu-shan
+    link: pages/lin-yu-shan.html
+    county: chiayi-city
+    locality: 嘉義市
+    lat: 23.480
+    lng: 120.449
+    hook: 美術 · 膠彩畫
+
+  - type: person
+    name: 施秀菊
+    slug: shih-hsiu-chu
+    link: pages/shih-hsiu-chu.html
+    county: pingtung
+    locality: 三地門
+    lat: 22.700
+    lng: 120.638
+    hook: 工藝 · 排灣族琉璃珠
+
+  - type: person
+    name: 史惟亮
+    slug: shih-wei-liang
+    link: pages/shih-wei-liang.html
+    county: hualien
+    locality: 花蓮縣
+    lat: 23.977
+    lng: 121.604
+    hook: 音樂 · 民族音樂
+
+  - type: person
+    name: 蘇清良
+    slug: su-ching-liang
+    link: pages/su-ching-liang.html
+    county: kaohsiung
+    locality: 湖內
+    lat: 22.888
+    lng: 120.229
+    hook: 工藝 · 土水修造（泥作）
+
+  - type: person
+    name: 鄧麗君
+    slug: teresa-teng
+    link: pages/teresa-teng.html
+    county: yunlin
+    locality: 褒忠
+    lat: 23.702
+    lng: 120.253
+    hook: 音樂 · 流行歌曲
+
+  - type: person
+    name: 蔡瑞月
+    slug: tsai-jui-yueh
+    link: pages/tsai-jui-yueh.html
+    county: tainan
+    locality: 臺南市
+    lat: 22.991
+    lng: 120.203
+    hook: 舞蹈 · 現代舞
+
+  - type: person
+    name: 王大閎
+    slug: wang-ta-hung
+    link: pages/wang-ta-hung.html
+    county: taipei
+    locality: 臺北市
+    lat: 25.028
+    lng: 121.535
+    hook: 建築 · 現代建築
+
+  - type: person
+    name: 魏德聖
+    slug: wei-te-sheng
+    link: pages/wei-te-sheng.html
+    county: tainan
+    locality: 永康
+    lat: 23.026
+    lng: 120.256
+    hook: 電影 · 導演
+
+  - type: person
+    name: 楊逵
+    slug: yang-kui
+    link: pages/yang-kui.html
+    county: tainan
+    locality: 新化
+    lat: 23.036
+    lng: 120.310
+    hook: 文學 · 作家、社會運動者
+
+  - type: person
+    name: 楊麗花
+    slug: yang-li-hua
+    link: pages/yang-li-hua.html
+    county: yilan-yuanshan
+    locality: 員山
+    lat: 24.766
+    lng: 121.715
+    hook: 戲曲偶戲 · 歌仔戲
+
+  - type: person
+    name: 葉陶
+    slug: yeh-tao
+    link: pages/yeh-tao.html
+    county: kaohsiung
+    locality: 旗津
+    lat: 22.586
+    lng: 120.267
+    hook: 文學 · 社會運動者
+
+  - type: person
+    name: 葉王
+    slug: yeh-wang
+    link: pages/yeh-wang.html
+    county: tainan
+    locality: 學甲
+    lat: 23.234
+    lng: 120.184
+    hook: 工藝 · 交趾陶
+
+  - type: person
+    name: 尤瑪·達陸
+    slug: yuma-taru
+    link: pages/yuma-taru.html
+    county: miaoli
+    locality: 泰安（象鼻部落）
+    lat: 24.407
+    lng: 120.960
+    hook: 工藝 · 泰雅染織
+
+  - type: person
+    name: 鍾理和
+    slug: zhong-li-he
+    link: pages/zhong-li-he.html
+    county: kaohsiung
+    locality: 美濃
+    lat: 22.899
+    lng: 120.735
+    hook: 文學 · 客家鄉土作家
+
+  # ————— place（25）—————
+  - type: place
+    name: 北港朝天宮
+    link: pages/chen-ying-pin.html
+    county: yunlin
+    locality: 北港
+    lat: 23.569
+    lng: 120.303
+    hook: 陳應彬「假四垂」成名作
+
+  - type: place
+    name: 大龍峒保安宮
+    link: pages/chen-ying-pin.html
+    county: taipei
+    locality: 大龍峒
+    lat: 25.073
+    lng: 121.515
+    hook: 陳應彬、洪坤福雙對場作
+
+  - type: place
+    name: 學甲慈濟宮
+    link: pages/yeh-wang.html
+    county: tainan
+    locality: 學甲
+    lat: 23.234
+    lng: 120.184
+    hook: 葉王交趾陶國寶代表作
+
+  - type: place
+    name: 三峽祖師廟
+    link: pages/li-mei-shu.html
+    county: new-taipei
+    locality: 三峽
+    lat: 24.935
+    lng: 121.369
+    hook: 李梅樹主持重建的廟
+
+  - type: place
+    name: 國父紀念館
+    link: pages/wang-ta-hung.html
+    county: taipei
+    locality: 臺北市
+    lat: 25.040
+    lng: 121.560
+    hook: 王大閎設計的現代屋簷
+
+  - type: place
+    name: 舊好茶
+    link: pages/field-architecture.html
+    county: pingtung
+    locality: 霧台
+    lat: 22.714
+    lng: 120.755
+    hook: 排灣魯凱石板屋聚落
+
+  - type: place
+    name: 鶯歌
+    link: pages/field-craft.html
+    county: new-taipei
+    locality: 鶯歌
+    lat: 24.954
+    lng: 121.354
+    hook: 臺灣景德鎮，陶藝重鎮
+
+  - type: place
+    name: 苗栗三義
+    link: pages/field-craft.html
+    county: miaoli
+    locality: 三義
+    lat: 24.382
+    lng: 120.749
+    hook: 樟腦下腳料長出的木雕
+
+  - type: place
+    name: 錦興行（美濃永安老街）
+    link: pages/hsieh-ching-lai.html
+    county: kaohsiung
+    locality: 美濃
+    lat: 22.900
+    lng: 120.736
+    hook: 謝景來百年藍衫老店
+
+  - type: place
+    name: 鹿港
+    link: pages/chen-wan-neng.html
+    county: changhua
+    locality: 鹿港
+    lat: 24.057
+    lng: 120.433
+    hook: 陳萬能三代打錫的老鎮
+
+  - type: place
+    name: 蜻蜓雅築（三地門）
+    link: pages/shih-hsiu-chu.html
+    county: pingtung
+    locality: 三地門
+    lat: 22.700
+    lng: 120.638
+    hook: 施秀菊的排灣琉璃珠坊
+
+  - type: place
+    name: 野桐工坊（象鼻部落）
+    link: pages/yuma-taru.html
+    county: miaoli
+    locality: 泰安（象鼻部落）
+    lat: 24.407
+    lng: 120.960
+    hook: 尤瑪·達陸復原泰雅織布
+
+  - type: place
+    name: 朱銘美術館
+    link: pages/ju-ming.html
+    county: new-taipei
+    locality: 金山
+    lat: 25.247
+    lng: 121.646
+    hook: 朱銘親手打造的美術館
+
+  - type: place
+    name: 艋舺龍山寺
+    link: pages/huang-tu-shui.html
+    county: taipei
+    locality: 艋舺
+    lat: 25.037
+    lng: 121.500
+    hook: 黃土水、洪坤福皆留作品
+
+  - type: place
+    name: 臺北中山堂
+    link: pages/huang-tu-shui.html
+    county: taipei
+    locality: 臺北市
+    lat: 25.043
+    lng: 121.509
+    hook: 水牛群像鑲嵌於此
+
+  - type: place
+    name: 玫瑰古蹟・蔡瑞月舞蹈研究社
+    link: pages/tsai-jui-yueh.html
+    county: taipei
+    locality: 中山北路
+    lat: 25.063
+    lng: 121.521
+    hook: 蔡瑞月舞蹈社舊址
+
+  - type: place
+    name: 九份
+    link: pages/hou-hsiao-hsien.html
+    county: new-taipei
+    locality: 九份
+    lat: 25.109
+    lng: 121.845
+    hook: 《悲情城市》取景山城
+
+  - type: place
+    name: 麥寮拱樂社
+    link: pages/ho-chi-ming.html
+    county: yunlin
+    locality: 麥寮
+    lat: 23.789
+    lng: 120.253
+    hook: 台語片《薛平貴》出品地
+
+  - type: place
+    name: 結頭份（歌仔戲發源地）
+    link: pages/field-opera.html
+    county: yilan-yuanshan
+    locality: 員山
+    lat: 24.768
+    lng: 121.712
+    hook: 歌仔戲發源大樹下
+
+  - type: place
+    name: 大甲鎮瀾宮
+    link: pages/field-festival.html
+    county: taichung
+    locality: 大甲
+    lat: 24.346
+    lng: 120.625
+    hook: 媽祖遶境九天八夜起點
+
+  - type: place
+    name: 白沙屯拱天宮
+    link: pages/field-festival.html
+    county: miaoli
+    locality: 通霄（白沙屯）
+    lat: 24.515
+    lng: 120.667
+    hook: 媽祖「粉紅超跑」廟
+
+  - type: place
+    name: 鹽水武廟
+    link: pages/field-festival.html
+    county: tainan
+    locality: 鹽水
+    lat: 23.319
+    lng: 120.271
+    hook: 鹽水蜂炮驅瘟起源
+
+  - type: place
+    name: 平溪
+    link: pages/field-festival.html
+    county: new-taipei
+    locality: 平溪
+    lat: 25.025
+    lng: 121.740
+    hook: 天燈報平安的由來
+
+  - type: place
+    name: 老大公廟
+    link: pages/field-festival.html
+    county: keelung
+    locality: 基隆市
+    lat: 25.130
+    lng: 121.737
+    hook: 雞籠中元祭起源地
+
+  - type: place
+    name: 池上稻田
+    link: pages/field-dance.html
+    county: taitung
+    locality: 池上
+    lat: 23.108
+    lng: 121.212
+    hook: 雲門《稻禾》演出稻田

@@ -36,6 +36,8 @@ templates/index.html 抽出，單一來源。
 from __future__ import annotations
 
 import html
+import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -67,6 +69,411 @@ FIELD_SLUG_BY_TAG = {
     "建築": "field-architecture",
     "節慶信仰": "field-festival",
 }
+
+# Phase 2B（2026-07-18）：「臺灣藝文地圖」tab。
+#
+# 底圖＝templates/taiwan-map-base.svg：taiwan.md 官網
+# https://taiwan.md/taiwan-shape/ 提供的 taiwan-location-map.svg（David
+# 2026-07-18 指定：底圖一律用 taiwan.md 現成 SVG）。實測與 Wikimedia Commons
+# 「File:Taiwan location map.svg」逐位元組相同（NordNordWest 製，
+# CC BY-SA 3.0 / GFDL 1.2+）；投影是該圖所屬 Wikipedia
+# Module:Location_map/data/Taiwan 的官方等距圓柱投影，bounds 見下方常數。
+#
+# 縣市界線＋pin 落點驗證用的幾何資料＝templates/taiwan-counties.json：
+# 同樣源自內政部國土測繪中心「直轄市、縣市界線(TWD97經緯度)」（taiwan.md 自己
+# 代管的 topojson 解析度不足以撐 8 點檢核，改用同一份政府資料血緣但解析度高
+# 7 倍的 dkaoster/taiwan-atlas 版本——見 scripts/build_map_base.py 檔頭完整說明）。
+#
+# 投影公式沿用底圖原生 bounds／viewBox 的線性映射，**不**額外疊加 cos(緯度)
+# 修正：該底圖本身已用「N/S 拉伸 110%」內建修正過經度失真
+# （1/cos(23.5°)≈1.09，與 110% 幾乎一致）；實測若再疊加一次修正，反而會把
+# pin 投影錯位。2026-07-18 用台北車站／高雄港／台東市／鵝鑾鼻／富貴角／台中／
+# 花蓮市／馬公八個已知點逐一核對，全數落在正確縣市 polygon 內（point-in-
+# polygon 程式驗證，非目測）；65 個 map.yaml pin 全量核對亦全過（沿海地點
+# 有 2 公里容許誤差，見 MAP_COASTAL_TOLERANCE_KM 說明）。
+MAP_YAML = CONTENT / "map.yaml"
+MAP_BASE_SVG = TEMPLATES / "taiwan-map-base.svg"
+MAP_COUNTIES_JSON = TEMPLATES / "taiwan-counties.json"
+MAP_TOP, MAP_BOTTOM = 26.4, 21.7      # 緯度（°N）：上、下邊界
+MAP_LEFT, MAP_RIGHT = 118.0, 122.3    # 經度（°E）：左、右邊界
+MAP_VIEWBOX_W, MAP_VIEWBOX_H = 1015.733, 1221.247  # 對應底圖 SVG 的 viewBox
+MAP_CLUSTER_RADIUS = 20  # viewBox 單位；近於此距離的 pin 合併成一顆聚合圓點
+MAP_COASTAL_TOLERANCE_KM = 2.0
+# 座標落在宣稱縣市 polygon 外、但距其邊界在此公里數以內時仍算通過——縣市界線
+# 資料本身是簡化過的海岸線，港口／海邊廟宇這類緊貼海岸的地標（如朱銘美術館、
+# 白沙屯拱天宮、旗津）用嚴格 point-in-polygon 會被簡化掉的海岸線誤判在界外，
+# 2026-07-18 65 pin 全量驗證時 3 筆屬此情況、皆確認座標本身正確，非資料錯誤。
+
+# map.yaml 的 `county` 欄位是 taiwan-geo-db 頁 slug（非中文縣市名），
+# 需要對照回縣市界線資料裡的縣市名稱才能做 point-in-polygon 驗證。
+# 只列 map.yaml 65 筆 pin 實際用到的 19 個＋離島 4 個備用（金門/連江/澎湖/
+# 新竹縣目前無 pin 使用，但底圖仍要畫出這些縣市，一併列表方便未來擴充）。
+GEO_SLUG_TO_COUNTY = {
+    "changhua": "彰化縣", "chiayi-city": "嘉義市", "chiayi-county": "嘉義縣",
+    "hsinchu-city": "新竹市", "hsinchu": "新竹縣", "hualien": "花蓮縣",
+    "kaohsiung": "高雄市", "keelung": "基隆市", "miaoli": "苗栗縣",
+    "nantou": "南投縣", "new-taipei": "新北市", "penghu": "澎湖縣",
+    "pingtung": "屏東縣", "taichung": "台中市", "tainan": "台南市",
+    "taipei": "台北市", "taitung": "台東縣", "taoyuan": "桃園市",
+    "yilan-yilan": "宜蘭縣", "yilan-yuanshan": "宜蘭縣", "yunlin": "雲林縣",
+    "kinmen": "金門縣", "lienchiang": "連江縣", "matsu": "連江縣",
+}
+
+
+def project_latlng(lat: float, lng: float) -> tuple[float, float]:
+    """等距圓柱投影：lat/lng → 底圖 SVG 座標（viewBox 單位）。不額外疊加
+    cos(緯度) 修正，理由見上方模組註解——底圖自身的 110% N/S 拉伸已內建。"""
+    x = (lng - MAP_LEFT) / (MAP_RIGHT - MAP_LEFT) * MAP_VIEWBOX_W
+    y = (MAP_TOP - lat) / (MAP_TOP - MAP_BOTTOM) * MAP_VIEWBOX_H
+    return x, y
+
+
+def extract_map_base_svg() -> str:
+    """從 templates/taiwan-map-base.svg 抽出 `<svg ...>` 標籤內的子元素
+    （不含外層 svg 標籤本身，因為輸出時要用自己的 viewBox／class 重新包一層，
+    才能疊加 pin 圖層）；單一來源，不複製貼上底圖內容。"""
+    svg = MAP_BASE_SVG.read_text(encoding="utf-8")
+    m = re.search(r"<svg\b[^>]*>(.*)</svg>\s*\Z", svg, re.S)
+    if not m:
+        die("templates/taiwan-map-base.svg 找不到 <svg> 內容")
+    return m.group(1).strip()
+
+
+_counties_data_cache: dict | None = None
+
+
+def load_counties_data() -> dict | None:
+    """讀 templates/taiwan-counties.json（縣市界線幾何，見 build_map_base.py）。
+    回傳 None＝檔案不存在（該檔是 build 輸入而非內容，理論上應恆存在於 repo；
+    容錯只是避免地圖 tab 因這份輔助資料缺席就整頁 die，縣市線與 pin 驗證則
+    會分別優雅降級：不畫線、不驗證縣市但仍畫 pin）。"""
+    global _counties_data_cache
+    if _counties_data_cache is not None:
+        return _counties_data_cache
+    if not MAP_COUNTIES_JSON.is_file():
+        return None
+    _counties_data_cache = json.loads(MAP_COUNTIES_JSON.read_text(encoding="utf-8"))
+    return _counties_data_cache
+
+
+def _point_in_ring(lng: float, lat: float, ring: list[list[float]]) -> bool:
+    """Ray casting：點是否在單一環內（環座標為 [lng,lat] pair 列表，首尾閉合）。"""
+    inside = False
+    n = len(ring)
+    for i in range(n - 1):
+        x1, y1 = ring[i]
+        x2, y2 = ring[i + 1]
+        if (y1 > lat) != (y2 > lat):
+            x_at = x1 + (lat - y1) * (x2 - x1) / (y2 - y1)
+            if lng < x_at:
+                inside = not inside
+    return inside
+
+
+def _nearest_ring_dist_km(lng: float, lat: float, rings: list[list[list[float]]]) -> float:
+    best = float("inf")
+    for ring in rings:
+        for i in range(len(ring) - 1):
+            x1, y1 = ring[i]
+            x2, y2 = ring[i + 1]
+            dx, dy = x2 - x1, y2 - y1
+            if dx == 0 and dy == 0:
+                d = math.hypot(lng - x1, lat - y1)
+            else:
+                t = max(0.0, min(1.0, ((lng - x1) * dx + (lat - y1) * dy) / (dx * dx + dy * dy)))
+                d = math.hypot(lng - (x1 + t * dx), lat - (y1 + t * dy))
+            best = min(best, d)
+    return best * 111.32  # 度→公里，臺灣緯度尺度下的粗略換算已足夠這裡的用途
+
+
+def point_in_county(lng: float, lat: float, county_name: str, counties: dict) -> tuple[bool, str | None]:
+    """回傳 (是否算通過, 若失敗則落在哪個縣市或 None)。嚴格 point-in-polygon
+    先判；沒過但落在 MAP_COASTAL_TOLERANCE_KM 內也算通過（見上方常數說明）。"""
+    all_groups = {**counties.get("main", {}), **counties.get("kinmen", {}), **counties.get("matsu", {})}
+    target_rings = all_groups.get(county_name)
+    if target_rings is None:
+        return False, None
+    if any(_point_in_ring(lng, lat, r) for r in target_rings):
+        return True, None
+    if _nearest_ring_dist_km(lng, lat, target_rings) <= MAP_COASTAL_TOLERANCE_KM:
+        return True, None
+    actual = None
+    for name, rings in all_groups.items():
+        if any(_point_in_ring(lng, lat, r) for r in rings):
+            actual = name
+            break
+    return False, actual
+
+
+def load_map_pins() -> list[dict] | None:
+    """讀 content/map.yaml 的 pins 清單並驗證。回傳 None＝檔案不存在
+    （過渡期：資料 agent 尚未交檔，tab 顯示占位、不 crash）。
+    兩層資料品質保險：(1) 座標超出臺灣範圍（MAP_TOP/BOTTOM/LEFT/RIGHT）；
+    (2) 座標與宣稱的 county 不符（point-in-polygon，見 point_in_county()）。
+    兩者皆直接 die——寧可擋下明顯的經緯度或縣市打錯，也不要讓 pin 掉錯地方。"""
+    if not MAP_YAML.is_file():
+        return None
+    data = yaml.safe_load(MAP_YAML.read_text(encoding="utf-8")) or {}
+    pins = data.get("pins")
+    if pins is None:
+        die("content/map.yaml：缺 `pins` 清單")
+    counties = load_counties_data()
+    validated = []
+    for i, pin in enumerate(pins):
+        label = pin.get("name", f"第 {i+1} 筆")
+        for key in ("type", "name", "link", "county", "lat", "lng", "hook"):
+            if key not in pin:
+                die(f"content/map.yaml：{label} 缺 `{key}`")
+        if pin["type"] not in ("person", "place"):
+            die(f"content/map.yaml：{label} 的 type 須為 person 或 place，實得 {pin['type']!r}")
+        if pin["type"] == "person" and "slug" not in pin:
+            die(f"content/map.yaml：{label} 是 person 卻缺 `slug`")
+        lat, lng = pin["lat"], pin["lng"]
+        if not (MAP_BOTTOM <= lat <= MAP_TOP and MAP_LEFT <= lng <= MAP_RIGHT):
+            die(
+                f"content/map.yaml：{label} 座標超出臺灣範圍"
+                f"（lat={lat}, lng={lng}；容許範圍 lat {MAP_BOTTOM}–{MAP_TOP}、"
+                f"lng {MAP_LEFT}–{MAP_RIGHT}）"
+            )
+        if counties is not None:
+            county_name = GEO_SLUG_TO_COUNTY.get(pin["county"])
+            if county_name is None:
+                die(
+                    f"content/map.yaml：{label} 的 county `{pin['county']}` 不在"
+                    f"GEO_SLUG_TO_COUNTY 對照表內（build_pages.py）"
+                )
+            ok, actual = point_in_county(lng, lat, county_name, counties)
+            if not ok:
+                where = f"實際落在「{actual}」" if actual else "不在任何已知縣市內"
+                die(
+                    f"content/map.yaml：{label} 座標（lat={lat}, lng={lng}）不在宣稱的"
+                    f"「{county_name}」（county: {pin['county']}）範圍內（含 "
+                    f"{MAP_COASTAL_TOLERANCE_KM}km 沿海容許誤差），{where}——"
+                    "請確認是座標打錯還是 county 打錯"
+                )
+        validated.append(pin)
+    return validated
+
+
+def cluster_pins(pins: list[dict]) -> list[dict]:
+    """把投影後距離在 MAP_CLUSTER_RADIUS 內的 pin 合併成一組（同縣市密集點，
+    如臺北、臺南，避免疊在一起點不到）。單一 pin 的組直接視為普通 pin；
+    多 pin 的組渲染成數字聚合圓點，點擊展開清單（見 render_map_svg）。
+    回傳 [{x, y, items: [pin,...]}, ...]，貪婪最近鄰演算法（樣本數小，
+    不追求最佳分群，求視覺上不重疊）。"""
+    clusters: list[dict] = []
+    for pin in pins:
+        x, y = project_latlng(pin["lat"], pin["lng"])
+        placed = False
+        for c in clusters:
+            if ((c["x"] - x) ** 2 + (c["y"] - y) ** 2) ** 0.5 <= MAP_CLUSTER_RADIUS:
+                n = len(c["items"])
+                c["x"] = (c["x"] * n + x) / (n + 1)
+                c["y"] = (c["y"] * n + y) / (n + 1)
+                c["items"].append(pin)
+                placed = True
+                break
+        if not placed:
+            clusters.append({"x": x, "y": y, "items": [pin]})
+    return clusters
+
+
+def _ring_path_d(ring: list[list[float]], project) -> str:
+    pts = [project(lat, lng) for lng, lat in ring]
+    d = "M" + " L".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+    return d + " Z"
+
+
+def render_county_lines(counties: dict | None) -> str:
+    """本島（含澎湖等，"main" 群組）縣市界線，細淡線疊在底圖上——只當視覺輔助
+    與 pin 落點的人眼對照，實際驗證邏輯在 point_in_county()，不依賴這條線畫得
+    多準。counties 缺席（taiwan-counties.json 還沒 build_map_base.py 產生過）
+    就跳過，不影響底圖與 pin 正常顯示。"""
+    if not counties or "main" not in counties:
+        return ""
+    parts = [
+        # fill="none" 內建在元素上（不只靠 CSS）：CSS 若失效，縣市 polygon 會以
+        # 預設黑色填滿蓋掉整張底圖——2026-07-18 無樣式截圖實測過這個災難畫面。
+        f'<path class="county-line" fill="none" d="{_ring_path_d(ring, project_latlng)}"/>'
+        for rings in counties["main"].values()
+        for ring in rings
+    ]
+    return f'<g class="county-lines">{"".join(parts)}</g>'
+
+
+def render_map_inset(counties: dict | None) -> str:
+    """金門／馬祖 inset 小圖：兩者離本島遠，在主圖真實位置比例下小到看不清楚
+    （2026-07-18 實測：底圖點陣化後，兩地落點窗口內幾乎全是海面反鋸齒色，
+    陸地色塊佔比趨近於零），改用獨立小座標系統、較大相對比例畫出，放主圖
+    左下角，附文字標籤——維持「臺澎金馬全覆蓋、不裁切」但仍看得清楚。
+    澎湖不在此列：離本島近，主圖真實位置已看得見，照 David 指示畫在真實位置。"""
+    if not counties or "kinmen" not in counties or "matsu" not in counties:
+        return ""
+    groups = {**counties["kinmen"], **counties["matsu"]}
+    lngs = [lng for rings in groups.values() for ring in rings for lng, lat in ring]
+    lats = [lat for rings in groups.values() for ring in rings for lng, lat in ring]
+    lng_min, lng_max = min(lngs), max(lngs)
+    lat_min, lat_max = min(lats), max(lats)
+    pad = 0.05
+    lng_min, lng_max = lng_min - pad, lng_max + pad
+    lat_min, lat_max = lat_min - pad, lat_max + pad
+    inset_w, inset_h = 150.0, 150.0
+
+    def inset_project(lat, lng):
+        x = (lng - lng_min) / (lng_max - lng_min) * inset_w
+        y = (lat_max - lat) / (lat_max - lat_min) * inset_h
+        return x, y
+
+    shapes = [
+        f'<path class="county-line inset-shape" d="{_ring_path_d(ring, inset_project)}"/>'
+        for rings in groups.values()
+        for ring in rings
+    ]
+    # 金門在南、馬祖在北——用各自群組的緯度平均值判斷標籤擺放，不寫死座標。
+    kinmen_y = inset_project(
+        sum(lat for r in counties["kinmen"]["金門縣"] for _, lat in r) / sum(len(r) for r in counties["kinmen"]["金門縣"]),
+        118.3,
+    )[1]
+    matsu_y = inset_project(
+        sum(lat for r in counties["matsu"]["連江縣"] for _, lat in r) / sum(len(r) for r in counties["matsu"]["連江縣"]),
+        119.9,
+    )[1]
+    labels = (
+        f'<text x="4" y="{max(10, min(inset_h - 4, kinmen_y - 6)):.0f}" class="inset-label">金門</text>'
+        f'<text x="4" y="{max(10, min(inset_h - 4, matsu_y - 6)):.0f}" class="inset-label">馬祖</text>'
+    )
+    return (
+        f'<g class="map-inset" transform="translate(14,{MAP_VIEWBOX_H - inset_h - 14})">'
+        f'<rect class="inset-frame" x="-4" y="-4" width="{inset_w + 8}" height="{inset_h + 8}"/>'
+        f'<text x="4" y="12" class="inset-title">金門・馬祖（不同比例尺）</text>'
+        f'<g transform="translate(0,16)">{"".join(shapes)}{labels}</g>'
+        "</g>"
+    )
+
+
+def render_map_svg(pins: list[dict] | None) -> str:
+    """組出完整 map tab 的 <svg>（底圖＋縣市界線＋pin 圖層＋離島 inset）。
+    pins 為 None 時只出底圖＋縣市線（地圖仍看得見，只是還沒有點——資料 agent
+    交檔前的過渡態）。"""
+    base_body = extract_map_base_svg()
+    counties = load_counties_data()
+    county_layer = render_county_lines(counties)
+    inset_layer = render_map_inset(counties)
+    pin_layer = ""
+    if pins:
+        clusters = cluster_pins(pins)
+        parts = []
+        for c in clusters:
+            x, y = round(c["x"], 1), round(c["y"], 1)
+            if len(c["items"]) == 1:
+                p = c["items"][0]
+                cls = "pin-person" if p["type"] == "person" else "pin-place"
+                shape = (
+                    f'<circle class="pin-shape" cx="{x}" cy="{y}" r="6"/>'
+                    if p["type"] == "person"
+                    else f'<rect class="pin-shape" x="{x-6}" y="{y-6}" width="12" height="12"/>'
+                )
+                href = esc(p["link"])
+                external = p["link"].startswith(("http://", "https://"))
+                target = ' target="_blank" rel="noopener"' if external else ""
+                title = f'{esc(p["name"])} — {esc(p["hook"])}'
+                parts.append(
+                    f'<a class="pin {cls}" href="{href}"{target} '
+                    f'aria-label="{esc(p["name"])}，{esc(p["county"])}">'
+                    f"{shape}<title>{title}</title></a>"
+                )
+            else:
+                items_attr = esc(
+                    "|".join(f'{p["type"]}::{p["name"]}::{p["hook"]}::{p["link"]}' for p in c["items"])
+                )
+                parts.append(
+                    f'<g class="pin-cluster" tabindex="0" role="button" '
+                    f'aria-label="{len(c["items"])} 筆，點擊展開" data-items="{items_attr}">'
+                    f'<circle class="pin-shape" cx="{x}" cy="{y}" r="10"/>'
+                    f'<text x="{x}" y="{y}" class="pin-cluster-n">{len(c["items"])}</text>'
+                    "</g>"
+                )
+        pin_layer = f'<g class="map-pins">{"".join(parts)}</g>'
+    return (
+        f'<svg class="tw-map" viewBox="0 0 {MAP_VIEWBOX_W} {MAP_VIEWBOX_H}" '
+        f'role="img" aria-label="臺灣藝文地圖">{base_body}{county_layer}{pin_layer}{inset_layer}</svg>'
+    )
+
+
+MAP_POPUP_SCRIPT = """  <script>
+    // 地圖聚合圓點的展開面板（純 vanilla JS，無外部庫）。點擊 .pin-cluster
+    // 讀 data-items（"type::name::hook::link" 以 | 分隔多筆）列成清單，
+    // 用 getScreenCTM() 把 SVG 內部座標換算成畫面座標來定位面板
+    // （viewBox 縮放/RWD 下仍準確）。
+    (function () {
+      var svg = document.querySelector('svg.tw-map');
+      if (!svg) return;
+      var popup = document.getElementById('map-popup');
+      function closePopup() { popup.hidden = true; popup.innerHTML = ''; }
+      svg.querySelectorAll('.pin-cluster').forEach(function (g) {
+        function open() {
+          var items = g.getAttribute('data-items').split('|').map(function (s) {
+            var parts = s.split('::');
+            return { type: parts[0], name: parts[1], hook: parts[2], link: parts[3] };
+          });
+          var html = '<button type="button" class="map-popup-close" aria-label="關閉">×</button><ul>';
+          items.forEach(function (it) {
+            var ext = /^https?:\\/\\//.test(it.link);
+            html += '<li><a href="' + it.link + '"' + (ext ? ' target="_blank" rel="noopener"' : '') +
+              '><span class="mp-name">' + it.name + '</span><span class="mp-hook">' + it.hook + '</span></a></li>';
+          });
+          html += '</ul>';
+          popup.innerHTML = html;
+          var pt = svg.createSVGPoint();
+          var cx = parseFloat(g.querySelector('circle').getAttribute('cx'));
+          var cy = parseFloat(g.querySelector('circle').getAttribute('cy'));
+          pt.x = cx; pt.y = cy;
+          var screenPt = pt.matrixTransform(svg.getScreenCTM());
+          popup.style.left = (screenPt.x + window.scrollX + 12) + 'px';
+          popup.style.top = (screenPt.y + window.scrollY - 10) + 'px';
+          popup.hidden = false;
+          popup.querySelector('.map-popup-close').addEventListener('click', closePopup);
+        }
+        g.addEventListener('click', open);
+        g.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+        });
+      });
+      document.addEventListener('click', function (e) {
+        if (!popup.hidden && !popup.contains(e.target) && !e.target.closest('.pin-cluster')) closePopup();
+      });
+    })();
+  </script>"""
+
+
+def build_map_tab() -> tuple[str, str]:
+    """首頁第 4 個 tab「臺灣藝文地圖」。回傳 (tab-panel HTML, 互動用 <script>)——
+    分開回傳是為了讓 <script> 放在 </main> 之後、與既有 hash-router script
+    同一層級，而不是嵌在 <main> 裡面（風格與其他 script 放置一致）。
+    content/map.yaml 缺席時顯示占位文字、不 crash（資料 agent 交檔前的過渡態，
+    2026-07-18）；有資料則出底圖＋pin＋圖例＋聚合展開面板。"""
+    pins = load_map_pins()
+    if pins is None:
+        body = '      <p class="map-empty">臺灣藝文地圖資料尚未上架。</p>'
+        script = ""
+    else:
+        body = (
+            '      <div class="map-legend">\n'
+            '        <span class="legend-item"><span class="legend-swatch legend-person"></span>人物</span>\n'
+            '        <span class="legend-item"><span class="legend-swatch legend-place"></span>地標</span>\n'
+            "      </div>\n"
+            '      <div class="map-svg-wrap">\n'
+            f"        {render_map_svg(pins)}\n"
+            "      </div>\n"
+            '      <div id="map-popup" class="map-popup" hidden></div>'
+        )
+        script = MAP_POPUP_SCRIPT
+    panel = (
+        '    <section class="tab-panel" data-panel="map" role="tabpanel">\n'
+        f"{body}\n"
+        "    </section>"
+    )
+    return panel, script
 
 
 def die(msg: str) -> None:
@@ -453,6 +860,7 @@ INDEX_PAGE = """<!DOCTYPE html>
     <button type="button" class="geo-tab" data-tab="general" role="tab" aria-selected="false">總論</button>
     <button type="button" class="geo-tab" data-tab="people" role="tab" aria-selected="false">人物</button>
     <button type="button" class="geo-tab" data-tab="fields" role="tab" aria-selected="false">分領域</button>
+    <button type="button" class="geo-tab" data-tab="map" role="tab" aria-selected="false">臺灣藝文地圖</button>
     <a class="geo-tab" href="https://taiwan.md/" target="_blank" rel="noopener" title="臺灣.md — AI 原生的台灣開源知識庫（外部網站）">臺灣.md ↗</a>
   </nav>
 
@@ -480,9 +888,13 @@ INDEX_PAGE = """<!DOCTYPE html>
 {field_cards}
       </div>
     </section>
+
+    <!-- 臺灣藝文地圖（Phase 2B，2026-07-18）：底圖＋pin 自 content/map.yaml 產生 -->
+{map_panel}
   </main>
 
 {script}
+{map_script}
 </body>
 </html>
 """
@@ -570,6 +982,7 @@ def build_index() -> str:
             "        </a>"
         )
 
+    map_panel, map_script = build_map_tab()
     return INDEX_PAGE.format(
         title=esc(fm["title"]),
         description=esc(fm["description"]),
@@ -579,6 +992,8 @@ def build_index() -> str:
         filters=build_field_filters(fm["people"]),
         cards="\n".join(cards),
         field_cards=build_field_cards(),
+        map_panel=map_panel,
+        map_script=map_script,
         script=extract_index_script(),
     )
 

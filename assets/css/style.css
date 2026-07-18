@@ -385,3 +385,150 @@ sup.fn-ref a { text-decoration: none; }
 }
 .person-sec.story > h2 { margin-top: 0; font-size: 1.25rem; color: var(--indigo-deep); }
 .person-sec.story p { margin: .6rem 0; }
+
+/* ---------- 臺灣藝文地圖（Phase 2B，2026-07-18）---------- */
+/* 圖例：人物＝實心圓（靛藍）、地標＝空心方（莓紫）——色盲友善，形狀先分得出來，
+   顏色只是輔助。 */
+.map-legend {
+  max-width: 960px;
+  margin: 1.4rem auto 0;
+  padding: 0 1rem;
+  display: flex;
+  gap: 1.4rem;
+  justify-content: center;
+  font-size: .95rem;
+  color: var(--ink-soft);
+}
+.legend-item { display: inline-flex; align-items: center; gap: .45rem; }
+.legend-swatch { display: inline-block; width: 14px; height: 14px; }
+.legend-swatch.legend-person { border-radius: 50%; background: var(--indigo); }
+.legend-swatch.legend-place {
+  background: transparent;
+  border: 2.5px solid var(--plum);
+  box-sizing: border-box;
+}
+
+.map-svg-wrap {
+  max-width: 640px;
+  margin: 1rem auto 2rem;
+  padding: 0 1rem;
+}
+svg.tw-map {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+/* 縣市界線（本島＋澎湖等，淡細線，供 pin 落點目視對照用） */
+.county-line {
+  fill: none;
+  stroke: var(--ink-soft);
+  stroke-width: .6;
+  stroke-opacity: .35;
+  vector-effect: non-scaling-stroke;
+}
+
+/* 金門／馬祖 inset（離本島遠、真實比例太小看不清楚，另開小圖） */
+.inset-frame {
+  fill: var(--paper);
+  stroke: var(--line);
+  stroke-width: 1.4;
+  rx: 6;
+}
+.inset-shape { stroke-opacity: .55; stroke-width: .8; }
+.inset-title {
+  font-family: var(--sans);
+  font-size: 8px;
+  fill: var(--ink-soft);
+}
+.inset-label {
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 700;
+  fill: var(--ink);
+}
+
+/* pin：<a>／<g> 包 shape＋title；hover 提示游標可點、色澤加深 */
+.pin { cursor: pointer; }
+.pin .pin-shape { transition: transform .12s, opacity .12s; transform-origin: center; }
+.pin:hover .pin-shape, .pin:focus .pin-shape { transform: scale(1.35); }
+.pin-person .pin-shape { fill: var(--indigo); stroke: var(--paper); stroke-width: 1.2; }
+.pin-place .pin-shape {
+  fill: var(--paper-2);
+  stroke: var(--plum);
+  stroke-width: 2.2;
+}
+
+.pin-cluster { cursor: pointer; }
+.pin-cluster .pin-shape {
+  fill: var(--gold);
+  stroke: var(--paper);
+  stroke-width: 1.2;
+  transition: transform .12s;
+  transform-origin: center;
+}
+.pin-cluster:hover .pin-shape, .pin-cluster:focus .pin-shape { transform: scale(1.2); }
+.pin-cluster-n {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  fill: var(--ink);
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* 聚合展開面板：純 vanilla JS 定位（見 index 產物內嵌 script），CSS 只管樣式 */
+.map-popup {
+  position: absolute;
+  z-index: 20;
+  max-width: 240px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
+  padding: .6rem .7rem .5rem;
+}
+.map-popup ul { list-style: none; margin: 0; padding: 0; }
+.map-popup li { margin: 0 0 .3rem; }
+.map-popup li:last-child { margin-bottom: 0; }
+.map-popup a { display: block; text-decoration: none; padding: .2rem 0; }
+.map-popup .mp-name {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--indigo-deep);
+  font-size: .92rem;
+}
+.map-popup .mp-hook { display: block; font-size: .8rem; color: var(--ink-soft); }
+.map-popup-close {
+  position: absolute;
+  top: .2rem;
+  right: .4rem;
+  border: none;
+  background: transparent;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: .2rem;
+}
+.map-popup-close:hover { color: var(--ink); }
+
+.map-empty {
+  max-width: 640px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: .95rem;
+}
+
+@media (max-width: 760px) {
+  .map-legend { gap: 1rem; font-size: .88rem; }
+  .map-svg-wrap { max-width: 100%; }
+}
