@@ -15,14 +15,16 @@
     <p>人文與藝術資料庫 · 教師備課用</p>
   </header>
 
-  <!-- 試點先開「總論」「人物」兩個 tab，之後擴「分領域」——
-       「人物」tab 上方的領域篩選列（field-filters）是分領域頁面上線前的雛形，
-       chip 對應 #field-<tag> hash，Phase 2 分領域獨立頁上線後同一組標籤承接。
+  <!-- 「總論」「人物」「分領域」三個 tab（分領域 2026-07-18 上線）——
+       「人物」tab 上方的領域篩選列（field-filters）維持雛形不動，
+       chip 對應 #field-<tag> hash，篩的是「人物」tab 內的卡片；
+       「分領域」tab 則是連到獨立 field-<slug>.html 頁的領域卡（build_field_cards() 生成）。
        外連 tab 用 <a>、內部 tab 用 <button data-tab>；JS 選擇器只抓 .geo-tab[data-tab]，
        外連不會被 hash 路由劫持（照 taiwan-geo-db 首頁同款做法）。 -->
   <nav class="geo-tabs" role="tablist" aria-label="首頁導覽">
     <button type="button" class="geo-tab" data-tab="general" role="tab" aria-selected="false">總論</button>
     <button type="button" class="geo-tab" data-tab="people" role="tab" aria-selected="false">人物</button>
+    <button type="button" class="geo-tab" data-tab="fields" role="tab" aria-selected="false">分領域</button>
     <a class="geo-tab" href="https://taiwan.md/" target="_blank" rel="noopener" title="臺灣.md — AI 原生的台灣開源知識庫（外部網站）">臺灣.md ↗</a>
   </nav>
 
@@ -53,15 +55,27 @@
         </a>
       </div>
     </section>
+
+    <!-- 分領域（Phase 2，2026-07-18 上線）：卡片自 content/fields/*.md 產生，
+         每領域一張、連到 pages/field-<slug>.html；卡片樣式沿用人物卡。 -->
+    <section class="tab-panel" data-panel="fields" role="tabpanel">
+      <div class="person-cards" id="field-cards">
+        <a class="person-card" href="pages/field-art.html">
+          <span class="pc-name">〔領域名，如：美術〕</span>
+        </a>
+      </div>
+    </section>
   </main>
 
   <script>
-    // 首頁分頁 hash 路由（#general / #people / #field-<領域>）。
+    // 首頁分頁 hash 路由（#general / #people / #fields / #field-<領域>）。
     // #field-<領域>：進站或 hashchange 讀到 → 啟動「人物」tab＋套用該領域篩選；
     // 點篩選 chip 會把 hash 換成 #field-<領域>（「全部」回 #people）。
+    // #fields（無連字號）＝獨立的「分領域」tab，與 #field-<領域> 篩選 hash 不衝突
+    // （indexOf('field-') 對 'fields' 不命中，見下方 route()）。
     // 支援瀏覽器上一頁、深連結；照 taiwan-geo-db 首頁同款模式擴充。
     (function () {
-      var TABS = ['general', 'people'];
+      var TABS = ['general', 'people', 'fields'];
       var buttons = document.querySelectorAll('.geo-tab[data-tab]');
       var panels = document.querySelectorAll('.tab-panel');
       var fieldChips = document.querySelectorAll('.field-chip[data-field]');

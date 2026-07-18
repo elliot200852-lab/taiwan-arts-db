@@ -372,6 +372,9 @@ sup.fn-ref a { text-decoration: none; }
   .tag-chip { font-size: .8rem; padding: .2rem .7rem; }
 }
 
+/* 分領域卡片為空時的提示文字（field 頁尚未上架，或該領域暫無收錄人物） */
+.field-empty { color: var(--ink-soft); font-size: .95rem; text-align: center; grid-column: 1 / -1; }
+
 /* 一個小故事 — 說書引子框（2026-07-18 David：每位人物配一則有出處的動人小故事） */
 .person-sec.story {
   background: var(--paper-2);

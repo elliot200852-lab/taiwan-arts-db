@@ -44,12 +44,24 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
+FIELDS = CONTENT / "fields"
 BUILD = ROOT / "_build"
 TEMPLATES = ROOT / "templates"
 
 PERSON_SECTIONS = ["who", "bio", "works", "teaching", "storyteller", "footnotes"]
 WHO_HEADINGS = ("他是誰", "她是誰")
 CORE_NOTE = "本資料庫的核心：探究問題、跨科連結，與可直接帶進課堂的素材。"
+
+# 領域中文名稱 → 分領域頁 slug（2026-07-18 拍板，6 個固定集合；見 handoff）。
+# 人物頁 hero 的 tag chips 與 content/fields/*.md 的 `tag` 欄都對照這張表。
+FIELD_SLUG_BY_TAG = {
+    "美術": "field-art",
+    "音樂": "field-music",
+    "文學": "field-literature",
+    "戲曲偶戲": "field-opera",
+    "舞蹈": "field-dance",
+    "電影": "field-film",
+}
 
 
 def die(msg: str) -> None:
@@ -117,6 +129,22 @@ def split_sections(body: str, path: Path) -> list[tuple[str, list[str]]]:
     return sections
 
 
+def split_paragraphs(body: str) -> list[str]:
+    """純段落切分（無 `## ` 區段結構）：空行分隔的文字塊；供 field 頁導言使用
+    （field 頁 frontmatter 後直接接導言文字，不像人物頁需要 `## ` 區段）。"""
+    blocks: list[str] = []
+    buf: list[str] = []
+    for line in body.splitlines():
+        if line.strip():
+            buf.append(line)
+        elif buf:
+            blocks.append("\n".join(buf))
+            buf = []
+    if buf:
+        blocks.append("\n".join(buf))
+    return blocks
+
+
 def parse_list_items(block: str) -> tuple[str, list[str]] | None:
     """辨識清單塊：回傳 ('ul'|'ol', items)；非清單回 None。"""
     lines = block.splitlines()
@@ -138,11 +166,14 @@ def render_figure(p: dict) -> str:
     )
 
 
-def render_bio(blocks: list[str], portrait: dict, path: Path) -> str:
+def render_bio(blocks: list[str], portrait: dict | None, path: Path) -> str:
+    """portrait 選配（2026-07-18）：frontmatter 無 `portrait` 時，`<!-- portrait -->`
+    標記行直接跳過、不插 figure（肖像授權不明的人物走此路——見 PLAN.md 代換規則）。"""
     parts: list[str] = []
     for block in blocks:
         if block.strip() == "<!-- portrait -->":
-            parts.append(render_figure(portrait))
+            if portrait:
+                parts.append(render_figure(portrait))
             continue
         listing = parse_list_items(block)
         if listing:
@@ -221,12 +252,17 @@ def render_storyteller(blocks: list[str], path: Path) -> str:
     return "\n".join(quotes)
 
 
-def render_tag_chips(tags: list[str]) -> str:
-    """人物頁 hero 的領域標籤 chips；連回首頁篩選列（Phase 2 分領域頁上線前的雛形）。"""
-    return "\n".join(
-        f'        <a class="tag-chip" href="../index.html#field-{esc(t)}">{esc(t)}</a>'
-        for t in tags
-    )
+def render_tag_chips(tags: list[str], path: Path) -> str:
+    """人物頁 hero 的領域標籤 chips；連到對應分領域頁 `../pages/field-<slug>.html`
+    （2026-07-18 分領域頁上線，取代先前連回首頁 `#field-<tag>` 篩選列的雛形；
+    首頁「人物」tab 上方的 `#field-<tag>` 篩選列本身不受影響，原樣保留）。"""
+    chips = []
+    for t in tags:
+        slug = FIELD_SLUG_BY_TAG.get(t)
+        if slug is None:
+            die(f"{path.name}：tag `{t}` 不在領域對照表 FIELD_SLUG_BY_TAG 內（見 build_pages.py）")
+        chips.append(f'        <a class="tag-chip" href="../pages/{slug}.html">{esc(t)}</a>')
+    return "\n".join(chips)
 
 
 def render_footnotes(blocks: list[str], path: Path) -> str:
@@ -323,9 +359,10 @@ PERSON_PAGE = """<!DOCTYPE html>
 
 def build_person(md_path: Path) -> tuple[str, str]:
     fm, body = split_frontmatter(md_path)
-    for key in ("slug", "name", "years", "field", "tagline", "lede", "portrait", "geo", "credit", "tags"):
+    for key in ("slug", "name", "years", "field", "tagline", "lede", "geo", "credit", "tags"):
         if key not in fm:
             die(f"{md_path.name}：frontmatter 缺 `{key}`")
+    portrait = fm.get("portrait")  # 選配（2026-07-18）：無明確授權肖像的人物省略此欄。
     # source 選配：有 → 改作自 Taiwan.md 專文（代換規則 1）；無 → 本庫原創編寫（代換規則 2）。
     src = fm.get("source")
     if src:
@@ -365,12 +402,12 @@ def build_person(md_path: Path) -> tuple[str, str]:
         field=esc(fm["field"]),
         years=esc(fm["years"]),
         tagline=esc(fm["tagline"]),
-        tag_chips=render_tag_chips(fm["tags"]),
+        tag_chips=render_tag_chips(fm["tags"], md_path),
         lede=inline(fm["lede"]),
         who_heading=esc(titles[0]),
         who=inline(who_blocks[0]),
         story=story_html,
-        bio=render_bio(sections[1][1], fm["portrait"], md_path),
+        bio=render_bio(sections[1][1], portrait, md_path),
         works=render_works(sections[2][1], md_path),
         geo_text=inline(fm["geo"]["text"]),
         geo_url=esc(fm["geo"]["url"]),
@@ -403,6 +440,7 @@ INDEX_PAGE = """<!DOCTYPE html>
   <nav class="geo-tabs" role="tablist" aria-label="首頁導覽">
     <button type="button" class="geo-tab" data-tab="general" role="tab" aria-selected="false">總論</button>
     <button type="button" class="geo-tab" data-tab="people" role="tab" aria-selected="false">人物</button>
+    <button type="button" class="geo-tab" data-tab="fields" role="tab" aria-selected="false">分領域</button>
     <a class="geo-tab" href="https://taiwan.md/" target="_blank" rel="noopener" title="臺灣.md — AI 原生的台灣開源知識庫（外部網站）">臺灣.md ↗</a>
   </nav>
 
@@ -421,6 +459,13 @@ INDEX_PAGE = """<!DOCTYPE html>
       </div>
       <div class="person-cards" id="person-cards">
 {cards}
+      </div>
+    </section>
+
+    <!-- 分領域（Phase 2，2026-07-18 上線）：卡片自 content/fields/*.md 產生 -->
+    <section class="tab-panel" data-panel="fields" role="tabpanel">
+      <div class="person-cards" id="field-cards">
+{field_cards}
       </div>
     </section>
   </main>
@@ -459,6 +504,27 @@ def build_field_filters(people: list[dict]) -> str:
             f'data-field="{esc(t)}" aria-pressed="false">{esc(t)}</button>'
         )
     return "\n".join(chips)
+
+
+def build_field_cards() -> str:
+    """首頁「分領域」tab 的 6 張領域卡：讀 content/fields/*.md frontmatter 的
+    title/slug 各生成一張，卡片樣式沿用人物卡（.person-card）。容錯：
+    content/fields/ 不存在或為空時回傳提示文字，不 die——寫手與工程平行、
+    field 頁可能晚於首頁完成（2026-07-18）。"""
+    if not FIELDS.is_dir() or not any(FIELDS.glob("*.md")):
+        return '        <p class="field-empty">分領域內容尚未上架。</p>'
+    cards: list[str] = []
+    for md_path in sorted(FIELDS.glob("*.md")):
+        fm, _ = split_frontmatter(md_path)
+        for key in ("title", "slug"):
+            if key not in fm:
+                die(f"{md_path.name}：frontmatter 缺 `{key}`")
+        cards.append(
+            f'        <a class="person-card" href="pages/{esc(fm["slug"])}.html">\n'
+            f'          <span class="pc-name">{esc(fm["title"])}</span>\n'
+            "        </a>"
+        )
+    return "\n".join(cards)
 
 
 def build_index() -> str:
@@ -500,8 +566,120 @@ def build_index() -> str:
         intro="\n".join(intro_parts),
         filters=build_field_filters(fm["people"]),
         cards="\n".join(cards),
+        field_cards=build_field_cards(),
         script=extract_index_script(),
     )
+
+
+FIELD_PAGE = """<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title} — 臺灣人文藝術</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <nav class="crumbs"><a href="../index.html#fields">← 分領域</a> · <a href="../index.html#general">回首頁</a></nav>
+
+  <div class="page-wrap">
+    <header class="page-header">
+      <div class="eyebrow">分領域</div>
+      <h1>{title}</h1>
+    </header>
+
+    <section class="person-sec">
+{intro}
+    </section>
+
+    <section class="person-sec">
+      <h2>這個領域的人物</h2>
+      <div class="person-cards">
+{cards}
+      </div>
+    </section>
+  </div>
+</body>
+</html>
+"""
+
+
+def load_people_meta(people_md: list[Path]) -> list[dict]:
+    """讀所有人物 .md 的 frontmatter（不含生平內文），供 field 頁比對 tags 用。
+    是各人物檔自己的 frontmatter（非 content/index.md 的 `people:` 清單）——
+    field 頁「收錄該領域 tags 含該 tag 的所有人物」直接以此為準，
+    不依賴 index.md 卡片是否已同步（寫手可能還沒補上首頁卡）。"""
+    meta: list[dict] = []
+    for md_path in people_md:
+        fm, _ = split_frontmatter(md_path)
+        for key in ("slug", "name", "years", "field", "tagline", "tags"):
+            if key not in fm:
+                die(f"{md_path.name}：frontmatter 缺 `{key}`")
+        meta.append({
+            "slug": fm["slug"],
+            "name": fm["name"],
+            "years": fm["years"],
+            "field": fm["field"],
+            "tagline": fm["tagline"],
+            "tags": fm["tags"],
+        })
+    return meta
+
+
+def build_field(md_path: Path, people_meta: list[dict]) -> tuple[str, str]:
+    fm, body = split_frontmatter(md_path)
+    for key in ("title", "slug", "tag"):
+        if key not in fm:
+            die(f"{md_path.name}：frontmatter 缺 `{key}`")
+    intro_paras = split_paragraphs(body)
+    if not intro_paras:
+        die(f"{md_path.name}：領域導言為空")
+    intro_html = "\n".join(f"      <p>{inline(p)}</p>" for p in intro_paras)
+
+    tag = fm["tag"]
+    matched = [p for p in people_meta if tag in p["tags"]]
+    if matched:
+        cards_html = "\n".join(
+            f'        <a class="person-card" href="{esc(p["slug"])}.html" '
+            f'data-tags="{esc(" ".join(p["tags"]))}">\n'
+            f'          <span class="pc-name">{esc(p["name"])}</span>'
+            f'<span class="pc-years">{esc(p["years"])}</span>\n'
+            f'          <span class="pc-field">{esc(p["field"])}</span>\n'
+            f'          <span class="pc-field">{esc(p["tagline"])}</span>\n'
+            "        </a>"
+            for p in matched
+        )
+    else:
+        cards_html = '        <p class="field-empty">目前尚無收錄人物。</p>'
+
+    html_out = FIELD_PAGE.format(
+        title=esc(fm["title"]),
+        intro=intro_html,
+        cards=cards_html,
+    )
+    return fm["slug"], html_out
+
+
+def build_fields(people_meta: list[dict]) -> int:
+    """content/fields/*.md → _build/pages/field-<x>.html。容錯（2026-07-18）：
+    目錄不存在或為空都只印訊息跳過、不 die——寫手可能晚於工程完成。
+    回傳實際產出頁數，供 main() 的完成摘要計數。"""
+    if not FIELDS.is_dir():
+        print("[build_pages] content/fields/ 不存在，跳過分領域頁生成")
+        return 0
+    field_md = sorted(FIELDS.glob("*.md"))
+    if not field_md:
+        print("[build_pages] content/fields/ 沒有任何 .md，跳過分領域頁生成")
+        return 0
+    count = 0
+    for md_path in field_md:
+        slug, page_html = build_field(md_path, people_meta)
+        if slug != md_path.stem:
+            die(f"{md_path.name}：frontmatter slug（{slug}）與檔名不一致")
+        (BUILD / "pages" / f"{slug}.html").write_text(page_html, encoding="utf-8")
+        print(f"[build_pages] pages/{slug}.html ✓（分領域）")
+        count += 1
+    return count
 
 
 def main() -> None:
@@ -512,6 +690,8 @@ def main() -> None:
         die("content/people/ 底下沒有任何 .md")
 
     (BUILD / "pages").mkdir(parents=True, exist_ok=True)
+
+    people_meta = load_people_meta(people_md)
 
     index_html = build_index()
     (BUILD / "index.html").write_text(index_html, encoding="utf-8")
@@ -524,7 +704,9 @@ def main() -> None:
         (BUILD / "pages" / f"{slug}.html").write_text(page_html, encoding="utf-8")
         print(f"[build_pages] pages/{slug}.html ✓")
 
-    print(f"[build_pages] 完成：{len(people_md) + 1} 頁 → {BUILD.relative_to(ROOT)}/")
+    field_count = build_fields(people_meta)
+
+    print(f"[build_pages] 完成：{len(people_md) + 1 + field_count} 頁 → {BUILD.relative_to(ROOT)}/")
 
 
 if __name__ == "__main__":
