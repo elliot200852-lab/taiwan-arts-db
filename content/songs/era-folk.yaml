@@ -1,0 +1,459 @@
+songs:
+  - id: ru-guo
+    title: 如果
+    year: 1977
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 施碧梧
+      composer: 邰肇玫
+      original_singer: 施碧梧、邰肇玫
+    hook: 第一屆金韻獎優勝作，兩位女生自寫自唱的清新情歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=J2hyMigLY3U
+        label: 施碧梧、邰肇玫原唱（滾石唱片官方頻道，收錄金韻獎一）
+        source_type: official
+        version: original
+    note: 收錄於新格唱片《金韻獎》第一輯，是民歌運動由校園走向唱片市場的起點之一。
+    sources:
+      - 金韻獎徵曲比賽與首屆得獎作：https://zh.wikipedia.org/zh-tw/%E9%87%91%E9%9F%BB%E7%8D%8E
+
+  - id: zai-bie-kang-qiao
+    title: 再別康橋
+    year: 1977
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 徐志摩
+      composer: 李達濤
+      original_singer: 范廣慧、張智真
+    hook: 把徐志摩的新詩譜成歌，是民歌把現代詩唱進校園的典型。
+    listen:
+      - url: https://www.youtube.com/watch?v=smSh-t2Ap6s
+        label: 范廣慧、張智真原唱（滾石唱片官方頻道，收錄金韻獎一）
+        source_type: official
+        version: original
+    note: 收錄於新格唱片《金韻獎》第一輯。歌詞即徐志摩同名新詩。
+    sources:
+      - 金韻獎第一輯曲目與作曲者：https://zh.wikipedia.org/zh-tw/%E9%87%91%E9%9F%BB%E7%8D%8E
+
+  - id: lan-hua-cao
+    title: 蘭花草
+    year: 1978
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 胡適
+      composer: 陳賢德、張弼
+      original_singer: 包美聖
+    hook: 把胡適的白話詩〈希望〉譜成校園民歌，人人能哼。
+    listen:
+      - url: https://www.youtube.com/watch?v=_y4FKV9OyUs
+        label: 包美聖原唱（新格唱片官方頻道）
+        source_type: official
+        version: original
+    note: 歌詞改編自胡適 1921 年新詩〈希望〉；同期亦有劉文正等多位歌手傳唱版本。
+    sources:
+      - 歌詞出處與作曲者：https://zh.wikipedia.org/zh-tw/%E8%98%AD%E8%8A%B1%E8%8D%89
+
+  - id: kan-wo-ting-wo
+    title: 看我！聽我！
+    year: 1978
+    era: era-folk
+    language: 國語
+    credits:
+      original_singer: 包美聖
+    hook: 金韻獎歌手包美聖的代表作之一，唱青春的自我主張。
+    listen:
+      - url: https://www.youtube.com/watch?v=g1O1PQlCh-g
+        label: 包美聖原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於包美聖的新格唱片專輯，是金韻獎時期的清新校園歌曲。
+    sources:
+      - 包美聖生平與金韻獎出道：https://zh.wikipedia.org/zh-tw/%E5%8C%85%E7%BE%8E%E8%81%96
+
+  - id: mama-shuo-de-gushi
+    title: 媽媽說的故事
+    year: 1978
+    era: era-folk
+    language: 國語
+    credits:
+      original_singer: 包美聖
+    hook: 金韻獎第七輯選曲，以孩子聽故事的視角寫成的溫柔小品。
+    listen:
+      - url: https://www.youtube.com/watch?v=_F3j_sUSUFU
+        label: 包美聖原唱（滾石唱片官方頻道，收錄金韻獎七）
+        source_type: official
+        version: original
+    sources:
+      - 包美聖與金韻獎系列：https://zh.wikipedia.org/zh-tw/%E5%8C%85%E7%BE%8E%E8%81%96
+
+  - id: rang-women-kan-yun-qu
+    title: 讓我們看雲去
+    year: 1978
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 鍾麗莉
+      composer: 黃大城
+      original_singer: 陳明韶
+    hook: 金韻獎歌手陳明韶的名曲，唱年輕人放下課業去看雲的嚮往。
+    listen:
+      - url: https://www.youtube.com/watch?v=ysdSPqT4P3I
+        label: 陳明韶原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    sources:
+      - 詞曲作者與陳明韶：https://zh.wikipedia.org/zh-tw/%E9%99%B3%E6%98%8E%E9%9F%B6
+
+  - id: gan-lan-shu
+    title: 橄欖樹
+    year: 1979
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 三毛
+      composer: 李泰祥
+      original_singer: 齊豫
+    hook: 三毛寫遠方與流浪，李泰祥譜成藝術歌曲式的校園民歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=LZb8fJZFhlo
+        label: 齊豫原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 因歌詞提及「流浪遠方」曾一度被官方以刺激思鄉為由關切，仍傳唱不輟。
+    sources:
+      - 三毛作詞、李泰祥作曲、齊豫演唱：https://zh.wikipedia.org/zh-tw/%E9%BD%8A%E8%B1%AB
+
+  - id: huan-yan
+    title: 歡顏
+    year: 1979
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 沈呂百
+      composer: 李泰祥
+      original_singer: 齊豫
+    hook: 同名電影主題曲，而那部電影正是以校園民歌手為主角。
+    listen:
+      - url: https://www.youtube.com/watch?v=G5Ee7EhR35w
+        label: 齊豫原唱（滾石愛情故事官方頻道）
+        source_type: official
+        version: original
+    sources:
+      - 李泰祥作曲、齊豫演唱：https://zh.wikipedia.org/zh-tw/%E9%BD%8A%E8%B1%AB
+
+  - id: da-an
+    title: 答案
+    year: 1979
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 羅青
+      composer: 李泰祥
+      original_singer: 齊豫
+    hook: 把羅青的新詩譜曲，齊豫與李泰祥合作的另一首詩意民歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=_HWrcY6fNKA
+        label: 齊豫原唱（滾石愛情故事官方頻道）
+        source_type: official
+        version: original
+    note: 收錄於齊豫 1979 年《橄欖樹》專輯，歌詞取自詩人羅青作品。
+    sources:
+      - 羅青作詞、李泰祥作曲、齊豫演唱：https://zh.wikipedia.org/zh-tw/%E9%BD%8A%E8%B1%AB
+
+  - id: zou-zai-yu-zhong
+    title: 走在雨中
+    year: 1979
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 李泰祥
+      composer: 李泰祥
+      original_singer: 齊豫
+    hook: 李泰祥一手包辦詞曲編，齊豫《橄欖樹》專輯裡的另一首代表作。
+    listen:
+      - url: https://www.youtube.com/watch?v=dYBt_ygcMLA
+        label: 齊豫原唱（Chyi Yu 官方 Topic 頻道）
+        source_type: official
+        version: original
+    sources:
+      - 李泰祥詞曲、齊豫演唱、收錄橄欖樹專輯：https://zh.wikipedia.org/zh-tw/%E9%BD%8A%E8%B1%AB
+
+  - id: qiu-chan
+    title: 秋蟬
+    year: 1979
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 李子恆
+      composer: 李子恆
+      original_singer: 楊芳儀、徐曉菁
+    hook: 兩位東吳學生以清亮和聲奪下金韻獎，唱紅這首秋日之歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=EcXd1XI4eIA
+        label: 楊芳儀、徐曉菁原唱（滾石唱片官方頻道，收錄金韻獎五）
+        source_type: official
+        version: original
+    sources:
+      - 李子恆創作、金韻獎與雙人重唱：https://zh.wikipedia.org/zh-tw/%E9%87%91%E9%9F%BB%E7%8D%8E
+
+  - id: zhuo-ni-qiu
+    title: 捉泥鰍
+    year: 1979
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 侯德健
+      composer: 侯德健
+      original_singer: 包美聖
+    hook: 侯德健寫童年田間趣事，成為傳唱數十年的兒歌式民歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=AdbqRQfaOz8
+        label: 包美聖原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    sources:
+      - 侯德健詞曲、包美聖演唱：https://zh.wikipedia.org/zh-tw/%E5%8C%85%E7%BE%8E%E8%81%96
+
+  - id: mu-mian-dao
+    title: 木棉道
+    year: 1979
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 洪光達
+      composer: 馬兆駿
+      original_singer: 王夢麟
+    hook: 寫木棉花開的街道，曾被選入國中音樂課本。
+    listen:
+      - url: https://www.youtube.com/watch?v=eAKXYUJk7O4
+        label: 王夢麟原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    sources:
+      - 洪光達、馬兆駿詞曲、王夢麟演唱：https://zh.wikipedia.org/zh-tw/%E7%8E%8B%E5%A4%A2%E9%BA%9F
+
+  - id: a-mei-a-mei
+    title: 阿美阿美
+    year: 1979
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 曾炳文
+      composer: 曾炳文
+      original_singer: 王夢麟
+    hook: 王夢麟唱單身漢想交女朋友的心情，輕快又親切，紅極一時。
+    listen:
+      - url: https://www.youtube.com/watch?v=NoY2m1iSTsw
+        label: 王夢麟原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    sources:
+      - 曾炳文詞曲、王夢麟演唱：https://zh.wikipedia.org/zh-tw/%E7%8E%8B%E5%A4%A2%E9%BA%9F
+
+  - id: yu-zhong-ji-jing
+    title: 雨中即景
+    year: 1979
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 王夢麟
+      composer: 王夢麟
+      original_singer: 王夢麟
+    hook: 王夢麟以詼諧口吻寫雨天街景，是民歌少見的幽默之作。
+    listen:
+      - url: https://www.youtube.com/watch?v=5npJJEuylhQ
+        label: 王夢麟原唱（滾石唱片官方頻道，收錄金韻獎三）
+        source_type: official
+        version: original
+    sources:
+      - 王夢麟詞曲自唱：https://zh.wikipedia.org/zh-tw/%E7%8E%8B%E5%A4%A2%E9%BA%9F
+
+  - id: mei-li-dao
+    title: 美麗島
+    year: 1979
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 梁景峰
+      composer: 李雙澤
+      original_singer: 楊祖珺
+    hook: 李雙澤譜曲、取材陳秀喜詩作，唱對這片土地的愛，卻遭查禁。
+    listen:
+      - url: https://www.youtube.com/watch?v=rBpgzLkwqOE
+        label: 福爾摩沙合唱團合唱版（Formosa Singers 官方頻道）
+        source_type: other
+        version: famous_cover
+    banned: 1979 年楊祖珺灌錄後遭新聞局列為禁歌，日後「美麗島」一詞更成為黨外雜誌與政治事件的名稱。
+    note: 詞取自陳秀喜 1973 年詩作〈臺灣〉、由梁景峰改寫。楊祖珺 1977/1979 原唱錄音在合格典藏頻道未見，故收福爾摩沙合唱團官方合唱版。
+    sources:
+      - 陳秀喜詩、梁景峰改詞、李雙澤曲、楊祖珺唱與禁歌史：https://zh.wikipedia.org/zh-tw/%E7%BE%8E%E9%BA%97%E5%B3%B6_(%E6%AD%8C%E6%9B%B2)
+
+  - id: gui-ren-sha-cheng
+    title: 歸人沙城
+    year: 1980
+    era: era-folk
+    language: 國語
+    credits:
+      original_singer: 施孝榮
+    hook: 排灣族歌手施孝榮渾厚的嗓音，唱出金韻獎時期的男聲代表作。
+    listen:
+      - url: https://www.youtube.com/watch?v=hS_q6A5yfSk
+        label: 施孝榮原唱（滾石唱片官方頻道，收錄金韻獎五）
+        source_type: official
+        version: original
+    note: 施孝榮為排灣族，是民歌時代少數的原住民歌手之一。
+    sources:
+      - 施孝榮與金韻獎：https://zh.wikipedia.org/zh-tw/%E6%96%BD%E5%AD%9D%E6%A6%AE
+
+  - id: bai-fang-chun-tian
+    title: 拜訪春天
+    year: 1980
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 林建助
+      composer: 陳輝雄
+      original_singer: 施孝榮
+    hook: 施孝榮另一首金韻獎名曲，唱青春探訪春天的明亮。
+    listen:
+      - url: https://www.youtube.com/watch?v=Onl3wGsYQYE
+        label: 施孝榮原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    sources:
+      - 林建助、陳輝雄詞曲、施孝榮演唱：https://zh.wikipedia.org/zh-tw/%E6%96%BD%E5%AD%9D%E6%A6%AE
+
+  - id: sheng-ming-de-yang-guang
+    title: 生命的陽光
+    year: 1980
+    era: era-folk
+    language: 國語
+    credits:
+      original_singer: 木吉他合唱團
+    hook: 木吉他合唱團的作品，團員裡有初出茅廬的李宗盛。
+    listen:
+      - url: https://www.youtube.com/watch?v=pziDfJt8_90
+        label: 木吉他合唱團原唱（滾石唱片官方頻道，收錄金韻獎五）
+        source_type: official
+        version: original
+    note: 木吉他合唱團由張炳輝、江學世、李宗盛等人組成，是李宗盛的樂壇起點之一。
+    sources:
+      - 木吉他合唱團與金韻獎、李宗盛：https://zh.wikipedia.org/zh-tw/%E9%87%91%E9%9F%BB%E7%8D%8E
+
+  - id: long-de-chuan-ren
+    title: 龍的傳人
+    year: 1980
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 侯德健
+      composer: 侯德健
+      original_singer: 李建復
+    hook: 寫在中美斷交的年頭，一夜傳遍校園，成為時代的集體記憶。
+    listen:
+      - url: https://www.youtube.com/watch?v=pvVqV7thPVM
+        label: 李建復原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 侯德健 1978 年底中美斷交之際寫成，李建復首唱後風靡一時。
+    sources:
+      - 創作背景、侯德健詞曲、李建復首唱：https://zh.wikipedia.org/zh-tw/%E6%9D%8E%E5%BB%BA%E5%BE%A9
+
+  - id: kuang-ye-ji-qing
+    title: 曠野寄情
+    year: 1980
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 靳鐵章
+      composer: 靳鐵章
+      original_singer: 李建復
+    hook: 收錄於李建復《龍的傳人》專輯，唱曠野中的思念與遼闊。
+    listen:
+      - url: https://www.youtube.com/watch?v=RbwIyYtA3d8
+        label: 李建復原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    sources:
+      - 靳鐵章詞曲、李建復演唱：https://zh.wikipedia.org/zh-tw/%E6%9D%8E%E5%BB%BA%E5%BE%A9
+
+  - id: wang-le-wo-shi-shui
+    title: 忘了我是誰
+    year: 1980
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 李敖
+      composer: 許瀚君
+      original_singer: 王海玲
+    hook: 由李敖獄中所寫的詩譜成，是民歌名曲中少見的來歷。
+    listen:
+      - url: https://www.youtube.com/watch?v=qtmUg9uFOZM
+        label: 王海玲原唱（滾石唱片官方頻道，收錄金韻獎六）
+        source_type: official
+        version: original
+    sources:
+      - 李敖作詞、許瀚君作曲、王海玲演唱：https://zh.wikipedia.org/zh-tw/%E9%87%91%E9%9F%BB%E7%8D%8E
+
+  - id: wei-feng-wang-shi
+    title: 微風往事
+    year: 1981
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 洪光達
+      composer: 馬兆駿
+      original_singer: 鄭怡
+    hook: 鄭怡清亮的嗓音，唱微風裡回望往事的淡淡情懷。
+    listen:
+      - url: https://www.youtube.com/watch?v=Owt60pHbEak
+        label: 鄭怡原唱（滾石唱片官方頻道，收錄金韻獎八）
+        source_type: official
+        version: original
+    sources:
+      - 洪光達、馬兆駿詞曲、鄭怡演唱：https://zh.wikipedia.org/zh-tw/%E9%84%AD%E6%80%A1
+
+  - id: miao-hui
+    title: 廟會
+    year: 1981
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 賴西安
+      composer: 陳輝雄
+      original_singer: 王夢麟
+    hook: 把臺灣民間廟會的熱鬧寫進校園民歌，難得的鄉土題材。
+    listen:
+      - url: https://www.youtube.com/watch?v=KqdJcJadx_Q
+        label: 王夢麟原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+    note: 作詞者賴西安即兒童文學作家李潼。
+    sources:
+      - 賴西安、陳輝雄詞曲、王夢麟演唱：https://zh.wikipedia.org/zh-tw/%E7%8E%8B%E5%A4%A2%E9%BA%9F
+
+  - id: jiu-zai-jin-ye
+    title: 就在今夜
+    year: 1982
+    era: era-folk
+    language: 國語
+    credits:
+      lyricist: 邱晨
+      composer: 邱晨
+      original_singer: 丘丘合唱團
+    hook: 丘丘合唱團出手，被視為臺灣第一支創作型搖滾樂團的代表作。
+    listen:
+      - url: https://www.youtube.com/watch?v=m2d6JE7UAec
+        label: 丘丘合唱團原唱（滾石唱片官方頻道）
+        source_type: official
+        version: original
+      - url: https://www.youtube.com/watch?v=NUPOUgQxHHU
+        label: 丘丘合唱團官方完整版 MV（新格唱片官方頻道）
+        source_type: official
+        version: original
+    note: 主唱金智娟（娃娃）。樂團形式與電聲編曲，替校園民歌接上了搖滾樂團的年代。
+    sources:
+      - 邱晨創作、金智娟主唱、樂團史地位：https://zh.wikipedia.org/zh-tw/%E4%B8%98%E4%B8%98%E5%90%88%E5%94%B1%E5%9C%98

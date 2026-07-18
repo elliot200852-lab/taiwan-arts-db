@@ -1,0 +1,394 @@
+songs:
+  - id: tho-hoe-khip-hoeh-ki
+    title: 桃花泣血記
+    year: 1932
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 詹天馬
+      composer: 王雲峰
+      original_singer: 純純
+    hook: 為上海默片在臺宣傳而寫，一般認定是臺灣第一首流行歌。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e6%a1%83%e8%8a%b1%e6%b3%a3%e8%a1%80%e8%a8%98/
+        label: 許石編曲・太王管弦樂團復刻版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: famous_cover
+    note: 1932 年純純原唱曲盤現存數位檔多為個人上傳，本庫改收臺史博典藏之許石 1975 年復刻錄音。
+    sources:
+      - 臺灣第一首流行歌、電影宣傳曲來歷、詞曲作者：https://zh.wikipedia.org/zh-tw/%E6%A1%83%E8%8A%B1%E6%B3%A3%E8%A1%80%E8%A8%98
+      - 典藏錄音、發行資訊：https://audio.nmth.gov.tw/audio/%e6%a1%83%e8%8a%b1%e6%b3%a3%e8%a1%80%e8%a8%98/
+
+  - id: thiau-bu-si-tai
+    title: 跳舞時代
+    year: 1933
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 陳君玉
+      composer: 鄧雨賢
+      original_singer: 純純
+    people: [deng-yu-hsien]
+    hook: 古倫美亞 1933 年主打歌，唱出摩登都會的自由戀愛新風氣。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e8%b7%b3%e8%88%9e%e6%99%82%e4%bb%a3/
+        label: 純純 1933 古倫美亞原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 唱片編號日蓄（古倫美亞）80273，A 面為〈紅鶯之鳴〉。後為 2003 年郭珍弟同名紀錄片片名所本。
+    sources:
+      - 詞曲、發行年、唱片編號與宣傳定位：https://audio.nmth.gov.tw/audio/%e8%b7%b3%e8%88%9e%e6%99%82%e4%bb%a3/
+
+  - id: ang-eng-chi-beng
+    title: 紅鶯之鳴
+    year: 1933
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 德音
+      original_singer: 純純
+    hook: 與〈跳舞時代〉同張唱片發行，同屬 1933 年的自由戀愛主題歌。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e7%b4%85%e9%b6%af%e4%b9%8b%e9%b3%b4/
+        label: 純純 1933 古倫美亞原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 唱片編號日蓄（古倫美亞）80273，與〈跳舞時代〉同片。作曲者史料未定，故從缺。
+    sources:
+      - 發行年、唱片編號與作詞者：https://audio.nmth.gov.tw/audio/%e7%b4%85%e9%b6%af%e4%b9%8b%e9%b3%b4/
+
+  - id: ka-pi-ka-pi
+    title: 珈琲！珈琲！
+    year: 1933
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 德音
+      original_singer: 純純
+    hook: 唱的是咖啡店女給的生活，捕捉三○年代臺北的都會情調。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e7%8f%88%e7%90%b2%ef%bc%81%e7%8f%88%e7%90%b2%ef%bc%81/
+        label: 純純 1933 古倫美亞原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 唱片編號日蓄（古倫美亞）80274，B 面即〈月夜愁〉。珈琲指類似酒吧、有女給陪侍的消費場所。
+    sources:
+      - 發行年、唱片編號、內容主題：https://audio.nmth.gov.tw/audio/%e7%8f%88%e7%90%b2%ef%bc%81%e7%8f%88%e7%90%b2%ef%bc%81/
+
+  - id: lau-chheng-chhun
+    title: 老青春
+    year: 1933
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 林清月
+    hook: 醫生兼歌謠作家林清月填詞，見證流行歌初創期的多元出身。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e8%80%81%e9%9d%92%e6%98%a5/
+        label: 1933 古倫美亞原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 唱片編號日蓄（古倫美亞）80250。林清月本業醫師，是臺灣早期少見的歌謠採集與作詞者。
+    sources:
+      - 發行年、唱片編號、作詞者：https://audio.nmth.gov.tw/audio/%e8%80%81%e9%9d%92%e6%98%a5/
+
+  - id: bang-chhun-hong
+    title: 望春風
+    year: 1933
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 李臨秋
+      composer: 鄧雨賢
+      original_singer: 純純
+    people: [deng-yu-hsien, teresa-teng]
+    hook: 二十多歲的李臨秋寫下少女心事，成為臺灣最常被翻唱的旋律。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e6%9c%9b%e6%98%a5%e9%a2%a8/
+        label: 純純 1933 古倫美亞原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+      - url: https://www.youtube.com/watch?v=iRzMNKT4Jj0
+        label: 鄧麗君翻唱（Teresa Teng 官方 Topic 頻道）
+        source_type: official
+        version: famous_cover
+    note: 1933 年 9 月錄音、同年底發行，唱片編號日蓄（古倫美亞）80283。皇民化時期一度被改填日語詞為時局歌曲〈大地は招く〉。
+    sources:
+      - 詞曲、1933 年錄音發行、唱片編號、歌詞流變：https://audio.nmth.gov.tw/audio/%e6%9c%9b%e6%98%a5%e9%a2%a8/
+      - 作者生平與翻唱史：https://zh.wikipedia.org/zh-tw/%E6%9C%9B%E6%98%A5%E9%A2%A8
+
+  - id: goeh-ia-chhiu
+    title: 月夜愁
+    year: 1933
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 周添旺
+      composer: 鄧雨賢
+      original_singer: 純純
+    people: [deng-yu-hsien]
+    hook: 鄧雨賢把平埔調重新編寫，成為傳唱至今的哀愁名曲。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e6%9c%88%e5%a4%9c%e6%84%81/
+        label: 純純 1933 古倫美亞原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 1933 年 11 月發行，唱片編號日蓄（古倫美亞）80274。戰爭末期被改填為日語時局歌曲〈軍夫の妻〉。
+    sources:
+      - 詞曲、發行年、唱片編號：https://audio.nmth.gov.tw/audio/%e6%9c%88%e5%a4%9c%e6%84%81/
+
+  - id: u-ia-hoe
+    title: 雨夜花
+    year: 1934
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 周添旺
+      composer: 鄧雨賢
+      original_singer: 純純
+    people: [deng-yu-hsien, teresa-teng]
+    hook: 落花在夜雨中飄零，成了日治到戰後最被反覆傳唱的臺語悲歌。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e9%9b%a8%e5%a4%9c%e8%8a%b1-3/
+        label: 純純 1934 古倫美亞原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+      - url: https://www.youtube.com/watch?v=EjB6sM8hfQ0
+        label: 方季惟翻唱（華納音樂官方頻道）
+        source_type: official
+        version: famous_cover
+      - url: https://www.youtube.com/watch?v=qMH_H3Bs3j8
+        label: 鄧麗君翻唱（Teresa Teng 官方 Topic 頻道）
+        source_type: official
+        version: famous_cover
+    note: 1933 年 9 月錄音、約 1934 年發行，唱片編號日蓄（古倫美亞）80300。戰爭末期被改填為日語從軍歌〈誉れの軍夫〉。
+    sources:
+      - 詞曲、錄音發行年、唱片編號：https://audio.nmth.gov.tw/audio/%e9%9b%a8%e5%a4%9c%e8%8a%b1-3/
+      - 傳唱與翻唱史：https://zh.wikipedia.org/zh-tw/%E9%9B%A8%E5%A4%9C%E8%8A%B1
+
+  - id: ke-thau-e-liu-long
+    title: 街頭的流浪
+    year: 1934
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 守真
+      composer: 周玉當
+      original_singer: 青春美
+    hook: 唱失業者在街頭遊蕩的困頓，被總督府查禁。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e8%a1%97%e9%a0%ad%e7%9a%84%e6%b5%81%e6%b5%aa/
+        label: 青春美 1934 泰平唱片原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    banned: 一般視為臺灣第一首遭查禁的創作流行歌，因觸及失業與左翼社會意識而被總督府禁止。
+    note: 泰平唱片發行，編號泰平82003，A 面為〈花前雁影〉。
+    sources:
+      - 禁歌緣由、詞曲、發行年與唱片編號：https://audio.nmth.gov.tw/audio/%e8%a1%97%e9%a0%ad%e7%9a%84%e6%b5%81%e6%b5%aa/
+
+  - id: tui-hoe
+    title: 對花
+    year: 1935
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 李臨秋
+      composer: 鄧雨賢
+    people: [deng-yu-hsien]
+    hook: 一問一答的男女對唱，以四季花名互訴情意，活潑俏皮。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e5%b0%8d%e8%8a%b1-3/
+        label: 1935 古倫美亞（利家紅標）原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 1935 年 1 月發行，唱片編號利家紅標 T1007，B 面為〈春宵吟〉。
+    sources:
+      - 詞曲、發行年、唱片編號、男女對唱形式：https://audio.nmth.gov.tw/audio/%e5%b0%8d%e8%8a%b1-3/
+
+  - id: chhun-siau-gim
+    title: 春宵吟
+    year: 1935
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 周添旺
+      composer: 鄧雨賢
+    people: [deng-yu-hsien]
+    hook: 與〈對花〉同張唱片，鄧雨賢筆下少見的抒情小品。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e6%98%a5%e5%ae%b5%e5%90%9f/
+        label: 1935 古倫美亞（利家紅標）原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 唱片編號利家紅標 T1007，與〈對花〉同片。
+    sources:
+      - 詞曲、發行年、唱片編號：https://audio.nmth.gov.tw/audio/%e6%98%a5%e5%ae%b5%e5%90%9f/
+
+  - id: chhui-sim-hoe
+    title: 碎心花
+    year: 1935
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 周添旺
+      composer: 鄧雨賢
+    people: [deng-yu-hsien]
+    hook: 周添旺與鄧雨賢的閨怨小曲，寫女子傷情的心境。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e7%a2%8e%e5%bf%83%e8%8a%b1/
+        label: 1935 古倫美亞原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 唱片編號日蓄（古倫美亞）80330，A 面為〈和尚行進曲〉。
+    sources:
+      - 詞曲、發行年、唱片編號、題材：https://audio.nmth.gov.tw/audio/%e7%a2%8e%e5%bf%83%e8%8a%b1/
+
+  - id: sim-sng-sng
+    title: 心酸酸
+    year: 1936
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 陳達儒
+      composer: 姚讚福
+      original_singer: 秀鑾
+    hook: 勝利唱片的暢銷悲歌，把離愁寫得纏綿，紅遍全臺。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e5%bf%83%e9%85%b8%e9%85%b8/
+        label: 秀鑾 1936 勝利唱片原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 唱片編號勝利 F1076，B 面為〈雙雁影〉。
+    sources:
+      - 詞曲、演唱者、發行年、唱片編號：https://audio.nmth.gov.tw/audio/%e5%bf%83%e9%85%b8%e9%85%b8/
+
+  - id: tho-hoe-hiong
+    title: 桃花鄉
+    year: 1936
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 陳達儒
+      composer: 王福
+    hook: 改編自 1928 年上海〈桃花江〉的曲調，見證海峽兩岸流行歌的交流。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e6%a1%83%e8%8a%b1%e9%84%89/
+        label: 1936 勝利唱片原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 唱片編號勝利 F1075，B 面為流行小曲〈白牡丹〉。
+    sources:
+      - 詞曲、發行年、唱片編號、取材來源：https://audio.nmth.gov.tw/audio/%e6%a1%83%e8%8a%b1%e9%84%89/
+
+  - id: peh-boo-tan
+    title: 白牡丹
+    year: 1936
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 陳達儒
+      composer: 陳秋霖
+    hook: 取材自藝旦曲，改寫成矜持含蓄的流行小曲，傳唱至今。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e7%99%bd%e7%89%a1%e4%b8%b9-%e6%b5%81%e8%a1%8c%e5%b0%8f%e6%9b%b2/
+        label: 1936 勝利唱片原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 典藏頁題為〈白牡丹（流行小曲）〉，唱片編號勝利 F1075，與〈桃花鄉〉同片；與同名北管藝旦曲為兩首不同作品。
+    sources:
+      - 詞曲、發行年、取材自藝旦曲：https://audio.nmth.gov.tw/audio/%e7%99%bd%e7%89%a1%e4%b8%b9-%e6%b5%81%e8%a1%8c%e5%b0%8f%e6%9b%b2/
+
+  - id: su-kui-ang
+    title: 四季紅
+    year: 1938
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 李臨秋
+      composer: 鄧雨賢
+      original_singer: 純純
+    people: [deng-yu-hsien]
+    hook: 以四季景色寫戀愛的甜蜜與羞澀，是四月望雨中最輕快的一首。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e5%9b%9b%e5%ad%a3%e7%b4%85/
+        label: 1938 日東唱片原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 唱片編號日東 A101（大日本蓄音器）。戰後一度因「紅」字敏感被改名〈四季謠〉傳唱。
+    sources:
+      - 詞曲、發行年、唱片編號、題材：https://audio.nmth.gov.tw/audio/%e5%9b%9b%e5%ad%a3%e7%b4%85/
+
+  - id: homare-no-gunpu
+    title: 誉れの軍夫
+    year: 1938
+    era: era-78rpm
+    language: 日語
+    credits:
+      lyricist: 粟原白也
+      composer: 鄧雨賢
+    people: [deng-yu-hsien]
+    hook: 把〈雨夜花〉的旋律改填日語從軍詞，是歌被時代改寫的實例。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e8%aa%89%e3%82%8c%e3%81%ae%e8%bb%8d%e5%a4%ab/
+        label: 1938 日本古倫美亞時局歌原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 1938 年 5 月發行的時局歌，編號日本コロムビア29704。用〈雨夜花〉曲調改填從軍宣傳歌詞，是皇民化時期歌曲被政治改寫的代表案例。
+    sources:
+      - 改編來源、發行年月、唱片編號：https://audio.nmth.gov.tw/audio/%e8%aa%89%e3%82%8c%e3%81%ae%e8%bb%8d%e5%a4%ab/
+
+  - id: gunpu-no-tsuma
+    title: 軍夫の妻
+    year: 1938
+    era: era-78rpm
+    language: 日語
+    credits:
+      lyricist: 粟原白也
+      composer: 鄧雨賢
+    people: [deng-yu-hsien]
+    hook: 〈月夜愁〉旋律改填的日語從軍歌，與〈誉れの軍夫〉同張唱片。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e8%bb%8d%e5%a4%ab%e3%81%ae%e5%a6%bb/
+        label: 1938 日本古倫美亞時局歌原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 1938 年 5 月發行，編號日本コロムビア29704，A 面為〈誉れの軍夫〉。用〈月夜愁〉曲調改填。
+    sources:
+      - 改編來源、發行年月、唱片編號：https://audio.nmth.gov.tw/audio/%e8%bb%8d%e5%a4%ab%e3%81%ae%e5%a6%bb/
+
+  - id: moa-bin-chhun-hong
+    title: 滿面春風
+    year: 1939
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 周添旺
+      composer: 鄧雨賢
+    people: [deng-yu-hsien]
+    hook: 鄧雨賢戰前晚期的作品，寫春風得意的明朗心情。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e6%bb%bf%e9%9d%a2%e6%98%a5%e9%a2%a8/
+        label: 1939 古倫美亞（利家紅標）原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 1939 年 7 月發行，唱片編號利家紅標 T1161。
+    sources:
+      - 詞曲、發行年、唱片編號：https://audio.nmth.gov.tw/audio/%e6%bb%bf%e9%9d%a2%e6%98%a5%e9%a2%a8/
+
+  - id: chhun-siau-bang
+    title: 春宵夢
+    year: 1939
+    era: era-78rpm
+    language: 台語
+    credits:
+      lyricist: 周添旺
+      composer: 周添旺
+    hook: 周添旺自己作詞作曲，見證作詞家跨足作曲的多面才華。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e6%98%a5%e5%ae%b5%e5%a4%a2/
+        label: 1939 古倫美亞（利家紅標）原版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 唱片編號利家紅標 T1170，B 面為〈南國花譜〉。
+    sources:
+      - 詞曲、發行年、唱片編號：https://audio.nmth.gov.tw/audio/%e6%98%a5%e5%ae%b5%e5%a4%a2/
