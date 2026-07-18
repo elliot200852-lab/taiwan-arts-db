@@ -1,0 +1,320 @@
+/* 臺灣人文藝術 — 人文與藝術資料庫
+   與 taiwan-geo-db「認識臺灣」同家族的視覺語言：米白紙色、襯線中文標題、
+   卡片與 tab 同構；主色改靛藍（藍染）系取代 geo-db 的赭土，一看是一家、分得出誰是誰。 */
+
+:root {
+  --paper: #f9f7f0;
+  --paper-2: #f1eee3;
+  --ink: #2e2d33;
+  --ink-soft: #5a5862;
+  --line: #d8d3c5;
+  --indigo: #45548e;       /* 主色：靛藍（藍染） */
+  --indigo-deep: #2f3a66;
+  --plum: #7c5866;         /* 輔色：莓紫（人文／藝術區塊） */
+  --gold: #caa14a;         /* 家族共通的金——重點框與 chips */
+  --focus: #e9e4d2;
+  --serif: "Noto Serif TC", "Songti TC", "STSong", "PMingLiU", "SimSun", Georgia, "Times New Roman", serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Heiti TC", "Microsoft JhengHei", system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.85;
+  font-size: 17px;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.4; color: var(--ink); }
+a { color: var(--indigo-deep); }
+
+/* ---------- 首頁頁首 ---------- */
+.site-head {
+  text-align: center;
+  padding: 2.4rem 1.2rem 1rem;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.site-head h1 { font-size: 2rem; margin: 0 0 .5rem; letter-spacing: .04em; }
+.site-head p { color: var(--ink-soft); margin: .3rem 0; font-size: 1.02rem; }
+
+.intro-cta {
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--paper);
+  background: var(--indigo);
+  border: 1px solid var(--indigo-deep);
+  border-radius: 999px;
+  padding: .55rem 1.4rem;
+  text-decoration: none;
+  transition: background .15s, transform .15s;
+}
+.intro-cta:hover { background: var(--indigo-deep); transform: translateY(-1px); }
+
+/* ---------- 首頁分頁（總論／人物；之後擴分領域） ---------- */
+.geo-tabs {
+  display: flex;
+  justify-content: center;
+  gap: .4rem;
+  max-width: 960px;
+  margin: 1rem auto 0;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.geo-tab {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  padding: .55rem 1.3rem;
+  cursor: pointer;
+  position: relative;
+  top: 1px;
+  transition: background .15s, color .15s;
+}
+.geo-tab:hover { color: var(--indigo-deep); background: var(--paper-2); }
+.geo-tab.active {
+  color: var(--indigo-deep);
+  background: var(--paper);
+  border-color: var(--line);
+  border-bottom: 1px solid var(--paper);
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* 總論分頁 */
+.general-intro {
+  max-width: 720px;
+  margin: 2.2rem auto;
+  padding: 0 1.2rem;
+  text-align: center;
+}
+.general-intro p { color: var(--ink-soft); font-size: 1.05rem; margin: 0 0 1.3rem; }
+.general-intro .intro-cta { margin: .3rem 0 1.4rem; }
+.general-hint { font-size: .95rem; }
+
+/* 人物分頁：人物卡（同 geo-db 縣市卡的骨架） */
+.person-cards {
+  max-width: 960px;
+  margin: 1.6rem auto 2.4rem;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: .8rem;
+  align-items: start;
+}
+.person-card {
+  display: block;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: .8rem 1rem;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background .15s, border-color .15s, transform .15s;
+}
+a.person-card:hover { background: var(--focus); border-color: var(--gold); transform: translateY(-1px); }
+.person-card .pc-name { font-family: var(--serif); font-weight: 600; font-size: 1.12rem; color: var(--indigo-deep); }
+.person-card .pc-years { font-size: .82rem; color: var(--ink-soft); margin-left: .4rem; }
+.person-card .pc-field { display: block; font-size: .88rem; color: var(--plum); margin-top: .2rem; }
+
+/* ---------- 內容頁 ---------- */
+.page-wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.2rem 4rem; }
+
+.crumbs {
+  max-width: 1040px;
+  margin: .9rem auto 0;
+  padding: 0 1.2rem;
+  font-size: .95rem;
+  color: var(--ink-soft);
+}
+.crumbs a { text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+.page-header { margin: 1rem 0 2rem; }
+.page-header .eyebrow { color: var(--plum); font-size: .95rem; letter-spacing: .08em; margin-bottom: .3rem; }
+.page-header h1 { font-size: 2.5rem; margin: 0 0 .4rem; letter-spacing: .03em; }
+.lede {
+  font-size: 1.12rem;
+  color: var(--ink-soft);
+  max-width: 46em;
+  border-left: 3px solid var(--indigo);
+  padding-left: 1rem;
+  margin: 1rem 0 1.6rem;
+}
+
+/* 人物頁 hero：姓名＋生卒年＋領域一句話 */
+.person-hero .ph-years {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  margin: 0 0 .2rem;
+  letter-spacing: .05em;
+}
+.person-hero .ph-field { color: var(--plum); font-size: 1rem; margin: 0 0 .8rem; }
+
+/* 主文區塊（他是誰／生平與時代／作品與聽看入口） */
+.person-sec { margin: 2.4rem 0; }
+.person-sec > h2 {
+  font-size: 1.55rem;
+  border-bottom: 2px solid var(--indigo);
+  padding-bottom: .3rem;
+  margin: 0 0 1rem;
+  display: inline-block;
+}
+.person-sec.works > h2 { border-color: var(--plum); }
+.person-sec p { margin: 0 0 1rem; }
+
+/* 「他是誰」30 秒版：略大、留白多，適合開場朗讀 */
+.person-sec.who p { font-size: 1.08rem; max-width: 44em; }
+
+/* 生平與時代：敘事主文的段落節奏（適合說書） */
+.person-sec.bio p { max-width: 46em; }
+
+/* 時間軸（生平可選用） */
+.timeline {
+  list-style: none;
+  margin: 1.4rem 0;
+  padding: 0 0 0 1.2rem;
+  border-left: 2px solid var(--line);
+}
+.timeline li { position: relative; margin: 0 0 1.1rem; padding-left: .6rem; }
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -1.65rem;
+  top: .55em;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--indigo);
+}
+.timeline .tl-year {
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--indigo-deep);
+  margin-right: .5rem;
+  white-space: nowrap;
+}
+
+/* 作品與聽看入口 */
+.works-list { list-style: none; margin: .6rem 0 0; padding: 0; }
+.works-list li { margin: 0 0 .8rem; }
+.works-list .wk-title { font-family: var(--serif); font-weight: 600; color: var(--ink); }
+.works-list .wk-note { display: block; font-size: .92rem; color: var(--ink-soft); }
+.works-list a { color: var(--indigo-deep); }
+
+/* 教學素材 — 核心，視覺突出（同 geo-db「教學特點」框） */
+.teaching {
+  background: var(--focus);
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  padding: 1.8rem 2rem;
+  margin: 2.6rem 0;
+  box-shadow: 0 2px 10px rgba(70, 80, 130, .08);
+}
+.teaching > h2 {
+  font-size: 1.7rem;
+  margin: 0 0 .3rem;
+  color: var(--indigo-deep);
+}
+.teaching .core-note { color: var(--ink-soft); font-size: .92rem; margin: 0 0 1.2rem; }
+.teaching h3 {
+  font-size: 1.15rem;
+  color: var(--plum);
+  margin: 1.4rem 0 .6rem;
+}
+.teaching ul, .teaching ol { padding-left: 1.3rem; margin: .4rem 0 1rem; }
+.teaching li { margin: .35rem 0; }
+
+/* 說書稿切分提示（同 geo-db） */
+.storyteller { margin: 2.4rem 0; }
+.storyteller h2 { font-size: 1.4rem; margin: 0 0 1rem; }
+.storyteller blockquote,
+.storyteller .quote {
+  background: #fbfaf5;
+  border-left: 4px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  padding: .9rem 1.2rem;
+  margin: 0 0 1rem;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+/* 圖像（同 geo-db） */
+figure.geo-fig {
+  margin: 1.2rem 0;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: .5rem;
+}
+figure.geo-fig img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  background: #e6e3d8;
+}
+figure.geo-fig figcaption {
+  font-size: .82rem;
+  color: var(--ink-soft);
+  padding: .5rem .3rem .2rem;
+  line-height: 1.5;
+}
+figure.geo-fig figcaption .cap-title { color: var(--ink); font-weight: 600; }
+
+/* 出處：有編號腳註 */
+.footnotes { margin: 2.6rem 0 0; }
+.footnotes > h2 { font-size: 1.3rem; margin: 0 0 .6rem; }
+.footnotes ol {
+  padding-left: 1.5rem;
+  margin: 0;
+  font-size: .9rem;
+  color: var(--ink-soft);
+}
+.footnotes li { margin: .35rem 0; word-break: break-all; }
+.footnotes li:target { background: var(--focus); border-radius: 4px; }
+sup.fn-ref { font-size: .72em; line-height: 0; }
+sup.fn-ref a { text-decoration: none; }
+
+/* 頁尾：版權與授權聲明（CC BY-SA） */
+.page-foot {
+  border-top: 1px solid var(--line);
+  margin-top: 3rem;
+  padding-top: 1.4rem;
+  font-size: .88rem;
+  color: var(--ink-soft);
+}
+.page-foot h3 { font-size: 1rem; margin: 0 0 .5rem; color: var(--ink); }
+.page-foot ul { padding-left: 1.2rem; margin: 0 0 1rem; }
+.page-foot li { margin: .2rem 0; word-break: break-all; }
+.page-foot .credit,
+.page-foot .license {
+  border-top: 1px dashed var(--line);
+  padding-top: .8rem;
+  margin-top: .8rem;
+}
+
+/* 行動裝置（同 geo-db 斷點） */
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  .page-header h1 { font-size: 2rem; }
+  .teaching { padding: 1.3rem 1.2rem; }
+  .geo-tabs { gap: .2rem; }
+  .geo-tab { font-size: .98rem; padding: .5rem .85rem; }
+  .person-cards { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+}

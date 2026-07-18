@@ -1,0 +1,18 @@
+# 站台內容的 Drive 來源（內容 SSOT 在 Drive、repo 只留腳本）
+#
+# 格式：<repo 相對輸出路徑>: <Drive folder ID>
+# 由 scripts/pull_content.py 於 CI 部署前遞迴拉取。
+#
+# 本 repo 比 taiwan-geo-db 更徹底：連內容 HTML 都在 Drive——
+#   html 夾（index.html＋pages/*.html）→ site/
+#   img 夾（各人物／主題圖片）        → site/img/
+# 讀取者＝channel-deployer@waldorfcreatorhubdatabase.iam.gserviceaccount.com
+# （repo secret DRIVE_SA_KEY）。新增／搬動夾記得同步共用給該 SA，否則 CI 403。
+#
+# ⚠ 占位字串 FILL_ME_*：Drive 資料夾建好後回填實際 folder ID。
+#   pull_content.py 看到 FILL_ME 會直接中止，不會拿占位字串去打 API。
+# ⚠ 改到本檔時，deploy-pages.yml 若日後加了 paths: filter 必須把本檔列進去
+#   （creator-hub 漏這步踩過坑：改 manifest 不觸發部署）。
+files:
+  site: "FILL_ME_HTML_FOLDER_ID"
+  site/img: "FILL_ME_IMG_FOLDER_ID"

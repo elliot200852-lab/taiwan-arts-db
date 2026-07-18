@@ -1,0 +1,55 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一時間只跑一個部署，防止 push 疊跑互相覆蓋
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 內容 SSOT 在 Drive、不進 repo（CLAUDE.md「網路部署架構鐵則」）。
+      # 本 repo 連內容 HTML 都在 Drive——拉不到（無憑證／0 HTML）就中止建置，
+      # 這裡是唯一擋得住空站上線的閘。部署後仍要跑 scripts/verify_live.py。
+      - name: Pull content from Google Drive
+        env:
+          DRIVE_SA_KEY: ${{ secrets.DRIVE_SA_KEY }}
+        run: python scripts/pull_content.py
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

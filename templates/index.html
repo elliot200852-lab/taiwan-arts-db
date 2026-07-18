@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<!-- 參考模板：實際首頁由內容組生成後上傳 Drive html 夾（此檔不會被部署）。
+     內容 HTML 引用樣式的路徑：首頁 assets/css/style.css、pages/ 底下 ../assets/css/style.css。 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>臺灣人文藝術 — 人文與藝術資料庫</title>
+  <meta name="description" content="教師備課用的臺灣人文藝術資料庫：以人物為入口，認識臺灣的文學、美術、音樂與表演藝術。">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-head">
+    <h1>臺灣人文藝術</h1>
+    <p>人文與藝術資料庫 · 教師備課用</p>
+  </header>
+
+  <!-- 試點先開「總論」「人物」兩個 tab，之後擴「分領域」。
+       外連 tab 用 <a>、內部 tab 用 <button data-tab>；JS 選擇器只抓 .geo-tab[data-tab]，
+       外連不會被 hash 路由劫持（照 taiwan-geo-db 首頁同款做法）。 -->
+  <nav class="geo-tabs" role="tablist" aria-label="首頁導覽">
+    <button type="button" class="geo-tab" data-tab="general" role="tab" aria-selected="false">總論</button>
+    <button type="button" class="geo-tab" data-tab="people" role="tab" aria-selected="false">人物</button>
+    <a class="geo-tab" href="https://taiwan.md/" target="_blank" rel="noopener" title="臺灣.md — AI 原生的台灣開源知識庫（外部網站）">臺灣.md ↗</a>
+  </nav>
+
+  <main>
+    <!-- 總論 -->
+    <section class="tab-panel" data-panel="general" role="tabpanel">
+      <div class="general-intro">
+        <p>這是一個給老師備課用的臺灣人文藝術資料庫，與「認識臺灣」地理資料庫成對。從一個一個具體的人出發——寫小說的、畫畫的、作曲的、演戲的——認識這片土地上的文學與藝術，並附可直接帶進課堂的教學素材與說書切分提示。</p>
+        <a class="intro-cta" href="pages/overview.html">📖 總論——臺灣人文藝術的大脈絡</a>
+        <p class="general-hint">或切到「人物」，從一個人的生命故事進入。</p>
+      </div>
+    </section>
+
+    <!-- 人物 -->
+    <section class="tab-panel" data-panel="people" role="tabpanel">
+      <div class="person-cards" id="person-cards">
+        <!-- 每位人物一張卡；由內容組生成時逐一填入 -->
+        <a class="person-card" href="pages/FILL_ME-person-id.html">
+          <span class="pc-name">〔姓名〕</span><span class="pc-years">〔1895–1947〕</span>
+          <span class="pc-field">〔領域，如：文學 · 小說〕</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // 首頁分頁 hash 路由（#general / #people）。
+    // 支援瀏覽器上一頁、深連結；照 taiwan-geo-db 首頁同款模式。
+    (function () {
+      var TABS = ['general', 'people'];
+      var buttons = document.querySelectorAll('.geo-tab[data-tab]');
+      var panels = document.querySelectorAll('.tab-panel');
+      function activate(name, push) {
+        if (TABS.indexOf(name) < 0) name = 'general';
+        buttons.forEach(function (b) {
+          var on = b.getAttribute('data-tab') === name;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        panels.forEach(function (p) {
+          p.classList.toggle('active', p.getAttribute('data-panel') === name);
+        });
+        if (push && ('#' + name) !== location.hash) {
+          history.pushState(null, '', '#' + name);
+        }
+      }
+      buttons.forEach(function (b) {
+        b.addEventListener('click', function () { activate(b.getAttribute('data-tab'), true); });
+      });
+      window.addEventListener('hashchange', function () {
+        activate((location.hash || '').replace('#', ''), false);
+      });
+      activate((location.hash || '').replace('#', '') || 'general', false);
+    })();
+  </script>
+</body>
+</html>

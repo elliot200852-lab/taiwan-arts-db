@@ -1,0 +1,19 @@
+# 內容 SSOT 在 Drive、repo 只留腳本——整個 site/ 都是拉取／組裝產物，不進 repo
+site/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# macOS
+.DS_Store
+
+# 憑證：SA key 絕不進 repo（本機用 DRIVE_SA_KEY_FILE 指向 repo 外的路徑）
+sa-key*.json
+*-sa-key.json
+service-account*.json
+*credentials*.json
+
+# gws 對無 body 呼叫留下的 0-byte 殘檔
+download.html

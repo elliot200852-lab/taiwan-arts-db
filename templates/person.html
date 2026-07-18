@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<!-- 參考模板：人物頁。實際頁面由內容組生成後上傳 Drive html 夾的 pages/ 子夾。
+     〔…〕為占位；圖片一律放 Drive img 夾、以 ../img/{person-id}/{NN}.webp 引用。 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>〔姓名〕 — 臺灣人文藝術</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <nav class="crumbs"><a href="../index.html#people">← 人物</a> · <a href="../index.html#general">回首頁</a></nav>
+
+  <div class="page-wrap">
+    <!-- 頁首 hero：姓名＋生卒年＋領域一句話 -->
+    <header class="page-header person-hero">
+      <div class="eyebrow">〔領域，如：美術 · 膠彩畫〕</div>
+      <h1>〔姓名〕</h1>
+      <p class="ph-years">〔1895 — 1947〕</p>
+      <p class="ph-field">〔領域一句話，如：把臺灣的土地與人第一次畫進帝國美術展覽會的畫家〕</p>
+      <div class="lede"><p>〔導語：一段話定位這個人——他跟這片土地的關係、為什麼值得孩子認識。〕</p></div>
+    </header>
+
+    <!-- 他是誰：30 秒版，適合課堂開場或快速查閱 -->
+    <section class="person-sec who">
+      <h2>他是誰</h2>
+      <p>〔30 秒講完的版本：出身、做了什麼、留下什麼。三到五句。〕</p>
+    </section>
+
+    <!-- 生平與時代：敘事主文，段落節奏適合說書；可穿插 timeline 與圖 -->
+    <section class="person-sec bio">
+      <h2>生平與時代</h2>
+      <p>〔敘事主文第一段：從一個具體場景或畫面切入……〕<sup class="fn-ref"><a href="#fn1">[1]</a></sup></p>
+      <p>〔主文若干段：人放在時代裡講——他遇到的臺灣是什麼樣子、他回應了什麼。〕</p>
+      <figure class="geo-fig">
+        <img src="../img/FILL_ME-person-id/00.webp" alt="〔圖片描述〕" loading="lazy">
+        <figcaption><span class="cap-title">〔圖說標題〕</span><br>〔作者〕 · 〔授權，如 CC BY-SA 4.0〕 · 〔來源，如 Wikimedia Commons〕</figcaption>
+      </figure>
+      <!-- 時間軸為可選：生平轉折多的人物用；平緩的人物直接用段落節奏即可 -->
+      <ul class="timeline">
+        <li><span class="tl-year">〔1895〕</span>〔事件一句話〕</li>
+        <li><span class="tl-year">〔1927〕</span>〔事件一句話〕</li>
+        <li><span class="tl-year">〔1947〕</span>〔事件一句話〕</li>
+      </ul>
+    </section>
+
+    <!-- 作品與聽看入口：課堂上直接打得開的東西 -->
+    <section class="person-sec works">
+      <h2>作品與聽看入口</h2>
+      <ul class="works-list">
+        <li>
+          <span class="wk-title">〔作品名〕</span>（〔年代〕）
+          <span class="wk-note">〔一句話：這件作品在講什麼、課堂上怎麼用〕 · <a href="〔可公開聽看的網址〕" target="_blank" rel="noopener">聽看入口 ↗</a></span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 教學素材 — 資料庫核心，視覺突出（同 geo-db「教學特點」框） -->
+    <section class="teaching">
+      <h2>教學素材</h2>
+      <p class="core-note">本資料庫的核心：探究問題、跨科連結，與可直接帶進課堂的素材。</p>
+      <p>〔總說：這個人最該帶學生看見的一條線是什麼、最忌把他講成什麼樣的清單。〕</p>
+      <h3>探究問題</h3>
+      <ol>
+        <li>〔從學生看得到、感覺得到的現象出發，往人與時代推的問題〕</li>
+      </ol>
+      <h3>跨科連結</h3>
+      <ul>
+        <li>〔與地理／歷史／語文／音樂等的連結點〕</li>
+      </ul>
+      <h3>課堂用法</h3>
+      <ul>
+        <li>〔可直接執行的活動：看一張畫五分鐘、聽一首曲子、讀一段文字……〕</li>
+      </ul>
+    </section>
+
+    <!-- 說書稿切分提示（同 geo-db 同款區塊） -->
+    <section class="storyteller">
+      <h2>說書稿切分提示</h2>
+      <blockquote>〔第一講：切分點與開場鉤子〕</blockquote>
+      <blockquote>〔第二講：切分點與懸念收尾〕</blockquote>
+    </section>
+
+    <!-- 出處：有編號腳註，每條附 taiwan.md 來源 URL -->
+    <section class="footnotes">
+      <h2>出處</h2>
+      <ol>
+        <li id="fn1">〔出處敘述〕：<a href="https://taiwan.md/〔來源頁路徑〕" target="_blank" rel="noopener">https://taiwan.md/〔來源頁路徑〕</a></li>
+        <li id="fn2">〔出處敘述〕：<a href="〔其他來源 URL〕" target="_blank" rel="noopener">〔其他來源 URL〕</a></li>
+      </ol>
+    </section>
+
+    <!-- 頁尾版權區 -->
+    <footer class="page-foot">
+      <div class="license">
+        本頁改作自 <a href="https://taiwan.md/" target="_blank" rel="noopener">Taiwan.md</a>（CC BY-SA 4.0），
+        依同條款釋出改作內容。
+      </div>
+      <div class="credit">
+        圖片版權屬各原作者，授權標示如圖說。本頁為教師備課資料庫。
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
