@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<!-- 參考模板：臺灣歌曲線時代頁（S1 基建，2026-07-18）。實際頁面由
+     scripts/build_pages.py 從 content/songs/era-<slug>.md ＋ era-<slug>.yaml
+     生成後上傳 Drive html 夾（此檔不會被部署，只示意區塊順序與 class 名，
+     供內容組／盲驗 agent 對照）。〔…〕為占位。 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>〔期名，如：曲盤時代〕 — 臺灣歌曲 — 臺灣人文藝術</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <nav class="crumbs"><a href="../index.html#songs">← 臺灣歌曲</a> · <a href="../index.html#general">回首頁</a></nav>
+
+  <div class="page-wrap">
+    <!-- 頁首 hero：期名＋年代（無領域 chips、無肖像——時代頁講的是歌與時代，不是人） -->
+    <header class="page-header era-hero">
+      <div class="eyebrow">臺灣歌曲 · 〔年代，如：1932–1945〕</div>
+      <h1>〔期名，如：曲盤時代〕</h1>
+    </header>
+
+    <!-- 正文：由 content/songs/era-<slug>.md 轉出，受限 MD 子集（段落／清單／
+         引用／連結／[^N] 腳註）。2–4 個 `## ` 小節，每節圍繞「傳統與變革」推進。
+         正文《歌名》若與登記簿 title 精確比對命中，build 會自動包成
+         listen[0] 連結（target="_blank" rel="noopener"）——正文不手寫任何
+         試聽 URL。 -->
+    <section class="person-sec">
+      <h2>〔小節標題一〕</h2>
+      <p>〔正文段落：從一個時刻或場景進場……歌名寫成《歌名》，build 會自動掛鏈。〕<sup class="fn-ref"><a href="#fn1">[1]</a></sup></p>
+    </section>
+    <section class="person-sec">
+      <h2>〔小節標題二〕</h2>
+      <p>〔正文段落……收尾接到下一個時代的門口。〕</p>
+    </section>
+
+    <!-- 這個時代的歌：build 從該期登記簿分片依 year 升冪自動生成，不手寫。
+         歌名本身＝listen[0] 主連結；listen[1..] 以「另聽：label」小字列出；
+         禁歌史有 banned 欄才出現小標。 -->
+    <section class="person-sec songs-of-era">
+      <h2>這個時代的歌</h2>
+      <ul class="song-list">
+        <li class="song-item">
+          <p class="song-head"><a class="song-title" href="〔listen[0] url〕" target="_blank" rel="noopener">〔歌名〕</a></p>
+          <p class="song-meta">〔年份〕 · 〔語言〕 · 詞：〔詞〕 · 曲：〔曲〕 · 唱：〔原唱〕</p>
+          <p class="song-hook">〔hook，一句話，≤45 字，不得含歌詞〕</p>
+          <p class="song-banned">禁歌：〔禁歌史一句話，選配〕</p>
+          <p class="song-also">另聽：<a href="〔listen[1] url〕" target="_blank" rel="noopener">〔listen[1] label〕</a></p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 出處：有編號腳註，每頁至少 4 條 -->
+    <section class="footnotes">
+      <h2>出處</h2>
+      <ol>
+        <li id="fn1">〔出處敘述〕：<a href="〔來源 URL〕" target="_blank" rel="noopener">〔來源 URL〕</a></li>
+      </ol>
+    </section>
+
+    <!-- 頁尾上一期／下一期導覽（依 frontmatter order） -->
+    <nav class="era-nav">
+      <a class="era-prev" href="song-era-roots.html">← 上一期：〔上一期期名〕</a>
+      <a class="era-next" href="song-era-postwar.html">下一期：〔下一期期名〕 →</a>
+    </nav>
+
+    <!-- 頁尾版權區 -->
+    <footer class="page-foot">
+      <div class="license">
+        本頁由本資料庫依公開來源原創編寫（逐條見「出處」），以 CC BY-SA 4.0 釋出。
+      </div>
+      <div class="credit">
+        本頁為教師備課資料庫。
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

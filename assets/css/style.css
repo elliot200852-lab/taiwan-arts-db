@@ -536,3 +536,59 @@ svg.tw-map {
   .map-legend { gap: 1rem; font-size: .88rem; }
   .map-svg-wrap { max-width: 100%; }
 }
+
+/* ---------- 臺灣歌曲（S1 基建，2026-07-18）---------- */
+/* 時代卡沿用 .person-card／.pc-name／.pc-years／.pc-field 既有樣式，
+   .era-card 只是掛鉤（目前無額外規則）；空狀態同 .field-empty／.map-empty 家族。 */
+.songs-empty {
+  max-width: 640px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: .95rem;
+}
+
+/* 歌單區：一首歌一個 li，歌名本身是 listen[0] 主連結 */
+.song-list { list-style: none; margin: 1rem 0 0; padding: 0; }
+.song-item { border-bottom: 1px solid var(--line); padding: .9rem 0; }
+.song-item:last-child { border-bottom: none; }
+.song-head { margin: 0 0 .2rem; }
+.song-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.08rem;
+  color: var(--indigo-deep);
+  text-decoration: none;
+}
+.song-title:hover { text-decoration: underline; }
+.song-meta { margin: 0 0 .3rem; font-size: .88rem; color: var(--ink-soft); }
+.song-hook { margin: 0 0 .2rem; font-size: .95rem; }
+
+/* 禁歌小標：同 .tag-chip 家族但用莓紫，跟領域 chips（靛藍）區分開 */
+.song-banned {
+  display: inline-block;
+  margin: .3rem 0 0;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--plum);
+  background: var(--paper-2);
+  border: 1px solid var(--plum);
+  border-radius: 999px;
+  padding: .1rem .6rem;
+}
+
+/* 另聽：翻唱／現場版等次要連結，小字列在主連結之後 */
+.song-also { margin: .3rem 0 0; font-size: .82rem; color: var(--ink-soft); }
+.song-also a { color: var(--indigo-deep); }
+
+/* 時代頁上一期／下一期導覽 */
+.era-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2.6rem 0 0;
+  font-size: .95rem;
+}
+.era-nav a { text-decoration: none; color: var(--indigo-deep); }
+.era-nav a:hover { text-decoration: underline; }

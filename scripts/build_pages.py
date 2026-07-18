@@ -44,9 +44,12 @@ from pathlib import Path
 
 import yaml
 
+import check_songs
+
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
 FIELDS = CONTENT / "fields"
+SONGS = CONTENT / "songs"
 BUILD = ROOT / "_build"
 TEMPLATES = ROOT / "templates"
 
@@ -861,6 +864,7 @@ INDEX_PAGE = """<!DOCTYPE html>
     <button type="button" class="geo-tab" data-tab="people" role="tab" aria-selected="false">人物</button>
     <button type="button" class="geo-tab" data-tab="fields" role="tab" aria-selected="false">分領域</button>
     <button type="button" class="geo-tab" data-tab="map" role="tab" aria-selected="false">臺灣藝文地圖</button>
+    <button type="button" class="geo-tab" data-tab="songs" role="tab" aria-selected="false">臺灣歌曲</button>
     <a class="geo-tab" href="https://taiwan.md/" target="_blank" rel="noopener" title="臺灣.md — AI 原生的台灣開源知識庫（外部網站）">臺灣.md ↗</a>
   </nav>
 
@@ -891,6 +895,9 @@ INDEX_PAGE = """<!DOCTYPE html>
 
     <!-- 臺灣藝文地圖（Phase 2B，2026-07-18）：底圖＋pin 自 content/map.yaml 產生 -->
 {map_panel}
+
+    <!-- 臺灣歌曲（S1 基建，2026-07-18）：時代卡自 content/songs/era-*.md 產生 -->
+{songs_panel}
   </main>
 
 {script}
@@ -951,7 +958,7 @@ def build_field_cards() -> str:
     return "\n".join(cards)
 
 
-def build_index() -> str:
+def build_index(eras: list[dict]) -> str:
     fm, body = split_frontmatter(CONTENT / "index.md")
     sections = split_sections(body, CONTENT / "index.md")
     if [t for t, _ in sections] != ["總論"]:
@@ -994,6 +1001,7 @@ def build_index() -> str:
         field_cards=build_field_cards(),
         map_panel=map_panel,
         map_script=map_script,
+        songs_panel=build_songs_tab(eras),
         script=extract_index_script(),
     )
 
@@ -1196,6 +1204,328 @@ def build_fields(people_meta: list[dict]) -> int:
     return count
 
 
+# ---------- 臺灣歌曲線（S1 基建，2026-07-18；SSOT＝docs/SONGS-SPEC.md） ----------
+#
+# 資料模型：content/songs/era-<slug>.md（八個時代頁敘事）＋ era-<slug>.yaml
+# （該期歌曲登記簿分片，見 SONGS-SPEC §2）。schema／孤兒歌名驗證交給
+# scripts/check_songs.py（本檔頂部 `import check_songs`），main() 開頭以
+# --no-net 模式呼叫、fail-fast；完整連結驗證是部署前另跑的一關，不在這裡做
+# （分工說明見 check_songs.py 檔頭）。
+#
+# 零內容過渡態（content/songs/ 不存在或全空）：load_era_pages() 回傳 []，
+# 首頁 tab 與歌曲頁生成都優雅跳過，不 crash（同地圖 tab 前例）。部分內容
+# （只有幾期）：只出已有的時代卡／時代頁，不強求 8 期齊全——check_songs.py
+# 已保證「有 MD 就有分片、有分片就有 MD」，這裡不重複驗證。
+
+_SONG_TITLE_RE = re.compile(r"《([^》]+)》")
+_EXISTING_LINK_RE = re.compile(r"\[([^\]]+)\]\(((?:[^()\s]|\([^()]*\))*)\)")
+
+
+def load_era_pages() -> list[dict]:
+    """讀 content/songs/era-*.md（含對應 era-*.yaml 分片），依 frontmatter
+    `order` 排序回傳。每項 {"md_path", "fm", "body", "songs"}，songs 為該期
+    歌曲（依 year 升冪排序）。缺 content/songs/ 或無檔案 → 回傳 []。"""
+    if not SONGS.is_dir():
+        return []
+    era_md = sorted(SONGS.glob("era-*.md"))
+    if not era_md:
+        return []
+    eras: list[dict] = []
+    for md_path in era_md:
+        fm, body = split_frontmatter(md_path)
+        for key in ("title", "slug", "period", "order", "axis"):
+            if key not in fm:
+                die(f"{md_path.name}：frontmatter 缺 `{key}`")
+        if fm["slug"] != md_path.stem:
+            die(f"{md_path.name}：frontmatter slug（{fm['slug']}）與檔名不一致")
+        yaml_path = SONGS / f"{fm['slug']}.yaml"
+        if not yaml_path.is_file():
+            die(f"{md_path.name}：缺對應登記簿 {yaml_path.name}（check_songs.py 應已攔下，這裡是保險）")
+        shard = yaml.safe_load(yaml_path.read_text(encoding="utf-8")) or {}
+        songs = shard.get("songs") or []
+        if not songs:
+            die(f"{yaml_path.name}：登記簿至少要有 1 首歌")
+        eras.append({
+            "md_path": md_path,
+            "fm": fm,
+            "body": body,
+            "songs": sorted(songs, key=lambda s: s.get("year", 0)),
+        })
+    eras.sort(key=lambda e: e["fm"]["order"])
+    return eras
+
+
+def build_songs_by_title(eras: list[dict]) -> dict[str, dict]:
+    """全部分片 title → 歌曲物件的對照表，供正文《歌名》自動掛鏈與歌單區使用。
+    同名異曲（理論上不應發生，SONGS-SPEC §6：靠登記簿 note 標注、正文人工
+    指定，不硬猜）以先出現者為準，不 die——check_songs.py 不視同名為 schema
+    錯誤，這裡也不擋。"""
+    by_title: dict[str, dict] = {}
+    for era in eras:
+        for song in era["songs"]:
+            by_title.setdefault(song["title"], song)
+    return by_title
+
+
+def _autolink_plain(segment: str, songs_by_title: dict[str, dict]) -> str:
+    """在一段「保證不在既有 markdown 連結內」的原始文字裡，把《歌名》包成
+    `[《歌名》](listen[0] url)`（markdown 連結語法，交給 inline() 走既有的
+    esc()／連結轉換管線，不在這裡直接產 HTML）。未命中登記簿的歌名原樣保留
+    純文字——孤兒偵測是 check_songs.py 的事，這裡不猜、不報錯。"""
+    def repl(m: re.Match) -> str:
+        title = m.group(1)
+        song = songs_by_title.get(title)
+        if song is None:
+            return m.group(0)
+        url = song["listen"][0]["url"]
+        return f"[《{title}》]({url})"
+    return _SONG_TITLE_RE.sub(repl, segment)
+
+
+def autolink_song_titles(text: str, songs_by_title: dict[str, dict]) -> str:
+    """時代頁正文《歌名》自動掛鏈（SONGS-SPEC §2.1／§6）：掃描與登記簿 title
+    精確比對命中者，包成連結；不動已經在 `[label](url)` markdown 連結內的
+    文字（先切出既有連結區段原樣保留，只對連結以外的區段做《…》替換）。"""
+    out: list[str] = []
+    last = 0
+    for m in _EXISTING_LINK_RE.finditer(text):
+        out.append(_autolink_plain(text[last:m.start()], songs_by_title))
+        out.append(m.group(0))
+        last = m.end()
+    out.append(_autolink_plain(text[last:], songs_by_title))
+    return "".join(out)
+
+
+def render_era_prose(blocks: list[str], songs_by_title: dict[str, dict], path: Path) -> str:
+    """時代頁正文受限子集（SONGS-SPEC §2.1）：段落／`- `／`1. ` 清單／`> `
+    引用／`[label](url)` 連結／`[^N]` 腳註。每個文字塊先做《歌名》自動掛鏈
+    再進 inline()。不重用人物頁 render_bio()——那支服務 timeline／portrait，
+    時代頁不需要。"""
+    parts: list[str] = []
+    for block in blocks:
+        lines = block.splitlines()
+        if lines and all(l.startswith("> ") for l in lines):
+            text = " ".join(l[2:] for l in lines)
+            parts.append(f"      <blockquote>{inline(autolink_song_titles(text, songs_by_title))}</blockquote>")
+            continue
+        listing = parse_list_items(block)
+        if listing:
+            kind, items = listing
+            lis = "\n".join(
+                f"        <li>{inline(autolink_song_titles(item, songs_by_title))}</li>" for item in items
+            )
+            parts.append(f"      <{kind}>\n{lis}\n      </{kind}>")
+            continue
+        parts.append(f"      <p>{inline(autolink_song_titles(block, songs_by_title))}</p>")
+    return "\n".join(parts)
+
+
+def render_era_body(body: str, songs_by_title: dict[str, dict], path: Path) -> tuple[str, str]:
+    """回傳 (content_html, footnotes_html)。格式同 field 頁新格式（可選導言＋
+    `## ` 區段序列，最後一區固定「出處」）；時代頁不像 field 頁把出處設為選配
+    ——SONGS-SPEC §2.1 規定每頁至少 4 條出處，這裡直接要求「出處」為必要的
+    最後一個區段。"""
+    m = re.search(r"^## ", body, re.M)
+    if m is None:
+        die(f"{path.name}：時代頁正文須以 `## ` 區段組織（SONGS-SPEC §2.1）")
+    intro_paras = split_paragraphs(body[: m.start()])
+    intro_html = "\n".join(
+        f"      <p>{inline(autolink_song_titles(p, songs_by_title))}</p>" for p in intro_paras
+    )
+    sections = split_sections(body[m.start():], path)
+    if not sections:
+        die(f"{path.name}：時代頁內容為空")
+    if sections[-1][0] != "出處":
+        die(f"{path.name}：時代頁最後一個 `## ` 區段須為「出處」（實得「{sections[-1][0]}」）")
+    footnotes_html = render_footnotes(sections[-1][1], path)
+    content_sections = sections[:-1]
+    if not content_sections and not intro_html:
+        die(f"{path.name}：時代頁除「出處」外沒有任何內容區段")
+
+    parts: list[str] = []
+    if intro_html:
+        parts.append('    <section class="person-sec">\n' + intro_html + "\n    </section>")
+    for heading, blocks in content_sections:
+        parts.append(
+            '    <section class="person-sec">\n'
+            f"      <h2>{esc(heading)}</h2>\n"
+            f"{render_era_prose(blocks, songs_by_title, path)}\n"
+            "    </section>"
+        )
+    return "\n".join(parts), footnotes_html
+
+
+# credits 欄位 → 中文標籤；未列在此表的欄位仍會照樣輸出（key 本身當標籤），
+# 避免登記簿以後新增欄位卻在頁面上悄悄消失（SONGS-SPEC §2.2 credits 是開放欄位）。
+CREDIT_LABELS = {"lyricist": "詞", "composer": "曲", "original_singer": "唱"}
+
+
+def render_song_item(song: dict) -> str:
+    """歌單區單一 `<li>`：歌名本身＝listen[0] 主連結（target="_blank"
+    rel="noopener"）＋年份／語言／詞曲唱＋hook＋禁歌標記（有 banned 才出）＋
+    listen[1..] 以「另聽：label」小字列出（SONGS-SPEC §6）。"""
+    listen = song["listen"]
+    main_url = esc(listen[0]["url"])
+    title_link = (
+        f'<a class="song-title" href="{main_url}" target="_blank" rel="noopener">'
+        f'{esc(song["title"])}</a>'
+    )
+    credits = song.get("credits") or {}
+    credit_bits = [
+        f"{label}：{esc(credits[key])}" for key, label in CREDIT_LABELS.items() if key in credits
+    ]
+    credit_bits += [
+        f"{esc(key)}：{esc(value)}" for key, value in credits.items() if key not in CREDIT_LABELS
+    ]
+    meta_bits = [esc(str(song["year"])), esc(song["language"])] + credit_bits
+    meta_line = " · ".join(meta_bits)
+
+    lines = [
+        '        <li class="song-item">',
+        f'          <p class="song-head">{title_link}</p>',
+        f'          <p class="song-meta">{meta_line}</p>',
+        f'          <p class="song-hook">{esc(song["hook"])}</p>',
+    ]
+    if song.get("banned"):
+        lines.append(f'          <p class="song-banned">禁歌：{esc(song["banned"])}</p>')
+    if len(listen) > 1:
+        also = "、".join(
+            f'<a href="{esc(l["url"])}" target="_blank" rel="noopener">{esc(l["label"])}</a>'
+            for l in listen[1:]
+        )
+        lines.append(f'          <p class="song-also">另聽：{also}</p>')
+    lines.append("        </li>")
+    return "\n".join(lines)
+
+
+def render_era_nav(eras: list[dict], idx: int) -> str:
+    """頁尾上一期／下一期導覽（依 order，即 eras 清單順序）；同 pages/ 目錄下
+    的相對連結（`<slug>.html`，與 field 頁人物卡連結同款寫法）。"""
+    parts: list[str] = []
+    if idx > 0:
+        prev_slug = eras[idx - 1]["fm"]["slug"]
+        prev_title = eras[idx - 1]["fm"]["title"]
+        parts.append(f'      <a class="era-prev" href="song-{esc(prev_slug)}.html">← 上一期：{esc(prev_title)}</a>')
+    else:
+        parts.append('      <span class="era-prev era-nav-empty"></span>')
+    if idx < len(eras) - 1:
+        next_slug = eras[idx + 1]["fm"]["slug"]
+        next_title = eras[idx + 1]["fm"]["title"]
+        parts.append(f'      <a class="era-next" href="song-{esc(next_slug)}.html">下一期：{esc(next_title)} →</a>')
+    else:
+        parts.append('      <span class="era-next era-nav-empty"></span>')
+    return "\n".join(parts)
+
+
+def build_songs_tab(eras: list[dict]) -> str:
+    """首頁第 5 個 tab「臺灣歌曲」：時代卡（期名＋年代＋axis 主軸句），依
+    order 排，連到 pages/song-<slug>.html。eras 為 [] 時顯示占位文字、不
+    crash（零內容過渡態，SONGS-SPEC §6）；部分內容時只出已有的時代卡。"""
+    if not eras:
+        return (
+            '    <section class="tab-panel" data-panel="songs" role="tabpanel">\n'
+            '      <p class="songs-empty">臺灣歌曲時代頁尚未上架。</p>\n'
+            "    </section>"
+        )
+    cards = []
+    for era in eras:
+        fm = era["fm"]
+        cards.append(
+            f'        <a class="person-card era-card" href="pages/song-{esc(fm["slug"])}.html">\n'
+            f'          <span class="pc-name">{esc(fm["title"])}</span>'
+            f'<span class="pc-years">{esc(fm["period"])}</span>\n'
+            f'          <span class="pc-field">{esc(fm["axis"])}</span>\n'
+            "        </a>"
+        )
+    return (
+        '    <section class="tab-panel" data-panel="songs" role="tabpanel">\n'
+        '      <div class="person-cards" id="era-cards">\n'
+        + "\n".join(cards) + "\n"
+        "      </div>\n"
+        "    </section>"
+    )
+
+
+SONG_ERA_PAGE = """<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title} — 臺灣歌曲 — 臺灣人文藝術</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <nav class="crumbs"><a href="../index.html#songs">← 臺灣歌曲</a> · <a href="../index.html#general">回首頁</a></nav>
+
+  <div class="page-wrap">
+    <header class="page-header era-hero">
+      <div class="eyebrow">臺灣歌曲 · {period}</div>
+      <h1>{title}</h1>
+    </header>
+
+{content}
+
+    <section class="person-sec songs-of-era">
+      <h2>這個時代的歌</h2>
+      <ul class="song-list">
+{song_items}
+      </ul>
+    </section>
+
+    <section class="footnotes">
+      <h2>出處</h2>
+      <ol>
+{footnotes}
+      </ol>
+    </section>
+
+    <nav class="era-nav">
+{era_nav}
+    </nav>
+
+    <footer class="page-foot">
+      <div class="license">
+        {license_line}
+      </div>
+      <div class="credit">
+        {credit}
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
+"""
+
+
+def build_song_pages(eras: list[dict]) -> int:
+    """content/songs/era-*.{md,yaml} → _build/pages/song-<slug>.html。eras 為
+    [] 時（零內容過渡態）跳過、不 die。回傳實際產出頁數。"""
+    if not eras:
+        print("[build_pages] content/songs/ 尚無時代頁，跳過歌曲線頁面生成")
+        return 0
+    songs_by_title = build_songs_by_title(eras)
+    count = 0
+    for idx, era in enumerate(eras):
+        md_path, fm = era["md_path"], era["fm"]
+        content_html, footnotes_html = render_era_body(era["body"], songs_by_title, md_path)
+        song_items = "\n".join(render_song_item(s) for s in era["songs"])
+        page_html = SONG_ERA_PAGE.format(
+            title=esc(fm["title"]),
+            period=esc(fm["period"]),
+            content=content_html,
+            song_items=song_items,
+            footnotes=footnotes_html,
+            era_nav=render_era_nav(eras, idx),
+            license_line="本頁由本資料庫依公開來源原創編寫（逐條見「出處」），以 CC BY-SA 4.0 釋出。",
+            credit=FIELD_CREDIT,
+        )
+        slug = fm["slug"]
+        (BUILD / "pages" / f"song-{slug}.html").write_text(page_html, encoding="utf-8")
+        print(f"[build_pages] pages/song-{slug}.html ✓（歌曲線）")
+        count += 1
+    return count
+
+
 def main() -> None:
     if not CONTENT.is_dir():
         die("content/ 不存在")
@@ -1203,11 +1533,21 @@ def main() -> None:
     if not people_md:
         die("content/people/ 底下沒有任何 .md")
 
+    # 歌曲線 schema／孤兒歌名 fail-fast（--no-net：不打連結，完整連結驗證是
+    # 部署前另跑的一關，見 check_songs.py 檔頭分工說明）。
+    songs_errors = check_songs.validate(no_net=True)
+    if songs_errors:
+        die(
+            "check_songs 驗證未通過（--no-net）：\n"
+            + "\n".join(f"  - {e}" for e in songs_errors)
+        )
+
     (BUILD / "pages").mkdir(parents=True, exist_ok=True)
 
     people_meta = load_people_meta(people_md)
+    eras = load_era_pages()
 
-    index_html = build_index()
+    index_html = build_index(eras)
     (BUILD / "index.html").write_text(index_html, encoding="utf-8")
     print(f"[build_pages] index.html ✓")
 
@@ -1219,8 +1559,12 @@ def main() -> None:
         print(f"[build_pages] pages/{slug}.html ✓")
 
     field_count = build_fields(people_meta)
+    song_count = build_song_pages(eras)
 
-    print(f"[build_pages] 完成：{len(people_md) + 1 + field_count} 頁 → {BUILD.relative_to(ROOT)}/")
+    print(
+        f"[build_pages] 完成：{len(people_md) + 1 + field_count + song_count} 頁 → "
+        f"{BUILD.relative_to(ROOT)}/"
+    )
 
 
 if __name__ == "__main__":
