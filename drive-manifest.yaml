@@ -14,5 +14,5 @@
 # ⚠ 改到本檔時，deploy-pages.yml 若日後加了 paths: filter 必須把本檔列進去
 #   （creator-hub 漏這步踩過坑：改 manifest 不觸發部署）。
 files:
-  site: "FILL_ME_HTML_FOLDER_ID"
-  site/img: "FILL_ME_IMG_FOLDER_ID"
+  site: "1Mqmci41UvdbN9qxlF6_gQ-N2Y9jm6em-"
+  site/img: "165Zia_oiWLqVgOOVPmwT5iwxumhygUpT"
