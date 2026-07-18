@@ -73,9 +73,11 @@ Taiwan.md 每篇文章分三層（30 秒→5 分鐘→全文）、每 300 字至
 ```
 選人（課程需要優先）
   → taiwanmd search/read/cite 取材（無專文則走來源 3、4）
-  → 照 templates/person.html 寫頁（主文 600–900 字敘事＋教學素材＋說書切分＋腳註）
+  → 寫 content/people/<slug>.md（主文 600–900 字敘事＋教學素材＋說書切分＋腳註；
+    格式照現有六篇，區塊對應 templates/person.html；本機用 Obsidian 編）
   → 抽查腳註 → 肖像找 Commons（授權不明就不放圖）
-  → staging → gws 上傳 Drive（html/ 與 img/）
+  → python3 scripts/build_pages.py（content/ → _build/，鏡射 Drive html 夾結構）
+  → gws 上傳 _build/ 到 Drive html 夾（圖另傳 img 夾）
   → CI 部署 → scripts/verify_live.py 全綠才算完成
 ```
 
@@ -91,6 +93,6 @@ Taiwan.md 每篇文章分三層（30 秒→5 分鐘→全文）、每 300 字至
 
 ## 七、治理紀律（不重述全文，只列本庫要點）
 
-- 內容 SSOT 全在 Drive（含 HTML——比 geo-db 更徹底），repo 只有腳本與模板；圖一張都不進 repo。
+- 內容**文字**的創作 SSOT＝repo `content/`（Markdown，Obsidian 可編；2026-07-18 拍板）；**HTML 成品與圖片**的部署來源在 Drive。圖一張都不進 repo；`_build/` 產物也不進 repo。
 - 所有改作標示 CC BY-SA 4.0 並回鏈來源；本庫產出的教學頁同樣以 CC BY-SA 4.0 開放。
 - 部署後必跑 `verify_live.py`，CI 綠不等於內容在。

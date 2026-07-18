@@ -10,7 +10,8 @@
 內容取材自 [Taiwan.md](https://taiwan.md/)（CC BY-SA 4.0）與各頁標示來源；
 改作內容依同條款釋出，圖片授權逐張標示於圖說。
 
-**架構一句話**：內容（HTML＋圖片）SSOT 全在 Google Drive，repo 只留腳本、
-模板與 CSS，CI 部署時由 `scripts/pull_content.py` 拉取上架。
+**架構一句話**：文章內容（Markdown）的創作 SSOT 在 repo `content/`（Obsidian 可編），
+`scripts/build_pages.py` 生成 HTML 後上傳 Google Drive；HTML 成品與圖片的部署來源
+在 Drive，CI 部署時由 `scripts/pull_content.py` 拉取上架（成品與圖不進 repo）。
 
 部署、Drive 夾、secret、驗證流程 → 見 [docs/DEPLOY.md](docs/DEPLOY.md)。

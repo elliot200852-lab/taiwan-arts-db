@@ -1,5 +1,6 @@
-# 內容 SSOT 在 Drive、repo 只留腳本——整個 site/ 都是拉取／組裝產物，不進 repo
+# 部署組裝產物不進 repo：site/＝CI 從 Drive 拉取組裝；_build/＝本機 MD→HTML 產物（上傳 Drive 用）
 site/
+_build/
 
 # Python
 __pycache__/
