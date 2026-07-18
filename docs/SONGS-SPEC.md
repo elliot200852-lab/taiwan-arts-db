@@ -64,6 +64,7 @@ title: 曲盤時代            # 期名，照 §1 表
 slug: era-78rpm
 period: 1932–1945          # 年代，照 §1 表
 order: 2                   # 時代序，首頁 tab 依此排
+axis: 唱片工業讓歌第一次可以被反覆重播；戰爭末期歌被改成時局歌曲。   # 主軸一句話（首頁時代卡用；照 §1 表意旨，可微調更口語）
 ---
 ```
 
@@ -146,8 +147,8 @@ songs:
 
 ## 6. Build 與頁面整合（S1 基建，一次做完後續批次不再動）
 
-- 首頁新 tab「臺灣歌曲」：hash `#songs`，TABS 加 `songs`；panel 內容＝八張時代卡（期名＋年代＋主軸一句話，依 `order` 排），連到 `pages/song-era-<slug>.html`。hash 路由照現有模式擴充，不動既有 tab 行為。
-- 時代頁 `pages/song-era-<slug>.html`：hero（期名＋年代）→ 正文（era MD 轉出）→ **「這個時代的歌」歌單區（build 讀入全部登記簿分片、取該 era、依 year 排序自動生成**：歌名＋年份＋語言＋詞曲唱＋hook＋listen 連結＋禁歌標記；歌單不手寫，登記簿是唯一來源）→ 出處。頁尾加上一期／下一期導覽。
+- 首頁新 tab「臺灣歌曲」：hash `#songs`，TABS 加 `songs`；panel 內容＝八張時代卡（期名＋年代＋frontmatter `axis` 主軸句，依 `order` 排），連到 `pages/song-<slug>.html`（slug 已含 era- 前綴，如 `pages/song-era-78rpm.html`）。hash 路由照現有模式擴充，不動既有 tab 行為。分片與 MD 一片都還沒有時顯示占位文字不 crash（同地圖 tab 過渡態前例）。
+- 時代頁 `pages/song-<slug>.html`：hero（期名＋年代）→ 正文（era MD 轉出）→ **「這個時代的歌」歌單區（build 讀入全部登記簿分片、取該 era、依 year 排序自動生成**：歌名＋年份＋語言＋詞曲唱＋hook＋listen 連結＋禁歌標記；歌單不手寫，登記簿是唯一來源）→ 出處。頁尾加上一期／下一期導覽。
 - **歌名即連結（兩處都是）**：歌單區的歌名本身＝`listen[0]` 主連結（`target="_blank" rel="noopener"`，直達 YouTube／典藏單頁）；`listen[1..]` 以「另聽：誰的版本」小字列於後。正文轉換時，build 掃描《歌名》——凡與登記簿 `title` 完全比對命中者，自動包成 `listen[0]` 連結；未命中者保留純文字並由 `check_songs.py` 回報孤兒歌名清單（讓寫手補登記簿，不讓正文出現點不了的歌名）。同名異曲用登記簿 `note` 標注、正文改寫成可區辨的寫法後人工指定，不硬猜。
 - `scripts/check_songs.py`：schema 全欄驗證（必填、era 合法值、id 唯一、people slug 存在、hook 長度）＋連結驗證（§5）＋「每 era 至少 1 首才可出頁」。`build_pages.py` 開頭呼叫，驗不過整個 build fail-fast。
 - 部署鏈不變：build → gws 上傳 Drive html 夾 → CI → `verify_live.py`（歌單區的外部連結由 check_songs 管，verify_live 照舊管站內完整性）。
