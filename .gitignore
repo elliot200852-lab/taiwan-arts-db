@@ -17,3 +17,6 @@ service-account*.json
 
 # gws 對無 body 呼叫留下的 0-byte 殘檔
 download.html
+
+# Obsidian 個人工作區狀態
+.obsidian/
