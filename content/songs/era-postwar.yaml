@@ -1,0 +1,468 @@
+songs:
+  - id: lam-to-chi-ia
+    title: 南都之夜
+    year: 1946
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 鄭志峰
+      composer: 許石
+    hook: 戰後第一首全台熱唱的歌，原名〈新臺灣建設歌〉。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e5%8d%97%e9%83%bd%e4%b9%8b%e5%a4%9c-2/
+        label: 許石作曲、南都之夜（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 許石作曲的第一號作品，1946年發表，原名〈新臺灣建設歌〉，寄託文化工作者對戰後臺灣的批判與期許，後以鄭志峰作詞的愛情歌謠〈南都之夜〉流行，成為戰後第一首全台熱唱歌謠。當時有傳言翻唱自日本〈蘋果之歌〉，許石則說取材自地方歌仔改編。
+    sources:
+      - 許石第一號作品、1946發表、原名新臺灣建設歌、戰後第一首全台熱唱：https://audio.nmth.gov.tw/audio/%e5%8d%97%e9%83%bd%e4%b9%8b%e5%a4%9c-2/
+
+  - id: an-peng-tui-siong-khek
+    title: 安平追想曲
+    year: 1951
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 陳達儒
+      composer: 許石
+    hook: 台南安平金小姐的哀婉傳說，許石聽老人講古譜成的名曲。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e5%ae%89%e5%b9%b3%e8%bf%bd%e6%83%b3%e6%9b%b2/
+        label: 許石最早錄音版本（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 許石名曲代表作。據許石1969年受訪，旋律得自他在台南任教時、於安平古堡聽當地老人講述的地方傳聞；陳達儒為填詞親到安平寶美樓聽故事，並揉入日本「長崎物語」情節，寫成浪漫的金小姐形象。此為最早錄音版本（許石中國錄音製片公司創業作）。
+    sources:
+      - 安平金小姐傳說、許石作曲、陳達儒作詞、最早錄音版：https://audio.nmth.gov.tw/audio/%e5%ae%89%e5%b9%b3%e8%bf%bd%e6%83%b3%e6%9b%b2/
+
+  - id: lo-siann-na-hiang
+    title: 鑼聲若響
+    year: 1955
+    era: era-postwar
+    language: 台語
+    credits:
+      composer: 許石
+    hook: 港邊分手的離情，與安平追想曲並列的許石譜曲代表作。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e9%91%bc%e8%81%b2%e8%8b%a5%e9%9f%bf-2/
+        label: 許石作曲、鑼聲若響（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 年份為概數。早期歌本原名「噫！鑼聲若響」，唱片製作時刪去感嘆詞。從岸上分離唱到離港出發，強烈的Blues節奏暗示海景與失落，被視為與〈安平追想曲〉並列的許石譜曲代表作。
+    sources:
+      - 許石譜曲代表作、原名噫鑼聲若響、Blues港歌：https://audio.nmth.gov.tw/audio/%e9%91%bc%e8%81%b2%e8%8b%a5%e9%9f%bf-2/
+
+  - id: ia-poann-e-loo-teng
+    title: 夜半的路燈
+    year: 1955
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 周添旺
+      composer: 許石
+    hook: 探戈爵士曲風的都會流行歌，唱路燈下等待的惆悵。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e5%a4%9c%e5%8d%8a%e7%9a%84%e8%b7%af%e7%87%88/
+        label: 許石作曲、周添旺作詞（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 年份為概數。據說是許石在台南火車站等候女友（後來的太太鄭淑華）引起靈感而譜；以和聲小音階、小提琴獨奏開場、探戈爵士風格，是許石罕見的都會流行歌，歌詞為周添旺所作。
+    sources:
+      - 許石作曲、周添旺作詞、都會探戈爵士風：https://audio.nmth.gov.tw/audio/%e5%a4%9c%e5%8d%8a%e7%9a%84%e8%b7%af%e7%87%88/
+
+  - id: ma-ma-goa-ia-chin-iong-kian
+    title: 媽媽我也真勇健
+    year: 1960
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 葉俊麟
+      composer: 鄧雨賢
+      original_singer: 紀露霞
+    people: [deng-yu-hsien]
+    hook: 文夏改編自鄧雨賢戰時日語軍歌，卻因原曲身分被禁而更紅。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e5%aa%bd%e5%aa%bd%e6%88%91%e4%b9%9f%e7%9c%9f%e5%8b%87%e5%81%a5/
+        label: 葉俊麟作詞、紀露霞演唱電影插曲（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    banned: 因原曲為1939年日本軍國歌曲〈鄉土部隊勇士から〉而遭禁，卻反而更為民眾傳唱。
+    note: 原曲為1939年鄧雨賢作曲的軍國歌曲〈鄉土部隊勇士から〉（鄉土部隊勇士的來信），1960年文夏改編為台語歌〈媽媽我也真勇健〉，葉俊麟作詞、紀露霞演唱為電影插曲。是「歌被政治改寫又反被政治查禁」的雙重案例。
+    sources:
+      - 原曲鄧雨賢1939軍國歌、1960文夏改編、遭禁反更流行、紀露霞演唱：https://audio.nmth.gov.tw/audio/%e5%aa%bd%e5%aa%bd%e6%88%91%e4%b9%9f%e7%9c%9f%e5%8b%87%e5%81%a5/
+
+  - id: bang-li-cha-kui
+    title: 望你早歸
+    year: 1946
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 那卡諾
+      composer: 楊三郎
+      original_singer: 紀露霞
+    hook: 苦等遠人歸來的名曲，戰後盼離散親人平安的心聲。
+    listen:
+      - url: https://www.youtube.com/watch?v=bqMB-oP0QFg
+        label: 林慧萍翻唱（Hui Ping Lin 官方 Topic 頻道）
+        source_type: official
+        version: famous_cover
+    note: 楊三郎作曲、那卡諾作詞，1946年發表、紀露霞演唱傳唱最廣。歌詞唱苦等遠行的人歸來，戰後常被聯想為等待二二八事件與白色恐怖中離散、失蹤親人的心聲。原唱紀露霞版無官方頻道，此連結為林慧萍翻唱版。
+    sources:
+      - 望你早歸詞曲、發表年、戰後傳唱與時代聯想：https://zh.wikipedia.org/zh-tw/%E6%9C%9B%E4%BD%A0%E6%97%A9%E6%AD%B8
+
+  - id: poo-phoa-bang
+    title: 補破網
+    year: 1948
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 李臨秋
+      composer: 王雲峰
+    hook: 「破網」諧音「破望」，唱戰後破碎的希望與修補。
+    listen:
+      - url: https://www.youtube.com/watch?v=P6fJmlAqOSg
+        label: 鳳飛飛翻唱（Feng Fei Fei 官方 Topic 頻道）
+        source_type: official
+        version: famous_cover
+    banned: 一說當局曾以歌詞太過灰暗為由，要求另加光明結局的第三段。
+    note: 李臨秋作詞、王雲峰作曲，1948年發表。台語「網」與「望」諧音，補破網暗喻修補戰後破碎的希望，寫盡當時的困頓心境。此連結為鳳飛飛翻唱版（原唱無官方頻道）。
+    sources:
+      - 補破網詞曲、發表年、破網諧音破望、加寫第三段一說：https://zh.wikipedia.org/zh-tw/%E8%A3%9C%E7%A0%B4%E7%B6%B2
+
+  - id: sio-bah-chang
+    title: 燒肉粽
+    year: 1949
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 張邱東松
+      composer: 張邱東松
+      定名演唱: 郭金發
+    hook: 深夜叫賣肉粽的歌，唱戰後底層討生活的辛酸。
+    listen:
+      - url: https://www.youtube.com/watch?v=m45fUda0xP4
+        label: 郭金發演唱（Kuo Chin-fa 官方 Topic 頻道）
+        source_type: official
+        version: famous_cover
+    banned: 一度因描寫民生困苦、失業辛酸而被列為禁歌。
+    note: 張邱東松詞曲，1949年發表，原名〈賣肉粽〉，寫一個讀過書的青年落魄到深夜沿街叫賣肉粽，反映戰後的失業與貧困。後郭金發改唱、定名〈燒肉粽〉成為傳唱經典，此連結即郭金發版。
+    sources:
+      - 燒肉粽詞曲、原名賣肉粽、反映戰後貧困、郭金發定名：https://zh.wikipedia.org/zh-tw/%E7%87%92%E8%82%89%E7%B2%BD
+
+  - id: poe-te-m-thang-chhi-kim-hi
+    title: 杯底不可飼金魚
+    year: 1949
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 呂泉生
+      composer: 呂泉生
+    hook: 呂泉生寫的勸酒歌，暗喻族群乾杯和解、莫記舊仇。
+    listen:
+      - url: https://www.youtube.com/watch?v=jkwkJwm8DUk
+        label: 鄭士嘉演唱・金韻獎版（滾石唱片 ROCK RECORDS 官方頻道）
+        source_type: official
+        version: famous_cover
+    note: 1949年呂泉生詞曲。歌名意為勸人乾杯、莫留殘酒，藉勸酒寓意二二八後本省與外省族群和解、莫記舊仇。此連結為滾石金韻獎系列鄭士嘉演唱版（呂泉生原版與合唱版僅見個人／教會頻道）。
+    sources:
+      - 杯底不可飼金魚詞曲、1949、族群和解寓意：https://zh.wikipedia.org/zh-tw/%E6%9D%AF%E5%BA%95%E4%B8%8D%E5%8F%AF%E9%A3%BC%E9%87%91%E9%AD%9A
+
+  - id: goan-na-phah-khui-sim-lai-e-mng-thang
+    title: 阮若打開心內的門窗
+    year: 1958
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 王昶雄
+      composer: 呂泉生
+    hook: 呂泉生與王昶雄合作，唱打開心窗迎向光明的溫暖。
+    listen:
+      - url: https://www.youtube.com/watch?v=6xBz0kD3lM0
+        label: 江蕙演唱（Jody Chiang 官方 Topic 頻道）
+        source_type: official
+        version: famous_cover
+    note: 1958年呂泉生作曲、王昶雄作詞，戰後台語藝術歌曲的代表，唱打開心內的門窗、迎向光明與希望。此連結為江蕙演唱版。
+    sources:
+      - 阮若打開心內的門窗詞曲、1958、藝術歌曲：https://zh.wikipedia.org/zh-tw/%E9%98%AE%E8%8B%A5%E6%89%93%E9%96%8B%E5%BF%83%E5%85%A7%E7%9A%84%E9%96%80%E7%AA%97
+
+  - id: kang-too-ia-hoo
+    title: 港都夜雨
+    year: 1951
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 呂傳梓
+      composer: 楊三郎
+    hook: 高雄港邊的夜雨與離愁，戰後港歌的代表。
+    listen:
+      - url: https://www.youtube.com/watch?v=BehAmVQUEvg
+        label: 江蕙演唱（Jody Chiang 官方 Topic 頻道）
+        source_type: official
+        version: famous_cover
+      - url: https://www.youtube.com/watch?v=RdhyvVSS2U4
+        label: 黃鶯鶯翻唱（Tiger Huang 官方 Topic 頻道）
+        source_type: official
+        version: famous_cover
+    note: 楊三郎作曲、呂傳梓作詞，1951年發表。以Blues節奏描寫港都夜雨中的離情與漂泊，是戰後「港歌」的代表作。原唱版無官方頻道，此收江蕙、黃鶯鶯兩個官方翻唱版。
+    sources:
+      - 港都夜雨詞曲、1951、港歌代表：https://zh.wikipedia.org/zh-tw/%E6%B8%AF%E9%83%BD%E5%A4%9C%E9%9B%A8
+
+  - id: koan-a-nia-chi-loan
+    title: 關仔嶺之戀
+    year: 1960
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 許正照
+      composer: 吳晉淮
+      original_singer: 吳晉淮
+    hook: 吳晉淮親自作曲並演唱的台南關子嶺溫泉戀歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=mua0qha5VDg
+        label: 吳晉淮作曲並演唱（授權發行商 Topic 音檔）
+        source_type: official
+        version: original
+    note: 1960年吳晉淮作曲並演唱、許正照作詞，唱台南關子嶺的溫泉山色與戀情，是吳晉淮返台後的代表作之一。
+    sources:
+      - 關仔嶺之戀詞曲、吳晉淮作曲演唱：https://zh.wikipedia.org/zh-tw/%E5%90%B3%E6%99%89%E6%B7%AE
+
+  - id: ku-cheng-mian-mian
+    title: 舊情綿綿
+    year: 1959
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 葉俊麟
+      composer: 洪一峰
+      original_singer: 洪一峰
+    hook: 「寶島歌王」洪一峰的招牌情歌，纏綿悱惻的舊日戀情。
+    listen:
+      - url: https://www.youtube.com/watch?v=jvaFYeZZ63Q
+        label: 洪一峰作曲並演唱（官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 葉俊麟 1956 年作詞、洪一峰 1959 年譜曲並演唱，是「寶島歌王」洪一峰最著名的代表作；1962 年改編為同名電影、洪一峰主演。
+    sources:
+      - 1956 年葉俊麟作詞、1959 年洪一峰譜曲：https://zh.wikipedia.org/zh-tw/%E6%B4%AA%E4%B8%80%E5%B3%B0
+      - 舊情綿綿詞曲與 1962 年同名電影：https://zh.wikipedia.org/zh-tw/%E8%88%8A%E6%83%85%E7%B6%BF%E7%B6%BF
+
+  - id: su-boo-e-lang
+    title: 思慕的人
+    year: 1961
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 葉俊麟
+      composer: 洪一峰
+      original_singer: 洪一峰
+    hook: 洪一峰低沉嗓音唱盡對心上人的深深思念。
+    listen:
+      - url: https://www.youtube.com/watch?v=pZrUtHVnQdM
+        label: 洪一峰作曲並演唱（官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 洪一峰作曲並演唱、葉俊麟作詞，是洪一峰、葉俊麟這對戰後台語歌黃金搭檔的名曲之一。
+    sources:
+      - 思慕的人詞曲、洪一峰作曲演唱：https://zh.wikipedia.org/zh-tw/%E6%80%9D%E6%85%95%E7%9A%84%E4%BA%BA
+
+  - id: tam-sui-boo-sek
+    title: 淡水暮色
+    year: 1957
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 葉俊麟
+      composer: 洪一峰
+      original_singer: 洪一峰
+    hook: 唱淡水黃昏山海與教堂鐘聲的抒情名曲。
+    listen:
+      - url: https://www.youtube.com/watch?v=dxZcjMF6HXw
+        label: 洪一峰作曲並演唱（官方 Topic 頻道）
+        source_type: official
+        version: original
+      - url: https://www.youtube.com/watch?v=4hnJft33CLg
+        label: 江蕙翻唱（Jody Chiang 官方 Topic 頻道）
+        source_type: official
+        version: famous_cover
+    note: 1957年洪一峰作曲並演唱、葉俊麟作詞，描寫淡水黃昏的山、海、教堂與渡船，是洪一峰的抒情代表作。
+    sources:
+      - 淡水暮色詞曲、洪一峰作曲演唱、代表作：https://zh.wikipedia.org/zh-tw/%E6%B4%AA%E4%B8%80%E5%B3%B0
+
+  - id: hong-hun-e-koo-hiong
+    title: 黃昏的故鄉
+    year: 1958
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 文夏
+      composer: 中野忠晴
+      original_singer: 文夏
+    hook: 日本旋律填台語詞的「混血歌」，遊子對故鄉的呼喚。
+    listen:
+      - url: https://www.youtube.com/watch?v=bR0aWg3d_n0
+        label: 文夏演唱（官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 混血歌——旋律取自日本歌曲（中野忠晴曲），文夏以筆名「愁人」填台語詞並演唱，1958年風行。因思鄉意涵，戒嚴時期在海外台灣同鄉間廣為傳唱，帶有濃厚的離散情感。
+    sources:
+      - 黃昏的故鄉為日曲台詞混血歌、文夏填詞演唱、1958：https://zh.wikipedia.org/zh-tw/%E9%BB%83%E6%98%8F%E7%9A%84%E6%95%85%E9%84%89
+
+  - id: ma-ma-chhiann-li-ia-po-tiong
+    title: 媽媽請你也保重
+    year: 1958
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 文夏
+      original_singer: 文夏
+    hook: 日曲台詞的混血歌，離鄉遊子對母親的掛念與保重。
+    listen:
+      - url: https://www.youtube.com/watch?v=O23DdAcgxo4
+        label: 文夏演唱（官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 混血歌，旋律取自日本歌謠、由文夏填台語詞並演唱，1958年風行。唱離鄉打拼的遊子對母親的掛念，是1950–60年代城鄉遷移下最能打動人心的主題之一。日本原曲作曲者從缺不臆測。
+    sources:
+      - 媽媽請你也保重為混血歌、文夏填詞演唱、1958：https://zh.wikipedia.org/zh-tw/%E5%AA%BD%E5%AA%BD%E8%AB%8B%E4%BD%A0%E4%B9%9F%E4%BF%9D%E9%87%8D
+
+  - id: koo-lu-e-goan-bong
+    title: 孤女的願望
+    year: 1960
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 葉俊麟
+      composer: 米山正夫
+      original_singer: 陳芬蘭
+    hook: 少女北上都市討生活的願望，混血歌名作。
+    listen:
+      - url: https://www.youtube.com/watch?v=As7GeHYPNvI
+        label: 陳芬蘭演唱（官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 混血歌——旋律取自日本〈花笠道中〉（米山正夫曲），葉俊麟填台語詞，童星陳芬蘭演唱。唱一個農村少女北上都市進工廠求職的心願，反映1960年代城鄉遷移的社會現實。
+    sources:
+      - 孤女的願望為花笠道中改編混血歌、陳芬蘭演唱、城鄉遷移：https://zh.wikipedia.org/zh-tw/%E9%99%B3%E8%8A%AC%E8%98%AD
+
+  - id: khoai-lok-e-chhut-phang
+    title: 快樂的出帆
+    year: 1958
+    era: era-postwar
+    language: 台語
+    credits:
+      original_singer: 陳芬蘭
+    hook: 少女初次出航的雀躍，輕快的混血歌。
+    listen:
+      - url: https://www.youtube.com/watch?v=49vR4lXWJYg
+        label: 陳芬蘭演唱（官方 Topic 頻道）
+        source_type: official
+        version: original
+    note: 混血歌，旋律取自日本歌曲，陳芬蘭演唱，1958年風行，唱少女第一次搭船出航的雀躍心情，曲調輕快，與同期哀愁的混血歌形成對比。日本原曲與填詞者資料從缺不臆測。
+    sources:
+      - 快樂的出帆為混血歌、陳芬蘭演唱：https://zh.wikipedia.org/zh-tw/%E5%BF%AB%E6%A8%82%E7%9A%84%E5%87%BA%E5%B8%86
+
+  - id: lu-dao-xiao-ye-qu
+    title: 綠島小夜曲
+    year: 1954
+    era: era-postwar
+    language: 國語
+    credits:
+      lyricist: 潘英傑
+      composer: 周藍萍
+      original_singer: 紫薇
+    hook: 1954年的國語抒情名曲，唱給海上綠島般的思念。
+    listen:
+      - url: https://www.youtube.com/watch?v=IY62CJjGXOw
+        label: 蔡琴翻唱（Tsai Chin 官方 Topic 頻道）
+        source_type: official
+        version: famous_cover
+    note: 周藍萍作曲、潘英傑作詞、紫薇原唱，1954年發表。歌名「綠島」指的是台灣本島（非火燒島／綠島監獄），是最早紅遍華人世界的台灣國語歌之一。原唱紫薇版無官方頻道，此連結為蔡琴演唱版。
+    sources:
+      - 綠島小夜曲詞曲、紫薇原唱、綠島指本島、1954：https://zh.wikipedia.org/zh-tw/%E7%B6%A0%E5%B3%B6%E5%B0%8F%E5%A4%9C%E6%9B%B2
+
+  - id: khoo-loan-koa
+    title: 苦戀歌
+    year: 1954
+    era: era-postwar
+    language: 台語
+    credits:
+      lyricist: 那卡諾
+      composer: 楊三郎
+      original_singer: 紀露霞
+    hook: 楊三郎作曲的苦戀悲歌，唱單戀無回應的無奈。
+    listen:
+      - url: https://www.youtube.com/watch?v=DgsCVt0y_8c
+        label: 江蕙演唱（Jody Chiang 官方 Topic 頻道）
+        source_type: official
+        version: famous_cover
+    note: 年份為概數。楊三郎作曲、那卡諾作詞，原唱紀露霞，是楊三郎戰後多首港邊悲歌之一。此連結為江蕙演唱版。
+    sources:
+      - 苦戀歌為楊三郎作曲作品、紀露霞原唱：https://zh.wikipedia.org/zh-tw/%E6%A5%8A%E4%B8%89%E9%83%8E_(%E4%BD%9C%E6%9B%B2%E5%AE%B6)
+
+  - id: heng-chun-lang
+    title: 行船人
+    year: 1955
+    era: era-postwar
+    language: 台語
+    credits:
+      收錄: 陳達儒《新臺灣歌謠集》第六集
+    hook: 以輕快爵士調唱行船人載浮載沉、積極進取的性格。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e8%a1%8c%e8%88%b9%e4%ba%ba/
+        label: 行船人（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 年份為概數。以大量切分音、Trot爵士節奏表現愉悅曲調，唱行船人隨浪浮沉的自在與對愛人的思念。收入陳達儒編作的《新臺灣歌謠集》第六集歌本，推測為1955年之前的作品。
+    sources:
+      - 行船人曲風、收錄歌本、推測年代：https://audio.nmth.gov.tw/audio/%e8%a1%8c%e8%88%b9%e4%ba%ba/
+
+  - id: koe-chi-koo-niu
+    title: 果子姑娘
+    year: 1958
+    era: era-postwar
+    language: 台語
+    credits:
+      曲種: 倫巴節奏台語歌謠
+    hook: 賣水果姑娘的叫賣歌，串起十六種水果，記錄1950年代生活。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e6%9e%9c%e5%ad%90%e5%a7%91%e5%a8%98/
+        label: 果子姑娘（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 倫巴節奏歌謠，最早約1958年以78轉蟲膠唱片發表，以賣水果姑娘的叫賣串連十六種水果，是記錄1950年代社會生活的趣味歌謠。收錄於陳達儒編作歌本時原名〈新果子歌〉。
+    sources:
+      - 果子姑娘倫巴曲風、1958蟲膠發表、串16種水果：https://audio.nmth.gov.tw/audio/%e6%9e%9c%e5%ad%90%e5%a7%91%e5%a8%98/
+
+  - id: chheng-chhun-e-lun-chun
+    title: 青春的輪船
+    year: 1957
+    era: era-postwar
+    language: 台語
+    credits:
+      發表: 1957年吳晉淮歸臺演唱會
+    hook: 華爾滋三拍的異國流浪之歌，唱漂泊他方難返故鄉的心情。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e9%9d%92%e6%98%a5%e7%9a%84%e8%bc%aa%e8%88%b9/
+        label: 青春的輪船（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 1957年4月許石主辦的吳晉淮歸臺演唱會發表。華爾滋三拍加「和聲小調」的異國風味，自比為漂流異方的「青春的輪船」，想起故鄉等待的人；收尾詩句是許丙丁摘自民間文學，把本土詩歌融入西洋現代的流浪氣氛。
+    sources:
+      - 青春的輪船發表場合、曲風、許丙丁收尾詩句：https://audio.nmth.gov.tw/audio/%e9%9d%92%e6%98%a5%e7%9a%84%e8%bc%aa%e8%88%b9/
+
+  - id: to-te-siann-mih-cho-chin-cheng
+    title: 到底什麼號作真情
+    year: 1950
+    era: era-postwar
+    language: 台語
+    credits:
+      composer: 許石
+    hook: 許石台南任教時的作品，唱女性失戀傷心的敘事歌。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e5%88%b0%e5%ba%95%e4%bb%80%e9%ba%bc%e8%99%9f%e4%bd%9c%e7%9c%9f%e6%83%85/
+        label: 許石作品（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 年份為概數。許石在台南初中任教時的作品，闡述女性失戀傷心的故事，最早由女性演唱；曲式短、敘事性強，末句音聲高亢、拍點自由，戲劇性強烈，適合舞臺演出。
+    sources:
+      - 到底什麼號作真情為許石台南任教時作品、敘事抒情：https://audio.nmth.gov.tw/audio/%e5%88%b0%e5%ba%95%e4%bb%80%e9%ba%bc%e8%99%9f%e4%bd%9c%e7%9c%9f%e6%83%85/

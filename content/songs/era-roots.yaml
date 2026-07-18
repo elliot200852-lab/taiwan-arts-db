@@ -1,0 +1,373 @@
+songs:
+  - id: su-siong-khi
+    title: 思想起
+    year: 1960
+    era: era-roots
+    language: 台語
+    credits:
+      lyricist: 許丙丁
+      original_singer: 劉福助
+      採編: 許石
+    hook: 恆春走唱的月琴調，唱移民渡海與離鄉的思念，臺灣最知名的本土民謠。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e6%80%9d%e6%83%b3%e8%b5%b7/
+        label: 許石採編、劉福助等演唱之流行歌版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 恆春傳統民謠「恆春調」，起源年代不可考、無樂譜、靠口傳；恆春走唱藝人陳達即以此調聞名。此連結為許石採編、約1960年民謠巡演灌錄、劉福助等演唱的流行歌版典藏錄音。
+    sources:
+      - 恆春調來歷、許石採編與劉福助演唱、1960年民謠巡演發行：https://audio.nmth.gov.tw/audio/%e6%80%9d%e6%83%b3%e8%b5%b7/
+
+  - id: keng-long-koa
+    title: 耕農歌
+    year: 1964
+    era: era-roots
+    language: 台語
+    credits:
+      lyricist: 鄭志峰
+      採編: 曾辛得
+    hook: 與思想起同源的「恆春調／平埔調」，後衍生出台語名曲青蚵仔嫂。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e8%80%95%e8%be%b2%e6%ad%8c/
+        label: 恆春調台語版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 曲調即恆春民謠「恆春調」，又稱「平埔調」「台東調」，最早由滿州國小校長曾辛得採編、楊雲萍改詞發表為華語歌；此版1964年由鄭志峰填台語詞灌錄。同曲調後經改編為趣味歌謠〈青蚵仔嫂〉大為流行，可見一個民謠曲調的千變萬化。
+    sources:
+      - 恆春調／平埔調來歷、曾辛得採編、1964台語版、衍生青蚵仔嫂：https://audio.nmth.gov.tw/audio/%e8%80%95%e8%be%b2%e6%ad%8c/
+
+  - id: tiu-tiu-tang-a
+    title: 丟丟銅仔
+    year: 1960
+    era: era-roots
+    language: 台語
+    credits:
+      lyricist: 許丙丁
+      original_singer: 劉福助
+      採編: 許石
+    hook: 宜蘭最有名的鄉土民謠，唱火車過山洞、水滴落下的趣味。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e4%b8%9f%e4%b8%9f%e5%92%9a/
+        label: 許石採編、劉福助演唱版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 宜蘭傳統民謠，年代不可考。1943年呂泉生依戲劇家宋非我所唱採譜改編為合唱曲〈丟丟銅仔〉，戰後更為流傳。此連結為許石採編、許丙丁填詞、劉福助演唱的版本，約1960年民謠演唱會發表。
+    sources:
+      - 宜蘭民謠來歷、呂泉生1943採譜、許石採編版：https://audio.nmth.gov.tw/audio/%e4%b8%9f%e4%b8%9f%e5%92%9a/
+
+  - id: chit-chiah-chiau-a
+    title: 一隻鳥仔
+    year: 1960
+    era: era-roots
+    language: 台語
+    credits:
+      採編: 許石
+    hook: 宜蘭採集的童謠，由幼童演唱、加入動物叫聲，逗趣可愛。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e4%b8%80%e9%9a%bb%e9%b3%a5%e4%bb%94/
+        label: 許石採編、幼童演唱版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 宜蘭地區採集的農村民謠，旋律與〈丟丟銅仔〉異曲同工。許石到宜蘭採集編曲，請幼童（含其三位女兒）錄唱，加入動物叫聲，適合作為童謠。與嘉義民謠〈一隻鳥仔哮啾啾〉為不同作品。
+    sources:
+      - 宜蘭採集、幼童演唱、與丟丟銅仔關聯：https://audio.nmth.gov.tw/audio/%e4%b8%80%e9%9a%bb%e9%b3%a5%e4%bb%94/
+
+  - id: lak-goeh-chhan-chui
+    title: 六月田水
+    year: 1960
+    era: era-roots
+    language: 台語
+    credits:
+      採編: 許石
+    hook: 嘉義一帶的農村民謠，旋律近似一隻鳥仔哮啾啾。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e5%85%ad%e6%9c%88%e7%94%b0%e6%b0%b4/
+        label: 許石採編版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 嘉義地區的農村民謠，年代不可考，旋律相似嘉義民謠〈一隻鳥仔哮啾啾〉，由許石採編錄製。
+    sources:
+      - 嘉義農村民謠、旋律關聯：https://audio.nmth.gov.tw/audio/%e5%85%ad%e6%9c%88%e7%94%b0%e6%b0%b4/
+
+  - id: lak-goeh-boa-le
+    title: 六月茉莉
+    year: 1960
+    era: era-roots
+    language: 台語
+    credits:
+      lyricist: 許丙丁
+      original_singer: 朱艷華
+      採編: 許石
+    hook: 許石註記為「北部民謠」，唱單身女子的閨怨心境。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e5%85%ad%e6%9c%88%e8%8c%89%e8%8e%89/
+        label: 許石採編、朱艷華等合唱版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 許石製作唱片中註明為「北部民謠」，年代不可考。由許石採譜、許丙丁填詞，朱艷華等合唱，歌詞寫單身女子的閨怨情懷。
+    sources:
+      - 北部民謠、許石採譜、許丙丁填詞、朱艷華演唱：https://audio.nmth.gov.tw/audio/%e5%85%ad%e6%9c%88%e8%8c%89%e8%8e%89/
+
+  - id: gu-le-koa
+    title: 牛犁歌
+    year: 1960
+    era: era-roots
+    language: 台語
+    credits:
+      採編: 許石
+    hook: 農家民謠，帶趕牛的吆喝聲，唱農村辛勤又歡樂的生活。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e7%89%9b%e7%8a%81%e6%ad%8c/
+        label: 許石採編版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 許石採譜附記為「農家民謠」，年代不可考。許石以曼波節奏重新編曲，保留農人催趕牛隻的吆喝聲，是農村生活的代表民謠。
+    sources:
+      - 農家民謠、許石採譜編曲、吆喝聲來歷：https://audio.nmth.gov.tw/audio/%e7%89%9b%e7%8a%81%e6%ad%8c/
+
+  - id: chhau-meh-a-lang-ke-kang
+    title: 草螟仔弄雞公
+    year: 1960
+    era: era-roots
+    language: 台語
+    credits:
+      lyricist: 呂訴上
+      採編: 許石
+    hook: 採自南部的褒歌，老人與少女一來一往互相調笑對唱。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e8%8d%89%e8%9e%9f%e4%bb%94%e5%bc%84%e9%9b%9e%e5%85%ac/
+        label: 呂訴上修詞、許石編曲版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 採集自南部地區的民謠，年代不可考，與〈桃花過渡〉一樣是老人調戲少女的褒歌，旋律類似。由呂訴上修詞、許石重新編曲，男女交互對唱。
+    sources:
+      - 南部褒歌、呂訴上修詞、許石編曲：https://audio.nmth.gov.tw/audio/%e8%8d%89%e8%9e%9f%e4%bb%94%e5%bc%84%e9%9b%9e%e5%85%ac/
+
+  - id: tho-hoe-koe-to
+    title: 桃花過渡
+    year: 1960
+    era: era-roots
+    language: 台語
+    credits:
+      lyricist: 呂訴上
+      採編: 許石
+    hook: 耳熟能詳的車鼓民謠，撐渡伯與桃花姑娘鬥嘴對唱。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e6%a1%83%e8%8a%b1%e9%81%8e%e6%b8%a1/
+        label: 呂訴上修詞、許石編曲版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 耳熟能詳的通俗車鼓民謠，年代不可考，內容為老人與少女互相調笑的褒歌。此版由呂訴上修詞、許石重新編曲，男女交互對唱。
+    sources:
+      - 車鼓民謠、褒歌對唱、呂訴上修詞、許石編曲：https://audio.nmth.gov.tw/audio/%e6%a1%83%e8%8a%b1%e9%81%8e%e6%b8%a1/
+
+  - id: go-keng-koo
+    title: 五更鼓
+    year: 1960
+    era: era-roots
+    language: 台語
+    credits:
+      採編: 許石
+    hook: 最早源自福建、流傳於嘉南的民謠，也是早期藝旦傳唱的曲子。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e4%ba%94%e6%9b%b4%e9%bc%93/
+        label: 許石採編版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 最早為福建地區之民謠，後流傳於嘉南地區，是早期藝旦傳唱的曲調，年代不可考，由許石採編錄製。
+    sources:
+      - 福建民謠來源、流傳嘉南、藝旦歌：https://audio.nmth.gov.tw/audio/%e4%ba%94%e6%9b%b4%e9%bc%93/
+
+  - id: pok-koa-tiau
+    title: 卜卦調
+    year: 1960
+    era: era-roots
+    language: 台語
+    credits:
+      lyricist: 許丙丁
+      採編: 許石
+    hook: 由台南乞食歌調採譜而來，許丙丁編寫算命先生的詼諧情節。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e5%8d%9c%e5%8d%a6%e8%aa%bf/
+        label: 許石採編、許丙丁填詞版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 許石採譜附記為「南部民謠」，原為台南當地乞丐歌調（乞食歌），年代不可考。經許丙丁填詞編寫算命先生的詼諧情節，改為〈卜卦調〉。後改編為華語歌〈傻瓜與野丫頭〉為謝雷、張琪招牌曲。
+    sources:
+      - 南部乞食歌調、許丙丁填詞、衍生華語歌：https://audio.nmth.gov.tw/audio/%e5%8d%9c%e5%8d%a6%e8%aa%bf/
+
+  - id: pe-chia-koa
+    title: 病子歌
+    year: 1960
+    era: era-roots
+    language: 台語
+    credits:
+      曲種: 車鼓褒歌
+    hook: 車鼓褒歌，男女對唱從懷孕逐月唱到生產的身心變化。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e7%97%85%e5%ad%90%e6%ad%8c-%e4%b8%80/
+        label: 病子歌全套錄音第一段（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 傳統車鼓褒歌，年代不可考，「病子」即懷孕不適之意。全套共四片八段，男女對唱從懷孕開始逐月唱身心變化。此連結為第一段。
+    sources:
+      - 病子歌題材、全套錄音結構：https://audio.nmth.gov.tw/audio/%e7%97%85%e5%ad%90%e6%ad%8c-%e4%b8%80/
+
+  - id: chhia-koo-tiau
+    title: 車鼓調
+    year: 1960
+    era: era-roots
+    language: 台語
+    credits:
+      採編: 許石
+    hook: 民間車鼓陣的曲調，又寫作「斜鼓調」，農村迎神賽會常見。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e8%bb%8a%e9%bc%93%e8%aa%bf/
+        label: 許石採編版（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 源自民間車鼓小戲的曲調，又寫作「斜鼓調」，年代不可考。許石手稿中很早即有採譜，1964年後才製作為唱片。
+    sources:
+      - 車鼓調來歷、許石採譜與製作：https://audio.nmth.gov.tw/audio/%e8%bb%8a%e9%bc%93%e8%aa%bf/
+
+  - id: long-chhun-khoai-lok
+    title: 農村快樂
+    year: 1960
+    era: era-roots
+    language: 台語
+    credits:
+      曲種: 歌仔戲都馬調
+      採編: 許石
+    hook: 以歌仔戲「都馬調」編唱的鄉村情歌，展現農村人文風情。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e8%be%b2%e6%9d%91%e5%bf%ab%e6%a8%82/
+        label: 都馬調鄉村情歌（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 曲調為知名歌仔戲調「都馬調」，據說源自1947年來台演出的廈門「都馬劇團」，因旋律動聽廣泛流傳，成為戰後歌仔戲班常用曲調。〈農村快樂〉以此調編寫鄉村情歌。
+    sources:
+      - 都馬調來歷、歌仔戲常用曲調：https://audio.nmth.gov.tw/audio/%e8%be%b2%e6%9d%91%e5%bf%ab%e6%a8%82/
+
+  - id: un-ho-ki-an
+    title: 運河奇案
+    year: 1930
+    era: era-roots
+    language: 台語
+    credits:
+      曲種: 歌仔冊唸歌
+    hook: 以1929年台南運河一樁真實殉情案編成的唸歌，勸世意味濃厚。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e9%81%8b%e6%b2%b3%e5%a5%87%e6%a1%88-%e5%85%b6%e4%b8%80/
+        label: 運河奇案唸歌（其一）（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 台灣唸歌（歌仔冊說唱）代表作，以1929年台南運河一樁殉情案為本，揉合想像與勸世編成，後也編為歌仔戲與新劇。年份為概數。此連結為系列錄音其一。
+    sources:
+      - 運河奇案本事、1929案背景、唸歌與戲劇改編：https://audio.nmth.gov.tw/audio/%e9%81%8b%e6%b2%b3%e5%a5%87%e6%a1%88-%e5%85%b6%e4%b8%80/
+
+  - id: chau-sam-koan
+    title: 走三關
+    year: 1960
+    era: era-roots
+    language: 台語
+    credits:
+      曲種: 北管亂彈戲
+    hook: 北管亂彈「新路」傳統劇目，演薛平貴與王寶釧的故事。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e8%b5%b0%e4%b8%89%e9%97%9c-%e4%b8%8a/
+        label: 亂彈戲《走三關》上段（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 北管亂彈戲「新路」傳統劇目，年代不可考（年份為典藏概數），演繹薛平貴在西涼、王寶釧苦守寒窯的故事。北管曾是台灣廟會、迎神、子弟戲最熱鬧的聲音。此連結為上段。
+    sources:
+      - 走三關劇目、亂彈新路傳統：https://audio.nmth.gov.tw/audio/%e8%b5%b0%e4%b8%89%e9%97%9c-%e4%b8%8a/
+
+  - id: kheh-lang-tiau
+    title: 客人調
+    year: 1960
+    era: era-roots
+    language: 客語
+    credits:
+      original_singer: 林金伶
+      採編: 許石
+    hook: 串聯「開金扇」「平板仔」等多首客家曲調，是客家音樂的縮影。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e5%ae%a2%e4%ba%ba%e8%aa%bf/
+        label: 林金伶（唱片名鍾伶）演唱之客家曲調串聯（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 串聯多首客家音樂而成，包括「開金扇」「平板仔」等，其中兩調由林金伶（唱片標名「鍾伶」）演唱。是許石《台灣鄉土交響曲》第二樂章客家音樂主題的原型。年代不可考。
+    sources:
+      - 客家曲調串聯、林金伶演唱、鄉土交響曲原型：https://audio.nmth.gov.tw/audio/%e5%ae%a2%e4%ba%ba%e8%aa%bf/
+
+  - id: chhai-te-koa
+    title: 採茶歌
+    year: 1960
+    era: era-roots
+    language: 客語
+    credits:
+      lyricist: 許石
+    hook: 代表性的客家歌謠，後被多位歌手翻唱灌錄。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e6%8e%a1%e8%8c%b6%e6%ad%8c/
+        label: 客家採茶歌（台語版現場演唱錄音）（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 代表性的客家歌謠，年代不可考。此為台語版現場演唱錄音，張淑美、陳芬蘭等歌手曾翻唱灌錄、均登錄為許石作詞，可見許石採編為流行歌的關鍵角色。
+    sources:
+      - 客家採茶歌、許石採編作詞、翻唱史：https://audio.nmth.gov.tw/audio/%e6%8e%a1%e8%8c%b6%e6%ad%8c/
+
+  - id: po-niu-un
+    title: 報娘恩
+    year: 1930
+    era: era-roots
+    language: 客語
+    credits:
+      original_singer: 蘇萬松
+      曲種: 客家勸世唸歌
+    hook: 日治客家勸世唱片名家蘇萬松的代表作，唱感念母恩。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e5%a0%b1%e5%a8%98%e6%81%a9/
+        label: 蘇萬松演唱之客語勸世歌謠（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 日蓄商會改良鷹標出品的客語勸世文歌謠，年份為概數。演唱者蘇萬松是日治時期著名的客家勸世唱片歌手，別稱「別告蘇洲府」。
+    sources:
+      - 客語勸世唱片、蘇萬松其人：https://audio.nmth.gov.tw/audio/%e5%a0%b1%e5%a8%98%e6%81%a9/
+
+  - id: pasibutbut
+    title: 祈禱小米豐收歌
+    year: 1952
+    era: era-roots
+    language: 族語（布農）
+    credits:
+      original_singer: 布農族耆老
+      曲種: 布農族傳統祭歌
+    hook: 布農族播種祭祈求小米豐收的祭歌，以多聲部泛音合唱聞名。
+    listen:
+      - url: https://www.youtube.com/watch?v=dCUgf_KFVzw
+        label: 布農族耆老於原聲國際學院成立大會演唱（台灣原聲教育協會 Vox Nativa Taiwan 官方頻道）
+        source_type: foundation
+        version: live
+    note: 布農語 Pasibutbut，小米播種祭尾聲由部落男子圍圈合唱、祈求小米豐收的祭歌，年代不可考（1952為受國際注意之年）。其繁複的多聲部泛音合唱俗稱「八部合音」。1952年日本學者黑澤隆朝將其寄交聯合國，震驚國際樂界。
+    sources:
+      - 祈禱小米豐收歌與八部合音、1952黑澤隆朝寄交聯合國：https://zh.wikipedia.org/wiki/%E5%85%AB%E9%83%A8%E5%90%88%E9%9F%B3
+      - 布農族祭歌與部落合唱情境：https://www.youtube.com/watch?v=dCUgf_KFVzw
+
+  - id: thu-koa
+    title: 杵歌
+    year: 1960
+    era: era-roots
+    language: 族語（阿美）
+    credits:
+      original_singer: 朱艷華
+      採編: 許石
+    hook: 取自阿美族賞月舞歌謠，經許石採編成大眾熱愛的原住民風歌謠。
+    listen:
+      - url: https://audio.nmth.gov.tw/audio/%e6%9d%b5%e6%ad%8c-2/
+        label: 許石採編、阿美族朱艷華演唱（國立臺灣歷史博物館・臺灣音聲一百年）
+        source_type: archive
+        version: original
+    note: 許石在歌本註明為「高山民謠」、並強調是其個人採編。取自阿美族的賞月舞歌謠，最早在1957年公演演出，約1960年由來自台東的阿美族學生朱艷華演唱灌錄，成為大眾熟悉的原住民風格歌謠。
+    sources:
+      - 阿美族賞月舞歌謠、許石採編、朱艷華演唱：https://audio.nmth.gov.tw/audio/%e6%9d%b5%e6%ad%8c-2/
