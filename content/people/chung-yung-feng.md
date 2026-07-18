@@ -1,7 +1,7 @@
 ---
 slug: chung-yung-feng
 name: 鍾永豐
-years: 1964 —
+years: 1964–
 field: 音樂 · 客語詩詞
 tags:
   - 音樂

@@ -1,7 +1,7 @@
 ---
 slug: eggplantegg
 name: 茄子蛋
-years: 2012 —
+years: 2012–
 field: 音樂 · 台語搖滾
 tags:
   - 音樂

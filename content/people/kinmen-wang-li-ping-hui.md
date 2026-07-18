@@ -1,7 +1,7 @@
 ---
 slug: kinmen-wang-li-ping-hui
 name: 金門王與李炳輝
-years: 金門王 1953 — 2002 · 李炳輝 1949 —
+years: 金門王 1953–2002 · 李炳輝 1949–
 field: 音樂 · 那卡西走唱
 tags:
   - 音樂

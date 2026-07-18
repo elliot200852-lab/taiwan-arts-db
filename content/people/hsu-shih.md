@@ -1,7 +1,7 @@
 ---
 slug: hsu-shih
 name: 許石
-years: 1919 — 1980
+years: 1919–1980
 field: 音樂 · 台語歌謠與民謠採集
 tags:
   - 音樂

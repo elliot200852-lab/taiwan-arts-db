@@ -1,7 +1,7 @@
 ---
 slug: li-shuang-tse
 name: 李雙澤
-years: 1949 — 1977
+years: 1949–1977
 field: 音樂 · 民歌
 tags:
   - 音樂

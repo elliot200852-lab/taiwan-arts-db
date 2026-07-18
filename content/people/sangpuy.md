@@ -1,7 +1,7 @@
 ---
 slug: sangpuy
 name: 桑布伊
-years: 1976 —
+years: 1976–
 field: 音樂 · 卑南族創作歌謠
 tags:
   - 音樂

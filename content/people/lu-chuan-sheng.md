@@ -1,7 +1,7 @@
 ---
 slug: lu-chuan-sheng
 name: 呂泉生
-years: 1916 — 2008
+years: 1916–2008
 field: 音樂 · 合唱與藝術歌曲
 tags:
   - 音樂

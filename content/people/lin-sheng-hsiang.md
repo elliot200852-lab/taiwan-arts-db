@@ -1,7 +1,7 @@
 ---
 slug: lin-sheng-hsiang
 name: 林生祥
-years: 1971 —
+years: 1971–
 field: 音樂 · 客語創作
 tags:
   - 音樂

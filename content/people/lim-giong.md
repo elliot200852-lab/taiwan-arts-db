@@ -1,7 +1,7 @@
 ---
 slug: lim-giong
 name: 林強
-years: 1964 —
+years: 1964–
 field: 音樂 · 台語搖滾與電影配樂
 tags:
   - 音樂

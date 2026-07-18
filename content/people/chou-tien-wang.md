@@ -1,7 +1,7 @@
 ---
 slug: chou-tien-wang
 name: 周添旺
-years: 1910 — 1988
+years: 1910–1988
 field: 音樂 · 台語歌謠作詞
 tags:
   - 音樂

@@ -1,7 +1,7 @@
 ---
 slug: shen-chih
 name: 慎芝
-years: 1928 — 1988
+years: 1928–1988
 field: 音樂 · 流行歌詞
 tags:
   - 音樂

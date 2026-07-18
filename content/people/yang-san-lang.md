@@ -1,7 +1,7 @@
 ---
 slug: yang-san-lang
 name: 楊三郎
-years: 1919 — 1989
+years: 1919–1989
 field: 音樂 · 台語歌謠
 tags:
   - 音樂

@@ -1,7 +1,7 @@
 ---
 slug: chun-chun
 name: 純純
-years: 1914 — 1943
+years: 1914–1943
 field: 音樂 · 台語流行歌謠演唱
 tags:
   - 音樂

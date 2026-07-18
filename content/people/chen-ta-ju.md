@@ -1,7 +1,7 @@
 ---
 slug: chen-ta-ju
 name: 陳達儒
-years: 1917 — 1992
+years: 1917–1992
 field: 音樂 · 台語歌謠作詞
 tags:
   - 音樂

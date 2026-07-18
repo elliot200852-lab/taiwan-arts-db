@@ -1,7 +1,7 @@
 ---
 slug: chiang-hui
 name: 江蕙
-years: 1961 —
+years: 1961–
 field: 音樂 · 台語流行歌
 tags:
   - 音樂

@@ -1,7 +1,7 @@
 ---
 slug: chen-chien-nien
 name: 陳建年
-years: 1967 —
+years: 1967–
 field: 音樂 · 卑南族創作歌謠
 tags:
   - 音樂

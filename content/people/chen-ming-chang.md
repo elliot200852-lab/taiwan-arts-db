@@ -1,7 +1,7 @@
 ---
 slug: chen-ming-chang
 name: 陳明章
-years: 1956 —
+years: 1956–
 field: 音樂 · 新台語歌與電影配樂
 tags:
   - 音樂

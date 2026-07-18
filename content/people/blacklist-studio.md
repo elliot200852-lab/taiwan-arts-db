@@ -1,7 +1,7 @@
 ---
 slug: blacklist-studio
 name: 黑名單工作室
-years: 1989 —
+years: 1989–
 field: 音樂 · 新台語歌運動
 tags:
   - 音樂

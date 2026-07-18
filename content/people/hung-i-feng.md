@@ -1,7 +1,7 @@
 ---
 slug: hung-i-feng
 name: 洪一峰
-years: 1927 — 2010
+years: 1927–2010
 field: 音樂 · 台語歌謠
 tags:
   - 音樂

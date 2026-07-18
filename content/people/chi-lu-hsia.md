@@ -1,7 +1,7 @@
 ---
 slug: chi-lu-hsia
 name: 紀露霞
-years: 1936 —
+years: 1936–
 field: 音樂 · 台語歌謠
 tags:
   - 音樂

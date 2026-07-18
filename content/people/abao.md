@@ -1,7 +1,7 @@
 ---
 slug: abao
 name: 阿爆（阿仍仍）
-years: 1981 —
+years: 1981–
 field: 音樂 · 排灣族流行電音
 tags:
   - 音樂

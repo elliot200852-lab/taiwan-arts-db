@@ -1,7 +1,7 @@
 ---
 slug: hu-te-fu
 name: 胡德夫
-years: 1950 —
+years: 1950–
 field: 音樂 · 民歌與原住民歌謠
 tags:
   - 音樂

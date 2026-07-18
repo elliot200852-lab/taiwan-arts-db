@@ -1,7 +1,7 @@
 ---
 slug: lo-ta-yu
 name: 羅大佑
-years: 1954 —
+years: 1954–
 field: 音樂 · 華語搖滾與抗議歌曲
 tags:
   - 音樂

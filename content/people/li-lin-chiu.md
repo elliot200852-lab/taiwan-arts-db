@@ -1,7 +1,7 @@
 ---
 slug: li-lin-chiu
 name: 李臨秋
-years: 1909 — 1979
+years: 1909–1979
 field: 音樂 · 台語歌謠作詞
 tags:
   - 音樂

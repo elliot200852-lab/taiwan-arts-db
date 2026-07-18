@@ -1,7 +1,7 @@
 ---
 slug: chang-yu-sheng
 name: 張雨生
-years: 1966 — 1997
+years: 1966–1997
 field: 音樂 · 流行歌與音樂製作
 tags:
   - 音樂

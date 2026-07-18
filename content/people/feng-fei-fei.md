@@ -1,7 +1,7 @@
 ---
 slug: feng-fei-fei
 name: 鳳飛飛
-years: 1953 — 2012
+years: 1953–2012
 field: 音樂 · 流行歌曲
 tags:
   - 音樂

@@ -1,7 +1,7 @@
 ---
 slug: wen-hsia
 name: 文夏
-years: 1928 — 2022
+years: 1928–2022
 field: 音樂 · 台語歌謠
 tags:
   - 音樂
