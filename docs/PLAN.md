@@ -96,8 +96,8 @@ Taiwan.md 每篇文章分三層（30 秒→5 分鐘→全文）、每 300 字至
 - **Phase 2B（臺灣藝文地圖）**：首頁新 tab——自足 SVG 臺灣地圖＋兩類大頭針：**人物**（依地理錨點）與**地標**（領域頁提到的廟宇/建築/祭典），點針跳人物頁/領域頁/geo-db 頁；資料層 content/map.yaml、build 生成；同縣市多針用聚合展開。排在 2A 之後（人物齊了地圖才滿）。**✅ 同日收官**：底圖＝taiwan.md 官網 taiwan-location-map.svg（David 指定，實測與 Commons NordNordWest 版逐位元組同、CC BY-SA 3.0）；縣市界幾何＝taiwan-atlas（政府圖資血緣，MIT）；65 pin（40 人物＋25 地標）每次 build 跑 point-in-polygon 落點驗證、落錯即擋；金馬 inset、澎湖真實位置；轉換腳本 scripts/build_map_base.py 可重跑。
 - **Phase 3**：教學整合——說書稿接 bopomofo-annotate（注音版）、tai-gi 三件套（臺語朗讀）；geo-db 縣市頁反向鏈「這裡的人物」；印刷版學習單走 print 管線。
 - **Phase S（臺灣歌曲線，2026-07-18 David 立案）**：本庫新分類——臺灣歌曲史，見下方「八、臺灣歌曲線」與 `docs/SONGS-SPEC.md`（派工規格 SSOT）。
-  - **S1（基建＋試點）**：build 支援（首頁第 5 個 tab「臺灣歌曲」＋時代頁模板＋`content/songs/era-*.yaml` 歌曲登記簿分片＋`scripts/check_songs.py` schema／連結驗證）＋ 2 個時代頁試點（曲盤時代、民歌運動）。
-  - **S2（全期上線）**：八個時代頁全上、登記簿擴到約 250–350 首（數量要多且有代表性，David 校準）。
+  - **S1（基建＋試點）**：build 支援（首頁第 5 個 tab「臺灣歌曲」＋時代頁模板＋`content/songs/era-*.yaml` 歌曲登記簿分片＋`scripts/check_songs.py` schema／連結驗證）＋ 2 個時代頁試點（曲盤時代、民歌運動）。 **✅ 2026-07-19 收官**（試點 45 首，Fable 逐字點驗）。
+  - **S2（全期上線）**：八個時代頁全上、登記簿擴到約 250–350 首（數量要多且有代表性，David 校準）。 **✅ 2026-07-19 同夜收官**：八期全上、**206 首**（208 條試聽連結全數 oEmbed／HTTP 驗活；原唱為大宗，老曲盤走臺史博「臺灣音聲一百年」典藏播放頁）；4 寫手＋3 盲驗＋1 基建共 9 支 agent，每批盲驗逐條點連結；verify_live 57 頁全綠、live 實點驗收通過。音樂人名冊 94 人（docs/research/musicians-roster.md）＝ S3 選人清單。
   - **S3（音樂人人物誌，David 2026-07-18 追加定調）**：從歌裡長出來的音樂人單獨寫頁，讓讀者對文章裡的音樂人有興趣時能點進去讀到他的故事。選人來源＝各批寫手滾動累積的 `docs/research/musicians-roster.md` 名冊（候選如李臨秋、周添旺、純純、楊三郎、呂泉生、文夏、洪一峰、李雙澤、胡德夫、羅大佑、江蕙、林強、陳明章……），照 Phase 2A 研究關流程立頁。
   - **S4（教學整合＋地圖）**：接 Phase 3 管線（歌曲線天然適合臺語朗讀）；歌與地方的 pin（安平追想曲→臺南、鹿港小鎮→鹿港）選配。
 - **持續**：無專文人物寫成熟後，挑百科層貢獻回 Taiwan.md 上游（fork → PR，照上游 EDITORIAL 與品質掃描）。
