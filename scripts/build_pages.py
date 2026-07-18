@@ -61,6 +61,11 @@ FIELD_SLUG_BY_TAG = {
     "戲曲偶戲": "field-opera",
     "舞蹈": "field-dance",
     "電影": "field-film",
+    # Phase 2（2026-07-18）：無人物的純議題領域——查無人物頁會用到這些 tag，
+    # 但 field 頁本身仍以 content/fields/*.md 的 frontmatter 產生，兩者獨立。
+    "工藝": "field-craft",
+    "建築": "field-architecture",
+    "節慶信仰": "field-festival",
 }
 
 
@@ -595,20 +600,23 @@ FIELD_PAGE = """<!DOCTYPE html>
       <h1>{title}</h1>
     </header>
 
-    <section class="person-sec">
-{intro}
-    </section>
-
-    <section class="person-sec">
-      <h2>這個領域的人物</h2>
-      <div class="person-cards">
-{cards}
+{content}
+{cards_section}
+{footnotes_section}
+    <footer class="page-foot">
+      <div class="license">
+        {license_line}
       </div>
-    </section>
+      <div class="credit">
+        {credit}
+      </div>
+    </footer>
   </div>
 </body>
 </html>
 """
+
+FIELD_CREDIT = "本頁為教師備課資料庫。"
 
 
 def load_people_meta(people_md: list[Path]) -> list[dict]:
@@ -633,15 +641,72 @@ def load_people_meta(people_md: list[Path]) -> list[dict]:
     return meta
 
 
+def render_field_body(body: str, path: Path) -> tuple[str, str]:
+    """回傳 (content_html, footnotes_html)。直接重用人物頁的渲染管線
+    （split_sections/render_bio/render_footnotes/inline()），不另寫一套
+    （2026-07-18 Phase 2：field 頁從純導言升級成完整議題頁文章）。
+
+    新格式：body 可選以一段不帶標題的「導言」開場（實際寫手慣例——先一段
+    領域總覽，再進入 `## ` 子標題的正文），之後接規範的 `## ` 區段序列
+    （同人物頁 split_sections 規則）。若最後一個區段標題為「出處」，獨立
+    渲染為編號腳註；其餘各區段（含導言）各自成一個帶 <h2>（導言無 h2）的
+    <section>，段落／時間軸內容重用 render_bio()（field 頁無肖像，恆傳
+    portrait=None，遇到 `<!-- portrait -->` 標記也只會跳過不會出錯）。
+    偵測用 `^## ` 找body中第一次出現處，不是只看開頭是否為 `## `——
+    2026-07-18 上線當天發現：field-art.md 等 6 檔開頭其實是一段導言，
+    真正的 `## ` 標題在後面才出現，原本「只看開頭」的判斷會把整份新格式
+    內容誤判成舊格式，`## ` 與腳註清單原封不動當純文字印出（已修正）。
+
+    舊格式（過渡期相容，2026-07-18 Phase 1 遺留）：body 完全沒有任何
+    `## ` 標題，視為純段落導言，不產生出處區——尚未升級的 field 檔仍可
+    正常 build 不 crash。"""
+    m = re.search(r"^## ", body, re.M)
+    if m is None:
+        paras = split_paragraphs(body)
+        if not paras:
+            die(f"{path.name}：領域內容為空")
+        content_html = "\n".join(f"      <p>{inline(p)}</p>" for p in paras)
+        return content_html, ""
+
+    intro_paras = split_paragraphs(body[: m.start()])
+    intro_html = "\n".join(f"      <p>{inline(p)}</p>" for p in intro_paras)
+
+    sections = split_sections(body[m.start():], path)
+    if not sections:
+        die(f"{path.name}：領域內容為空")
+    if sections[-1][0] == "出處":
+        footnotes_html = render_footnotes(sections[-1][1], path)
+        content_sections = sections[:-1]
+    else:
+        footnotes_html = ""
+        content_sections = sections
+    if not content_sections and not intro_html:
+        die(f"{path.name}：field 頁除「出處」外沒有任何內容區段")
+
+    parts = []
+    if intro_html:
+        parts.append(
+            '    <section class="person-sec">\n'
+            f"{intro_html}\n"
+            "    </section>"
+        )
+    for heading, blocks in content_sections:
+        parts.append(
+            '    <section class="person-sec">\n'
+            f"      <h2>{esc(heading)}</h2>\n"
+            f"{render_bio(blocks, None, path)}\n"
+            "    </section>"
+        )
+    return "\n".join(parts), footnotes_html
+
+
 def build_field(md_path: Path, people_meta: list[dict]) -> tuple[str, str]:
     fm, body = split_frontmatter(md_path)
     for key in ("title", "slug", "tag"):
         if key not in fm:
             die(f"{md_path.name}：frontmatter 缺 `{key}`")
-    intro_paras = split_paragraphs(body)
-    if not intro_paras:
-        die(f"{md_path.name}：領域導言為空")
-    intro_html = "\n".join(f"      <p>{inline(p)}</p>" for p in intro_paras)
+
+    content_html, footnotes_html = render_field_body(body, md_path)
 
     tag = fm["tag"]
     matched = [p for p in people_meta if tag in p["tags"]]
@@ -656,13 +721,40 @@ def build_field(md_path: Path, people_meta: list[dict]) -> tuple[str, str]:
             "        </a>"
             for p in matched
         )
+        cards_section = (
+            '    <section class="person-sec">\n'
+            "      <h2>這個領域的人物</h2>\n"
+            '      <div class="person-cards">\n'
+            f"{cards_html}\n"
+            "      </div>\n"
+            "    </section>"
+        )
     else:
-        cards_html = '        <p class="field-empty">目前尚無收錄人物。</p>'
+        # 2026-07-18 Phase 2：純議題頁（工藝／建築／節慶信仰等查無人物的領域）
+        # 整個人物卡區省略，不放「尚無收錄人物」占位——占位在純議題頁上很怪。
+        cards_section = ""
+
+    if footnotes_html:
+        footnotes_section = (
+            '    <section class="footnotes">\n'
+            "      <h2>出處</h2>\n"
+            "      <ol>\n"
+            f"{footnotes_html}\n"
+            "      </ol>\n"
+            "    </section>"
+        )
+        license_line = "本頁由本資料庫依公開來源原創編寫（逐條見「出處」），以 CC BY-SA 4.0 釋出。"
+    else:
+        footnotes_section = ""
+        license_line = "本頁由本資料庫依公開來源原創編寫，以 CC BY-SA 4.0 釋出。"
 
     html_out = FIELD_PAGE.format(
         title=esc(fm["title"]),
-        intro=intro_html,
-        cards=cards_html,
+        content=content_html,
+        cards_section=cards_section,
+        footnotes_section=footnotes_section,
+        license_line=license_line,
+        credit=FIELD_CREDIT,
     )
     return fm["slug"], html_out
 
