@@ -49,13 +49,13 @@ people:
   - slug: deng-yu-hsien
     name: 鄧雨賢
     years: 1906–1944
-    field: 音樂 · 作曲
+    field: 音樂 · 台語歌謠
     tags: [音樂]
     tagline: 三十九年的人生，留下全臺灣都會哼的《望春風》。
   - slug: teresa-teng
     name: 鄧麗君
     years: 1953–1995
-    field: 音樂 · 歌唱
+    field: 音樂 · 流行歌曲
     tags: [音樂]
     tagline: 一把歌聲跨過語言與海峽，唱進整個亞洲。
   - slug: chiang-wen-yeh
@@ -79,13 +79,13 @@ people:
   - slug: yang-kui
     name: 楊逵
     years: 1906–1985
-    field: 文學 · 小說
+    field: 文學 · 作家、社會運動者
     tags: [文學]
     tagline: 寫《送報伕》的作家，一朵壓不扁的玫瑰。
   - slug: zhong-li-he
     name: 鍾理和
     years: 1915–1960
-    field: 文學 · 小說
+    field: 文學 · 客家鄉土作家
     tags: [文學]
     tagline: 在美濃邊耕田邊寫作，倒在血泊裡的筆耕者。
   - slug: li-tien-lu
@@ -109,7 +109,7 @@ people:
   - slug: lin-hwai-min
     name: 林懷民
     years: 1947–
-    field: 舞蹈 · 編舞
+    field: 舞蹈 · 現代舞
     tags: [舞蹈]
     tagline: 讓稻浪、書法與流汗的身體，走上世界的舞台。
   - slug: hou-hsiao-hsien

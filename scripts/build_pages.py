@@ -75,7 +75,14 @@ def esc(text: str) -> str:
 
 
 def inline(text: str) -> str:
-    """受限行內轉換：先跳脫，再套 [^N] 上標與 [label](url) 連結。"""
+    """受限行內轉換：先跳脫，再套 [^N] 上標與 [label](url) 連結。
+
+    URL 允許一層括號配對（2026-07-18 修：原本 `(\\S+?)` 非貪婪比對，遇到 URL
+    本身含 `)` 時會在第一個 `)` 處誤判為連結結尾截斷 href，例如 Wikimedia
+    Commons 檔名帶 `(cropped)`／維基百科條目帶 `(1906年)` 這類括號消歧義寫法，
+    造成連結 404＋截斷後的文字露出在 `</a>` 外。改用「非括號字元，或一層完整
+    平衡括號」的字元類重複比對，涵蓋目前 content/ 內所有實際出現的括號寫法
+    （單層、不巢狀），且對不含括號的一般 URL 行為不變。"""
     out = esc(text)
     out = re.sub(
         r"\[\^(\d+)\]",
@@ -89,7 +96,7 @@ def inline(text: str) -> str:
             return f'<a href="{url}" target="_blank" rel="noopener">{label}</a>'
         return f'<a href="{url}">{label}</a>'
 
-    return re.sub(r"\[([^\]]+)\]\((\S+?)\)", link, out)
+    return re.sub(r"\[([^\]]+)\]\(((?:[^()\s]|\([^()]*\))*)\)", link, out)
 
 
 def split_frontmatter(path: Path) -> tuple[dict, str]:

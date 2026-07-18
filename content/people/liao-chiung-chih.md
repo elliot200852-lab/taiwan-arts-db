@@ -1,7 +1,7 @@
 ---
 slug: liao-chiung-chih
 name: 廖瓊枝
-years: 1935 年生
+years: 1935 —
 field: 戲曲偶戲 · 歌仔戲
 tags:
   - 戲曲偶戲
