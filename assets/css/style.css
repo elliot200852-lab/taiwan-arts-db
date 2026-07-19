@@ -1,24 +1,42 @@
 /* 臺灣人文藝術 — 人文與藝術資料庫
-   與 taiwan-geo-db「認識臺灣」同家族的視覺語言：米白紙色、襯線中文標題、
-   卡片與 tab 同構；主色改靛藍（藍染）系取代 geo-db 的赭土，一看是一家、分得出誰是誰。 */
+   視覺改版 v1（2026-07-19，DESIGN-SPEC.md）：
+   全站主視覺＝XIO 藝廊（紙色畫布、大量留白、襯線＋義大利體、赭金點綴、藝廊卡片）；
+   人物頁＝Cucinelli 沉浸式深色 hero；臺灣歌曲＝Tyler Reece 暖深褐面板。
+   地圖 tab 樣式維持原樣（只自然繼承新 token）。 */
 
 :root {
-  --paper: #f9f7f0;
-  --paper-2: #f1eee3;
-  --ink: #2e2d33;
+  --paper: #f7f4ec;
+  --paper-2: #efeadd;
+  --card: #fdfbf4;
+  --ink: #26252b;
   --ink-soft: #5a5862;
-  --line: #d8d3c5;
-  --indigo: #45548e;       /* 主色：靛藍（藍染） */
+  --line: #ddd6c6;
+  --hair: #e6e0d2;                 /* 細髮線 */
+  --indigo: #45548e;               /* 主色：靛藍（藍染），沿用 */
   --indigo-deep: #2f3a66;
-  --plum: #7c5866;         /* 輔色：莓紫（人文／藝術區塊） */
-  --gold: #caa14a;         /* 家族共通的金——重點框與 chips */
+  --plum: #7c5866;                 /* 輔色：莓紫，沿用 */
+  --gold: #caa14a;                 /* 家族共通的金，沿用 */
+  --ochre: #a97f2f;                /* XIO 赭金：eyebrow、rule、active tab */
+  --ochre-soft: #c8a558;
+  --night: #232227;                /* 人物 hero 深色底 */
+  --night-ink: #f3efe6;
+  --night-soft: #c9c2b4;
+  --taupe: #544e46;                /* 歌曲深褐 */
+  --taupe-2: #45403a;
+  --cream: #efe6cf;                /* 歌曲奶油金 */
+  --pale-gold: #e6d49a;
   --focus: #e9e4d2;
   --serif: "Noto Serif TC", "Songti TC", "STSong", "PMingLiU", "SimSun", Georgia, "Times New Roman", serif;
+  --latin: "Cormorant Garamond", Georgia, "Times New Roman", serif;   /* 西元年份／編號／拉丁字 */
   --sans: "Noto Sans TC", "PingFang TC", "Heiti TC", "Microsoft JhengHei", system-ui, -apple-system, sans-serif;
 }
 
 * { box-sizing: border-box; }
 
+html {
+  /* 沉浸式 hero 用 100vw 滿版出血；overflow-x:hidden 擋掉桌機捲軸寬度造成的橫向捲動 */
+  overflow-x: hidden;
+}
 html, body {
   margin: 0;
   padding: 0;
@@ -30,19 +48,117 @@ html, body {
   -webkit-text-size-adjust: 100%;
 }
 
-h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.4; color: var(--ink); }
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 700; line-height: 1.4; color: var(--ink); }
 a { color: var(--indigo-deep); }
 
-/* ---------- 首頁頁首 ---------- */
+/* ---------- 首頁站頭 ---------- */
 .site-head {
+  position: relative;
   text-align: center;
-  padding: 2.4rem 1.2rem 1rem;
-  max-width: 760px;
+  padding: 2.6rem 1.2rem 1.4rem;
+  max-width: 820px;
   margin: 0 auto;
 }
-.site-head h1 { font-size: 2rem; margin: 0 0 .5rem; letter-spacing: .04em; }
-.site-head p { color: var(--ink-soft); margin: .3rem 0; font-size: 1.02rem; }
+.site-head h1 {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--ink);
+  margin: 0 0 .6rem;
+  letter-spacing: .04em;
+}
+.site-head p {
+  color: var(--ink-soft);
+  font-size: .78rem;
+  letter-spacing: .42em;
+  margin: 0;
+}
+/* 站頭下方雙髮線（1px --line ＋ 3px 間隔 ＋ 1px --hair），藝廊標籤感 */
+.site-head::after {
+  content: "";
+  position: absolute;
+  left: 1.2rem;
+  right: 1.2rem;
+  bottom: 0;
+  height: 1px;
+  background: var(--line);
+  box-shadow: 0 4px 0 var(--hair);
+}
 
+/* ---------- 首頁分頁（XIO 極簡字標式 tab） ---------- */
+.geo-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.6rem;
+  max-width: 960px;
+  margin: 1.6rem auto 0;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--hair);
+}
+.geo-tab {
+  font-family: var(--sans);
+  font-size: .92rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-decoration: none;
+  color: var(--ink-soft);
+  background: transparent;
+  border: none;
+  padding: .7rem .2rem;
+  cursor: pointer;
+  position: relative;
+  transition: color .15s;
+}
+.geo-tab:hover { color: var(--ink); }
+.geo-tab.active { color: var(--ochre); }
+.geo-tab.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--ochre);
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ---------- 首頁「總論」tab ---------- */
+.home-hero {
+  max-width: 1000px;
+  margin: 1.8rem auto 0;
+  padding: 0 1rem;
+}
+.home-hero img {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+  border-radius: 2px;
+  background: var(--paper-2);
+}
+.home-hero-note {
+  display: block;
+  text-align: right;
+  font-size: .72rem;
+  color: var(--ink-soft);
+  opacity: .6;
+  margin-top: .4rem;
+}
+.general-intro {
+  max-width: 700px;
+  margin: 2.2rem auto;
+  padding: 0 1.2rem;
+  text-align: left;
+}
+.general-intro p {
+  color: var(--ink);
+  font-size: 1.02rem;
+  line-height: 2;
+  margin: 0 0 1.3rem;
+}
+.general-intro > p:first-of-type { font-size: 1.12rem; }
 .intro-cta {
   display: inline-block;
   font-family: var(--serif);
@@ -57,83 +173,117 @@ a { color: var(--indigo-deep); }
   transition: background .15s, transform .15s;
 }
 .intro-cta:hover { background: var(--indigo-deep); transform: translateY(-1px); }
-
-/* ---------- 首頁分頁（總論／人物；之後擴分領域） ---------- */
-.geo-tabs {
+.general-intro .intro-cta { margin: .3rem 0 1.4rem; }
+/* 引導句：XIO「See More」樣式——左右細髮線、中央赭金字、置中 */
+.general-hint {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: .4rem;
-  max-width: 960px;
-  margin: 1rem auto 0;
-  padding: 0 1rem;
-  border-bottom: 1px solid var(--line);
-}
-.geo-tab {
+  gap: 1.2rem;
+  max-width: 62ch;
+  margin: 40px auto;
   font-family: var(--serif);
-  font-size: 1.05rem;
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--ink-soft);
-  background: transparent;
-  border: 1px solid transparent;
-  border-bottom: none;
-  border-radius: 8px 8px 0 0;
-  padding: .55rem 1.3rem;
-  cursor: pointer;
-  position: relative;
-  top: 1px;
-  transition: background .15s, color .15s;
-}
-.geo-tab:hover { color: var(--indigo-deep); background: var(--paper-2); }
-.geo-tab.active {
-  color: var(--indigo-deep);
-  background: var(--paper);
-  border-color: var(--line);
-  border-bottom: 1px solid var(--paper);
-}
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
-
-/* 總論分頁 */
-.general-intro {
-  max-width: 720px;
-  margin: 2.2rem auto;
-  padding: 0 1.2rem;
+  font-size: .98rem;
+  color: var(--ochre);
   text-align: center;
 }
-.general-intro p { color: var(--ink-soft); font-size: 1.05rem; margin: 0 0 1.3rem; }
-.general-intro .intro-cta { margin: .3rem 0 1.4rem; }
-.general-hint { font-size: .95rem; }
+.general-hint::before,
+.general-hint::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 48px;
+  height: 1px;
+  background: var(--hair);
+}
 
-/* 人物分頁：人物卡（同 geo-db 縣市卡的骨架） */
+/* ---------- 藝廊人物卡（XIO Upcoming Events 樣式，上圖下文） ---------- */
 .person-cards {
-  max-width: 960px;
-  margin: 1.6rem auto 2.4rem;
+  max-width: 1000px;
+  margin: 1.6rem auto 0;
   padding: 0 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: .8rem;
+  grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));
+  gap: 28px;
   align-items: start;
 }
 .person-card {
-  display: block;
-  background: var(--paper-2);
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: .8rem 1rem;
+  border-radius: 4px;
+  overflow: hidden;
   text-decoration: none;
   color: var(--ink);
-  transition: background .15s, border-color .15s, transform .15s;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
 }
-a.person-card:hover { background: var(--focus); border-color: var(--gold); transform: translateY(-1px); }
-.person-card .pc-name { font-family: var(--serif); font-weight: 600; font-size: 1.12rem; color: var(--indigo-deep); }
-.person-card .pc-years { font-size: .82rem; color: var(--ink-soft); margin-left: .4rem; }
-.person-card .pc-field { display: block; font-size: .88rem; color: var(--plum); margin-top: .2rem; }
+a.person-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(38, 37, 43, .10);
+}
+.pc-art {
+  margin: 0;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--paper-2);
+}
+.pc-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+a.person-card:hover .pc-art img { transform: scale(1.04); }
+.pc-body {
+  display: flex;
+  flex-direction: column;
+  gap: .12rem;
+  padding: 14px 16px 16px;
+}
+.pc-name {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.12rem;
+  color: var(--indigo-deep);
+  line-height: 1.35;
+}
+.pc-years {
+  font-family: var(--latin);
+  font-style: italic;
+  font-size: .95rem;
+  color: var(--ochre);
+}
+.pc-field {
+  font-family: var(--sans);
+  font-size: .78rem;
+  letter-spacing: .12em;
+  color: var(--ink-soft);
+}
+.pc-tagline {
+  margin: .35rem 0 0;
+  font-size: .88rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+/* 人物 grid／領域頁人物卡下方的 AI 生成意象聲明 */
+.cards-note {
+  max-width: 1000px;
+  margin: 1.2rem auto 2.4rem;
+  padding: 0 1rem;
+  font-size: .78rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
 
-/* 領域篩選列（人物 tab 上方；分領域頁面上線前的雛形，chip 對應 #field-<tag>） */
+/* ---------- 領域篩選列（髮線藥丸） ---------- */
 .field-filters {
-  max-width: 960px;
-  margin: 1.4rem auto 0;
+  max-width: 1000px;
+  margin: 1.6rem auto .4rem;
   padding: 0 1rem;
   display: flex;
   flex-wrap: wrap;
@@ -141,97 +291,194 @@ a.person-card:hover { background: var(--focus); border-color: var(--gold); trans
   justify-content: center;
 }
 .field-chip {
-  font-family: var(--serif);
-  font-size: .92rem;
-  font-weight: 600;
+  font-family: var(--sans);
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .04em;
   color: var(--ink-soft);
-  background: var(--paper-2);
+  background: transparent;
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: .4rem 1.1rem;
   cursor: pointer;
   transition: background .15s, color .15s, border-color .15s;
 }
-.field-chip:hover { color: var(--indigo-deep); border-color: var(--indigo); }
+.field-chip:hover { color: var(--ink); border-color: var(--ink-soft); }
 .field-chip.active {
   color: var(--paper);
-  background: var(--indigo);
-  border-color: var(--indigo-deep);
+  background: var(--ink);
+  border-color: var(--ink);
 }
 
 /* ---------- 內容頁 ---------- */
-.page-wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.2rem 4rem; }
+.page-wrap { max-width: 800px; margin: 0 auto; padding: 0 1.2rem 4rem; }
+.page-wrap { font-size: 1rem; line-height: 1.95; }
 
 .crumbs {
-  max-width: 1040px;
+  max-width: 800px;
   margin: .9rem auto 0;
   padding: 0 1.2rem;
-  font-size: .95rem;
+  font-size: .82rem;
   color: var(--ink-soft);
 }
 .crumbs a { text-decoration: none; }
 .crumbs a:hover { text-decoration: underline; }
 
-.page-header { margin: 1rem 0 2rem; }
-.page-header .eyebrow { color: var(--plum); font-size: .95rem; letter-spacing: .08em; margin-bottom: .3rem; }
-.page-header h1 { font-size: 2.5rem; margin: 0 0 .4rem; letter-spacing: .03em; }
+/* 領域頁／歌曲索引用的純文字 hero（淺色） */
+.page-header { margin: 1.4rem 0 2rem; }
+.page-header .eyebrow {
+  color: var(--ochre);
+  font-size: .82rem;
+  letter-spacing: .2em;
+  margin-bottom: .4rem;
+}
+.page-header h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 900;
+  margin: 0 0 .5rem;
+  letter-spacing: .02em;
+}
+.page-header:not(.immersive) h1::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--ochre);
+  margin: .7rem 0 0;
+}
+
+/* 人物頁 lede：置中優雅導言，上方赭金短 rule（取代原左邊條） */
 .lede {
+  max-width: 680px;
+  margin: 2rem auto 2.4rem;
+  padding: 0;
+  border: none;
   font-size: 1.12rem;
-  color: var(--ink-soft);
-  max-width: 46em;
-  border-left: 3px solid var(--indigo);
-  padding-left: 1rem;
-  margin: 1rem 0 1.6rem;
+  line-height: 2;
+  color: var(--ink);
+  text-align: center;
 }
+.lede::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--ochre);
+  margin: 0 auto 1.4rem;
+}
+.lede p { margin: 0; }
 
-/* 人物頁 hero：姓名＋生卒年＋領域一句話 */
-.person-hero .ph-years {
+/* ---------- 人物頁 hero（Cucinelli 沉浸式） ---------- */
+.person-hero.immersive {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  min-height: 400px;
+  margin: .6rem 0 2.4rem;
+  padding: 64px 8vw 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: var(--night) center / cover no-repeat;
+  color: var(--night-ink);
+  overflow: hidden;
+}
+.person-hero.immersive::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(28, 27, 32, .42), rgba(28, 27, 32, .80));
+}
+.person-hero.immersive > * { position: relative; z-index: 1; }
+.person-hero.immersive .ph-eyebrow {
+  font-family: var(--sans);
+  font-size: .82rem;
+  letter-spacing: .3em;
+  color: var(--ochre-soft);
+  margin: 0 0 .8rem;
+}
+.person-hero.immersive h1 {
   font-family: var(--serif);
-  font-size: 1.15rem;
-  color: var(--ink-soft);
-  margin: 0 0 .2rem;
-  letter-spacing: .05em;
+  font-weight: 900;
+  font-size: clamp(2.6rem, 5vw, 3.8rem);
+  line-height: 1.1;
+  color: var(--night-ink);
+  margin: 0 0 .4rem;
 }
-.person-hero .ph-field { color: var(--plum); font-size: 1rem; margin: 0 0 .8rem; }
+.person-hero.immersive .ph-years {
+  font-family: var(--latin);
+  font-style: italic;
+  font-size: 1.3rem;
+  letter-spacing: .02em;
+  color: var(--night-soft);
+  margin: 0 0 .8rem;
+}
+.person-hero.immersive .ph-tagline {
+  font-size: 1.02rem;
+  line-height: 1.9;
+  color: #e8e2d2;
+  max-width: 640px;
+  margin: 0 0 1rem;
+}
+.person-hero.immersive .ph-ai-note {
+  position: absolute;
+  right: 8vw;
+  bottom: 14px;
+  z-index: 1;
+  font-size: .72rem;
+  letter-spacing: .05em;
+  color: rgba(255, 255, 255, .55);
+}
 
-/* 領域標籤 chips（人物頁 hero）：同 .field-chip 家族，縮小版，連回首頁 #field-<tag> */
+/* 領域標籤 chips */
 .tag-chips {
   display: flex;
   flex-wrap: wrap;
   gap: .4rem;
-  margin: 0 0 1rem;
+  margin: 0 0 .2rem;
 }
 .tag-chip {
   display: inline-block;
-  font-family: var(--serif);
-  font-size: .85rem;
-  font-weight: 600;
+  font-family: var(--sans);
+  font-size: .78rem;
+  letter-spacing: .08em;
   color: var(--indigo-deep);
   background: var(--paper-2);
-  border: 1px solid var(--indigo);
+  border: 1px solid var(--line);
   border-radius: 999px;
   padding: .25rem .85rem;
   text-decoration: none;
   transition: background .15s, color .15s, transform .15s;
 }
 .tag-chip:hover { background: var(--indigo); color: var(--paper); transform: translateY(-1px); }
+.person-hero.immersive .tag-chip {
+  color: #efe9da;
+  background: transparent;
+  border-color: rgba(255, 255, 255, .4);
+}
+.person-hero.immersive .tag-chip:hover { background: rgba(255, 255, 255, .14); color: #fff; }
 
-/* 主文區塊（他是誰／生平與時代／作品與聽看入口） */
+/* ---------- 人物頁主文區塊 ---------- */
 .person-sec { margin: 2.4rem 0; }
 .person-sec > h2 {
-  font-size: 1.55rem;
-  border-bottom: 2px solid var(--indigo);
-  padding-bottom: .3rem;
+  font-size: 1.45rem;
+  font-weight: 700;
   margin: 0 0 1rem;
-  display: inline-block;
+  padding: 0;
+  border: none;
+  display: block;
 }
-.person-sec.works > h2 { border-color: var(--plum); }
+.person-sec > h2::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--ochre);
+  margin: .6rem 0 0;
+}
 .person-sec p { margin: 0 0 1rem; }
-
-/* 「他是誰」30 秒版：略大、留白多，適合開場朗讀 */
 .person-sec.who p { font-size: 1.08rem; max-width: 44em; }
-
-/* 生平與時代：敘事主文的段落節奏（適合說書） */
 .person-sec.bio p { max-width: 46em; }
 
 /* 時間軸（生平可選用） */
@@ -251,12 +498,13 @@ a.person-card:hover { background: var(--focus); border-color: var(--gold); trans
   height: 11px;
   border-radius: 50%;
   background: var(--paper);
-  border: 2px solid var(--indigo);
+  border: 2px solid var(--ochre);
 }
 .timeline .tl-year {
-  font-family: var(--serif);
-  font-weight: 600;
-  color: var(--indigo-deep);
+  font-family: var(--latin);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--ochre);
   margin-right: .5rem;
   white-space: nowrap;
 }
@@ -264,40 +512,52 @@ a.person-card:hover { background: var(--focus); border-color: var(--gold); trans
 /* 作品與聽看入口 */
 .works-list { list-style: none; margin: .6rem 0 0; padding: 0; }
 .works-list li { margin: 0 0 .8rem; }
-.works-list .wk-title { font-family: var(--serif); font-weight: 600; color: var(--ink); }
+.works-list .wk-title { font-family: var(--serif); font-weight: 700; color: var(--ink); }
 .works-list .wk-note { display: block; font-size: .92rem; color: var(--ink-soft); }
 .works-list a { color: var(--indigo-deep); }
 
-/* 教學素材 — 核心，視覺突出（同 geo-db「教學特點」框） */
+/* 教學素材 — 核心，--paper-2 面板 */
 .teaching {
-  background: var(--focus);
-  border: 1px solid var(--gold);
-  border-radius: 10px;
-  padding: 1.8rem 2rem;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 26px 28px;
   margin: 2.6rem 0;
-  box-shadow: 0 2px 10px rgba(70, 80, 130, .08);
 }
 .teaching > h2 {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
+  font-weight: 700;
   margin: 0 0 .3rem;
-  color: var(--indigo-deep);
+  color: var(--ink);
 }
-.teaching .core-note { color: var(--ink-soft); font-size: .92rem; margin: 0 0 1.2rem; }
-.teaching h3 {
-  font-size: 1.15rem;
-  color: var(--plum);
-  margin: 1.4rem 0 .6rem;
+.teaching > h2::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--ochre);
+  margin: .6rem 0 0;
 }
+.teaching .core-note { color: var(--ink-soft); font-size: .9rem; margin: .6rem 0 1.2rem; }
+.teaching h3 { font-size: 1.12rem; color: var(--plum); margin: 1.4rem 0 .6rem; }
 .teaching ul, .teaching ol { padding-left: 1.3rem; margin: .4rem 0 1rem; }
 .teaching li { margin: .35rem 0; }
 
-/* 說書稿切分提示（同 geo-db） */
+/* 說書稿切分提示 */
 .storyteller { margin: 2.4rem 0; }
-.storyteller h2 { font-size: 1.4rem; margin: 0 0 1rem; }
+.storyteller > h2 { font-size: 1.45rem; font-weight: 700; margin: 0 0 1rem; }
+.storyteller > h2::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--ochre);
+  margin: .6rem 0 0;
+}
 .storyteller blockquote,
 .storyteller .quote {
-  background: #fbfaf5;
-  border-left: 4px solid var(--gold);
+  background: var(--paper-2);
+  border-left: 4px solid var(--ochre-soft);
   border-radius: 0 6px 6px 0;
   padding: .9rem 1.2rem;
   margin: 0 0 1rem;
@@ -305,36 +565,53 @@ a.person-card:hover { background: var(--focus); border-color: var(--gold); trans
   font-size: 1rem;
 }
 
-/* 圖像（同 geo-db） */
+/* ---------- 肖像小畫框（已授權本人肖像照；David 2026-07-19 明示） ---------- */
 figure.geo-fig {
-  margin: 1.2rem 0;
-  background: var(--paper-2);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: .5rem;
+  max-width: 340px;
+  margin: 1.2rem auto;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
-figure.geo-fig img {
+figure.geo-fig .fig-mat {
+  border: 1px solid var(--ochre);
+  background: #fffdf8;
+  padding: 10px;
+  border-radius: 2px;
+  box-shadow: 0 6px 18px rgba(38, 37, 43, .12);
+}
+figure.geo-fig .fig-mat img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 4px;
+  border: 1px solid var(--hair);
   background: #e6e3d8;
 }
 figure.geo-fig figcaption {
-  font-size: .82rem;
-  color: var(--ink-soft);
-  padding: .5rem .3rem .2rem;
+  text-align: center;
+  margin-top: 10px;
+  padding: 0 .2rem;
+  font-size: .76rem;
   line-height: 1.5;
+  color: var(--ink-soft);
 }
-figure.geo-fig figcaption .cap-title { color: var(--ink); font-weight: 600; }
+figure.geo-fig figcaption .cap-title { font-family: var(--serif); font-weight: 700; color: var(--ink); }
+figure.geo-fig figcaption .cap-credit {
+  font-family: var(--sans);
+  letter-spacing: .06em;
+  color: var(--ink-soft);
+}
+@media (min-width: 900px) {
+  figure.geo-fig { float: right; margin: 4px 0 20px 32px; }
+}
 
 /* 出處：有編號腳註 */
-.footnotes { margin: 2.6rem 0 0; }
+.footnotes { margin: 2.6rem 0 0; border-top: 1px solid var(--hair); padding-top: 1.4rem; }
 .footnotes > h2 { font-size: 1.3rem; margin: 0 0 .6rem; }
 .footnotes ol {
   padding-left: 1.5rem;
   margin: 0;
-  font-size: .9rem;
+  font-size: .85rem;
   color: var(--ink-soft);
 }
 .footnotes li { margin: .35rem 0; word-break: break-all; }
@@ -342,7 +619,7 @@ figure.geo-fig figcaption .cap-title { color: var(--ink); font-weight: 600; }
 sup.fn-ref { font-size: .72em; line-height: 0; }
 sup.fn-ref a { text-decoration: none; }
 
-/* 頁尾：版權與授權聲明（CC BY-SA） */
+/* 頁尾：版權與授權聲明 */
 .page-foot {
   border-top: 1px solid var(--line);
   margin-top: 3rem;
@@ -360,33 +637,21 @@ sup.fn-ref a { text-decoration: none; }
   margin-top: .8rem;
 }
 
-/* 行動裝置（同 geo-db 斷點） */
-@media (max-width: 760px) {
-  body { font-size: 16px; }
-  .page-header h1 { font-size: 2rem; }
-  .teaching { padding: 1.3rem 1.2rem; }
-  .geo-tabs { gap: .2rem; }
-  .geo-tab { font-size: .98rem; padding: .5rem .85rem; }
-  .person-cards { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-  .field-chip { font-size: .85rem; padding: .35rem .85rem; }
-  .tag-chip { font-size: .8rem; padding: .2rem .7rem; }
-}
-
-/* 分領域卡片為空時的提示文字（field 頁尚未上架，或該領域暫無收錄人物） */
+/* 分領域卡片為空時的提示文字 */
 .field-empty { color: var(--ink-soft); font-size: .95rem; text-align: center; grid-column: 1 / -1; }
 
-/* 一個小故事 — 說書引子框（2026-07-18 David：每位人物配一則有出處的動人小故事） */
+/* 一個小故事 — 說書引子框 */
 .person-sec.story {
   background: var(--paper-2);
   border: 1px solid var(--line);
-  border-left: 4px solid var(--indigo);
+  border-left: 4px solid var(--ochre-soft);
   border-radius: 10px;
   padding: 1.3rem 1.5rem 1.1rem;
 }
 .person-sec.story > h2 { margin-top: 0; font-size: 1.25rem; color: var(--indigo-deep); }
 .person-sec.story p { margin: .6rem 0; }
 
-/* ---------- 臺灣藝文地圖（Phase 2B，2026-07-18）---------- */
+/* ---------- 臺灣藝文地圖（Phase 2B，2026-07-18；樣式維持，只繼承新 token）---------- */
 /* 圖例：人物＝實心圓（靛藍）、地標＝空心方（莓紫）——色盲友善，形狀先分得出來，
    顏色只是輔助。 */
 .map-legend {
@@ -537,9 +802,7 @@ svg.tw-map {
   .map-svg-wrap { max-width: 100%; }
 }
 
-/* ---------- 臺灣歌曲（S1 基建，2026-07-18）---------- */
-/* 時代卡沿用 .person-card／.pc-name／.pc-years／.pc-field 既有樣式，
-   .era-card 只是掛鉤（目前無額外規則）；空狀態同 .field-empty／.map-empty 家族。 */
+/* ---------- 臺灣歌曲 tab（Tyler Reece 深色面板） ---------- */
 .songs-empty {
   max-width: 640px;
   margin: 2rem auto;
@@ -548,47 +811,271 @@ svg.tw-map {
   color: var(--ink-soft);
   font-size: .95rem;
 }
+.songs-shell {
+  max-width: 1040px;
+  margin: 1.8rem auto 2.4rem;
+  background: var(--taupe);
+  border-radius: 8px;
+  padding: 56px 48px;
+  color: var(--cream);
+}
+.songs-title {
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: 2rem;
+  color: var(--pale-gold);
+  margin: 0 0 .4rem;
+}
+.songs-sub { font-size: .95rem; color: rgba(239, 230, 207, .8); margin: 0 0 2rem; }
+.songs-shell .person-cards {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+/* 深色專輯卡 */
+.songs-shell .era-card {
+  background: rgba(255, 255, 255, .045);
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.songs-shell a.era-card:hover {
+  border-color: rgba(255, 255, 255, .32);
+  background: rgba(255, 255, 255, .08);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .28);
+}
+.songs-shell .ec-art {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: rgba(0, 0, 0, .25);
+}
+.songs-shell .ec-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+.songs-shell a.era-card:hover .ec-art img { transform: scale(1.04); }
+.songs-shell .ec-num {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-family: var(--latin);
+  font-size: 1rem;
+  letter-spacing: .05em;
+  color: var(--pale-gold);
+  background: rgba(0, 0, 0, .55);
+  border-radius: 3px;
+  padding: .05rem .45rem;
+}
+.songs-shell .ec-body {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  padding: 14px 16px 16px;
+}
+.songs-shell .era-card .pc-name {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.08rem;
+  color: var(--cream);
+}
+.songs-shell .era-card .pc-years {
+  font-family: var(--latin);
+  font-style: italic;
+  font-size: .9rem;
+  color: var(--pale-gold);
+}
+.songs-shell .era-card .pc-field {
+  font-family: var(--sans);
+  font-size: .85rem;
+  letter-spacing: 0;
+  line-height: 1.5;
+  color: #cfc7b6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
-/* 歌單區：一首歌一個 li，歌名本身是 listen[0] 主連結 */
-.song-list { list-style: none; margin: 1rem 0 0; padding: 0; }
-.song-item { border-bottom: 1px solid var(--line); padding: .9rem 0; }
-.song-item:last-child { border-bottom: none; }
-.song-head { margin: 0 0 .2rem; }
+/* ---------- 歌曲期頁（深色曲目頁） ---------- */
+body.theme-songs { background: var(--taupe-2); color: #d8d0bf; }
+body.theme-songs .crumbs { color: rgba(216, 208, 191, .7); }
+body.theme-songs .crumbs a { color: rgba(216, 208, 191, .9); }
+body.theme-songs .person-sec > h2 { color: var(--cream); }
+body.theme-songs .person-sec > h2::after { background: var(--pale-gold); }
+body.theme-songs a { color: var(--pale-gold); }
+body.theme-songs blockquote {
+  border-left: 3px solid var(--pale-gold);
+  margin: 1rem 0;
+  padding: .6rem 1.1rem;
+  background: rgba(255, 255, 255, .04);
+  color: var(--cream);
+}
+body.theme-songs .footnotes { border-top-color: rgba(255, 255, 255, .14); }
+body.theme-songs .footnotes ol { color: rgba(216, 208, 191, .75); }
+body.theme-songs .page-foot { border-top-color: rgba(255, 255, 255, .14); color: rgba(216, 208, 191, .7); }
+body.theme-songs .page-foot h3 { color: var(--cream); }
+body.theme-songs .page-foot a { color: var(--pale-gold); }
+
+.era-hero.immersive {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  min-height: 360px;
+  margin: .6rem 0 2.4rem;
+  padding: 56px 8vw 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: var(--taupe-2) center / cover no-repeat;
+  color: var(--cream);
+  overflow: hidden;
+}
+.era-hero.immersive::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(58, 53, 46, .55), rgba(69, 64, 58, .92));
+}
+.era-hero.immersive > * { position: relative; z-index: 1; }
+.era-hero.immersive .eh-num {
+  display: block;
+  font-family: var(--latin);
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--pale-gold);
+  opacity: .4;
+  margin: 0 0 .3rem;
+}
+.era-hero.immersive .eyebrow {
+  font-family: var(--sans);
+  color: var(--ochre-soft);
+  font-size: .82rem;
+  letter-spacing: .3em;
+  margin: 0 0 .5rem;
+}
+.era-hero.immersive h1 {
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  line-height: 1.1;
+  color: var(--pale-gold);
+  margin: 0;
+}
+.era-hero.immersive .eh-period {
+  font-family: var(--latin);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--cream);
+  margin: .4rem 0 .6rem;
+}
+.era-hero.immersive .eh-axis {
+  max-width: 640px;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: #e8e2d2;
+  margin: 0;
+}
+
+/* 曲目列（Wix 播放器 track list） */
+.song-list { list-style: none; margin: 1.4rem 0 0; padding: 0; }
+.song-item {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr auto;
+  gap: .3rem 1rem;
+  align-items: baseline;
+  padding: .9rem .4rem;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+}
+.song-item:first-child { border-top: none; }
+.song-item:hover { background: rgba(255, 255, 255, .045); }
+.si-num { font-family: var(--latin); font-size: 1.05rem; color: var(--pale-gold); }
+.si-main { min-width: 0; }
+.si-year {
+  font-family: var(--latin);
+  font-size: 1rem;
+  color: var(--pale-gold);
+  white-space: nowrap;
+  text-align: right;
+}
+.song-head { margin: 0 0 .15rem; }
 .song-title {
   font-family: var(--serif);
-  font-weight: 600;
-  font-size: 1.08rem;
-  color: var(--indigo-deep);
+  font-weight: 700;
+  font-size: 1.06rem;
+  color: var(--cream);
   text-decoration: none;
 }
-.song-title:hover { text-decoration: underline; }
-.song-meta { margin: 0 0 .3rem; font-size: .88rem; color: var(--ink-soft); }
-.song-hook { margin: 0 0 .2rem; font-size: .95rem; }
-
-/* 禁歌小標：同 .tag-chip 家族但用莓紫，跟領域 chips（靛藍）區分開 */
+.song-title:hover { text-decoration: underline; text-decoration-color: var(--pale-gold); }
+.song-meta { margin: 0 0 .25rem; font-size: .82rem; color: #b8b0a0; }
+.song-hook { margin: 0 0 .35rem; font-size: .9rem; line-height: 1.6; color: #d8d0bf; }
 .song-banned {
   display: inline-block;
   margin: .3rem 0 0;
-  font-size: .8rem;
+  font-size: .78rem;
   font-weight: 600;
-  color: var(--plum);
-  background: var(--paper-2);
-  border: 1px solid var(--plum);
+  color: var(--pale-gold);
+  background: rgba(0, 0, 0, .25);
+  border: 1px solid rgba(255, 255, 255, .2);
   border-radius: 999px;
   padding: .1rem .6rem;
 }
+.song-also {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem;
+  margin: .4rem 0 0;
+  font-size: .78rem;
+  color: #a89f8e;
+}
+.song-also a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--cream);
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 999px;
+  padding: .12rem .7rem;
+  font-size: .78rem;
+}
+.song-also a::before { content: "\266A  "; }
+.song-also a:hover { background: rgba(255, 255, 255, .10); }
 
-/* 另聽：翻唱／現場版等次要連結，小字列在主連結之後 */
-.song-also { margin: .3rem 0 0; font-size: .82rem; color: var(--ink-soft); }
-.song-also a { color: var(--indigo-deep); }
-
-/* 時代頁上一期／下一期導覽 */
+/* 期頁上一期／下一期導覽 */
 .era-nav {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   margin: 2.6rem 0 0;
-  font-size: .95rem;
+  font-size: .9rem;
 }
-.era-nav a { text-decoration: none; color: var(--indigo-deep); }
+.era-nav a { text-decoration: none; color: var(--pale-gold); }
 .era-nav a:hover { text-decoration: underline; }
+
+/* ---------- 行動裝置 ---------- */
+@media (max-width: 900px) {
+  figure.geo-fig { float: none; margin: 1.2rem auto; }
+}
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  .site-head h1 { font-size: 1.9rem; }
+  .geo-tabs { gap: 1rem; }
+  .geo-tab { font-size: .82rem; letter-spacing: .1em; }
+  .person-cards { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+  .songs-shell { padding: 32px 20px; }
+  .songs-shell .person-cards { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+  .person-hero.immersive { padding: 44px 24px 40px; min-height: 320px; }
+  .person-hero.immersive .ph-ai-note { right: 24px; }
+  .era-hero.immersive { padding: 40px 24px 34px; min-height: 300px; }
+  .teaching { padding: 20px 18px; }
+  .field-chip { font-size: .78rem; padding: .35rem .9rem; }
+  .song-item { grid-template-columns: 2rem 1fr auto; }
+}

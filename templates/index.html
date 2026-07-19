@@ -7,6 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>臺灣人文藝術 — 人文與藝術資料庫</title>
   <meta name="description" content="教師備課用的臺灣人文藝術資料庫：以人物為入口，認識臺灣的文學、美術、音樂與表演藝術。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -37,6 +40,11 @@
   <main>
     <!-- 總論 -->
     <section class="tab-panel" data-panel="general" role="tabpanel">
+      <!-- 頂部情境 hero（AI 生成意象，非歷史影像）；首頁 hero 不加 loading="lazy"。 -->
+      <figure class="home-hero">
+        <img src="img/scenes/site-hero.jpg" alt="">
+        <figcaption class="home-hero-note">情境插畫 · AI 生成意象</figcaption>
+      </figure>
       <div class="general-intro">
         <p>這是一個給老師備課用的臺灣人文藝術資料庫，與「認識臺灣」地理資料庫成對。從一個一個具體的人出發——寫小說的、畫畫的、作曲的、演戲的——認識這片土地上的文學與藝術，並附可直接帶進課堂的教學素材與說書切分提示。</p>
         <a class="intro-cta" href="pages/overview.html">📖 總論——臺灣人文藝術的大脈絡</a>
@@ -52,22 +60,28 @@
         <button type="button" class="field-chip active" data-field="all" aria-pressed="true">全部</button>
         <button type="button" class="field-chip" data-field="美術" aria-pressed="false">美術</button>
       </div>
+      <!-- 藝廊人物卡（上圖下文）：縮圖 img/scenes/thumbs/<slug>.jpg 由 build 依 slug 推導；
+           data-tags＝frontmatter tags 空白分隔，供 JS 篩選比對（見下方 hash-router script）。 -->
       <div class="person-cards" id="person-cards">
-        <!-- 每位人物一張卡；由內容組生成時逐一填入。data-tags＝frontmatter tags 空白分隔，
-             供 JS 篩選比對（見下方 hash-router script） -->
         <a class="person-card" href="pages/FILL_ME-person-id.html" data-tags="美術">
-          <span class="pc-name">〔姓名〕</span><span class="pc-years">〔1895–1947〕</span>
-          <span class="pc-field">〔領域，如：文學 · 小說〕</span>
+          <figure class="pc-art"><img src="img/scenes/thumbs/FILL_ME-person-id.jpg" alt="" loading="lazy"></figure>
+          <div class="pc-body">
+            <span class="pc-name">〔姓名〕</span>
+            <span class="pc-years">〔1895 — 1947〕</span>
+            <span class="pc-field">〔領域，如：文學 · 小說〕</span>
+            <p class="pc-tagline">〔一句話定位這個人〕</p>
+          </div>
         </a>
       </div>
+      <p class="cards-note">卡片與頁首情境圖為 AI 生成之意象插畫，非歷史影像；具考證出處的肖像照片，見各人物頁內文。</p>
     </section>
 
     <!-- 分領域（Phase 2，2026-07-18 上線）：卡片自 content/fields/*.md 產生，
-         每領域一張、連到 pages/field-<slug>.html；卡片樣式沿用人物卡。 -->
+         每領域一張、連到 pages/field-<slug>.html；卡片樣式沿用人物卡（無圖、只 pc-body）。 -->
     <section class="tab-panel" data-panel="fields" role="tabpanel">
       <div class="person-cards" id="field-cards">
         <a class="person-card" href="pages/field-art.html">
-          <span class="pc-name">〔領域名，如：美術〕</span>
+          <div class="pc-body"><span class="pc-name">〔領域名，如：美術〕</span></div>
         </a>
       </div>
     </section>
@@ -89,11 +103,24 @@
          content/songs/era-*.md 生成，連到 pages/song-<slug>.html；
          本檔僅示意結構（不會被實際部署）。content/songs/ 缺席時顯示占位文字。 -->
     <section class="tab-panel" data-panel="songs" role="tabpanel">
-      <div class="person-cards" id="era-cards">
-        <a class="person-card era-card" href="pages/song-era-78rpm.html">
-          <span class="pc-name">〔期名，如：曲盤時代〕</span><span class="pc-years">〔年代，如：1932–1945〕</span>
-          <span class="pc-field">〔axis 主軸一句話〕</span>
-        </a>
+      <!-- Tyler Reece 深色面板：整個 tab 包進 .songs-shell，時代卡＝深色專輯卡
+           （封面 img/scenes/thumbs/<era-slug>.jpg＋左上角期號 01–08）。 -->
+      <div class="songs-shell">
+        <h2 class="songs-title">臺灣歌曲</h2>
+        <p class="songs-sub">以時期為序，一首一首聽臺灣歌走過的路——曲盤、民歌、新臺語歌，到當代的多聲部。</p>
+        <div class="person-cards" id="era-cards">
+          <a class="person-card era-card" href="pages/song-era-78rpm.html">
+            <figure class="ec-art">
+              <img src="img/scenes/thumbs/era-78rpm.jpg" alt="" loading="lazy">
+              <span class="ec-num">02</span>
+            </figure>
+            <div class="ec-body">
+              <span class="pc-name">〔期名，如：曲盤時代〕</span>
+              <span class="pc-years">〔年代，如：1932–1945〕</span>
+              <span class="pc-field">〔axis 主軸一句話〕</span>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
   </main>

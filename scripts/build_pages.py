@@ -581,9 +581,11 @@ def render_figure(p: dict) -> str:
     width = f' width="{p["width"]}"' if "width" in p else ""
     return (
         '      <figure class="geo-fig">\n'
-        f'        <img src="../img/{esc(p["file"])}" alt="{esc(p["alt"])}"{width} loading="lazy">\n'
+        '        <div class="fig-mat">\n'
+        f'          <img src="../img/{esc(p["file"])}" alt="{esc(p["alt"])}"{width} loading="lazy">\n'
+        "        </div>\n"
         f'        <figcaption><span class="cap-title">{esc(p["caption_title"])}</span>'
-        f'<br>{esc(p["caption_credit"])}</figcaption>\n'
+        f'<br><span class="cap-credit">{esc(p["caption_credit"])}</span></figcaption>\n'
         "      </figure>"
     )
 
@@ -707,22 +709,27 @@ PERSON_PAGE = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{name} — 臺灣人文藝術</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
   <nav class="crumbs"><a href="../index.html#people">← 人物</a> · <a href="../index.html#general">回首頁</a></nav>
 
   <div class="page-wrap">
-    <header class="page-header person-hero">
-      <div class="eyebrow">{field}</div>
+    <header class="page-header person-hero immersive" style="background-image:url('../img/scenes/{scene_slug}.jpg')">
+      <p class="ph-eyebrow">{field}</p>
       <h1>{name}</h1>
       <p class="ph-years">{years}</p>
-      <p class="ph-field">{tagline}</p>
+      <p class="ph-tagline">{tagline}</p>
       <div class="tag-chips">
 {tag_chips}
       </div>
-      <div class="lede"><p>{lede}</p></div>
+      <span class="ph-ai-note">情境插畫 · AI 生成意象</span>
     </header>
+
+    <div class="lede"><p>{lede}</p></div>
 
     <section class="person-sec who">
       <h2>{who_heading}</h2>
@@ -821,6 +828,7 @@ def build_person(md_path: Path) -> tuple[str, str]:
 
     html_out = PERSON_PAGE.format(
         name=esc(fm["name"]),
+        scene_slug=esc(fm["slug"]),
         field=esc(fm["field"]),
         years=esc(fm["years"]),
         tagline=esc(fm["tagline"]),
@@ -851,6 +859,9 @@ INDEX_PAGE = """<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title}</title>
   <meta name="description" content="{description}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -871,6 +882,10 @@ INDEX_PAGE = """<!DOCTYPE html>
   <main>
     <!-- 總論 -->
     <section class="tab-panel" data-panel="general" role="tabpanel">
+      <figure class="home-hero">
+        <img src="img/scenes/site-hero.jpg" alt="">
+        <figcaption class="home-hero-note">情境插畫 · AI 生成意象</figcaption>
+      </figure>
       <div class="general-intro">
 {intro}
       </div>
@@ -884,6 +899,7 @@ INDEX_PAGE = """<!DOCTYPE html>
       <div class="person-cards" id="person-cards">
 {cards}
       </div>
+      <p class="cards-note">卡片與頁首情境圖為 AI 生成之意象插畫，非歷史影像；具考證出處的肖像照片，見各人物頁內文。</p>
     </section>
 
     <!-- 分領域（Phase 2，2026-07-18 上線）：卡片自 content/fields/*.md 產生 -->
@@ -952,7 +968,7 @@ def build_field_cards() -> str:
                 die(f"{md_path.name}：frontmatter 缺 `{key}`")
         cards.append(
             f'        <a class="person-card" href="pages/{esc(fm["slug"])}.html">\n'
-            f'          <span class="pc-name">{esc(fm["title"])}</span>\n'
+            f'          <div class="pc-body"><span class="pc-name">{esc(fm["title"])}</span></div>\n'
             "        </a>"
         )
     return "\n".join(cards)
@@ -980,12 +996,16 @@ def build_index(eras: list[dict]) -> str:
     cards: list[str] = []
     for p in fm["people"]:
         tags_attr = esc(" ".join(p["tags"]))
+        slug = esc(p["slug"])
         cards.append(
-            f'        <a class="person-card" href="pages/{esc(p["slug"])}.html" data-tags="{tags_attr}">\n'
-            f'          <span class="pc-name">{esc(p["name"])}</span>'
-            f'<span class="pc-years">{esc(p["years"])}</span>\n'
-            f'          <span class="pc-field">{esc(p["field"])}</span>\n'
-            f'          <span class="pc-field">{esc(p["tagline"])}</span>\n'
+            f'        <a class="person-card" href="pages/{slug}.html" data-tags="{tags_attr}">\n'
+            f'          <figure class="pc-art"><img src="img/scenes/thumbs/{slug}.jpg" alt="" loading="lazy"></figure>\n'
+            '          <div class="pc-body">\n'
+            f'            <span class="pc-name">{esc(p["name"])}</span>\n'
+            f'            <span class="pc-years">{esc(p["years"])}</span>\n'
+            f'            <span class="pc-field">{esc(p["field"])}</span>\n'
+            f'            <p class="pc-tagline">{esc(p["tagline"])}</p>\n'
+            "          </div>\n"
             "        </a>"
         )
 
@@ -1012,6 +1032,9 @@ FIELD_PAGE = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} — 臺灣人文藝術</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
@@ -1137,10 +1160,13 @@ def build_field(md_path: Path, people_meta: list[dict]) -> tuple[str, str]:
         cards_html = "\n".join(
             f'        <a class="person-card" href="{esc(p["slug"])}.html" '
             f'data-tags="{esc(" ".join(p["tags"]))}">\n'
-            f'          <span class="pc-name">{esc(p["name"])}</span>'
-            f'<span class="pc-years">{esc(p["years"])}</span>\n'
-            f'          <span class="pc-field">{esc(p["field"])}</span>\n'
-            f'          <span class="pc-field">{esc(p["tagline"])}</span>\n'
+            f'          <figure class="pc-art"><img src="../img/scenes/thumbs/{esc(p["slug"])}.jpg" alt="" loading="lazy"></figure>\n'
+            '          <div class="pc-body">\n'
+            f'            <span class="pc-name">{esc(p["name"])}</span>\n'
+            f'            <span class="pc-years">{esc(p["years"])}</span>\n'
+            f'            <span class="pc-field">{esc(p["field"])}</span>\n'
+            f'            <p class="pc-tagline">{esc(p["tagline"])}</p>\n'
+            "          </div>\n"
             "        </a>"
             for p in matched
         )
@@ -1150,6 +1176,7 @@ def build_field(md_path: Path, people_meta: list[dict]) -> tuple[str, str]:
             '      <div class="person-cards">\n'
             f"{cards_html}\n"
             "      </div>\n"
+            '      <p class="cards-note">卡片與頁首情境圖為 AI 生成之意象插畫，非歷史影像；具考證出處的肖像照片，見各人物頁內文。</p>\n'
             "    </section>"
         )
     else:
@@ -1360,10 +1387,11 @@ def render_era_body(body: str, songs_by_title: dict[str, dict], path: Path) -> t
 CREDIT_LABELS = {"lyricist": "詞", "composer": "曲", "original_singer": "唱"}
 
 
-def render_song_item(song: dict) -> str:
-    """歌單區單一 `<li>`：歌名本身＝listen[0] 主連結（target="_blank"
-    rel="noopener"）＋年份／語言／詞曲唱＋hook＋禁歌標記（有 banned 才出）＋
-    listen[1..] 以「另聽：label」小字列出（SONGS-SPEC §6）。"""
+def render_song_item(song: dict, n: int) -> str:
+    """歌單區單一 `<li>`（Wix 播放器 track list 樣式）：曲序（si-num）＋主欄
+    （si-main：歌名＝listen[0] 主連結、語言／詞曲唱、hook、禁歌標記、另聽藥丸）
+    ＋年份（si-year 右欄）。listen[1..] 以 ♪ 藥丸列出（SONGS-SPEC §6：歌名本身
+    仍是 listen[0] 主連結）。"""
     listen = song["listen"]
     main_url = esc(listen[0]["url"])
     title_link = (
@@ -1377,25 +1405,32 @@ def render_song_item(song: dict) -> str:
     credit_bits += [
         f"{esc(key)}：{esc(value)}" for key, value in credits.items() if key not in CREDIT_LABELS
     ]
-    meta_bits = [esc(str(song["year"])), esc(song["language"])] + credit_bits
+    meta_bits = [esc(song["language"])] + credit_bits
     meta_line = " · ".join(meta_bits)
 
-    lines = [
-        '        <li class="song-item">',
-        f'          <p class="song-head">{title_link}</p>',
-        f'          <p class="song-meta">{meta_line}</p>',
-        f'          <p class="song-hook">{esc(song["hook"])}</p>',
+    main_lines = [
+        f'            <p class="song-head">{title_link}</p>',
+        f'            <p class="song-meta">{meta_line}</p>',
+        f'            <p class="song-hook">{esc(song["hook"])}</p>',
     ]
     if song.get("banned"):
-        lines.append(f'          <p class="song-banned">禁歌：{esc(song["banned"])}</p>')
+        main_lines.append(f'            <p class="song-banned">禁歌：{esc(song["banned"])}</p>')
     if len(listen) > 1:
-        also = "、".join(
+        also = "".join(
             f'<a href="{esc(l["url"])}" target="_blank" rel="noopener">{esc(l["label"])}</a>'
             for l in listen[1:]
         )
-        lines.append(f'          <p class="song-also">另聽：{also}</p>')
-    lines.append("        </li>")
-    return "\n".join(lines)
+        main_lines.append(f'            <p class="song-also">另聽：{also}</p>')
+
+    return (
+        '        <li class="song-item">\n'
+        f'          <span class="si-num">{n:02d}</span>\n'
+        '          <div class="si-main">\n'
+        + "\n".join(main_lines) + "\n"
+        "          </div>\n"
+        f'          <span class="si-year">{esc(str(song["year"]))}</span>\n'
+        "        </li>"
+    )
 
 
 def render_era_nav(eras: list[dict], idx: int) -> str:
@@ -1430,17 +1465,29 @@ def build_songs_tab(eras: list[dict]) -> str:
     cards = []
     for era in eras:
         fm = era["fm"]
+        slug = esc(fm["slug"])
+        num = f'{int(fm["order"]):02d}'
         cards.append(
-            f'        <a class="person-card era-card" href="pages/song-{esc(fm["slug"])}.html">\n'
-            f'          <span class="pc-name">{esc(fm["title"])}</span>'
-            f'<span class="pc-years">{esc(fm["period"])}</span>\n'
-            f'          <span class="pc-field">{esc(fm["axis"])}</span>\n'
-            "        </a>"
+            f'          <a class="person-card era-card" href="pages/song-{slug}.html">\n'
+            '            <figure class="ec-art">\n'
+            f'              <img src="img/scenes/thumbs/{slug}.jpg" alt="" loading="lazy">\n'
+            f'              <span class="ec-num">{num}</span>\n'
+            "            </figure>\n"
+            '            <div class="ec-body">\n'
+            f'              <span class="pc-name">{esc(fm["title"])}</span>\n'
+            f'              <span class="pc-years">{esc(fm["period"])}</span>\n'
+            f'              <span class="pc-field">{esc(fm["axis"])}</span>\n'
+            "            </div>\n"
+            "          </a>"
         )
     return (
         '    <section class="tab-panel" data-panel="songs" role="tabpanel">\n'
-        '      <div class="person-cards" id="era-cards">\n'
+        '      <div class="songs-shell">\n'
+        '        <h2 class="songs-title">臺灣歌曲</h2>\n'
+        '        <p class="songs-sub">以時期為序，一首一首聽臺灣歌走過的路——曲盤、民歌、新臺語歌，到當代的多聲部。</p>\n'
+        '        <div class="person-cards" id="era-cards">\n'
         + "\n".join(cards) + "\n"
+        "        </div>\n"
         "      </div>\n"
         "    </section>"
     )
@@ -1452,15 +1499,21 @@ SONG_ERA_PAGE = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} — 臺灣歌曲 — 臺灣人文藝術</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body>
+<body class="theme-songs">
   <nav class="crumbs"><a href="../index.html#songs">← 臺灣歌曲</a> · <a href="../index.html#general">回首頁</a></nav>
 
   <div class="page-wrap">
-    <header class="page-header era-hero">
-      <div class="eyebrow">臺灣歌曲 · {period}</div>
+    <header class="page-header era-hero immersive" style="background-image:url('../img/scenes/{scene_slug}.jpg')">
+      <span class="eh-num">{eh_num}</span>
+      <div class="eyebrow">臺灣歌曲</div>
       <h1>{title}</h1>
+      <p class="eh-period">{period}</p>
+      <p class="eh-axis">{axis}</p>
     </header>
 
 {content}
@@ -1508,10 +1561,13 @@ def build_song_pages(eras: list[dict]) -> int:
     for idx, era in enumerate(eras):
         md_path, fm = era["md_path"], era["fm"]
         content_html, footnotes_html = render_era_body(era["body"], songs_by_title, md_path)
-        song_items = "\n".join(render_song_item(s) for s in era["songs"])
+        song_items = "\n".join(render_song_item(s, i) for i, s in enumerate(era["songs"], 1))
         page_html = SONG_ERA_PAGE.format(
             title=esc(fm["title"]),
+            scene_slug=esc(fm["slug"]),
+            eh_num=f'{int(fm["order"]):02d}',
             period=esc(fm["period"]),
+            axis=esc(fm["axis"]),
             content=content_html,
             song_items=song_items,
             footnotes=footnotes_html,
