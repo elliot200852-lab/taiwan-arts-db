@@ -10,6 +10,8 @@
 > 歌曲期封面：`img/scenes/<era-slug>.jpg`（1024×1024）＋ thumbs 同規則。首頁 hero：`img/scenes/site-hero.jpg`。
 > 圖片 SSOT 在 Drive（repo 不進任何二進位），本機 build 只引用 URL。
 
+> **David 2026-07-19 拍板：頁面不再標示 AI 生成小字**——原「情境插畫 · AI 生成意象」（首頁 hero `.home-hero-note`、人物 hero `.ph-ai-note`）與「卡片與頁首情境圖為 AI 生成之意象插畫…」（`.cards-note`）三處聲明元素已自 `scripts/build_pages.py` 四個內嵌模板與 `templates/*.html` 參考檔移除（CSS 規則留著無害，class 只加不改）。以下 §4／§5／§6 內文中殘留的小字描述僅為改版當時（v1）的歷史規格記述，**現行 build 已不輸出**。**不變**：無肖像者用 AI 生成情境圖、不畫可辨識正面臉孔（背影／剪影／手部特寫替代）；塑像／作品照代打人物照片時，仍必須以 alt/caption 明示非本人——這兩條紀律持續適用，只是不再用頁面小字做「本圖為 AI 生成」的免責聲明。
+
 ## 0. 硬規則（實作者必讀）
 
 - **只加 class 不改名**：既有 JS 依賴的 class/id 一律保留——`.geo-tab`、`.geo-panel`、tab hash-router、`.field-chip` 篩選、地圖 popup 相關全部不准改名。
@@ -54,7 +56,7 @@
 
 ## 4. 首頁「總論」tab
 
-1. 頂部加 **hero 圖**：`img/scenes/site-hero.jpg`，寬 100%、`aspect-ratio: 21/9`、`max-height:420px`、`object-fit:cover`、圓角 2px。下緣右側小字 `情境插畫 · AI 生成意象`（0.72rem、`--ink-soft` 60% 透明）。
+1. 頂部加 **hero 圖**：`img/scenes/site-hero.jpg`，寬 100%、`aspect-ratio: 21/9`、`max-height:420px`、`object-fit:cover`、圓角 2px。（2026-07-19 起不再加 AI 生成小字說明，見上方拍板記錄）
 2. 現有導言文字：**改左對齊**（現在的 text-align:center 造成參差），max-width 62ch 置中容器，字級 1.02rem、行高 2；第一段 1.12rem。
 3. 「或切到人物…」引導句：置中、上下留 40px、前加 24px `--ochre` 短 rule（XIO「See More」樣式：左右細髮線、中央赭金字）。
 
@@ -79,8 +81,7 @@
 - `.pc-name` 1.12rem/700 `--indigo-deep`；`.pc-years` `--latin` italic 0.95rem `--ochre`；`.pc-field` 0.78rem letter-spacing .12em `--ink-soft`；tagline 0.88rem、`-webkit-line-clamp:2`。
 - Grid：`minmax(232px,1fr)`、gap 28px。
 - 篩選 chips `.field-chip`：髮線藥丸（1px `--line`、透明底、`--ink-soft`）；active＝`--ink` 底、`--paper` 字。**class 名與 data 屬性不動**（篩選 JS 依賴）。
-- 人物 grid 下方加一行小字（index 人物 tab 與領域頁皆加）：
-  `卡片與頁首情境圖為 AI 生成之意象插畫，非歷史影像；具考證出處的肖像照片，見各人物頁內文。`（0.78rem、`--ink-soft`）
+- ~~人物 grid 下方加一行小字（index 人物 tab 與領域頁皆加）~~ 2026-07-19 拍板移除（見上方拍板記錄），CSS `.cards-note` 留著無害但 build 已不輸出此段。
 
 首頁人物卡的圖：`img/scenes/thumbs/{slug}.jpg`；領域頁（在 pages/ 下）用 `../img/scenes/thumbs/{slug}.jpg`。**路徑由 build 依 slug 推導，不需 frontmatter 新欄位**；67 位全部有圖（本次一併生成）。
 
@@ -97,7 +98,7 @@ crumbs（紙底上、hero 之上，樣式沿用但縮小 0.82rem）
   <p class="ph-years">1953 — 1995</p>              ← --latin italic 1.3rem、--night-soft
   <p class="ph-tagline">用歌聲飛過邊界的歌手…</p>   ← 1.02rem、行高1.9、#e8e2d2、max-width 640px
   <div class="tag-chips">…</div>                   ← 外框改 rgba(255,255,255,.4)、字 #efe9da
-  <span class="ph-ai-note">情境插畫 · AI 生成意象</span> ← 絕對定位右下、0.72rem、rgba(255,255,255,.55)
+  <!-- .ph-ai-note 小字已於 2026-07-19 拍板移除，見上方拍板記錄 -->
 </header>
 ```
 

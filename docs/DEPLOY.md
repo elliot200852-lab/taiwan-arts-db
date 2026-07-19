@@ -23,11 +23,11 @@ repo 管怎麼組裝上架）。repo 有內容源（`content/`）、腳本（`sc
 
 | 項目 | 值 |
 |---|---|
-| Drive html 夾 | `FILL_ME_HTML_FOLDER_ID`（建好 Drive 夾後回填 `drive-manifest.yaml`）；夾內＝`index.html`＋`pages/*.html` |
-| Drive img 夾 | `FILL_ME_IMG_FOLDER_ID`（同上）；夾內鏡射 `{person-id}/{NN}.webp` |
+| Drive html 夾 | `1Mqmci41UvdbN9qxlF6_gQ-N2Y9jm6em-`（＝`drive-manifest.yaml` 的 `files.site`）；夾內＝`index.html`（file ID `14ClkDjA3xEy7vVQuF92sshanWTpWebrY`）＋`pages/` 子夾（`1LE9I0Mp2BVNQxhHaVwlvJ8WoU1sSyU9s`，內含 `pages/*.html`） |
+| Drive img 夾 | `165Zia_oiWLqVgOOVPmwT5iwxumhygUpT`（＝`drive-manifest.yaml` 的 `files.site/img`）；夾內鏡射 `{person-id}/{NN}.webp` |
 | 讀取者 | `channel-deployer@waldorfcreatorhubdatabase.iam.gserviceaccount.com` |
 | repo secret | `DRIVE_SA_KEY`（SA key JSON；key 本身不留硬碟，要新的就重產） |
-| 對照表 | `drive-manifest.yaml` |
+| 對照表 | `drive-manifest.yaml`（folder ID 唯一 SSOT，改動即以此檔為準） |
 
 `templates/` 是給內容組的**參考模板**（首頁 tab 結構、人物頁區塊順序、class 名），
 不會被部署；實際頁面生成後上傳 Drive，那裡才是 SSOT。
@@ -46,6 +46,10 @@ repo 管怎麼組裝上架）。repo 有內容源（`content/`）、腳本（`sc
 ```bash
 python scripts/verify_live.py        # 全綠才算部署成功
 ```
+
+**或直接跑 `scripts/deploy.sh`**——把上面 2–5 步串成一條：build → 只換版 Drive
+上有變動／新增的檔（md5Checksum 比對，不用一律全上傳）→ 觸發／等 CI → 驗 live，
+失敗即停。細節與 Drive folder ID 出處見腳本檔頭註解。
 
 ## 為什麼一定要驗 live
 

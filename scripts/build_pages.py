@@ -840,7 +840,6 @@ PERSON_PAGE = """<!DOCTYPE html>
       <div class="tag-chips">
 {tag_chips}
       </div>
-      <span class="ph-ai-note">情境插畫 · AI 生成意象</span>
     </header>
 
     <div class="lede"><p>{lede}</p></div>
@@ -1002,7 +1001,6 @@ INDEX_PAGE = """<!DOCTYPE html>
     <section class="tab-panel" data-panel="general" role="tabpanel">
       <figure class="home-hero">
         <img src="img/scenes/site-hero.jpg" alt="">
-        <figcaption class="home-hero-note">情境插畫 · AI 生成意象</figcaption>
       </figure>
       <div class="general-intro">
 {intro}
@@ -1017,7 +1015,6 @@ INDEX_PAGE = """<!DOCTYPE html>
       <div class="person-cards" id="person-cards">
 {cards}
       </div>
-      <p class="cards-note">卡片與頁首情境圖為 AI 生成之意象插畫，非歷史影像；具考證出處的肖像照片，見各人物頁內文。</p>
     </section>
 
     <!-- 分領域（Phase 2，2026-07-18 上線）：卡片自 content/fields/*.md 產生 -->
@@ -1306,7 +1303,6 @@ def build_field(
             '      <div class="person-cards">\n'
             f"{cards_html}\n"
             "      </div>\n"
-            '      <p class="cards-note">卡片與頁首情境圖為 AI 生成之意象插畫，非歷史影像；具考證出處的肖像照片，見各人物頁內文。</p>\n'
             "    </section>"
         )
     else:
