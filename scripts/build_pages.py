@@ -987,6 +987,18 @@ INDEX_PAGE = """<!DOCTYPE html>
     <p>{site_sub}</p>
   </header>
 
+  <div class="arts-search" role="search">
+    <label class="arts-search-label" for="arts-search-input">站內檢索</label>
+    <div class="arts-search-box">
+      <input type="text" id="arts-search-input" class="arts-search-input" role="combobox"
+             placeholder="檢索人物、歌曲、作品、關鍵字⋯" autocomplete="off"
+             aria-label="檢索人物、歌曲、作品、關鍵字" aria-expanded="false"
+             aria-controls="arts-search-results" aria-autocomplete="list">
+      <span class="arts-search-status" aria-live="polite"></span>
+    </div>
+    <ul id="arts-search-results" class="arts-search-results" role="listbox" hidden></ul>
+  </div>
+
   <nav class="geo-tabs" role="tablist" aria-label="首頁導覽">
     <button type="button" class="geo-tab" data-tab="general" role="tab" aria-selected="false">總論</button>
     <button type="button" class="geo-tab" data-tab="people" role="tab" aria-selected="false">人物</button>
@@ -1033,6 +1045,7 @@ INDEX_PAGE = """<!DOCTYPE html>
 
 {script}
 {map_script}
+  <script src="assets/js/search.js" defer></script>
 </body>
 </html>
 """
@@ -1928,6 +1941,148 @@ def build_song_pages(eras: list[dict]) -> int:
     return count
 
 
+# ---------- 站內檢索索引（2026-07-19，首頁全文檢索） ----------
+#
+# 首頁新增「站內檢索欄」（assets/js/search.js，client-side 子字串比對）。
+# build 時把人物／領域／歌曲時代頁／206 首歌曲條目攤平成單一 JSON 索引
+# `_build/search-index.json`：67 人物＋9 領域＋8 歌曲時代頁＋206 首歌曲＝
+# 290 筆。content/*.md、content/songs/*.yaml 只讀，不改寫；schema 驗證
+# 交給 main() 既有的 check_songs／各 die 檢查，本節只做攤平與純文字化。
+
+_MD_COMMENT_RE = re.compile(r"<!--.*?-->", re.S)
+_MD_FOOTNOTE_REF_RE = re.compile(r"\[\^\d+\]")
+_MD_LINK_STRIP_RE = re.compile(r"\[([^\]]+)\]\([^)]*\)")
+_MD_BOLD_STRIP_RE = re.compile(r"\*\*([^*]+)\*\*")
+_MD_HEADING_STRIP_RE = re.compile(r"^#{1,6}\s+", re.M)
+_MD_LIST_MARK_STRIP_RE = re.compile(r"^\s*(?:[-*]\s+|\d+\.\s+)", re.M)
+_MD_QUOTE_MARK_STRIP_RE = re.compile(r"^>\s?", re.M)
+
+
+def md_to_plain(text: str) -> str:
+    """受限 Markdown 子集（本 repo 的 content/*.md 寫法）→ 純文字，供搜尋索引
+    用（非顯示排版，不經過 render_* 的 HTML 管線）：去 HTML 註解、連結語法
+    （保留 label 文字）、粗體記號、標題／清單／引用行首符號、腳註標記
+    `[^N]`，最後把空白（含換行）壓成單一空格。"""
+    out = _MD_COMMENT_RE.sub(" ", text)
+    out = _MD_FOOTNOTE_REF_RE.sub(" ", out)
+    out = _MD_LINK_STRIP_RE.sub(r"\1", out)
+    out = _MD_BOLD_STRIP_RE.sub(r"\1", out)
+    out = _MD_HEADING_STRIP_RE.sub("", out)
+    out = _MD_LIST_MARK_STRIP_RE.sub("", out)
+    out = _MD_QUOTE_MARK_STRIP_RE.sub("", out)
+    return re.sub(r"\s+", " ", out).strip()
+
+
+def build_search_index(people_md: list[Path], eras: list[dict]) -> list[dict]:
+    """組出首頁站內檢索用的攤平索引，每筆 {id,url,title,sub,kw,body}：
+      - 人物 67 筆：url=pages/{slug}.html；kw 補地圖 pin 的 locality／county
+        （查無 pin 略過，不影響其餘欄位）。
+      - 領域 9 筆：url=pages/{field-slug}.html（frontmatter slug 已含
+        `field-` 前綴）。
+      - 歌曲時代頁 8 筆：url=pages/song-{slug}.html（slug 已含 `era-` 前綴）。
+      - 歌曲 206 筆：url＝所屬時代頁（無錨點可連——render_song_item() 產出
+        的 `<li class="song-item">` 未帶 id，2026-07-19 查證過原始碼確認
+        查無此錨點，故連到時代頁頂，符合任務規格的查證後退而求其次寫法）。
+    people_md／eras 沿用 main() 已載入的清單，不重新掃檔／不重新驗證
+    schema（避免與既有 die 檢查重複跑兩次）。"""
+    records: list[dict] = []
+
+    pins = load_map_pins() or []
+    pin_by_slug = {p["slug"]: p for p in pins if p["type"] == "person"}
+
+    for md_path in people_md:
+        fm, body = split_frontmatter(md_path)
+        slug = fm["slug"]
+        kw_parts = list(fm.get("tags") or []) + [fm.get("field", ""), fm.get("tagline", "")]
+        pin = pin_by_slug.get(slug)
+        if pin:
+            if pin.get("locality"):
+                kw_parts.append(pin["locality"])
+            county_name = GEO_SLUG_TO_COUNTY.get(pin.get("county", ""))
+            if county_name:
+                kw_parts.append(county_name)
+        sub = f'人物 · {fm.get("field", "")}'
+        if fm.get("years"):
+            sub += f' · {fm["years"]}'
+        records.append({
+            "id": f"person:{slug}",
+            "url": f"pages/{slug}.html",
+            "title": fm["name"],
+            "sub": sub,
+            "kw": " ".join(p for p in kw_parts if p),
+            "body": md_to_plain(body),
+        })
+
+    for md_path in sorted(FIELDS.glob("*.md")):
+        fm, body = split_frontmatter(md_path)
+        records.append({
+            "id": f"field:{fm['slug']}",
+            "url": f"pages/{fm['slug']}.html",
+            "title": fm["title"],
+            "sub": "領域",
+            "kw": fm.get("tag", ""),
+            "body": md_to_plain(body),
+        })
+
+    era_title_by_slug = {e["fm"]["slug"]: e["fm"]["title"] for e in eras}
+    person_name_by_slug = {p.stem: split_frontmatter(p)[0]["name"] for p in people_md}
+
+    for era in eras:
+        fm = era["fm"]
+        records.append({
+            "id": f"era:{fm['slug']}",
+            "url": f"pages/song-{fm['slug']}.html",
+            "title": fm["title"],
+            "sub": f'歌曲線 · {fm["period"]}',
+            "kw": fm.get("axis", ""),
+            "body": md_to_plain(era["body"]),
+        })
+
+    for era in eras:
+        era_slug = era["fm"]["slug"]
+        era_url = f"pages/song-{era_slug}.html"
+        for song in era["songs"]:
+            credits = song.get("credits") or {}
+            sub_parts = ["歌曲"]
+            if song.get("year"):
+                sub_parts.append(str(song["year"]))
+            if credits.get("original_singer"):
+                sub_parts.append(credits["original_singer"])
+            kw_parts = [
+                credits.get("lyricist", ""),
+                credits.get("composer", ""),
+                credits.get("original_singer", ""),
+                song.get("language", ""),
+                era_title_by_slug.get(era_slug, era_slug),
+            ]
+            for p_slug in song.get("people") or []:
+                kw_parts.append(person_name_by_slug.get(p_slug, p_slug))
+            body_parts = [song.get("hook", "")]
+            if song.get("note"):
+                body_parts.append(song["note"])
+            records.append({
+                "id": f"song:{song['id']}",
+                "url": era_url,
+                "title": song["title"],
+                "sub": " · ".join(sub_parts),
+                "kw": " ".join(p for p in kw_parts if p),
+                "body": " ".join(p for p in body_parts if p),
+            })
+
+    return records
+
+
+def write_search_index(records: list[dict]) -> None:
+    """輸出 `_build/search-index.json`（緊湊 JSON，UTF-8 中文直出不轉
+    \\uXXXX——GitHub Pages 以 UTF-8 服務 .json，前端 fetch 免額外解碼）。"""
+    path = BUILD / "search-index.json"
+    path.write_text(
+        json.dumps(records, ensure_ascii=False, separators=(",", ":")),
+        encoding="utf-8",
+    )
+    print(f"[build_pages] search-index.json ✓（{len(records)} 筆）")
+
+
 def main() -> None:
     if not CONTENT.is_dir():
         die("content/ 不存在")
@@ -1972,6 +2127,17 @@ def main() -> None:
         f"[build_pages] 作品掛鏈（人物頁＋領域頁）：命中 {works_linker.hits} 處；"
         f"未命中 {miss_total} 筆 → _build/works-report.txt"
     )
+
+    search_records = build_search_index(people_md, eras)
+    expected = len(people_md) + field_count + song_count + sum(len(e["songs"]) for e in eras)
+    if len(search_records) != expected:
+        die(
+            f"search-index：預期 {expected} 筆（人物{len(people_md)}＋領域{field_count}＋"
+            f"時代頁{song_count}＋歌曲{sum(len(e['songs']) for e in eras)}），"
+            f"實得 {len(search_records)} 筆"
+        )
+    write_search_index(search_records)
+
     print(
         f"[build_pages] 完成：{len(people_md) + 1 + field_count + song_count} 頁 → "
         f"{BUILD.relative_to(ROOT)}/"

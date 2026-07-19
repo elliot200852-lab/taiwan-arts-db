@@ -18,6 +18,22 @@
     <p>人文與藝術資料庫 · 教師備課用</p>
   </header>
 
+  <!-- 站內檢索欄（2026-07-19）：client-side 全文檢索，資料來自 build 時生成的
+       search-index.json（290 筆：人物67＋領域9＋歌曲時代頁8＋歌曲206）。
+       行為全在 assets/js/search.js（純函式核心＋DOM wiring 分離，Node 可測）；
+       本區塊只是靜態骨架，class 一律 .arts-search 前綴，不影響既有 hash-router。 -->
+  <div class="arts-search" role="search">
+    <label class="arts-search-label" for="arts-search-input">站內檢索</label>
+    <div class="arts-search-box">
+      <input type="text" id="arts-search-input" class="arts-search-input" role="combobox"
+             placeholder="檢索人物、歌曲、作品、關鍵字⋯" autocomplete="off"
+             aria-label="檢索人物、歌曲、作品、關鍵字" aria-expanded="false"
+             aria-controls="arts-search-results" aria-autocomplete="list">
+      <span class="arts-search-status" aria-live="polite"></span>
+    </div>
+    <ul id="arts-search-results" class="arts-search-results" role="listbox" hidden></ul>
+  </div>
+
   <!-- 「總論」「人物」「分領域」「臺灣藝文地圖」「臺灣歌曲」五個 tab
        （地圖 Phase 2B、歌曲 S1 基建，2026-07-18）——
        「人物」tab 上方的領域篩選列（field-filters）維持雛形不動，
@@ -195,5 +211,6 @@
       route(location.hash, false);
     })();
   </script>
+  <script src="assets/js/search.js" defer></script>
 </body>
 </html>

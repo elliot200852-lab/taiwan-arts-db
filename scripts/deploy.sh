@@ -7,6 +7,8 @@
 #
 #   1. python3 scripts/build_pages.py
 #        content/*.md → _build/index.html ＋ _build/pages/*.html（鏡射 Drive html 夾結構）
+#        ＋ _build/search-index.json（首頁站內檢索索引，2026-07-19；與 index.html
+#        同層放 Drive html 夾根目錄，pull_content.py 遞迴鏡射整夾，不需另外改它）
 #   2. 換版 Drive：比對 _build/ 與 Drive 現版（md5Checksum），只換有變動的檔；
 #        Drive 沒有的新檔用 gws ... create --json（帶 metadata）建立，
 #        **不可用 --params 建檔**（那是給 update 用的 query 參數，用在 create 上
@@ -91,6 +93,7 @@ sync_one() {
 }
 
 sync_one "_build/index.html" "$html_children" "$HTML_FOLDER_ID"
+sync_one "_build/search-index.json" "$html_children" "$HTML_FOLDER_ID"
 for f in _build/pages/*.html; do
   sync_one "$f" "$pages_children" "$PAGES_FOLDER_ID"
 done

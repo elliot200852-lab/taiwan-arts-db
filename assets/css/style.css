@@ -84,6 +84,110 @@ a { color: var(--indigo-deep); }
   box-shadow: 0 4px 0 var(--hair);
 }
 
+/* ---------- 首頁站內檢索（2026-07-19）：髮線框輸入欄，push-down 結果面板 ---------- */
+.arts-search {
+  max-width: 560px;
+  margin: 1.6rem auto 0;
+  padding: 0 1.2rem;
+}
+.arts-search-label {
+  display: block;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: .72rem;
+  letter-spacing: .3em;
+  color: var(--ink-soft);
+  margin-bottom: .5rem;
+}
+.arts-search-box {
+  position: relative;
+  border-bottom: 1px solid var(--line);
+  transition: border-color .15s;
+}
+.arts-search-box:focus-within { border-color: var(--ochre); }
+.arts-search-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  color: var(--ink);
+  padding: .55rem .1rem;
+  text-align: center;
+}
+.arts-search-input::placeholder { color: var(--ink-soft); opacity: .7; }
+.arts-search-status {
+  display: block;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: .72rem;
+  color: var(--ink-soft);
+  min-height: 1.2em;
+  padding: .3rem 0 0;
+}
+.arts-search-results {
+  list-style: none;
+  margin: .4rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--hair);
+}
+.arts-search-results[hidden] { display: none; }
+.arts-search-result {
+  border-bottom: 1px solid var(--hair);
+}
+.arts-search-result a {
+  display: block;
+  padding: .7rem .3rem;
+  text-decoration: none;
+  color: inherit;
+}
+.arts-search-result.active,
+.arts-search-result a:hover {
+  background: var(--paper-2);
+}
+.arts-search-result .asr-title {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--indigo-deep);
+}
+.arts-search-result .asr-sub {
+  display: block;
+  font-family: var(--sans);
+  font-size: .76rem;
+  letter-spacing: .04em;
+  color: var(--ochre);
+  margin-top: .15rem;
+}
+.arts-search-result .asr-snippet {
+  display: block;
+  font-family: var(--sans);
+  font-size: .84rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-top: .3rem;
+}
+.arts-search-result mark,
+.arts-search-empty mark {
+  background: var(--ochre-soft);
+  color: var(--ink);
+  padding: 0 .1em;
+  border-radius: 2px;
+}
+.arts-search-empty {
+  text-align: center;
+  font-family: var(--sans);
+  font-size: .88rem;
+  color: var(--ink-soft);
+  padding: 1rem .3rem;
+}
+@media (max-width: 480px) {
+  .arts-search { padding: 0 .8rem; }
+  .arts-search-input { font-size: .96rem; }
+}
+
 /* ---------- 首頁分頁（XIO 極簡字標式 tab） ---------- */
 .geo-tabs {
   display: flex;
