@@ -1170,7 +1170,10 @@ body.theme-songs .page-foot a { color: var(--pale-gold); }
 }
 @media (max-width: 760px) {
   body { font-size: 16px; }
-  .site-head h1 { font-size: 1.9rem; }
+  /* 2026-07-19 手機寬度 wordmark 溢出修復：縮小字級＋收窄字距，
+     在窄螢幕上多留安全邊界（避免中文字型 fallback／系統放大字體時
+     六字站名超出 .site-head 可用寬度而被 overflow-x:hidden 裁切）。 */
+  .site-head h1 { font-size: 1.7rem; letter-spacing: .02em; }
   .geo-tabs { gap: 1rem; }
   .geo-tab { font-size: .82rem; letter-spacing: .1em; }
   .person-cards { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
