@@ -108,11 +108,11 @@ songs:
         label: 純純 1933 古倫美亞原版（國立臺灣歷史博物館・臺灣音聲一百年）
         source_type: archive
         version: original
-      - url: https://www.youtube.com/watch?v=iRzMNKT4Jj0
-        label: 鄧麗君翻唱（Teresa Teng 官方 Topic 頻道）
+      - url: https://www.youtube.com/watch?v=v2zjxM4wtZc
+        label: 鄧麗君翻唱・望春風(台語)（Teresa Teng 官方頻道）
         source_type: official
         version: famous_cover
-    note: 1933 年 9 月錄音、同年底發行，唱片編號日蓄（古倫美亞）80283。皇民化時期一度被改填日語詞為時局歌曲〈大地は招く〉。
+    note: 1933 年 9 月錄音、同年底發行，唱片編號日蓄（古倫美亞）80283。皇民化時期一度被改填日語詞為時局歌曲〈大地は招く〉。2026-07-19 famous_cover 原影片（iRzMNKT4Jj0）遭轉為無法播放，換同官方頻道可播版本（2:52，瀏覽器實測可播）。
     sources:
       - 詞曲、1933 年錄音發行、唱片編號、歌詞流變：https://audio.nmth.gov.tw/audio/%e6%9c%9b%e6%98%a5%e9%a2%a8/
       - 作者生平與翻唱史：https://zh.wikipedia.org/zh-tw/%E6%9C%9B%E6%98%A5%E9%A2%A8
