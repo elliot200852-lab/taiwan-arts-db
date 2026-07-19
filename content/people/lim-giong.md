@@ -12,6 +12,11 @@ geo:
   url: https://elliot200852-lab.github.io/taiwan-geo-db/pages/changhua.html
   text: 林強是彰化人，本名林志峰。從彰化縣頁看這片平原，想一想《向前走》裡那個離開家鄉、北上台北闖蕩的年輕人，唱的正是從這裡出發的心情。
 credit: 本頁部分取材自 Taiwan.md《林強》（CC BY-SA 4.0），逐條出處見文末。本頁為教師備課資料庫。
+portrait:
+  file: "lim-giong/portrait.jpg"
+  alt: "林強在電子音樂器材前操作、演出"
+  caption_title: "林強（攝於2015年）"
+  caption_credit: "佛空靈／Wikimedia Commons · CC BY-SA 4.0"
 ---
 
 ## 他是誰

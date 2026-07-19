@@ -15,6 +15,11 @@ source:
   title: Taiwan.md《羅大佑：唱盡台灣失根的人，自己搬了十九次家還在找路》
   url: https://taiwan.md/people/%E7%BE%85%E5%A4%A7%E4%BD%91/
 credit: 本頁部分取材自 Taiwan.md《羅大佑》（CC BY-SA 4.0），逐條出處見文末。本頁為教師備課資料庫。
+portrait:
+  file: "lo-ta-yu/portrait.jpg"
+  alt: "羅大佑戴眼鏡、身著紫色外套在麥克風前"
+  caption_title: "羅大佑（攝於2011年）"
+  caption_credit: "Daniel M Shih · CC BY-SA 2.0"
 ---
 
 ## 他是誰

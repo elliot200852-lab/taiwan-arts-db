@@ -13,6 +13,11 @@ geo:
   url: https://elliot200852-lab.github.io/taiwan-geo-db/pages/tainan.html
   text: 葉王最重要的作品在臺南學甲的慈濟宮。說完他的故事，打開臺南市頁認識學甲這一帶的鹽分地帶與老廟聚落，再回頭看那六件國寶交趾陶為什麼值得專程去看。
 credit: 本頁為教師備課資料庫。
+portrait:
+  file: "yeh-wang/portrait.jpg"
+  alt: "葉王交趾陶作品「文官立像」，一尊彩釉文官陶塑"
+  caption_title: "葉王交趾陶「文官立像」（嘉義市立博物館藏）"
+  caption_credit: "攝影 Pbdragonwang／Wikimedia Commons · CC BY-SA 4.0"
 ---
 
 ## 他是誰

@@ -12,6 +12,11 @@ geo:
   url: https://elliot200852-lab.github.io/taiwan-geo-db/pages/taipei.html
   text: 陳明章生於臺北北投，他的音樂養分來自北投的野台戲與那卡西。從臺北市頁看北投的溫泉聚落，想一想一個在戲棚腳長大的孩子,怎麼把這些聲音變成自己的歌。
 credit: 本頁為教師備課資料庫；出處見文末。
+portrait:
+  file: "chen-ming-chang/portrait.jpg"
+  alt: "陳明章低頭彈奏月琴"
+  caption_title: "陳明章（2022年3月6日，彈月琴）"
+  caption_credit: "Official Photo by Simon Liu / Office of the President · CC BY 2.0"
 ---
 
 ## 他是誰

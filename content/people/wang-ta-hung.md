@@ -12,6 +12,11 @@ geo:
   url: https://elliot200852-lab.github.io/taiwan-geo-db/pages/taipei.html
   text: 王大閎最重要的作品國父紀念館，就在臺北市。說完他的故事，打開臺北市頁認識這座城市的現代面貌，再回頭看看那道翹起卻不照抄古代的屋簷。
 credit: 本頁為教師備課資料庫。
+portrait:
+  file: "wang-ta-hung/portrait.jpg"
+  alt: "青年王大閎站在1937年巴黎街頭一輛汽車旁"
+  caption_title: "王大閎（攝於1937年，巴黎）"
+  caption_credit: "Wikimedia Commons · 公有領域（Public Domain）"
 ---
 
 ## 他是誰

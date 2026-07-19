@@ -12,6 +12,11 @@ geo:
   url: https://elliot200852-lab.github.io/taiwan-geo-db/pages/yilan-yilan.html
   text: 黃聲遠三十年來的作品幾乎都在宜蘭。說完他的故事，打開宜蘭縣頁認識蘭陽平原的稻田與河流，再回頭看他為什麼要讓建築「長」在這片地景裡。
 credit: 本頁為教師備課資料庫。
+portrait:
+  file: "huang-sheng-yuan/portrait.jpg"
+  alt: "黃聲遠戴圓框眼鏡微笑的側臉"
+  caption_title: "黃聲遠（2023年6月28日）"
+  caption_credit: "中華民國總統府／Flickr（via Wikimedia Commons）· CC BY 2.0"
 ---
 
 ## 他是誰
