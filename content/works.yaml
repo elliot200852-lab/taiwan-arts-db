@@ -1,0 +1,565 @@
+# content/works.yaml — 作品掛鏈登記簿（2026-07-19 立，作品自動掛鏈基礎建設）
+#
+# 用途：人物頁與領域頁正文／作品清單中的《作品名》〈作品名〉，build 時由
+#   scripts/build_pages.py 依本簿自動掛上外部連結（MD 正文一字不動）。
+#   歌曲已有 content/songs/era-*.yaml 登記簿（title → listen[0]），本簿收
+#   「歌曲登記簿以外」的作品：專輯、美術、書、電影、舞台／舞作等。
+#
+# 掛鏈優先序（scripts/build_pages.py 的 WorksLinker）：
+#   1. 本簿帶 `pages` 限定且命中該頁 slug 的條目（同名異作消歧義用）
+#   2. 本簿全域條目（無 pages 限定）
+#   3. 全域歌名索引（era-*.yaml title → listen[0].url；同名取最早期別＝原唱）
+#
+# schema（每筆）：
+#   title: ｜必｜比對用題名，「不含」書名號——正文的《title》與〈title〉都會命中
+#   url:   ｜必｜外部連結。連結紀律照 docs/SONGS-SPEC.md §5 授權優先序：
+#          official／archive／broadcaster／foundation 層級來源才收，個人帳號
+#          上傳的完整作品不收；連結須直達單一作品頁，不收搜尋結果頁／歌單頁。
+#   label: 選填，這條連結是什麼（誰的版本＋來源機構），供維護者與盲驗辨識。
+#   type:  ｜必｜song｜album｜art｜book｜film｜play｜other
+#   pages: 選填，頁 slug 陣列（人物頁 slug 或 field-* slug）——限定只在這些頁
+#          掛鏈；省略＝全站通用。
+#   note:  選填，一句話補充（版本考證、來源說明）。
+#
+# 維護流程：未命中清單看 _build/works-report.txt（每次 build 產生），後續批次
+# 照它補條目；新增條目後跑 `python3 scripts/check_works.py` 驗 schema 與連結。
+
+works:
+  - title: 薪傳
+    url: https://www.youtube.com/watch?v=_v64l5VO0EE
+    label: 雲門五十《薪傳》震撼重現（雲門舞集官方頻道）
+    type: play
+    note: 林懷民 1978 年舞作，以 play（舞台作品）歸類；2023 雲門 50 週年重演官方影片。
+  - title: 悲情城市
+    url: https://www.youtube.com/watch?v=E024kZuGxCE
+    label: 33 週年 4K 數位版官方預告（牽猴子・臺灣發行商頻道）
+    type: film
+    pages: [hou-hsiao-hsien, field-film]
+    note: pages 限定示範條目——只在侯孝賢人物頁與電影領域頁掛鏈。
+  - title: 水牛群像
+    url: https://ntmofa-collections.ntmofa.gov.tw/GalData.aspx?RNO=M8MYMSMLMAMAMHMY
+    label: 國立臺灣美術館典藏資料頁
+    type: art
+    note: 黃土水 1930 年石膏浮雕；連到國美館典藏單頁（archive 級來源）。
+
+  # ==== 2026-07-19 批次補完（4 支查找 agent，David「作品都要有連結」指示）====
+  - title: 抓狂歌
+    url: https://www.youtube.com/watch?v=u719i12GW6E
+    label: 黑名單工作室《抓狂歌》主打歌〈抓狂 MAD〉official Lyric Video（滾石唱片 ROCK RECORDS 官方頻道）
+    type: album
+    pages: [blacklist-studio]
+    note: 驗證日 2026-07-19；oembed 確認頻道＝滾石唱片 ROCK RECORDS。
+  - title: kinakaian 母親的舌頭
+    url: https://www.youtube.com/watch?v=Tsh4lMH1fA8
+    label: 阿爆（阿仍仍）同名主打歌 feat. 林宜瑾／丁立芬 共創 Music Video（狠配 Very Mixer 頻道，2020 文化部流行音樂補助跨界創作企劃、狠主流多媒體製作）
+    type: album
+    pages: [abao]
+    note: 驗證日 2026-07-19；非個人帳號上傳，為文化部補助之官方跨界創作企劃頻道發布。
+  - title: 椏幹
+    url: https://www.youtube.com/watch?v=ealNSQUDAaU
+    label: 桑布伊《椏幹》全專輯試聽 Full Album Sampler（風潮音樂 Wind Music 官方頻道）
+    type: album
+    pages: [sangpuy]
+    note: 驗證日 2026-07-19；oembed 確認頻道＝風潮音樂 Wind Music。
+  - title: 得力量 pulu'em
+    url: https://www.youtube.com/watch?v=ooA5h2f1ISQ
+    label: 桑布伊同名主打歌官方音源（桑布伊 - Topic 官方頻道）
+    type: album
+    pages: [sangpuy]
+    note: 驗證日 2026-07-19；oembed 確認頻道＝「桑布伊 - Topic」（發行商自動上傳）。
+  - title: 搖籃曲
+    url: https://www.youtube.com/watch?v=kkoSgPXAsF0
+    label: 黑名單工作室《搖籃曲》同名主打歌 Official Music Video（滾石唱片 ROCK RECORDS 官方頻道）
+    type: album
+    pages: [blacklist-studio]
+    note: 驗證日 2026-07-19；oembed 確認頻道＝滾石唱片 ROCK RECORDS，標題與作品名完全吻合。
+  - title: 神話
+    url: https://www.youtube.com/watch?v=E-9cb5aiE3g
+    label: 紀曉君演唱、陳建年作曲〈神話〉Official Music Video（滾石唱片 ROCK RECORDS 官方頻道）
+    type: song
+    pages: [chen-chien-nien]
+    note: 驗證日 2026-07-19；oembed 確認頻道＝滾石唱片 ROCK RECORDS；歌曲人物脈絡與陳建年頁面吻合。
+  - title: 來去夏威夷
+    url: https://www.youtube.com/watch?v=YLhUUYYU4mY
+    label: 金門王與李炳輝同名主打歌 Official Music Video（滾石唱片 ROCK RECORDS 官方頻道）
+    type: album
+    pages: [kinmen-wang-li-ping-hui]
+    note: 驗證日 2026-07-19；oembed 確認頻道＝滾石唱片 ROCK RECORDS。
+  - title: 我只在乎你
+    url: https://www.youtube.com/watch?v=NRTVouZ3u4w
+    label: 鄧麗君 Official Music Video（TeresaTengVEVO 官方頻道）
+    type: song
+    pages: [teresa-teng]
+    note: 驗證日 2026-07-19；oembed 確認頻道＝TeresaTengVEVO（UMG 官方 VEVO 頻道）。
+  - title: Thank You 感謝
+    url: https://www.youtube.com/watch?v=4cAp_IdqOuM
+    label: 阿爆（阿仍仍）同名 Official Music Video（ABAO阿爆_阿仍仍 官方頻道）
+    type: song
+    pages: [abao]
+    note: 驗證日 2026-07-19；oembed 確認頻道為藝人本人官方頻道 ABAO阿爆_阿仍仍。
+  - title: vavayan·女人
+    url: https://www.youtube.com/watch?v=xHnx9oYzY0U
+    label: 阿爆《vavayan 女人》專輯主打歌〈vavayan 排灣女孩〉Official Music Video（十一音樂ELEVENZ MUSIC 官方頻道，阿爆所屬廠牌）
+    type: album
+    pages: [abao]
+    note: 驗證日 2026-07-19；十一音樂為阿爆實際所屬發行廠牌（官方 FB/IG 同名），非個人搬運。
+  - title: 東排三聲代
+    url: https://www.youtube.com/watch?v=oDZsmeysovo
+    label: 阿爆（阿仍仍）『東排三聲代』古謠專輯試聽：uwa uwa訂婚曲（ABAO阿爆_阿仍仍 官方頻道）
+    type: album
+    pages: [abao]
+    note: 驗證日 2026-07-19；oembed 確認頻道為藝人本人官方頻道。
+  - title: 天天想你
+    url: https://www.youtube.com/watch?v=0yZuyXFdVFs
+    label: 張雨生同名主打歌 Audio Video（滾石唱片 ROCK RECORDS 官方頻道）
+    type: song
+    pages: [chang-yu-sheng]
+    note: 驗證日 2026-07-19；oembed 確認頻道＝滾石唱片 ROCK RECORDS。
+  - title: 圍庄
+    url: https://www.youtube.com/watch?v=hdYOtF0rjJI
+    label: 生祥樂隊《圍庄》同名主打歌 Music Video（Sheng-Xiang & Band 官方頻道）
+    type: album
+    pages: [chung-yung-feng, lin-sheng-hsiang]
+    note: 驗證日 2026-07-19；oembed 確認頻道＝生祥樂隊官方頻道 Sheng-Xiang & Band。
+  - title: 我庄
+    url: https://www.youtube.com/watch?v=bYsYOMzgkCM
+    label: 生祥樂隊《我庄》同名主打歌 I-Village（風潮音樂 Wind Music 官方頻道）
+    type: album
+    pages: [chung-yung-feng]
+    note: 驗證日 2026-07-19；oembed 確認頻道＝風潮音樂 Wind Music，標題與作品名完全吻合。
+  - title: 野蓮出庄
+    url: https://www.youtube.com/watch?v=EB0tI_q_PTM
+    label: 生祥樂隊同名主打歌〈野蓮出庄〉Water Snowflake Goes to Market Official Music Video（Sheng-Xiang & Band 官方頻道）
+    type: album
+    pages: [chung-yung-feng, lin-sheng-hsiang]
+    note: 驗證日 2026-07-19；oembed 確認頻道＝生祥樂隊官方頻道 Sheng-Xiang & Band。
+  - title: 卡通人物
+    url: https://www.youtube.com/watch?v=UXHTGeGkZwU
+    label: 茄子蛋《卡通人物》專輯主打歌〈親愛的無情孫小美 Dear Heartless〉Official Music Video（茄子蛋EggPlantEgg 官方頻道）
+    type: album
+    pages: [eggplantegg]
+    note: 驗證日 2026-07-19；專輯本身無同名主打歌，改採官方頻道之專輯代表曲；oembed 確認頻道為樂團本人官方頻道。
+  - title: 家後
+    url: https://www.youtube.com/watch?v=EmqfzVT23gs
+    label: 江蕙官方 YouTube Topic 頻道（Jody Chiang - Topic，發行商自動上傳）
+    type: song
+    pages: [chiang-hui]
+    note: 驗證日 2026-07-19；頻道 Jody Chiang - Topic；oembed 標題核對為《家後》。
+  - title: 口是心非
+    url: https://www.youtube.com/watch?v=QAmsnJQEb20
+    label: 張雨生《口是心非》官方 MV（豐華唱片 ForwardMusic 官方頻道）
+    type: song
+    pages: [chang-yu-sheng]
+    note: 驗證日 2026-07-19；頻道 豐華唱片ForwardMusic；標題含「官方MV」字樣。
+  - title: 秋風夜雨
+    url: https://www.youtube.com/watch?v=VjYqSBHjz2Y
+    label: 江蕙演唱版本（Jody Chiang - Topic，發行商自動上傳）
+    type: song
+    pages: [chou-tien-wang, yang-san-lang]
+    note: 驗證日 2026-07-19；周添旺詞、楊三郎曲；頻道 Jody Chiang - Topic；oembed 標題核對為《秋風夜雨》（與同名不同曲《港都夜雨》區分過）。
+  - title: 四季春
+    url: https://www.youtube.com/watch?v=CJX5jaj2rPs
+    label: 陳達恆春調聯篇演唱錄音，含《四季春》段落（Chen Da - Topic 官方頻道）
+    type: song
+    pages: [chen-da]
+    note: 驗證日 2026-07-19；頻道 Chen Da - Topic；oembed 標題「Remembering, Wu Kong Minor, Si Ji Chun, and Gu Bo Pua」為聯篇錄音，與《五孔仔調》共用同一連結（同曲目不同段落）。
+  - title: 五孔仔調
+    url: https://www.youtube.com/watch?v=CJX5jaj2rPs
+    label: 陳達恆春調聯篇演唱錄音，含《五孔小調》段落（Chen Da - Topic 官方頻道）
+    type: song
+    pages: [chen-da]
+    note: 驗證日 2026-07-19；頻道 Chen Da - Topic；與《四季春》共用同一聯篇錄音連結，勿誤判為重複條目。
+  - title: 草螟弄雞公
+    url: https://audio.nmth.gov.tw/audio/zh-TW/Item/Detail/88d43cb0-c034-418d-8b53-2fcffdb566dd
+    label: 國立臺灣歷史博物館「臺灣音聲一百年」典藏頁（條目名「草螟仔弄雞公」）
+    type: song
+    pages: [chen-da]
+    note: 驗證日 2026-07-19；curl -sIL 回 301（站內固定轉址，屬正常，同夜半路燈條目模式）；機構典藏民間流傳版本，非陳達本人錄音。
+  - title: 落雨聲
+    url: https://www.youtube.com/watch?v=bV9o1UGVooQ
+    label: 江蕙官方 YouTube Topic 頻道（Jody Chiang - Topic）
+    type: song
+    pages: [chiang-hui]
+    note: 驗證日 2026-07-19；周杰倫曲、方文山詞，江蕙 2013 年復出代表作，非早期同名台語民謠；頻道 Jody Chiang - Topic。
+  - title: 搖嬰仔歌
+    url: https://dl.lib.ntu.edu.tw/s/4seas/media/629498
+    label: 國立臺灣大學圖書館數位典藏館「呂泉生歌曲集（四海唱片）」典藏音檔
+    type: song
+    pages: [lu-chuan-sheng]
+    note: 驗證日 2026-07-19；curl -sIL 回 HTTP 200；學術機構典藏來源（NTU 圖書館數位典藏館）。
+  - title: 南都夜曲
+    url: https://www.youtube.com/watch?v=GFLzEl1Fpt8
+    label: 江蕙演唱版本（Jody Chiang - Topic，發行商自動上傳）
+    type: song
+    pages: [chen-ta-ju]
+    note: 驗證日 2026-07-19；陳達儒詞、郭玉蘭曲，原名《南京夜曲》（1938）；頻道 Jody Chiang - Topic；與《南都之夜》（許石版，已收錄於既有 registry）為不同曲目，勿混淆。
+  - title: 黃昏嶺
+    url: https://www.youtube.com/watch?v=cZxkidGi0M0
+    label: 紀露霞官方 YouTube Topic 頻道（Chi Lu-hsia - Topic）
+    type: song
+    pages: [chi-lu-hsia]
+    note: 驗證日 2026-07-19；頻道 Chi Lu-hsia - Topic；oembed 標題核對為《黃昏嶺》。
+  - title: 夜半路燈
+    url: https://audio.nmth.gov.tw/audio/zh-TW/Item/Detail/a58bc2eb-bc78-4fa6-a223-87b681e358ae
+    label: 國立臺灣歷史博物館「臺灣音聲一百年」典藏頁（條目名「夜半的路燈」）
+    type: song
+    pages: [hsu-shih]
+    note: 驗證日 2026-07-19；許石作曲、周添旺填詞；curl -sIL 回 301（站內固定轉址，屬正常）。
+  - title: 情人的黃襯衫
+    url: https://www.youtube.com/watch?v=6HDnAPqwjKY
+    label: 鄧麗君演唱版本（Teresa Teng - Topic，官方頻道）
+    type: song
+    pages: [shen-chih]
+    note: 驗證日 2026-07-19；慎芝作詞、孫夕友作曲；頻道 Teresa Teng - Topic（非原唱謝雷版本，但為官方發行的合法錄音）。
+  - title: 飄浪之女
+    url: https://www.youtube.com/watch?v=ATmyNrQQXrE
+    label: 文夏官方 YouTube Topic 頻道（文夏 - Topic）
+    type: song
+    pages: [wen-hsia]
+    note: 驗證日 2026-07-19；頻道 文夏 - Topic；YouTube 顯示曲名「漂浪之女」，與《飄浪之女》同曲異寫。
+  - title: 苦海女神龍
+    url: https://www.youtube.com/watch?v=gnKXC-ny8-c
+    label: 邱蘭芬（原唱）官方 YouTube Topic 頻道
+    type: song
+    pages: [huang-chun-hsiung]
+    note: 驗證日 2026-07-19；黃俊雄填詞（雲州大儒俠布袋戲主題曲），最早原唱邱蘭芬；頻道 邱蘭芬 - Topic。
+  - title: 愛情你比我想的閣較偉大
+    url: https://www.youtube.com/watch?v=0rp3pP2Xwhs
+    label: 茄子蛋 EggPlantEgg 官方 MV（樂團官方頻道）
+    type: song
+    pages: [eggplantegg]
+    note: 驗證日 2026-07-19；電影《當男人戀愛時》主題曲；頻道 茄子蛋EggPlantEgg，標題含「Official Music Video」。
+  - title: 我是一片雲
+    url: https://www.youtube.com/watch?v=OGxOJdC0bQE
+    label: 鳳飛飛官方 YouTube Topic 頻道（Feng Fei Fei - Topic，東尼機構）
+    type: song
+    pages: [feng-fei-fei]
+    note: 驗證日 2026-07-19；同名電影（1977，瓊瑤原著）主題曲；頻道 Feng Fei Fei - Topic（同系列另見「東尼機構官方頻道」上傳版本）。
+  - title: 臺灣舞曲
+    url: https://www.youtube.com/watch?v=fWvxYYgXBM8
+    label: 民視新聞網官方頻道（鋼琴家陳瑞斌演奏片段，江文也逝世 35 週年報導）
+    type: album
+    pages: [chiang-wen-yeh, field-music]
+    note: 驗證日 2026-07-19；頻道 民視新聞網 Formosa TV News network（廣播機構層級）；為新聞報導中的鋼琴演奏片段而非完整管絃樂錄音，若需完整版建議另尋 NSO／樂團錄音補強。
+  - title: 甘露水
+    url: https://ntmofa-collections.ntmofa.gov.tw/GalData.aspx?RNO=MXMDM6M8MAMSM8M2
+    label: 國立臺灣美術館典藏資料頁
+    type: art
+    pages: [huang-tu-shui]
+    note: 驗證日 2026-07-19，國美館典藏網（ntmofa-collections.ntmofa.gov.tw）；黃土水 1921 年大理石雕，2021 年由文化部永久典藏。
+  - title: 合奏
+    url: https://twfineartsarchive.ntmofa.gov.tw/TW/Literature/liMakehistory.aspx?QID=01ME
+    label: 國美館台灣美術知識庫－陳進紀錄片「膠彩人世美 陳進」介紹頁（含《合奏》說明）
+    type: art
+    pages: [chen-jin, field-art]
+    note: 驗證日 2026-07-19，twfineartsarchive.ntmofa.gov.tw；非單一作品專頁，但為國美館官方頁面且逐一點名《合奏》。原作是否仍存待考。
+  - title: 圓山附近
+    url: https://www.tfam.museum/collection/CollectionDetail.aspx?CID=3359&ddlLang=zh-tw
+    label: 臺北市立美術館典藏頁
+    type: art
+    pages: [kuo-hsueh-hu]
+    note: 驗證日 2026-07-19，tfam.museum；郭雪湖 1928 年第 2 回臺展特選第一席作品，現藏北美館。
+  - title: 蓮池
+    url: https://ntmofa-collections.ntmofa.gov.tw/GalData.aspx?RNO=M8MAMBM8MAMAMKMY
+    label: 國立臺灣美術館典藏資料頁
+    type: art
+    pages: [lin-yu-shan]
+    note: 驗證日 2026-07-19，國美館典藏網；林玉山 1930 年第 4 回臺展特選＋臺展賞，2015 年文化部審定為國寶。
+  - title: 姿
+    url: https://twfineartsarchive.ntmofa.gov.tw/TW/Literature/liMakehistory.aspx?QID=01ME
+    label: 國美館台灣美術知識庫－陳進紀錄片介紹頁（含《姿》說明）
+    type: art
+    pages: [chen-jin]
+    note: 驗證日 2026-07-19；同「合奏」條，1927 年首屆臺展入選三少年作品之一，原作行蹤多不明，僅見於此類機構介紹頁。
+  - title: 罌粟
+    url: https://twfineartsarchive.ntmofa.gov.tw/TW/Literature/liMakehistory.aspx?QID=01ME
+    label: 國美館台灣美術知識庫－陳進紀錄片介紹頁（含《罌粟》說明）
+    type: art
+    pages: [chen-jin]
+    note: 驗證日 2026-07-19；同「姿」條。
+  - title: 朝
+    url: https://twfineartsarchive.ntmofa.gov.tw/TW/Literature/liMakehistory.aspx?QID=01ME
+    label: 國美館台灣美術知識庫－陳進紀錄片介紹頁（含《朝》說明）
+    type: art
+    pages: [chen-jin]
+    note: 驗證日 2026-07-19；同「姿」條。題名極短，pages 已限定 chen-jin，避免全站誤掛。
+  - title: 牧童
+    url: https://catalog.digitalarchives.tw/item/00/15/33/d2.html
+    label: 數位典藏與學習聯合目錄－朱銘〈牛與牧童〉作品紀錄
+    type: art
+    pages: [ju-ming]
+    note: 驗證日 2026-07-19，catalog.digitalarchives.tw；朱銘 1970 年代鄉土系列木雕，人物頁原文將《牧童》《水牛》併提。
+  - title: 水牛
+    url: https://catalog.digitalarchives.tw/item/00/15/34/1b.html
+    label: 數位典藏與學習聯合目錄－朱銘〈水牛〉作品紀錄
+    type: art
+    pages: [ju-ming]
+    note: 驗證日 2026-07-19，catalog.digitalarchives.tw；朱銘鄉土系列木雕。題名極短，pages 已限定 ju-ming，避免與黃土水《水牛群像》混淆。
+  - title: 淡水夕照
+    url: https://chengpo.org/topic_post/%E6%B7%A1%E6%B0%B4%E5%A4%95%E7%85%A7-2/
+    label: 陳澄波文化基金會作品介紹頁
+    type: art
+    pages: [chen-cheng-po, field-art]
+    note: 驗證日 2026-07-19，chengpo.org；陳澄波約 1935 年油畫，2007 年佳士得拍出台籍畫家最高紀錄。
+  - title: 清流
+    url: https://chengpo.org/topic_post/%E6%B8%85%E6%B5%81/
+    label: 陳澄波文化基金會作品介紹頁
+    type: art
+    pages: [chen-cheng-po]
+    note: 驗證日 2026-07-19，chengpo.org；題名極短，pages 已限定 chen-cheng-po。
+  - title: 自畫像
+    url: https://chengpo.org/topic_post/%E8%87%AA%E7%95%AB%E5%83%8F%E4%B8%80/
+    label: 陳澄波文化基金會作品介紹頁（自畫像一，1928）
+    type: art
+    pages: [chen-cheng-po]
+    note: 驗證日 2026-07-19，chengpo.org；陳澄波現存至少兩幅自畫像（一）（二），此連自畫像（一）。題名極短，pages 已限定 chen-cheng-po。
+  - title: 太平有象
+    url: https://tcmb.culture.tw/zh-tw/detail?indexCode=MOCCOLLECTIONS&id=20000017204
+    label: 國家文化記憶庫－陳萬能錫工藝作品頁
+    type: art
+    pages: [chen-wan-neng]
+    note: 驗證日 2026-07-19，tcmb.culture.tw，內文明確提及陳萬能；八卦紋樣錫器，象與瓶諧音「太平有象」。
+  - title: 釋迦出山
+    url: https://ntmofa-collections.ntmofa.gov.tw/GalData.aspx?RNO=M7MDMZMLMAMRMKMY
+    label: 國立臺灣美術館典藏資料頁
+    type: art
+    pages: [huang-tu-shui]
+    note: 驗證日 2026-07-19，國美館典藏網；黃土水受艋舺龍山寺委託之木雕，原作二戰轟炸中焚毀，此為留存石膏原模翻銅版本典藏紀錄。
+  - title: 南街殷賑
+    url: https://www.tfam.museum/collection/CollectionDetail.aspx?ddlLang=zh-tw&CID=3175
+    label: 臺北市立美術館典藏頁
+    type: art
+    pages: [field-art, kuo-hsueh-hu]
+    note: 驗證日 2026-07-19，tfam.museum；郭雪湖 1930 年第 4 回臺展賞作品，現藏北美館。
+  - title: 壓不扁的玫瑰
+    url: https://db.nmtl.gov.tw/site2/dictionary?id=Dictionary02170&searchkey=%E9%BB%83%E6%83%A0%E7%A6%8E
+    label: 台灣文學辭典資料庫條目
+    type: book
+    pages: [field-literature, yang-kui]
+    note: 驗證日 2026-07-19，db.nmtl.gov.tw；楊逵 1957 年綠島獄中作，原題〈春光關不住〉，收入教科書時改題。與 works.yaml 既有條目「壓不扁的玫瑰花」為同一作品之異名，此條專供比對「壓不扁的玫瑰」四字。
+  - title: 和平宣言
+    url: https://zh.wikipedia.org/zh-tw/%E5%92%8C%E5%B9%B3%E5%AE%A3%E8%A8%80
+    label: 維基百科作品條目
+    type: book
+    pages: [field-literature, yang-kui, yeh-tao]
+    note: 驗證日 2026-07-19；楊逵 1949 年執筆之宣言，四六事件遭捕入獄 12 年之導火線，葉陶亦受牽連。
+  - title: 菊花如何夜行軍
+    url: https://www.thenewslens.com/article/161351
+    label: 關鍵評論網書評
+    type: book
+    pages: [chung-yung-feng]
+    note: 驗證日 2026-07-19；鍾永豐 2022 年春山出版散文集，交工／生祥樂隊詞人首本散文集。
+  - title: 笠山農場
+    url: https://db.nmtl.gov.tw/site2/dictionary?id=Dictionary00824&searchkey=%E9%8D%BE%E6%80%A1%E5%BD%A5
+    label: 台灣文學辭典資料庫條目
+    type: book
+    pages: [field-literature, zhong-li-he]
+    note: 驗證日 2026-07-19，db.nmtl.gov.tw；鍾理和唯一長篇小說，1956 年獲中華文藝獎金委員會長篇小說第二獎（第一獎從缺）。
+  - title: 愛的結晶
+    url: https://collections.culture.tw/Object.aspx?SYSUID=26&RNO=Tk1UTDIwMTIwMjEwMDAxLTAwNA%3D%3D
+    label: 國立臺灣文學館典藏頁
+    type: book
+    pages: [yeh-tao]
+    note: 驗證日 2026-07-19，collections.culture.tw（國立臺灣文學館典藏網）；葉陶 1936 年短篇小說（影本典藏）。
+  - title: 杜連魁
+    url: https://www.openbook.org.tw/article/p-65830
+    label: Openbook閱讀誌專文
+    type: book
+    pages: [wang-ta-hung]
+    note: 驗證日 2026-07-19；建築師王大閎 1977 年出版之《道林格雷的畫像》改寫本，耗時十年將場景移植至臺北。
+  - title: 同姓之婚
+    url: https://cloud.hakka.gov.tw/content/images/03/C/05/03-C-05-0001-01.html
+    label: 客家委員會客家雲文學典藏頁
+    type: book
+    pages: [zhong-li-he]
+    note: 驗證日 2026-07-19（HTTP 200，頁面為早期編碼掃描檔本機無法重新解碼比對文字，但搜尋結果 title 已明確標示「作家：鍾理和／書名：同姓／同姓之婚」）；鍾理和自傳色彩短篇小說。信心度略低於其他條目，建議 David 抽驗一次。
+  - title: 原鄉人
+    url: https://zh.wikipedia.org/zh-tw/%E5%8E%9F%E4%B9%A1%E4%BA%BA_(%E5%B0%8F%E8%AA%AA)
+    label: 維基百科小說條目
+    type: book
+    pages: [field-literature, zhong-li-he]
+    note: 驗證日 2026-07-19；條目為小說本身（消歧義頁面 (小說)），非同名電影。鍾理和短篇小說。
+  - title: 獄中日記
+    url: https://zh.wikipedia.org/zh-tw/%E7%8D%84%E4%B8%AD%E6%97%A5%E8%A8%98
+    label: 維基百科作品條目
+    type: book
+    pages: [lai-he]
+    note: 驗證日 2026-07-19；賴和 1941 年珍珠港事變當日再遭日方逮捕，獄中以稻草紙寫成。
+  - title: 一個中國人在歐洲
+    url: https://zh.wikipedia.org/zh-tw/%E5%8F%B2%E6%83%9F%E4%BA%AE
+    label: 維基百科史惟亮條目（內文含該書介紹）
+    type: book
+    pages: [shih-wei-liang]
+    note: 驗證日 2026-07-19；查無該書獨立條目或典藏頁，此連史惟亮條目中確有專段介紹此書（1980 年大林出版社再版）。信心度略低，建議 David 抽驗。
+  - title: 鬥鬧熱
+    url: https://db.nmtl.gov.tw/site2/dictionary?id=Dictionary02073&searchkey=%E9%99%B3%E6%B7%91%E5%A8%9F
+    label: 台灣文學辭典資料庫條目
+    type: book
+    pages: [lai-he]
+    note: 驗證日 2026-07-19，db.nmtl.gov.tw；賴和 1926 年短篇小說，載於《臺灣民報》86 號。
+  - title: 貧賤夫妻
+    url: https://db.nmtl.gov.tw/site2/dictionary?id=Dictionary02093&searchkey=%E9%8D%BE%E6%80%A1%E5%BD%A5
+    label: 台灣文學辭典資料庫條目
+    type: book
+    pages: [zhong-li-he]
+    note: 驗證日 2026-07-19，db.nmtl.gov.tw；鍾理和 1959 年短篇小說，原題〈鶼鰈之情〉。
+  - title: 海角七號
+    url: https://www.youtube.com/watch?v=YZSZN3SxljY
+    label: 官方HD正式預告（鴻聯國際官方頻道）
+    type: film
+    pages: [field-craft, field-film, shih-hsiu-chu, wei-te-sheng]
+    note: 驗證日 2026-07-19；YouTube 頻道「鴻聯國際官方頻道」，片名標示「官方HD正式預告」。
+  - title: 戲夢人生
+    url: https://taiwancinema.bamid.gov.tw/Film/Filmcontent/?ContentUrl=25763
+    label: 台灣電影網（文化部影視局）資料頁
+    type: film
+    pages: [chen-ming-chang, hou-hsiao-hsien, li-tien-lu]
+    note: 驗證日 2026-07-19；找不到片商／中影官方預告，改用政府電影資料庫官方頁（HTTP 200，title 比對相符）。
+  - title: 戀戀風塵
+    url: https://www.youtube.com/watch?v=120pw9Hvzeg
+    label: 全新數位修復預告（中影國際CMPC 官方頻道）
+    type: film
+    pages: [chen-ming-chang, hou-hsiao-hsien]
+    note: 驗證日 2026-07-19；中影為本片發行商，官方頻道釋出的藍光數位修復預告。
+  - title: 南國再見，南國
+    url: https://taiwancinema.bamid.gov.tw/Film/Filmcontent/?ContentUrl=18805
+    label: 台灣電影網（文化部影視局）資料頁
+    type: film
+    pages: [lim-giong]
+    note: 驗證日 2026-07-19；派工題名「南國再見南國」無逗號，但 content/people/lim-giong.md 正文一律用全形逗號「《南國再見，南國》」，比對用 title 已改用正文實際寫法，含逗號才會命中掛鏈。找不到官方預告，改用政府電影資料庫。
+  - title: KANO
+    url: https://www.youtube.com/watch?v=pmG6LuRxilw
+    label: 正式預告（果子電影x米倉影業 官方頻道）
+    type: film
+    pages: [wei-te-sheng]
+    note: 驗證日 2026-07-19；果子電影為魏德聖監製作品的出品／發行公司官方頻道。
+  - title: 冬冬的假期
+    url: https://taiwancinema.bamid.gov.tw/Film/Filmcontent/?ContentUrl=15642
+    label: 台灣電影網（文化部影視局）資料頁
+    type: film
+    pages: [hou-hsiao-hsien]
+    note: 驗證日 2026-07-19；找不到官方預告，改用政府電影資料庫。
+  - title: 童年往事
+    url: https://www.youtube.com/watch?v=kz0UcC5U6pE
+    label: 全新數位修復預告（中影國際CMPC 官方頻道）
+    type: film
+    pages: [field-film, hou-hsiao-hsien]
+    note: 驗證日 2026-07-19。
+  - title: 賽德克·巴萊
+    url: https://www.youtube.com/watch?v=Mi-C4eis2-Y
+    label: 戲院正式預告（TheARSFilm／果子電影 官方頻道）
+    type: film
+    pages: [wei-te-sheng]
+    note: 驗證日 2026-07-19；ARS Film Production 為本片製作公司官方頻道。
+  - title: 玉蘭花
+    url: https://tcmb.culture.tw/zh-tw/detail?indexCode=Culture_Media&id=651976
+    label: 國家文化記憶庫 2.0 資料頁
+    type: film
+    pages: [ho-chi-ming]
+    note: 驗證日 2026-07-19；1970 年台語電視劇，無現存影音預告可查，改用國家文化記憶庫典藏資料頁。
+  - title: 經緯歷史．有節人生
+    url: https://imedia.culture.tw/channel/ntcri/zh_tw/media/40541
+    label: 國立臺灣工藝研究發展中心影音平臺
+    type: film
+    pages: [huang-tu-shan]
+    note: 驗證日 2026-07-19；2008 國家工藝成就獎紀錄片，頁面既有出處連結於此複用，確認 HTTP 200。
+  - title: 雲州大儒俠
+    url: https://tfai.openmuseum.tw/muse/digi_object/8351d4bf5dbc7b937815df0e71a74ca9
+    label: 台灣影視聽數位博物館（開放博物館）資料頁
+    type: play
+    pages: [field-opera, huang-chun-hsiung, huang-hai-dai]
+    note: 驗證日 2026-07-19。
+  - title: 陳三五娘
+    url: https://taiwaneseopera.ncfta.gov.tw/home/zh-tw/video/28319
+    label: 廖瓊枝版·歌仔戲主題知識網（傳藝中心）影音
+    type: play
+    pages: [liao-chiung-chih]
+    note: 驗證日 2026-07-19；同名劇目楊麗花亦擅演，本連結為廖瓊枝演出版本，故僅掛廖瓊枝頁（不掛 yang-li-hua／field-film，避免版本誤植）。
+  - title: 稻禾
+    url: https://www.youtube.com/watch?v=8HnOE9XMErY
+    label: 官方影片（雲門Cloud Gate 官方頻道）
+    type: play
+    pages: [field-dance, lin-hwai-min]
+    note: 驗證日 2026-07-19。
+  - title: 忠勇孝義傳
+    url: https://zh.wikipedia.org/zh-tw/%E9%BB%83%E6%B5%B7%E5%B2%B1
+    label: 維基百科「黃海岱」條目
+    type: play
+    pages: [huang-chun-hsiung, huang-hai-dai]
+    note: 驗證日 2026-07-19；傳藝中心原 DVD 資料頁已下架（404），改用維基百科條目，內文述及本劇本為史艷文原型。
+  - title: 嫦娥奔月
+    url: https://www.dance.org.tw/%E8%94%A1%E7%91%9E%E6%9C%88%E8%88%9E%E4%BD%9C%E9%87%8D%E5%BB%BA%E5%A7%8B%E6%9C%AB%E5%AA%92%E9%AB%94%E7%B4%80%E9%8C%84
+    label: 蔡瑞月文化基金會〈舞作重建始末媒體紀錄〉
+    type: play
+    pages: [field-dance, tsai-jui-yueh]
+    note: 驗證日 2026-07-19；獄中編作，頁面與《母親的呼喚》並列述及。
+  - title: 母親的呼喚
+    url: https://www.dance.org.tw/%E8%94%A1%E7%91%9E%E6%9C%88%E8%88%9E%E4%BD%9C%E9%87%8D%E5%BB%BA%E5%A7%8B%E6%9C%AB%E5%AA%92%E9%AB%94%E7%B4%80%E9%8C%84
+    label: 蔡瑞月文化基金會〈舞作重建始末媒體紀錄〉
+    type: play
+    pages: [field-dance, tsai-jui-yueh]
+    note: 驗證日 2026-07-19；與《嫦娥奔月》同頁述及，同為獄中編作。
+  - title: 九歌
+    url: https://www.cloudgate.org.tw/node/1111
+    label: 雲門官網作品頁
+    type: play
+    pages: [lin-hwai-min]
+    note: 驗證日 2026-07-19；找不到雲門官方頻道專屬影片，改用官網作品頁。
+  - title: 流浪者之歌
+    url: https://www.youtube.com/watch?v=F9rdtlqa5II
+    label: 官方影片（雲門Cloud Gate 官方頻道）
+    type: play
+    pages: [lin-hwai-min]
+    note: 驗證日 2026-07-19。
+  - title: 什細記
+    url: https://taiwaneseopera.ncfta.gov.tw/home/zh-tw/shihhsichi
+    label: 歌仔戲主題知識網（傳藝中心）劇目資料頁
+    type: play
+    pages: [liao-chiung-chih]
+    note: 驗證日 2026-07-19；廖瓊枝代表劇目之一。
+  - title: 王魁負桂英
+    url: https://taiwaneseopera.ncfta.gov.tw/home/zh-tw/video/28318
+    label: 廖瓊枝版·歌仔戲主題知識網（傳藝中心）影音
+    type: play
+    pages: [liao-chiung-chih]
+    note: 驗證日 2026-07-19。
+  - title: 山伯英台
+    url: https://taiwaneseopera.ncfta.gov.tw/home/zh-tw/video/28323
+    label: 廖瓊枝版·歌仔戲主題知識網（傳藝中心）影音
+    type: play
+    pages: [liao-chiung-chih]
+    note: 驗證日 2026-07-19。
+  - title: 咱臺灣
+    url: https://women.nmth.gov.tw/?p=2064
+    label: 臺灣女人．國立臺灣歷史博物館〈臺灣現代舞的先驅─蔡瑞月〉
+    type: play
+    pages: [tsai-jui-yueh]
+    note: 驗證日 2026-07-19；文中記述返臺船上編作《印度之歌》《咱臺灣》。
+
+# ---- 2026-07-19 查無合格連結（已查過官方/Topic 頻道與機構典藏；只有個人搬運或全網無，
+# 依 SONGS-SPEC 個人帳號完整作品不收紀律不錄。日後有官方上架再補，不必重查一輪。）----
+#   我等就來唱山歌：交工樂隊 1999 年專輯；YouTube 唯一候選（oA4h-1IuJ6Q）上傳者為個人帳號「Y.Y. Vincent Chang」，非官方；查無風潮/大大樹/Topic 官方版本；audio.nmth.gov.tw 亦無收錄。
+#   匆匆：胡德夫 2005 年同名專輯主打歌；YouTube 候選皆為個人帳號上傳（tytnsm／pokykim／SEMENAY 節目片段連結已失效），查無官方頻道或廠牌版本。
+#   dalan 路：桑布伊 2012 年同名專輯；「官方完整版」候選由頻道「Uki Bauki」上傳，無法查證其為官方/廠牌帳號（非桑布伊本人頻道、非風潮/大大樹），保守判定不採；其餘候選為演唱會側錄或個人翻唱。
+#   民族樂手—陳達和他的歌：1971／1977 兩版原始唱片（許常惠、史惟亮製作，陳達演唱），查無任何機構（許常惠文化藝術基金會官網、國家文化記憶庫、audio.nmth.gov.tw、風潮音樂）提供線上試聽或音檔連結；三個題名變體同一原因，均未收。
+#   民族樂手陳達和他的歌：同上（同一張 1971 唱片的題名變體）。
+#   陳達和他的歌：同上（同一張 1971 唱片的題名變體）。
+#   紀露霞五十週年演唱紀念專輯：YouTube 候選曲目（如〈南都夜曲〉〈離別傷心曲〉）皆由頻道「影音娛樂台Fujit Music」上傳，查無資料證實其為紀露霞本人／發行方官方帳號，保守判定不採。
+#   孤戀花：紀露霞／楊三郎經典曲；YouTube 候選皆為個人帳號重製上傳；audio.nmth.gov.tw 雖有同名條目，經 WebFetch 核對演唱者為「廖美惠」而非紀露霞，人物不符，故不採。
+#   少年中國：李雙澤詞曲、蔣勳詩；YouTube 候選（楊祖珺演唱版）oembed 回傳 Forbidden（可能下架/停用嵌入），另一候選頻道「黃郁仁」為個人帳號；查無官方重製版（2008《敬！李雙澤 唱自己的歌》紀念專輯）上架 YouTube 官方頻道。
+#   美麗的稻穗：陸森寶原作，陳建年／胡德夫皆演唱過；YouTube 候選全為個人帳號上傳的演唱會/現場錄影（MrBearman408、yydmzkz09、dull Pau 等），角頭音樂（TCM）官方播放清單存在但無法確認清單內是否收錄且無法逐一驗證，保守判定不採。
+#   西北雨：周添旺相關台語老歌；搜尋僅得混合老歌合輯影片與無關頻道，查無專屬官方頻道或機構典藏版本。
+#   葬花吟：許常惠 1962 年清唱劇作品（Op.13）；YouTube 唯一候選（鍾潔希演唱版）經查證實為《紅樓夢》87版電視劇王立平作曲之同名流行歌曲，與許常惠作品為題名相同、內容不同的另一作品，故不採；許常惠版查無任何線上試聽來源。
+#   青春嶺：1936 年蘇桐作曲、陳達儒作詞，原唱王福與秀鑾；audio.nmth.gov.tw 搜尋引擎索引到的典藏頁面（Item/Detail/2abef17c-...）目前已失效（301 導向至 /items/ 再得 404，站台疑似改版），查無其他官方/機構版本，故不採。
+#   媽媽思念你：查無官方頻道或機構典藏版本；YouTube 上僅見「林清河」等個人帳號上傳（含 Chi Lu-hsia - Topic 頻道搜尋亦未命中），依紀律不收。
+#   縣道一八四：查無交工樂隊官方頻道／其唱片公司「大大樹音樂圖像」（treesmusicart）上傳版本；YouTube 上僅見「林轉 Turn Lin」「借CD」等個人帳號上傳，依紀律不收。
+#   河邊春夢：1934 年周添旺作品，查無國立臺灣歷史博物館「臺灣音聲一百年」典藏頁或任何演唱者官方 Topic 頻道版本，僅見零星個人帳號上傳，依紀律不收。
+#   孔廟大成樂章：江文也管絃樂作品；查無 NSO／其他官方樂團頻道或機構典藏演出版本，YouTube 上僅見「boom0429」等個人古典樂典藏帳號上傳，依紀律不收。
+#   北京萬華集：江文也鋼琴組曲；查無任何可信（官方／機構典藏）演出影音來源。
+#   城內之夜：江文也鋼琴曲；查無任何可信（官方／機構典藏）演出影音來源。
+#   鄉土節令詩：江文也鋼琴套曲；查無任何可信（官方／機構典藏）演出影音來源。
+#   山童吹笛：黃土水 1918/1920 年石膏原作已佚失逾百年，僅存文字紀錄與少數老照片；查無機構典藏頁或作品專頁（國美館典藏網未見獨立條目，artouch/典藏 ARTouch 相關文章遭 403 阻擋無法驗證內容）。
+#   手：陳進以女性的手為主題之作（人物頁描述「以女性的手為主題，細膩到能看見指節與紋理」），查無國美館／北美館典藏頁，維基百科陳進條目亦未列此作，疑為早期作品原件下落不明。
+#   官將首：陳萬能錫工藝作品，查無 NTCRI／國家文化記憶庫等機構的專屬典藏頁；搜尋結果多為「官將首」民俗陣頭主題頁（非陳萬能特定作品），或其子陳志昇另一件「損將軍」作品，怕誤掛作者/作品故不收。
+#   病兒：葉陶新詩，極短篇幅、罕見於一般資料庫；查無台灣文學館典藏頁或權威介紹頁單獨收錄此詩（僅有概述性文章一併提及〈愛的結晶〉〈病兒〉〈我的教練真嚴厲〉三作品名，未各自成頁）。
+#   我的教練真嚴厲：同「病兒」，葉陶新詩，查無獨立典藏頁或權威介紹頁。

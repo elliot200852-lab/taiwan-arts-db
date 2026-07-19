@@ -590,9 +590,22 @@ def render_figure(p: dict) -> str:
     )
 
 
-def render_bio(blocks: list[str], portrait: dict | None, path: Path) -> str:
+def render_bio(
+    blocks: list[str],
+    portrait: dict | None,
+    path: Path,
+    linker: "WorksLinker | None" = None,
+    page_slug: str = "",
+    section: str = "bio",
+) -> str:
     """portrait 選配（2026-07-18）：frontmatter 無 `portrait` 時，`<!-- portrait -->`
-    標記行直接跳過、不插 figure（肖像授權不明的人物走此路——見 PLAN.md 代換規則）。"""
+    標記行直接跳過、不插 figure（肖像授權不明的人物走此路——見 PLAN.md 代換規則）。
+    linker（2026-07-19 作品掛鏈）：有給就對段落與 timeline 文字做《作品名》〈作品名〉
+    自動掛鏈（markdown 層，交 inline() 轉 HTML）；None＝不掛（維持舊行為）。"""
+
+    def md(text: str) -> str:
+        return linker.autolink_md(text, page_slug, section) if linker else text
+
     parts: list[str] = []
     for block in blocks:
         if block.strip() == "<!-- portrait -->":
@@ -610,15 +623,23 @@ def render_bio(blocks: list[str], portrait: dict | None, path: Path) -> str:
                 if not text:
                     die(f"{path.name}：timeline 項缺「｜」分隔：{item!r}")
                 lis.append(
-                    f'        <li><span class="tl-year">{esc(year)}</span>{inline(text)}</li>'
+                    f'        <li><span class="tl-year">{esc(year)}</span>{inline(md(text))}</li>'
                 )
             parts.append('      <ul class="timeline">\n' + "\n".join(lis) + "\n      </ul>")
             continue
-        parts.append(f"      <p>{inline(block)}</p>")
+        parts.append(f"      <p>{inline(md(block))}</p>")
     return "\n".join(parts)
 
 
-def render_works(blocks: list[str], path: Path) -> str:
+def render_works(
+    blocks: list[str],
+    path: Path,
+    linker: "WorksLinker | None" = None,
+    page_slug: str = "",
+) -> str:
+    """作品清單。linker（2026-07-19 作品掛鏈）：粗體標題 `**《…》**`／`**〈…〉**`
+    命中登記簿或歌名索引時，wk-title 由 <span> 改為 <a>（新增 class
+    `wk-title-link`，既有 class 不改名）；說明文字同樣過 autolink_md。"""
     items: list[str] = []
     for block in blocks:
         listing = parse_list_items(block)
@@ -629,22 +650,42 @@ def render_works(blocks: list[str], path: Path) -> str:
             if not m:
                 die(f"{path.name}：作品項格式不對：{item!r}")
             title, extra, note = m.groups()
+            title_html = f'<span class="wk-title">{esc(title)}</span>'
+            if linker:
+                tm = _WORK_TITLE_RE.fullmatch(title.strip())
+                if tm:
+                    url = linker.lookup(tm.group(1) or tm.group(2), page_slug, "works")
+                    if url:
+                        title_html = (
+                            f'<a class="wk-title wk-title-link" href="{esc(url)}" '
+                            f'target="_blank" rel="noopener">{esc(title)}</a>'
+                        )
+                note = linker.autolink_md(note, page_slug, "works")
             items.append(
                 "        <li>\n"
-                f'          <span class="wk-title">{esc(title)}</span>{esc(extra)}\n'
+                f"          {title_html}{esc(extra)}\n"
                 f'          <span class="wk-note">{inline(note)}</span>\n'
                 "        </li>"
             )
     return "\n".join(items)
 
 
-def render_teaching(body_lines: list[str], path: Path) -> str:
-    """教學素材：總說段落＋`### 小節` 各接一個清單。"""
+def render_teaching(
+    body_lines: list[str],
+    path: Path,
+    linker: "WorksLinker | None" = None,
+    page_slug: str = "",
+) -> str:
+    """教學素材：總說段落＋`### 小節` 各接一個清單。linker 有給就做作品掛鏈。"""
+
+    def md(text: str) -> str:
+        return linker.autolink_md(text, page_slug, "teaching") if linker else text
+
     parts: list[str] = []
     i = 0
     blocks = body_lines
     while i < len(blocks) and not blocks[i].startswith("### "):
-        parts.append(f"      <p>{inline(blocks[i])}</p>")
+        parts.append(f"      <p>{inline(md(blocks[i]))}</p>")
         i += 1
     while i < len(blocks):
         heading = blocks[i]
@@ -658,20 +699,27 @@ def render_teaching(body_lines: list[str], path: Path) -> str:
         if not listing:
             die(f"{path.name}：教學素材小節「{title}」下不是清單")
         kind, items = listing
-        lis = "\n".join(f"        <li>{inline(item)}</li>" for item in items)
+        lis = "\n".join(f"        <li>{inline(md(item))}</li>" for item in items)
         parts.append(f"      <h3>{esc(title)}</h3>")
         parts.append(f"      <{kind}>\n{lis}\n      </{kind}>")
         i += 1
     return "\n".join(parts)
 
 
-def render_storyteller(blocks: list[str], path: Path) -> str:
+def render_storyteller(
+    blocks: list[str],
+    path: Path,
+    linker: "WorksLinker | None" = None,
+    page_slug: str = "",
+) -> str:
     quotes: list[str] = []
     for block in blocks:
         lines = block.splitlines()
         if not all(l.startswith("> ") for l in lines):
             die(f"{path.name}：說書稿區只能是 `> ` 引用塊：{block!r}")
         text = " ".join(l[2:] for l in lines)
+        if linker:
+            text = linker.autolink_md(text, page_slug, "storyteller")
         quotes.append(f"      <blockquote>{inline(text)}</blockquote>")
     return "\n".join(quotes)
 
@@ -701,6 +749,71 @@ def render_footnotes(blocks: list[str], path: Path) -> str:
         for n, item in enumerate(items, start=1)
     ]
     return "\n".join(lis)
+
+
+# 子頁右下角徽章式浮動導航（2026-07-19，任務 C）：分享／上一頁／回首頁三顆
+# 40px 圓徽章＋複製連結 toast。只掛人物頁／領域頁／歌曲期頁（index 首頁不加）；
+# 全部用新 class（.fab-nav／.fab-btn／.fab-toast，樣式在 assets/css/style.css
+# 尾端「只加不改」區）。inline SVG、不引外部資源；@media print 隱藏；
+# 手機 safe-area 安全距。此常數以 {fab_nav} 佔位插入三個內嵌模板，本身不進
+# .format()（內含 JS 大括號）。參考模板 templates/person.html、
+# templates/song-era.html 同步貼有同一份標記（雙寫同步紀律）。
+FAB_NAV = """  <nav class="fab-nav" aria-label="頁面快速導航">
+    <button type="button" class="fab-btn fab-share" aria-label="分享本頁" title="分享本頁">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.6"/><circle cx="17.5" cy="5.5" r="2.6"/><circle cx="17.5" cy="18.5" r="2.6"/><path d="M8.4 10.8 15.1 6.9M8.4 13.2l6.7 3.9"/></svg>
+    </button>
+    <button type="button" class="fab-btn fab-back" aria-label="回上一頁" title="回上一頁">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+    </button>
+    <a class="fab-btn fab-home" href="../index.html" aria-label="回首頁" title="回首頁">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11 12 4l8 7"/><path d="M6.5 9.5V19h11V9.5"/></svg>
+    </a>
+  </nav>
+  <div class="fab-toast" role="status" aria-live="polite">已複製連結</div>
+  <script>
+    // fab-nav：分享（navigator.share，不支援則複製網址＋toast）與上一頁。
+    (function () {
+      var toast = document.querySelector('.fab-toast');
+      var timer = null;
+      function showToast() {
+        if (!toast) return;
+        toast.classList.add('show');
+        clearTimeout(timer);
+        timer = setTimeout(function () { toast.classList.remove('show'); }, 1800);
+      }
+      function fallbackCopy(url) {
+        var ta = document.createElement('textarea');
+        ta.value = url;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); showToast(); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+      function copyUrl() {
+        var url = location.href;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(showToast, function () { fallbackCopy(url); });
+        } else {
+          fallbackCopy(url);
+        }
+      }
+      var share = document.querySelector('.fab-share');
+      if (share) share.addEventListener('click', function () {
+        if (navigator.share) {
+          navigator.share({ title: document.title, url: location.href }).catch(function () {});
+        } else {
+          copyUrl();
+        }
+      });
+      var back = document.querySelector('.fab-back');
+      if (back) back.addEventListener('click', function () {
+        if (history.length > 1) { history.back(); } else { location.href = '../index.html'; }
+      });
+    })();
+  </script>"""
 
 
 PERSON_PAGE = """<!DOCTYPE html>
@@ -781,12 +894,13 @@ PERSON_PAGE = """<!DOCTYPE html>
       </div>
     </footer>
   </div>
+{fab_nav}
 </body>
 </html>
 """
 
 
-def build_person(md_path: Path) -> tuple[str, str]:
+def build_person(md_path: Path, linker: "WorksLinker | None" = None) -> tuple[str, str]:
     fm, body = split_frontmatter(md_path)
     for key in ("slug", "name", "years", "field", "tagline", "lede", "geo", "credit", "tags"):
         if key not in fm:
@@ -826,30 +940,33 @@ def build_person(md_path: Path) -> tuple[str, str]:
     if len(who_blocks) != 1:
         die(f"{md_path.name}：「{titles[0]}」應為單一段落")
 
+    slug = fm["slug"]
+    who_md = linker.autolink_md(who_blocks[0], slug, "who") if linker else who_blocks[0]
     html_out = PERSON_PAGE.format(
         name=esc(fm["name"]),
-        scene_slug=esc(fm["slug"]),
+        scene_slug=esc(slug),
         field=esc(fm["field"]),
         years=esc(fm["years"]),
         tagline=esc(fm["tagline"]),
         tag_chips=render_tag_chips(fm["tags"], md_path),
         lede=inline(fm["lede"]),
         who_heading=esc(titles[0]),
-        who=inline(who_blocks[0]),
+        who=inline(who_md),
         story=story_html,
-        bio=render_bio(sections[1][1], portrait, md_path),
-        works=render_works(sections[2][1], md_path),
+        bio=render_bio(sections[1][1], portrait, md_path, linker, slug, "bio"),
+        works=render_works(sections[2][1], md_path, linker, slug),
         geo_text=inline(fm["geo"]["text"]),
         geo_url=esc(fm["geo"]["url"]),
         geo_place=esc(fm["geo"]["place"]),
         core_note=CORE_NOTE,
-        teaching=render_teaching(sections[3][1], md_path),
-        storyteller=render_storyteller(sections[4][1], md_path),
+        teaching=render_teaching(sections[3][1], md_path, linker, slug),
+        storyteller=render_storyteller(sections[4][1], md_path, linker, slug),
         footnotes=render_footnotes(sections[5][1], md_path),
         license_line=license_line,
         credit=inline(fm["credit"]),
+        fab_nav=FAB_NAV,
     )
-    return fm["slug"], html_out
+    return slug, html_out
 
 
 INDEX_PAGE = """<!DOCTYPE html>
@@ -1058,6 +1175,7 @@ FIELD_PAGE = """<!DOCTYPE html>
       </div>
     </footer>
   </div>
+{fab_nav}
 </body>
 </html>
 """
@@ -1087,7 +1205,12 @@ def load_people_meta(people_md: list[Path]) -> list[dict]:
     return meta
 
 
-def render_field_body(body: str, path: Path) -> tuple[str, str]:
+def render_field_body(
+    body: str,
+    path: Path,
+    linker: "WorksLinker | None" = None,
+    page_slug: str = "",
+) -> tuple[str, str]:
     """回傳 (content_html, footnotes_html)。直接重用人物頁的渲染管線
     （split_sections/render_bio/render_footnotes/inline()），不另寫一套
     （2026-07-18 Phase 2：field 頁從純導言升級成完整議題頁文章）。
@@ -1106,16 +1229,20 @@ def render_field_body(body: str, path: Path) -> tuple[str, str]:
     舊格式（過渡期相容，2026-07-18 Phase 1 遺留）：body 完全沒有任何
     `## ` 標題，視為純段落導言，不產生出處區——尚未升級的 field 檔仍可
     正常 build 不 crash。"""
+    def md(text: str, section: str) -> str:
+        """《作品名》〈作品名〉自動掛鏈（2026-07-19；出處腳註區不經過這裡）。"""
+        return linker.autolink_md(text, page_slug, section) if linker else text
+
     m = re.search(r"^## ", body, re.M)
     if m is None:
         paras = split_paragraphs(body)
         if not paras:
             die(f"{path.name}：領域內容為空")
-        content_html = "\n".join(f"      <p>{inline(p)}</p>" for p in paras)
+        content_html = "\n".join(f"      <p>{inline(md(p, '正文'))}</p>" for p in paras)
         return content_html, ""
 
     intro_paras = split_paragraphs(body[: m.start()])
-    intro_html = "\n".join(f"      <p>{inline(p)}</p>" for p in intro_paras)
+    intro_html = "\n".join(f"      <p>{inline(md(p, '導言'))}</p>" for p in intro_paras)
 
     sections = split_sections(body[m.start():], path)
     if not sections:
@@ -1140,19 +1267,21 @@ def render_field_body(body: str, path: Path) -> tuple[str, str]:
         parts.append(
             '    <section class="person-sec">\n'
             f"      <h2>{esc(heading)}</h2>\n"
-            f"{render_bio(blocks, None, path)}\n"
+            f"{render_bio(blocks, None, path, linker, page_slug, heading)}\n"
             "    </section>"
         )
     return "\n".join(parts), footnotes_html
 
 
-def build_field(md_path: Path, people_meta: list[dict]) -> tuple[str, str]:
+def build_field(
+    md_path: Path, people_meta: list[dict], linker: "WorksLinker | None" = None
+) -> tuple[str, str]:
     fm, body = split_frontmatter(md_path)
     for key in ("title", "slug", "tag"):
         if key not in fm:
             die(f"{md_path.name}：frontmatter 缺 `{key}`")
 
-    content_html, footnotes_html = render_field_body(body, md_path)
+    content_html, footnotes_html = render_field_body(body, md_path, linker, fm["slug"])
 
     tag = fm["tag"]
     matched = [p for p in people_meta if tag in p["tags"]]
@@ -1205,11 +1334,12 @@ def build_field(md_path: Path, people_meta: list[dict]) -> tuple[str, str]:
         footnotes_section=footnotes_section,
         license_line=license_line,
         credit=FIELD_CREDIT,
+        fab_nav=FAB_NAV,
     )
     return fm["slug"], html_out
 
 
-def build_fields(people_meta: list[dict]) -> int:
+def build_fields(people_meta: list[dict], linker: "WorksLinker | None" = None) -> int:
     """content/fields/*.md → _build/pages/field-<x>.html。容錯（2026-07-18）：
     目錄不存在或為空都只印訊息跳過、不 die——寫手可能晚於工程完成。
     回傳實際產出頁數，供 main() 的完成摘要計數。"""
@@ -1222,7 +1352,7 @@ def build_fields(people_meta: list[dict]) -> int:
         return 0
     count = 0
     for md_path in field_md:
-        slug, page_html = build_field(md_path, people_meta)
+        slug, page_html = build_field(md_path, people_meta, linker)
         if slug != md_path.stem:
             die(f"{md_path.name}：frontmatter slug（{slug}）與檔名不一致")
         (BUILD / "pages" / f"{slug}.html").write_text(page_html, encoding="utf-8")
@@ -1321,6 +1451,147 @@ def autolink_song_titles(text: str, songs_by_title: dict[str, dict]) -> str:
         last = m.end()
     out.append(_autolink_plain(text[last:], songs_by_title))
     return "".join(out)
+
+
+# ---------- 作品自動掛鏈（works.yaml ＋ 全域歌名索引，2026-07-19） ----------
+#
+# 人物頁與領域頁正文／作品清單中的《作品名》〈作品名〉，build 時自動掛上外部
+# 連結（MD 源檔一字不動）。資料來源兩本：content/works.yaml 作品登記簿
+# （schema 見該檔檔頭註解）＋全部 content/songs/era-*.yaml 的歌名索引。
+# 應用範圍：人物頁 who/bio/works/teaching/storyteller、領域頁正文（導言＋各
+# `## ` 區段）；footnotes 出處區「不」掛（避免出處引文變連結）。時代頁正文
+# 仍走既有 autolink_song_titles（SONGS-SPEC §6），與本機制互不干涉。
+# 報表：命中數印 stdout、未命中書名號題名清單寫 _build/works-report.txt
+# （main() 收尾時輸出，後續批次補 works.yaml 條目的依據）。
+
+WORKS_YAML = CONTENT / "works.yaml"
+WORK_TYPES = {"song", "album", "art", "book", "film", "play", "other"}
+_WORK_TITLE_RE = re.compile(r"《([^《》]+)》|〈([^〈〉]+)〉")
+
+
+def load_works_registry() -> list[dict]:
+    """讀 content/works.yaml 作品登記簿。檔案不存在回傳 []（掛鏈機制照常走
+    歌名索引）。必填欄缺漏、type 不在詞彙表、pages 非字串清單、title 含書名號
+    都直接 die——登記簿是資料檔，錯了要當場擋下（完整 URL 驗證交
+    scripts/check_works.py，build 不打網路）。"""
+    if not WORKS_YAML.is_file():
+        return []
+    data = yaml.safe_load(WORKS_YAML.read_text(encoding="utf-8")) or {}
+    works = data.get("works") or []
+    for i, w in enumerate(works):
+        label = w.get("title") or f"第 {i+1} 筆"
+        if not isinstance(w, dict):
+            die(f"works.yaml：第 {i+1} 筆不是合法的作品物件")
+        for key in ("title", "url", "type"):
+            if key not in w:
+                die(f"works.yaml：{label} 缺 `{key}`")
+        if w["type"] not in WORK_TYPES:
+            die(f"works.yaml：{label} 的 type `{w['type']}` 不合法（須為 {sorted(WORK_TYPES)} 之一）")
+        if "pages" in w and (
+            not isinstance(w["pages"], list) or not all(isinstance(s, str) for s in w["pages"])
+        ):
+            die(f"works.yaml：{label} 的 pages 須為頁 slug 字串清單")
+        if _WORK_TITLE_RE.search(str(w["title"])):
+            die(f"works.yaml：{label} 的 title 不得含書名號（比對用，見檔頭 schema 說明）")
+    return works
+
+
+def build_song_url_index(eras: list[dict]) -> dict[str, str]:
+    """全部登記簿分片的 title → listen[0].url 全域索引（作品掛鏈的第三優先
+    來源）。eras 已依 order 排序、各期歌曲依 year 排序，故同名衝突時先入索引
+    者＝最早期別（原唱，SONGS-SPEC 版本優先序精神）；衝突題名印 WARNING。"""
+    index: dict[str, str] = {}
+    conflict_titles: list[str] = []
+    for era in eras:
+        for song in era["songs"]:
+            title = song["title"]
+            if title in index:
+                if title not in conflict_titles:
+                    conflict_titles.append(title)
+                continue
+            index[title] = song["listen"][0]["url"]
+    for title in conflict_titles:
+        print(f"[build_pages] WARNING：歌名《{title}》在登記簿出現多次，作品掛鏈取最早期別（原唱）")
+    return index
+
+
+class WorksLinker:
+    """《作品名》／〈作品名〉→ 外部連結解析器。優先序（高者先）：
+      1. works.yaml 帶 `pages` 限定且命中本頁 slug 的條目（消歧義用）
+      2. works.yaml 全域條目（無 pages 限定）
+      3. 歌名索引（build_song_url_index）
+    命中／未命中都記帳：hits 計數、miss_counts 供 write_works_report()。"""
+
+    def __init__(self, works: list[dict], song_index: dict[str, str]) -> None:
+        self.scoped: dict[str, list[dict]] = {}
+        self.global_by_title: dict[str, dict] = {}
+        for w in works:
+            if w.get("pages"):
+                self.scoped.setdefault(w["title"], []).append(w)
+            else:
+                self.global_by_title.setdefault(w["title"], w)
+        self.song_index = song_index
+        self.hits = 0
+        self.miss_counts: dict[tuple[str, str, str], int] = {}
+
+    def resolve(self, title: str, page_slug: str) -> str | None:
+        for w in self.scoped.get(title, []):
+            if page_slug in w["pages"]:
+                return w["url"]
+        w = self.global_by_title.get(title)
+        if w is not None:
+            return w["url"]
+        return self.song_index.get(title)
+
+    def lookup(self, title: str, page_slug: str, section: str) -> str | None:
+        """resolve ＋ 記帳（命中計數／未命中清單）。渲染端一律走這支。"""
+        url = self.resolve(title, page_slug)
+        if url is None:
+            key = (page_slug, title, section)
+            self.miss_counts[key] = self.miss_counts.get(key, 0) + 1
+        else:
+            self.hits += 1
+        return url
+
+    def autolink_md(self, text: str, page_slug: str, section: str) -> str:
+        """正文（markdown 層）掛鏈：《…》〈…〉命中者包成 `[《…》](url)`，交給
+        inline() 走既有 esc()／target=_blank 連結管線；已在 markdown 連結內的
+        文字不重複掛鏈（沿用 autolink_song_titles 的切段防護思路）。"""
+        out: list[str] = []
+        last = 0
+        for m in _EXISTING_LINK_RE.finditer(text):
+            out.append(self._link_plain(text[last:m.start()], page_slug, section))
+            out.append(m.group(0))
+            last = m.end()
+        out.append(self._link_plain(text[last:], page_slug, section))
+        return "".join(out)
+
+    def _link_plain(self, segment: str, page_slug: str, section: str) -> str:
+        def repl(m: re.Match) -> str:
+            title = m.group(1) or m.group(2)
+            url = self.lookup(title, page_slug, section)
+            if url is None:
+                return m.group(0)
+            return f"[{m.group(0)}]({url})"
+
+        return _WORK_TITLE_RE.sub(repl, segment)
+
+
+def write_works_report(linker: WorksLinker) -> int:
+    """未命中書名號題名清單 → _build/works-report.txt（頁 slug＋題名＋出現
+    區塊＋次數，tab 分隔）。回傳未命中筆數（三元組去重後）。後續批次補
+    works.yaml 條目靠這份清單。"""
+    lines = [
+        "works 自動掛鏈報表（scripts/build_pages.py 產生；每次 build 覆寫）",
+        f"命中掛鏈：{linker.hits} 處",
+        f"未命中書名號題名：{len(linker.miss_counts)} 筆（頁 slug＋題名＋區塊 去重）",
+        "",
+        "slug\t題名\t區塊\t出現次數",
+    ]
+    for (page, title, section), n in sorted(linker.miss_counts.items()):
+        lines.append(f"{page}\t{title}\t{section}\t{n}")
+    (BUILD / "works-report.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return len(linker.miss_counts)
 
 
 def render_era_prose(blocks: list[str], songs_by_title: dict[str, dict], path: Path) -> str:
@@ -1545,6 +1816,7 @@ SONG_ERA_PAGE = """<!DOCTYPE html>
       </div>
     </footer>
   </div>
+{fab_nav}
 </body>
 </html>
 """
@@ -1574,6 +1846,7 @@ def build_song_pages(eras: list[dict]) -> int:
             era_nav=render_era_nav(eras, idx),
             license_line="本頁由本資料庫依公開來源原創編寫（逐條見「出處」），以 CC BY-SA 4.0 釋出。",
             credit=FIELD_CREDIT,
+            fab_nav=FAB_NAV,
         )
         slug = fm["slug"]
         (BUILD / "pages" / f"song-{slug}.html").write_text(page_html, encoding="utf-8")
@@ -1603,20 +1876,29 @@ def main() -> None:
     people_meta = load_people_meta(people_md)
     eras = load_era_pages()
 
+    # 作品自動掛鏈（2026-07-19）：works.yaml 登記簿＋全域歌名索引 → WorksLinker，
+    # 人物頁與領域頁渲染時共用同一個實例（命中／未命中集中記帳）。
+    works_linker = WorksLinker(load_works_registry(), build_song_url_index(eras))
+
     index_html = build_index(eras)
     (BUILD / "index.html").write_text(index_html, encoding="utf-8")
     print(f"[build_pages] index.html ✓")
 
     for md_path in people_md:
-        slug, page_html = build_person(md_path)
+        slug, page_html = build_person(md_path, works_linker)
         if slug != md_path.stem:
             die(f"{md_path.name}：frontmatter slug（{slug}）與檔名不一致")
         (BUILD / "pages" / f"{slug}.html").write_text(page_html, encoding="utf-8")
         print(f"[build_pages] pages/{slug}.html ✓")
 
-    field_count = build_fields(people_meta)
+    field_count = build_fields(people_meta, works_linker)
     song_count = build_song_pages(eras)
 
+    miss_total = write_works_report(works_linker)
+    print(
+        f"[build_pages] 作品掛鏈（人物頁＋領域頁）：命中 {works_linker.hits} 處；"
+        f"未命中 {miss_total} 筆 → _build/works-report.txt"
+    )
     print(
         f"[build_pages] 完成：{len(people_md) + 1 + field_count + song_count} 頁 → "
         f"{BUILD.relative_to(ROOT)}/"

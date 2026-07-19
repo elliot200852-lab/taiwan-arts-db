@@ -1079,3 +1079,86 @@ body.theme-songs .page-foot a { color: var(--pale-gold); }
   .field-chip { font-size: .78rem; padding: .35rem .9rem; }
   .song-item { grid-template-columns: 2rem 1fr auto; }
 }
+
+/* ---------- 作品掛鏈（2026-07-19 新增；只加不改） ----------
+   作品清單粗體標題命中 works 登記簿／歌名索引時，wk-title 由 <span> 改為
+   <a class="wk-title wk-title-link">——仿歌曲頁 .song-title 的「靜態不畫線、
+   hover 才強調」呈現，但用新增 class，不動既有 .wk-title 規則。 */
+a.wk-title-link {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ochre-soft);
+}
+a.wk-title-link:hover {
+  color: var(--ochre);
+  border-bottom-color: var(--ochre);
+}
+
+/* ---------- 子頁右下角徽章式浮動導航（2026-07-19 新增；只加不改） ----------
+   分享／上一頁／回首頁三顆 40px 圓徽章，直向堆疊；半透明紙色底＋
+   backdrop-blur（XIO 藝廊語彙：髮線邊、赭金 hover），歌曲期頁深色底
+   （.theme-songs）另給深褐半透明配色。@media print 隱藏；手機留
+   safe-area 安全距。index 首頁不掛此元件。 */
+.fab-nav {
+  position: fixed;
+  right: 18px;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 60;
+}
+.fab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(253, 251, 244, .72);   /* --card 半透明 */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(38, 37, 43, .10);
+  transition: color .15s, border-color .15s, transform .15s, background .15s;
+}
+.fab-btn:hover {
+  color: var(--ochre);
+  border-color: var(--ochre-soft);
+  transform: translateY(-1px);
+}
+.fab-btn svg { width: 17px; height: 17px; display: block; }
+/* 歌曲期頁深色底（.theme-songs）：半透明深褐＋奶油金 */
+.theme-songs .fab-btn {
+  background: rgba(35, 34, 39, .55);
+  border-color: rgba(255, 255, 255, .25);
+  color: var(--cream);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
+}
+.theme-songs .fab-btn:hover {
+  color: var(--pale-gold);
+  border-color: var(--pale-gold);
+}
+.fab-toast {
+  position: fixed;
+  right: 70px;
+  bottom: calc(26px + env(safe-area-inset-bottom, 0px));
+  background: rgba(38, 37, 43, .88);
+  color: var(--paper);
+  font-size: .8rem;
+  letter-spacing: .06em;
+  padding: .35rem .9rem;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s;
+  z-index: 61;
+}
+.fab-toast.show { opacity: 1; }
+@media print {
+  .fab-nav, .fab-toast { display: none !important; }
+}

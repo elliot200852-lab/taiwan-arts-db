@@ -87,5 +87,66 @@
       </div>
     </footer>
   </div>
+
+  <!-- 子頁右下角徽章式浮動導航（2026-07-19）：分享／上一頁／回首頁。
+       與 build_pages.py 的 FAB_NAV 常數同一份標記（雙寫同步）；樣式在
+       assets/css/style.css 尾端 .fab-nav 區（全部新 class，深色底配色由
+       body.theme-songs 觸發）。index 首頁不掛。 -->
+  <nav class="fab-nav" aria-label="頁面快速導航">
+    <button type="button" class="fab-btn fab-share" aria-label="分享本頁" title="分享本頁">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.6"/><circle cx="17.5" cy="5.5" r="2.6"/><circle cx="17.5" cy="18.5" r="2.6"/><path d="M8.4 10.8 15.1 6.9M8.4 13.2l6.7 3.9"/></svg>
+    </button>
+    <button type="button" class="fab-btn fab-back" aria-label="回上一頁" title="回上一頁">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+    </button>
+    <a class="fab-btn fab-home" href="../index.html" aria-label="回首頁" title="回首頁">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11 12 4l8 7"/><path d="M6.5 9.5V19h11V9.5"/></svg>
+    </a>
+  </nav>
+  <div class="fab-toast" role="status" aria-live="polite">已複製連結</div>
+  <script>
+    // fab-nav：分享（navigator.share，不支援則複製網址＋toast）與上一頁。
+    (function () {
+      var toast = document.querySelector('.fab-toast');
+      var timer = null;
+      function showToast() {
+        if (!toast) return;
+        toast.classList.add('show');
+        clearTimeout(timer);
+        timer = setTimeout(function () { toast.classList.remove('show'); }, 1800);
+      }
+      function fallbackCopy(url) {
+        var ta = document.createElement('textarea');
+        ta.value = url;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); showToast(); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+      function copyUrl() {
+        var url = location.href;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(showToast, function () { fallbackCopy(url); });
+        } else {
+          fallbackCopy(url);
+        }
+      }
+      var share = document.querySelector('.fab-share');
+      if (share) share.addEventListener('click', function () {
+        if (navigator.share) {
+          navigator.share({ title: document.title, url: location.href }).catch(function () {});
+        } else {
+          copyUrl();
+        }
+      });
+      var back = document.querySelector('.fab-back');
+      if (back) back.addEventListener('click', function () {
+        if (history.length > 1) { history.back(); } else { location.href = '../index.html'; }
+      });
+    })();
+  </script>
 </body>
 </html>

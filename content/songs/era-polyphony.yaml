@@ -87,13 +87,18 @@ songs:
       original_singer: 交工樂隊
     hook: 交工樂隊為美濃反水庫而唱，把客家庄的心事寫成史詩。
     listen:
+      - url: https://www.youtube.com/watch?v=jrvgbafuG10
+        label: 交工樂隊原唱・2017 重修版音源（聯耳音樂數位發行）
+        source_type: official
+        version: original
       - url: https://www.youtube.com/watch?v=yMbS0iIliqc
         label: 交工樂隊／生祥樂隊官方頻道・十五週年紀念影片
         source_type: official
         version: live
-    note: 收錄於交工樂隊 2001 年同名專輯，錄於美濃菸樓，引入嗩吶與改造月琴。乾淨的錄音室版在合格頻道未見，改收樂團官方頻道（今名生祥樂隊）的十五週年紀念影片。林生祥以此專輯獲 2002 年金曲獎最佳樂團。
+    note: 收錄於交工樂隊 2001 年同名專輯，錄於美濃菸樓，引入嗩吶與改造月琴。林生祥以此專輯獲 2002 年金曲獎最佳樂團。2026-07-19 依 David 指示，主連結換成歌曲音源（2017 重修版，聯耳音樂數位發行上傳，全長 8 分 48 秒），原樂團官方頻道（今名生祥樂隊）的十五週年紀念影片降為另聽。
     sources:
       - 交工樂隊、美濃反水庫運動、《菊花夜行軍》專輯與金曲獎：https://zh.wikipedia.org/zh-hant/%E4%BA%A4%E5%B7%A5%E6%A8%82%E9%9A%8A
+      - 2017 重修版歌曲音源（聯耳音樂 Uni Ears 數位發行上傳，曲目與演出者）：https://www.youtube.com/watch?v=jrvgbafuG10
       - 官方頻道紀念影片（收錄專輯與演出者）：https://www.youtube.com/watch?v=yMbS0iIliqc
 
   - id: zung-shu

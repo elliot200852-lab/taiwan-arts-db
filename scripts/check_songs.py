@@ -32,6 +32,7 @@ from __future__ import annotations
 import argparse
 import concurrent.futures as cf
 import re
+import subprocess
 import sys
 import urllib.error
 import urllib.parse
@@ -137,7 +138,26 @@ def _check_http_200(url: str) -> str | None:
                 return None
             return f"HTTP {r.status}"
     except Exception as e:
-        return f"{type(e).__name__}: {e}"
+        err = f"{type(e).__name__}: {e}"
+        if "CERTIFICATE_VERIFY_FAILED" in err:
+            # 台灣政府／機構站（*.gov.tw、culture.tw、tfam.museum 等）的 TWCA
+            # 憑證缺 Subject Key Identifier，Python 3.13 的鏈驗證一律拒收；
+            # curl 走系統信任庫可過。退回 curl 驗，避免誤報活連結為死鏈。
+            return _check_http_200_curl(url)
+        return err
+
+
+def _check_http_200_curl(url: str) -> str | None:
+    try:
+        r = subprocess.run(
+            ["curl", "-sL", "-o", "/dev/null", "-w", "%{http_code}",
+             "--max-time", "20", "-A", UA["User-Agent"], url],
+            capture_output=True, text=True, timeout=30,
+        )
+        code = r.stdout.strip()
+        return None if code == "200" else f"HTTP {code or '無回應'}（curl fallback）"
+    except Exception as e:
+        return f"curl fallback 失敗：{type(e).__name__}: {e}"
 
 
 def _check_links(link_targets: list[tuple[str, str]]) -> list[str]:
