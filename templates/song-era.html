@@ -46,8 +46,16 @@
          禁歌史有 banned 欄才出現小標。 -->
     <!-- 曲目列（Wix 播放器 track list）：曲序 si-num｜主欄 si-main｜年份 si-year 右欄。
          歌名本身＝listen[0] 主連結；listen[1..] 以 ♪ 藥丸列出；禁歌史有 banned 欄才出小標。 -->
+    <!-- 標題列（2026-07-19 新增）：build_era_playall() 依登記簿順序取每首
+         listen[] 第一條 YouTube 連結（同 id 去重、保序）組成
+         watch_videos?video_ids=… 匿名臨時播放清單網址。可連播數（去重後）
+         <2 首時只出 <h2>、不包 .songs-of-era-head／不渲染 .era-playall
+         按鈕（build stdout 印警告）。 -->
     <section class="person-sec songs-of-era">
-      <h2>這個時代的歌</h2>
+      <div class="songs-of-era-head">
+        <h2>這個時代的歌</h2>
+        <a class="era-playall" href="https://www.youtube.com/watch_videos?video_ids=〔ID1,ID2,…〕" target="_blank" rel="noopener">▶ YouTube 連播本期（〔N〕 首）</a>
+      </div>
       <ul class="song-list">
         <li class="song-item">
           <span class="si-num">01</span>

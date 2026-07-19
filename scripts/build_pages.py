@@ -40,6 +40,7 @@ import json
 import math
 import re
 import sys
+import urllib.parse
 from pathlib import Path
 
 import yaml
@@ -1658,6 +1659,75 @@ def render_era_body(body: str, songs_by_title: dict[str, dict], path: Path) -> t
 CREDIT_LABELS = {"lyricist": "詞", "composer": "曲", "original_singer": "唱"}
 
 
+# ---------- 歌曲期頁「YouTube 連播本期」按鈕（2026-07-19 新增） ----------
+#
+# 依登記簿內歌曲順序，取每首 listen[] 中第一條 YouTube 連結（listen[0] 是
+# YouTube 就用它，不是就往 listen[1..] 找；全非 YouTube 則該首不列入連播
+# 清單——曲目列本身照常顯示，只是沒有「連播」資格）。抽出 video ID 後同 ID
+# 去重（保序），組成 YouTube 匿名臨時播放清單網址
+# （watch_videos?video_ids=…，單條上限 50 支，各期最多 31 首不會超）。
+# 可連播數（去重後）<2 首不渲染按鈕，改在 build stdout 印警告。
+
+def extract_youtube_id(url: str) -> str | None:
+    """從 `watch?v=<id>` 或 `youtu.be/<id>` 抽 YouTube video ID；非 YouTube
+    網域或抽不出 id 回傳 None。"""
+    parsed = urllib.parse.urlparse(url)
+    host = parsed.netloc.lower()
+    if host.endswith("youtube.com"):
+        vid = urllib.parse.parse_qs(parsed.query).get("v", [None])[0]
+        return vid or None
+    if host.endswith("youtu.be"):
+        vid = parsed.path.strip("/").split("/")[0]
+        return vid or None
+    return None
+
+
+def build_era_playall(era: dict) -> dict | None:
+    """該期連播清單資料：{'url','count','ids','titles','skipped'}。titles／ids
+    為收錄曲目依序清單（同 video ID 去重、保序）；skipped 為登記簿內查無
+    YouTube 音源的歌名清單。可連播數（去重後）<2 首回傳 None，呼叫端據此
+    不渲染按鈕。"""
+    ids: list[str] = []
+    titles: list[str] = []
+    seen: set[str] = set()
+    skipped: list[str] = []
+    for song in era["songs"]:
+        vid = None
+        for l in song.get("listen") or []:
+            vid = extract_youtube_id(l.get("url", ""))
+            if vid:
+                break
+        if vid is None:
+            skipped.append(song["title"])
+            continue
+        if vid not in seen:
+            seen.add(vid)
+            ids.append(vid)
+            titles.append(song["title"])
+    return {
+        "url": "https://www.youtube.com/watch_videos?video_ids=" + ",".join(ids),
+        "count": len(ids),
+        "ids": ids,
+        "titles": titles,
+        "skipped": skipped,
+    }
+
+
+def render_songs_head(playall: dict | None) -> str:
+    """歌單區標題列：可連播數 <2 首（playall 為 None 或 count<2）時只出
+    `<h2>`；否則加 `.era-playall` 連播按鈕（新增 class，配歌曲線深色主題，
+    樣式見 assets/css/style.css 尾端）。"""
+    if playall is None or playall["count"] < 2:
+        return '      <h2>這個時代的歌</h2>'
+    return (
+        '      <div class="songs-of-era-head">\n'
+        '        <h2>這個時代的歌</h2>\n'
+        f'        <a class="era-playall" href="{esc(playall["url"])}" target="_blank" rel="noopener">'
+        f'▶ YouTube 連播本期（{playall["count"]} 首）</a>\n'
+        '      </div>'
+    )
+
+
 def render_song_item(song: dict, n: int) -> str:
     """歌單區單一 `<li>`（Wix 播放器 track list 樣式）：曲序（si-num）＋主欄
     （si-main：歌名＝listen[0] 主連結、語言／詞曲唱、hook、禁歌標記、另聽藥丸）
@@ -1790,7 +1860,7 @@ SONG_ERA_PAGE = """<!DOCTYPE html>
 {content}
 
     <section class="person-sec songs-of-era">
-      <h2>這個時代的歌</h2>
+{songs_head}
       <ul class="song-list">
 {song_items}
       </ul>
@@ -1834,6 +1904,12 @@ def build_song_pages(eras: list[dict]) -> int:
         md_path, fm = era["md_path"], era["fm"]
         content_html, footnotes_html = render_era_body(era["body"], songs_by_title, md_path)
         song_items = "\n".join(render_song_item(s, i) for i, s in enumerate(era["songs"], 1))
+        playall = build_era_playall(era)
+        if playall["count"] < 2:
+            print(
+                f"[build_pages] ⚠ song-{fm['slug']}.html：可連播 YouTube 歌曲僅 "
+                f"{playall['count']} 首（<2），未渲染「連播本期」按鈕"
+            )
         page_html = SONG_ERA_PAGE.format(
             title=esc(fm["title"]),
             scene_slug=esc(fm["slug"]),
@@ -1841,6 +1917,7 @@ def build_song_pages(eras: list[dict]) -> int:
             period=esc(fm["period"]),
             axis=esc(fm["axis"]),
             content=content_html,
+            songs_head=render_songs_head(playall),
             song_items=song_items,
             footnotes=footnotes_html,
             era_nav=render_era_nav(eras, idx),

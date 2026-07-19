@@ -1162,3 +1162,52 @@ a.wk-title-link:hover {
 @media print {
   .fab-nav, .fab-toast { display: none !important; }
 }
+
+/* ---------- 歌曲期頁「YouTube 連播本期」按鈕（2026-07-19 新增；只加不改） ----------
+   歌單區標題列（songs-of-era-head，包住原本的 <h2> 與新的 .era-playall
+   連播藥丸按鈕）；只在 build_era_playall() 判定可連播數 ≥2 首時渲染，見
+   scripts/build_pages.py render_songs_head()。配歌曲線 Tyler Reece 深褐
+   面板語彙，低調藥丸樣式與既有 .song-also／.song-banned 同質感。 */
+.songs-of-era-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .5rem 1.2rem;
+}
+.songs-of-era-head > h2 {
+  margin: 0 0 1rem;
+  color: var(--cream);
+}
+.songs-of-era-head > h2::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--pale-gold);
+  margin: .6rem 0 0;
+}
+.era-playall {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: .35rem;
+  font-family: var(--sans);
+  font-size: .8rem;
+  letter-spacing: .02em;
+  color: var(--pale-gold);
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 999px;
+  padding: .42rem 1.05rem;
+  background: rgba(255, 255, 255, .04);
+  transition: background .15s, border-color .15s, color .15s;
+}
+.era-playall:hover {
+  background: rgba(255, 255, 255, .12);
+  border-color: var(--pale-gold);
+  color: var(--cream);
+}
+@media (max-width: 640px) {
+  .songs-of-era-head { flex-direction: column; align-items: flex-start; gap: .3rem; }
+}
