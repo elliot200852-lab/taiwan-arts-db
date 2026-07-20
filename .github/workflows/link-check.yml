@@ -1,0 +1,89 @@
+name: 月度連結驗證
+
+# 目的：taiwan-arts-db 的外部連結（YouTube 影片、非 YouTube 來源網址）會隨時間
+# 失效（下架、轉限、網站改版）。deploy.sh／build 流程本身不驗連結（見
+# check_songs.py／check_works.py 檔頭：完整連結驗證耗時且依賴網路，是「部署前」
+# 另外手動跑的一關）。本 workflow 把這關排程化，每月自動跑一次完整驗鏈
+# （含網路），死了就紅燈——GitHub 對 repo owner 的預設通知會寄失敗信，
+# 死鏈清單另外寫進 Step Summary 方便一眼看，不必去翻整份 log。
+#
+# 不需要 Drive 憑證：本 workflow 只讀 repo 內的 content/songs/*.yaml 與
+# content/works.yaml 去打外部連結，不拉取／不觸碰 Drive 上的站台內容，
+# 因此刻意不掛 DRIVE_SA_KEY 之類的 secrets。
+#
+# 已知盲點（不在本 workflow 解決範圍）：YouTube oEmbed 對「影片存在但已被
+# 上傳者設限（如僅頻道會員可看）」驗不出來——曾在望春風 famous_cover 踩過
+# （oEmbed 回 200 但瀏覽器打開播不了）。這是 oEmbed 這個檢測方法本身的限制，
+# 已知悉、維持現有判定，不在此 workflow 額外處理。
+#
+# 節流：_check_links()（check_songs.py，check_works.py 重用同一支）已用
+# ThreadPoolExecutor(max_workers=6) 限制並發、YouTube oEmbed 失敗會重試 3 次，
+# 本機實測 206 首歌＋85 筆作品共約 300 條連結全綠、耗時約 10-20 秒，
+# 未觀察到 429／限流，故不再另外加 sleep delay。
+
+on:
+  schedule:
+    # 每月 1 日 01:00 UTC ＝ 台北時間 09:00（UTC+8）
+    - cron: "0 1 1 * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: 驗證歌曲線外部連結（check_songs.py，完整模式含網路）
+        id: songs
+        continue-on-error: true
+        run: python3 scripts/check_songs.py 2>&1 | tee songs-check.log
+
+      - name: 驗證作品登記簿外部連結（check_works.py）
+        id: works
+        continue-on-error: true
+        run: python3 scripts/check_works.py 2>&1 | tee works-check.log
+
+      - name: 寫入 Step Summary
+        if: always()
+        run: |
+          {
+            echo "# 月度連結驗證報告"
+            echo
+            echo "執行時間：$(date -u '+%Y-%m-%d %H:%M UTC')（台北 $(TZ=Asia/Taipei date '+%Y-%m-%d %H:%M')）"
+            echo
+            if [ "${{ steps.songs.outcome }}" = "success" ]; then
+              echo "## 歌曲線（check_songs.py）：全綠 ✓"
+            else
+              echo "## 歌曲線（check_songs.py）：發現死鏈 ✗"
+            fi
+            echo '```'
+            cat songs-check.log
+            echo '```'
+            echo
+            if [ "${{ steps.works.outcome }}" = "success" ]; then
+              echo "## 作品登記簿（check_works.py）：全綠 ✓"
+            else
+              echo "## 作品登記簿（check_works.py）：發現死鏈 ✗"
+            fi
+            echo '```'
+            cat works-check.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: 判定整體結果（任一腳本有死鏈即整個 job 失敗）
+        if: steps.songs.outcome == 'failure' || steps.works.outcome == 'failure'
+        run: |
+          echo "偵測到死鏈，詳見上方 Step Summary（GitHub 會寄失敗通知信給 repo owner）。" >&2
+          exit 1

@@ -22,6 +22,12 @@
 #   4. python3 scripts/verify_live.py
 #        CI 綠不代表內容真的在 live 站上（Drive-pull 架構，見腳本檔頭說明）——
 #        逐頁逐圖打 live 站才是唯一的驗收閘。
+#   5. python3 scripts/report_orphans.py --no-rebuild（2026-07-20 加，非阻斷）
+#        deploy.sh 只增改、從不刪除 Drive html 夾裡的舊檔——人物頁改名／下架後
+#        舊 pages/<old-slug>.html 會變孤兒。這步只報告不刪除，**失敗或發現
+#        孤兒都不擋本次部署**（deploy.sh 已在 STEP 1 build 過，用 --no-rebuild
+#        重用剛剛的 _build/，不重跑一次 build）；有孤兒時人工到 Drive 或用
+#        gws 逐一確認後再決定要不要清。
 #
 # Drive folder ID 出處：drive-manifest.yaml（html 夾＝files.site、img 夾＝files.site/img）；
 # pages 子夾 ID 未寫進 manifest（pull_content.py 靠遞迴自動找到），本腳本在 STEP 2
@@ -131,3 +137,10 @@ gh run watch "$RUN_ID" --exit-status
 echo
 echo "==> 4/4 verify_live.py：驗證 live 站（CI 綠不代表內容真的在，見腳本檔頭）"
 python3 scripts/verify_live.py
+
+echo
+echo "==> 附加（非阻斷）：report_orphans.py 孤兒檔報告（只報告不刪除）"
+if ! python3 scripts/report_orphans.py --no-rebuild; then
+  echo "  ⚠ 孤兒檔報告發現問題或本身執行失敗——不影響本次部署結果，"
+  echo "    細節見上方輸出，需要的話人工到 Drive 或用 gws 逐一確認再處理。"
+fi
