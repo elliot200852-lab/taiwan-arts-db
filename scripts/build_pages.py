@@ -31,6 +31,13 @@ Markdown 子集（受限轉換，刻意不吃完整 Markdown）：
 頁面骨架照 templates/index.html、templates/person.html 的定案結構
 （class 名、區塊順序）；首頁 tab 的 hash-router <script> 直接從
 templates/index.html 抽出，單一來源。
+
+SEO 基本盤（2026-07-20，A-list 低風險優化）：人物／領域／歌曲時代頁三個
+內嵌模板補 `<meta name="description">` 與 og:title/description/type/image
+（首頁模板本來就有 description，這次補 OG）；文案不新寫，一律從既有欄位
+抽取（tagline／首段／axis）並剝除 markdown 符號、截斷 ~100 字
+（見 truncate_desc()）。同時新增 sitemap.xml（首頁＋84 頁絕對 URL），走
+與 search-index.json 同樣的「_build/ 產物，隨 Drive 換版上傳」路徑。
 """
 
 from __future__ import annotations
@@ -490,6 +497,23 @@ def esc(text: str) -> str:
     return html.escape(text, quote=False)
 
 
+# 2026-07-20（A-list #2/#3/#4）：84 內容頁補 meta description／OG／sitemap。
+# SITE_BASE 與 scripts/verify_live.py 的 DEFAULT_BASE 同一個值——sitemap／
+# og:image 需要絕對 URL，故此檔也要有一份（兩處各自獨立常數，非共用 import，
+# 避免兩支彼此無關的腳本產生不必要的耦合）。
+SITE_BASE = "https://elliot200852-lab.github.io/taiwan-arts-db"
+
+
+def truncate_desc(text: str, limit: int = 100) -> str:
+    """meta description／og:description 共用：壓平空白後截斷到 limit 字元，
+    截斷才補刪節號。輸入須是已剝除 markdown 符號的純文字（呼叫端先過
+    md_to_plain()），這裡不重複處理 markdown。"""
+    text = re.sub(r"\s+", " ", text).strip()
+    if len(text) <= limit:
+        return text
+    return text[:limit].rstrip() + "…"
+
+
 def inline(text: str) -> str:
     """受限行內轉換：先跳脫，再套 [^N] 上標與 [label](url) 連結。
 
@@ -823,6 +847,11 @@ PERSON_PAGE = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{name} — 臺灣人文藝術</title>
+  <meta name="description" content="{description}">
+  <meta property="og:title" content="{name} — 臺灣人文藝術">
+  <meta property="og:description" content="{description}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{og_image}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
@@ -942,9 +971,16 @@ def build_person(md_path: Path, linker: "WorksLinker | None" = None) -> tuple[st
 
     slug = fm["slug"]
     who_md = linker.autolink_md(who_blocks[0], slug, "who") if linker else who_blocks[0]
+    # meta description／og:description（A-list #2）：既有 tagline 是本來就設計
+    # 給「一句話定位這個人」用的欄位，比 lede（完整導言段落）更適合當摘要；
+    # md_to_plain 剝除 markdown 符號後截斷到 ~100 字。
+    description = truncate_desc(md_to_plain(fm["tagline"]))
+    og_image = f"{SITE_BASE}/img/scenes/{slug}.jpg"
     html_out = PERSON_PAGE.format(
         name=esc(fm["name"]),
         scene_slug=esc(slug),
+        description=esc(description),
+        og_image=esc(og_image),
         field=esc(fm["field"]),
         years=esc(fm["years"]),
         tagline=esc(fm["tagline"]),
@@ -976,6 +1012,10 @@ INDEX_PAGE = """<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title}</title>
   <meta name="description" content="{description}">
+  <meta property="og:title" content="{title}">
+  <meta property="og:description" content="{description}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{og_image}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
@@ -1141,6 +1181,7 @@ def build_index(eras: list[dict]) -> str:
     return INDEX_PAGE.format(
         title=esc(fm["title"]),
         description=esc(fm["description"]),
+        og_image=esc(f"{SITE_BASE}/img/scenes/site-hero.jpg"),
         site_title=esc(fm["site_title"]),
         site_sub=esc(fm["site_sub"]),
         intro="\n".join(intro_parts),
@@ -1160,6 +1201,11 @@ FIELD_PAGE = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} — 臺灣人文藝術</title>
+  <meta name="description" content="{description}">
+  <meta property="og:title" content="{title} — 臺灣人文藝術">
+  <meta property="og:description" content="{description}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{og_image}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
@@ -1284,6 +1330,30 @@ def render_field_body(
     return "\n".join(parts), footnotes_html
 
 
+def field_meta_description(body: str, path: Path) -> str:
+    """領域頁 meta description（A-list #2）：frontmatter 沒有專門的摘要欄位
+    （只有 title/slug/tag），改抓「首段」——有導言就用導言第一段（如
+    field-art.md／field-dance.md 開頭直接是一段文字）；沒有導言、`## ` 標題
+    就是第一行的檔案（如 field-craft.md／field-festival.md），改抓第一個
+    `## ` 區段的第一個文字塊。兩種情況 render_field_body() 都有處理過，這裡
+    只是另外抓一份純文字（不需要 HTML），邏輯刻意獨立、不重用其回傳值
+    （那支回傳的是已經轉好的 HTML 字串，不是可再截斷的純文字）。"""
+    m = re.search(r"^## ", body, re.M)
+    if m is None:
+        paras = split_paragraphs(body)
+    else:
+        intro_paras = split_paragraphs(body[: m.start()])
+        if intro_paras:
+            paras = intro_paras
+        else:
+            sections = split_sections(body[m.start():], path)
+            first_blocks = sections[0][1] if sections else []
+            paras = [first_blocks[0]] if first_blocks else []
+    if not paras:
+        die(f"{path.name}：領域頁抓不到任何文字供 meta description 使用")
+    return truncate_desc(md_to_plain(paras[0]))
+
+
 def build_field(
     md_path: Path, people_meta: list[dict], linker: "WorksLinker | None" = None
 ) -> tuple[str, str]:
@@ -1293,6 +1363,11 @@ def build_field(
             die(f"{md_path.name}：frontmatter 缺 `{key}`")
 
     content_html, footnotes_html = render_field_body(body, md_path, linker, fm["slug"])
+    description = field_meta_description(body, md_path)
+    # 領域頁沒有專屬情境圖（DESIGN-SPEC §9：領域頁 hero 沿用純文字，本來就
+    # 沒有 img/scenes/field-*.jpg——2026-07-20 已對 live 站逐一 curl 過確認
+    # 404），og:image 不新增素材，改用首頁 hero 圖頂替（唯一保證存在的圖）。
+    og_image = f"{SITE_BASE}/img/scenes/site-hero.jpg"
 
     tag = fm["tag"]
     matched = [p for p in people_meta if tag in p["tags"]]
@@ -1339,6 +1414,8 @@ def build_field(
 
     html_out = FIELD_PAGE.format(
         title=esc(fm["title"]),
+        description=esc(description),
+        og_image=esc(og_image),
         content=content_html,
         cards_section=cards_section,
         footnotes_section=footnotes_section,
@@ -1849,6 +1926,11 @@ SONG_ERA_PAGE = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} — 臺灣歌曲 — 臺灣人文藝術</title>
+  <meta name="description" content="{description}">
+  <meta property="og:title" content="{title} — 臺灣歌曲 — 臺灣人文藝術">
+  <meta property="og:description" content="{description}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{og_image}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
@@ -1919,8 +2001,15 @@ def build_song_pages(eras: list[dict]) -> int:
                 f"[build_pages] ⚠ song-{fm['slug']}.html：可連播 YouTube 歌曲僅 "
                 f"{playall['count']} 首（<2），未渲染「連播本期」按鈕"
             )
+        # meta description（A-list #2）：axis 欄位本來就是這一期的一句話主軸，
+        # 直接拿來用（md_to_plain 剝符號雖然 axis 通常不含 markdown，仍統一走
+        # 同一支剝除函式保險）。
+        description = truncate_desc(md_to_plain(fm["axis"]))
+        og_image = f"{SITE_BASE}/img/scenes/{fm['slug']}.jpg"
         page_html = SONG_ERA_PAGE.format(
             title=esc(fm["title"]),
+            description=esc(description),
+            og_image=esc(og_image),
             scene_slug=esc(fm["slug"]),
             eh_num=f'{int(fm["order"]):02d}',
             period=esc(fm["period"]),
@@ -2083,6 +2172,23 @@ def write_search_index(records: list[dict]) -> None:
     print(f"[build_pages] search-index.json ✓（{len(records)} 筆）")
 
 
+# ---------- sitemap.xml（A-list #4，2026-07-20） ----------
+
+
+def build_sitemap(page_urls: list[str]) -> str:
+    """page_urls：pages/ 下的相對路徑（如 'pages/abao.html'），不含首頁——
+    首頁由這裡統一加在最前面。輸出絕對 URL（SITE_BASE），與
+    scripts/verify_live.py 的 index_url 慣例（base + '/index.html'）一致。"""
+    urls = [f"{SITE_BASE}/index.html"] + [f"{SITE_BASE}/{u}" for u in page_urls]
+    items = "\n".join(f"  <url><loc>{esc(u)}</loc></url>" for u in urls)
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{items}\n"
+        "</urlset>\n"
+    )
+
+
 def main() -> None:
     if not CONTENT.is_dir():
         die("content/ 不存在")
@@ -2137,6 +2243,16 @@ def main() -> None:
             f"實得 {len(search_records)} 筆"
         )
     write_search_index(search_records)
+
+    # sitemap.xml（A-list #4）：頁面清單直接沿用 build 時各自的檔名推導規則
+    # （pages/{slug}.html／pages/song-{slug}.html），不重新掃 _build/pages/
+    # 目錄——避免把「這次 build 沒重新產出的殘餘檔」也算進去。
+    sitemap_pages = [f"pages/{p.stem}.html" for p in people_md]
+    if FIELDS.is_dir():
+        sitemap_pages += [f"pages/{p.stem}.html" for p in sorted(FIELDS.glob("*.md"))]
+    sitemap_pages += [f"pages/song-{e['fm']['slug']}.html" for e in eras]
+    (BUILD / "sitemap.xml").write_text(build_sitemap(sitemap_pages), encoding="utf-8")
+    print(f"[build_pages] sitemap.xml ✓（{1 + len(sitemap_pages)} 條，含首頁）")
 
     print(
         f"[build_pages] 完成：{len(people_md) + 1 + field_count + song_count} 頁 → "

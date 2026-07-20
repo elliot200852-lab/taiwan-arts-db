@@ -90,7 +90,23 @@
     return total;
   }
 
-  /** 對整批 records 排序取前 limit 筆（預設 20）。查詢為空回傳 []。 */
+  /** body 未封頂的原始命中總數（跨全部 tokens 加總）。只當次要排序鍵用
+   * （2026-07-20 A-list #5）：scoreRecord() 的計分公式本身不動（body 貢獻
+   * 上限維持 +5／詞），這裡另外算一份不封頂版本，只在同分時決定何者在前
+   * ——不解決「廣泛詞被歌曲洗版」的排序型別問題，那是另案待拍板的 UX
+   * 決策，這裡只是同分 tie-break，不做型別加權。 */
+  function rawBodyHitTotal(record, tokens) {
+    var body = normalize(record.body);
+    var total = 0;
+    for (var i = 0; i < tokens.length; i++) {
+      total += countOccurrences(body, tokens[i]);
+    }
+    return total;
+  }
+
+  /** 對整批 records 排序取前 limit 筆（預設 20）。查詢為空回傳 []。
+   * 排序：score 高者在前；同 score 時，body 未封頂原始命中數高者在前
+   * （tie-break，2026-07-20）。 */
   function rankRecords(records, query, limit) {
     limit = limit || 20;
     var tokens = tokenize(query);
@@ -99,10 +115,18 @@
     for (var i = 0; i < records.length; i++) {
       var s = scoreRecord(records[i], tokens);
       if (s !== null && s > 0) {
-        scored.push({ record: records[i], score: s, tokens: tokens });
+        scored.push({
+          record: records[i],
+          score: s,
+          rawBody: rawBodyHitTotal(records[i], tokens),
+          tokens: tokens,
+        });
       }
     }
-    scored.sort(function (a, b) { return b.score - a.score; });
+    scored.sort(function (a, b) {
+      if (b.score !== a.score) return b.score - a.score;
+      return b.rawBody - a.rawBody;
+    });
     return scored.slice(0, limit);
   }
 
@@ -179,6 +203,7 @@
     countOccurrences: countOccurrences,
     escapeHtml: escapeHtml,
     scoreRecord: scoreRecord,
+    rawBodyHitTotal: rawBodyHitTotal,
     rankRecords: rankRecords,
     markText: markText,
     buildSnippet: buildSnippet,

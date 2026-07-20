@@ -9,6 +9,7 @@
 #        content/*.md → _build/index.html ＋ _build/pages/*.html（鏡射 Drive html 夾結構）
 #        ＋ _build/search-index.json（首頁站內檢索索引，2026-07-19；與 index.html
 #        同層放 Drive html 夾根目錄，pull_content.py 遞迴鏡射整夾，不需另外改它）
+#        ＋ _build/sitemap.xml（首頁＋84 頁絕對 URL，2026-07-20；同樣放根目錄）
 #   2. 換版 Drive：比對 _build/ 與 Drive 現版（md5Checksum），只換有變動的檔；
 #        Drive 沒有的新檔用 gws ... create --json（帶 metadata）建立，
 #        **不可用 --params 建檔**（那是給 update 用的 query 參數，用在 create 上
@@ -34,6 +35,8 @@ cd "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 echo "==> 1/4 build_pages.py：content/*.md → _build/"
 python3 scripts/build_pages.py
+# 2026-07-20：build_pages.py 同時產出 _build/sitemap.xml（首頁＋84 頁絕對
+# URL），STEP 2 一併換版到 Drive html 夾根層，照 search-index.json 前例走。
 
 echo
 echo "==> 2/4 換版 Drive：比對 _build/ 與 Drive 現版，只換有變動／新增的檔"
@@ -94,6 +97,7 @@ sync_one() {
 
 sync_one "_build/index.html" "$html_children" "$HTML_FOLDER_ID"
 sync_one "_build/search-index.json" "$html_children" "$HTML_FOLDER_ID"
+sync_one "_build/sitemap.xml" "$html_children" "$HTML_FOLDER_ID"
 for f in _build/pages/*.html; do
   sync_one "$f" "$pages_children" "$PAGES_FOLDER_ID"
 done
