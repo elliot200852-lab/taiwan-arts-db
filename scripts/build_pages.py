@@ -1085,6 +1085,7 @@ INDEX_PAGE = """<!DOCTYPE html>
 
 {script}
 {map_script}
+  <script src="assets/js/search-core.js" defer></script>
   <script src="assets/js/search.js" defer></script>
 </body>
 </html>
@@ -2030,12 +2031,17 @@ def build_song_pages(eras: list[dict]) -> int:
     return count
 
 
-# ---------- 站內檢索索引（2026-07-19，首頁全文檢索） ----------
+# ---------- 站內檢索索引（2026-07-19，首頁全文檢索；2026-07-20 收斂） ----------
 #
-# 首頁新增「站內檢索欄」（assets/js/search.js，client-side 子字串比對）。
+# 首頁新增「站內檢索欄」（assets/js/search.js，client-side 子字串比對；
+# 計分核心已抽到 assets/js/search-core.js，與 taiwan-geo-db 共用同一份
+# byte-identical 檔案，規則見 docs/DEPLOY.md「search-core 雙 repo 同步規則」）。
 # build 時把人物／領域／歌曲時代頁／206 首歌曲條目攤平成單一 JSON 索引
 # `_build/search-index.json`：67 人物＋9 領域＋8 歌曲時代頁＋206 首歌曲＝
-# 290 筆。content/*.md、content/songs/*.yaml 只讀，不改寫；schema 驗證
+# 290 筆。id 前綴（`person:`/`field:`/`era:`/`song:`）除了本來的用途，
+# 2026-07-20 起也是 search.js 推導 typeBoosts 型別的依據，改動前綴格式
+# 前請先確認 assets/js/search.js 的 recordType() 仍讀得到。
+# content/*.md、content/songs/*.yaml 只讀，不改寫；schema 驗證
 # 交給 main() 既有的 check_songs／各 die 檢查，本節只做攤平與純文字化。
 
 _MD_COMMENT_RE = re.compile(r"<!--.*?-->", re.S)

@@ -136,3 +136,29 @@ python3 scripts/report_orphans.py --no-rebuild # 信任呼叫端剛 build 過，
 `deploy.sh` 收尾已加一步 `python3 scripts/report_orphans.py --no-rebuild`
 （重用 STEP 1 剛產出的 `_build/`，不重複 build）——**失敗或發現孤兒都不擋
 本次部署**，只印警告，是否清理另外處理。
+
+## search-core 雙 repo 同步規則
+
+`assets/js/search-core.js`（首頁站內檢索的計分／排序核心）與 `taiwan-geo-db` 的
+`site/js/search-core.js` **必須 byte-identical**（2026-07-20 收斂案：兩站原本
+各自獨立寫了一份幾乎相同的邏輯，同一個 tie-break bug 修了兩遍才拍板收斂）。
+JS 是程式資產（跟 `assets/css/` 同類），走 repo 直接 commit，**不**經 Drive
+puller（`pull_content.py` 的 `copy_assets()` 會把整個 `assets/` 樹複製進
+`site/assets/`，新增 `search-core.js` 不需要另外改 pull 腳本）。
+
+- **改核心邏輯**（計分公式、AND 語意、排序、tie-break、typeBoosts 機制本身）
+  → 兩個 repo 的 `search-core.js` 都要改，改完兩份必須逐位元組相同。
+- **改單站行為**（權重數值、typeBoosts 數值與是否啟用、資料形狀轉換）→
+  只改該站的 adapter（本站 `assets/js/search.js` 的 `ARTS_CONFIG`），不動
+  `search-core.js`。
+- `scripts/check-search-core-sync.sh`：本機找得到 sibling repo
+  `../taiwan-geo-db` 就 diff 兩份 `search-core.js`，不一致直接 fail；CI
+  上通常只 checkout 單一 repo，找不到 sibling 會印提示後略過（不擋 CI）。
+  `scripts/test-search.js` 開頭就會跑這支，失敗即整個測試失敗。
+- 本站**啟用** `typeBoosts`（`taiwan-geo-db` 不啟用）：領域頁／時代頁 +40、
+  人物頁 +25、歌曲 +0，解決廣泛詞（如「國語」「台語」「客家」）被大量
+  歌曲條目洗版、真正該排前面的領域/人物頁卻沉下去的排序問題。型別由
+  `record.id` 的 `person:`/`field:`/`era:`/`song:` 前綴推導（見
+  `assets/js/search.js` 的 `recordType()`）。驗收斷言在
+  `scripts/test-search.js`：廣泛詞 top3 不全是歌曲＋相關領域/人物頁進
+  top3；精準查詢（如「雨夜花」「洪一峰」）top1 不受影響。

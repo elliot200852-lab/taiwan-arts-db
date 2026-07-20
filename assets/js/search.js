@@ -1,17 +1,33 @@
-/* 臺灣人文藝術 — 首頁站內檢索（2026-07-19）
+/* 臺灣人文藝術 — 首頁站內檢索（2026-07-19；2026-07-20 收斂為共用核心＋型別加權）
  *
  * client-side 全文檢索：85 頁靜態站＋206 首歌無後端，build 時把人物／領域／
  * 歌曲時代頁／歌曲條目攤平成 search-index.json（290 筆），首頁第一次
  * focus／輸入時才 fetch（lazy-load），瀏覽器內做 NFKC＋lowercase 正規化後
  * 子字串比對＋計分。
  *
+ * 計分／排序核心已抽到 search-core.js（taiwan-geo-db／taiwan-arts-db 雙 repo
+ * 同步檔，規則見該檔檔頭與 docs/DEPLOY.md「search-core 雙 repo 同步規則」）。
+ * 本檔是 arts-db 專屬 adapter，只做兩件事：
+ *   1. 把 record 轉成 core 期待的形狀——kw 本站已是字串，直接透傳；另外從
+ *      record.id 的 `person:` / `field:` / `era:` / `song:` 前綴推導 type，
+ *      供 typeBoosts 用（build_pages.py 產生 id 時就用這個慣例分四類，
+ *      詳見該檔 build_search_index()，此處不重新規範）。
+ *   2. 帶入本站的 typeBoosts：領域頁／時代頁 +40、人物頁 +25、歌曲 +0——
+ *      解決廣泛詞（如「國語」「台語」「客家」）被大量歌曲條目洗版、真正
+ *      該排前面的領域/人物頁卻沉下去的排序問題（2026-07-20 拍板）。
+ *
  * 檔案分兩段：
  *   1. 純函式模組（ArtsSearch）——不碰 DOM，Node 可直接 require() 測試。
  *   2. 瀏覽器 wiring——只在 `document` 存在時才跑，負責 fetch／debounce／
- *      鍵盤操作／畫面渲染。
+ *      鍵盤操作／畫面渲染。UI 行為（高亮、snippet、渲染、鍵盤、IME）維持
+ *      2026-07-19 原樣，本次收斂不動。
  *
  * 不動的東西：hash-router <script>（templates/index.html 抽出）一個字元
  * 不碰；本檔完全獨立，不依賴、也不修改該 script 的任何行為。
+ *
+ * 瀏覽器需先載入 assets/js/search-core.js（見 scripts/build_pages.py 產生
+ * 的 <script> 順序，search-core.js 排在 search.js 之前，兩者皆 defer，
+ * 執行序不受影響）。
  */
 (function (root, factory) {
   if (typeof module !== "undefined" && module.exports) {
@@ -22,22 +38,31 @@
 })(typeof self !== "undefined" ? self : this, function () {
   "use strict";
 
-  /** NFKC＋lowercase＋空白正規化（全形/半形、大小寫統一比對用）。 */
-  function normalize(s) {
-    return (s || "")
-      .normalize("NFKC")
-      .toLowerCase()
-      .replace(/\s+/g, " ")
-      .trim();
+  var SearchCore = (typeof module !== "undefined" && module.exports)
+    ? require("./search-core.js")
+    : (typeof self !== "undefined" ? self.SearchCore : this.SearchCore);
+
+  var normalize = SearchCore.normalize;
+  var tokenize = SearchCore.splitQuery;
+
+  // arts-db 計分權重與收斂前完全一致；typeBoosts 是本站專屬啟用項——
+  // 領域／時代頁 +40、人物頁 +25、歌曲 +0（2026-07-20 拍板，數值見
+  // scripts/test-search.js 的驗收斷言）。
+  var ARTS_CONFIG = {
+    weights: { title: 100, titlePrefix: 50, kw: 40, sub: 20, bodyHit: 1, bodyCap: 5 },
+    typeBoosts: { field: 40, era: 40, person: 25, song: 0 }
+  };
+
+  /** 從 record.id 的 `person:`/`field:`/`era:`/`song:` 前綴推導型別，供
+   * typeBoosts 查表用（build_pages.py 產生 id 時的既有慣例，非新規範）。 */
+  function recordType(record) {
+    var id = record && record.id;
+    if (!id) return "";
+    var i = String(id).indexOf(":");
+    return i === -1 ? "" : id.slice(0, i);
   }
 
-  /** 查詢字串依空白切成多詞（AND 比對），已正規化。 */
-  function tokenize(query) {
-    var n = normalize(query);
-    return n ? n.split(" ").filter(Boolean) : [];
-  }
-
-  /** needle 在 haystack 中出現的次數（不重疊）。 */
+  /** needle 在 haystack 中出現的次數（不重疊）；保留原名供既有呼叫端/測試沿用。 */
   function countOccurrences(haystack, needle) {
     if (!needle) return 0;
     var count = 0;
@@ -58,76 +83,28 @@
     });
   }
 
-  /** 單筆 record 對 tokens 的計分；任一詞完全沒命中（title/sub/kw/body
-   * 皆無）→ 回傳 null（AND 語意，整筆不算）。計分：title +100（前綴再
-   * +50）、kw +40、sub +20、body 每次出現 +1（每詞上限 +5）。 */
-  function scoreRecord(record, tokens) {
-    var title = normalize(record.title);
-    var sub = normalize(record.sub);
-    var kw = normalize(record.kw);
-    var body = normalize(record.body);
-    var total = 0;
-
-    for (var i = 0; i < tokens.length; i++) {
-      var t = tokens[i];
-      var inTitle = title.indexOf(t) > -1;
-      var inSub = sub.indexOf(t) > -1;
-      var inKw = kw.indexOf(t) > -1;
-      var bodyHits = countOccurrences(body, t);
-      if (!inTitle && !inSub && !inKw && bodyHits === 0) {
-        return null;
-      }
-      var s = 0;
-      if (inTitle) {
-        s += 100;
-        if (title.indexOf(t) === 0) s += 50;
-      }
-      if (inKw) s += 40;
-      if (inSub) s += 20;
-      s += Math.min(bodyHits, 5);
-      total += s;
-    }
-    return total;
-  }
-
-  /** body 未封頂的原始命中總數（跨全部 tokens 加總）。只當次要排序鍵用
-   * （2026-07-20 A-list #5）：scoreRecord() 的計分公式本身不動（body 貢獻
-   * 上限維持 +5／詞），這裡另外算一份不封頂版本，只在同分時決定何者在前
-   * ——不解決「廣泛詞被歌曲洗版」的排序型別問題，那是另案待拍板的 UX
-   * 決策，這裡只是同分 tie-break，不做型別加權。 */
-  function rawBodyHitTotal(record, tokens) {
-    var body = normalize(record.body);
-    var total = 0;
-    for (var i = 0; i < tokens.length; i++) {
-      total += countOccurrences(body, tokens[i]);
-    }
-    return total;
-  }
-
   /** 對整批 records 排序取前 limit 筆（預設 20）。查詢為空回傳 []。
-   * 排序：score 高者在前；同 score 時，body 未封頂原始命中數高者在前
-   * （tie-break，2026-07-20）。 */
+   * 計分／多詞 AND／排序（含 tie-break、typeBoosts）規則全部在
+   * search-core.js；本函式只做 arts 的資料形狀轉換：kw 本站已是字串直接
+   * 透傳，另外從 id 前綴推導 type 供 typeBoosts 查表。回傳的 record 是
+   * 保留原欄位（url/title/sub/body）的淺拷貝物件，只多了 type 欄位，
+   * UI 端存取的欄位不受影響。 */
   function rankRecords(records, query, limit) {
-    limit = limit || 20;
-    var tokens = tokenize(query);
-    if (!tokens.length) return [];
-    var scored = [];
+    if (!records || !records.length) return [];
+    var canon = new Array(records.length);
     for (var i = 0; i < records.length; i++) {
-      var s = scoreRecord(records[i], tokens);
-      if (s !== null && s > 0) {
-        scored.push({
-          record: records[i],
-          score: s,
-          rawBody: rawBodyHitTotal(records[i], tokens),
-          tokens: tokens,
-        });
-      }
+      var rec = records[i];
+      canon[i] = {
+        id: rec.id,
+        url: rec.url,
+        title: rec.title,
+        sub: rec.sub,
+        body: rec.body,
+        kw: rec.kw || "",
+        type: recordType(rec)
+      };
     }
-    scored.sort(function (a, b) {
-      if (b.score !== a.score) return b.score - a.score;
-      return b.rawBody - a.rawBody;
-    });
-    return scored.slice(0, limit);
+    return SearchCore.rankRecords(canon, query, ARTS_CONFIG, limit || 20);
   }
 
   /** 把 normalizedText 裡所有 tokens 命中的區間，對應到 originalText 同一
@@ -202,8 +179,6 @@
     tokenize: tokenize,
     countOccurrences: countOccurrences,
     escapeHtml: escapeHtml,
-    scoreRecord: scoreRecord,
-    rawBodyHitTotal: rawBodyHitTotal,
     rankRecords: rankRecords,
     markText: markText,
     buildSnippet: buildSnippet,
