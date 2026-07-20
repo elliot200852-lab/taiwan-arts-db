@@ -1,7 +1,7 @@
 ---
 title: 眾聲喧嘩
 slug: era-polyphony
-period: 2000–
+period: 2000–2019
 order: 8
 axis: 族語、客語、臺語、國語同台開唱；從陳建年到阿爆，獨立與主流並存，傳統回到最前緣。
 ---

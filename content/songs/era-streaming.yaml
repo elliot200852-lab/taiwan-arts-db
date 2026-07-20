@@ -1,0 +1,444 @@
+songs:
+  - id: ke-zai-wo-xin-di-de-ming-zi
+    title: 刻在我心底的名字
+    year: 2020
+    era: era-streaming
+    language: 國語
+    credits:
+      lyricist: 許媛婷、佳旺、陳文華
+      composer: 許媛婷、佳旺、陳文華
+      original_singer: 盧廣仲
+    hook: 同名電影主題曲，奪第三十二屆金曲獎年度歌曲，串流平台年度冠軍曲。
+    listen:
+      - url: https://www.youtube.com/watch?v=m78lJuzftcc
+        label: 盧廣仲官方 MV（添翼音樂 TEAM EAR MUSIC 頻道）
+        source_type: official
+        version: original
+    note: 電影《刻在你心底的名字》主題曲；第三十二屆金曲獎（2021）年度歌曲獎。
+    sources:
+      - 第三十二屆金曲獎完整得獎名單（中央社）：https://www.cna.com.tw/news/firstnews/202108215010.aspx
+  - id: jia-chang-yin-yue
+    title: 家常音樂
+    year: 2020
+    era: era-streaming
+    language: 國語
+    credits:
+      original_singer: 蛋堡
+    hook: 饒舌歌手蛋堡以同名專輯奪金曲歌王，嘻哈正式站上華語最高獎。
+    listen:
+      - url: https://www.youtube.com/watch?v=Xx7lJt_Pdek
+        label: 蛋堡官方 MV（Soft Lipa 蛋堡頻道）
+        source_type: official
+        version: original
+    note: 專輯《家常音樂》獲第三十二屆金曲獎（2021）最佳華語男歌手、最佳華語專輯。
+    sources:
+      - 第三十二屆金曲獎完整得獎名單（中央社）：https://www.cna.com.tw/news/firstnews/202108215010.aspx
+  - id: wu-ren-zhi-xiao
+    title: 無人知曉
+    year: 2020
+    era: era-streaming
+    language: 國語
+    credits:
+      original_singer: 田馥甄
+    hook: 同名專輯主打，田馥甄以此作首度封金曲歌后。
+    listen:
+      - url: https://www.youtube.com/watch?v=RtH0BAbUalk
+        label: 田馥甄官方 MV（田馥甄官方專屬頻道）
+        source_type: official
+        version: original
+    note: 專輯《無人知曉》獲第三十二屆金曲獎（2021）最佳華語女歌手。
+    sources:
+      - 第三十二屆金曲獎完整得獎名單（中央社）：https://www.cna.com.tw/news/firstnews/202108215010.aspx
+  - id: tsioh-mng-tsit-e
+    title: 借問一下
+    year: 2020
+    era: era-streaming
+    language: 台語
+    credits:
+      lyricist: 曹雅雯
+      composer: 曹雅雯
+      original_singer: 曹雅雯
+    hook: 曹雅雯首張全創作專輯《自本》之作，該輯拿下金曲台語專輯與歌后。
+    listen:
+      - url: https://www.youtube.com/watch?v=KHqxeKXfWCw
+        label: 曹雅雯官方 MV（YOYOROCK 滾石移動發行頻道）
+        source_type: official
+        version: original
+    note: 專輯《自本》獲第三十二屆金曲獎（2021）最佳台語專輯、最佳台語女歌手。
+    sources:
+      - 第三十二屆金曲獎完整得獎名單（中央社）：https://www.cna.com.tw/news/firstnews/202108215010.aspx
+  - id: kim-kim
+    title: 金金
+    year: 2020
+    era: era-streaming
+    language: 客語
+    credits:
+      original_singer: 春麵樂隊
+    hook: 客語室內樂團春麵樂隊《到底》之作，該輯獲金曲最佳客語專輯。
+    listen:
+      - url: https://www.youtube.com/watch?v=UWaNMWQJ17k
+        label: 春麵樂隊官方 MV（Sincerely Music 發行頻道）
+        source_type: official
+        version: original
+    note: 專輯《到底》獲第三十二屆金曲獎（2021）最佳客語專輯；專輯發行年一說 2021，此處採多數資料之 2020。
+    sources:
+      - 第三十二屆金曲獎完整得獎名單（中央社）：https://www.cna.com.tw/news/firstnews/202108215010.aspx
+  - id: puluem
+    title: 得力量
+    year: 2020
+    era: era-streaming
+    language: 族語(卑南)
+    credits:
+      lyricist: 桑布伊
+      composer: 桑布伊
+      original_singer: 桑布伊
+    people:
+      - sangpuy
+    hook: 全卑南族語專輯同名之作，奪金曲年度專輯——族語第三度站上最高獎。
+    listen:
+      - url: https://www.youtube.com/watch?v=ooA5h2f1ISQ
+        label: 桑布伊官方 Topic 音訊（桑布伊 - Topic）
+        source_type: official
+        version: original
+    note: 專輯《得力量 pulu'em》獲第三十二屆金曲獎（2021）年度專輯、最佳原住民語專輯、最佳原住民語歌手。
+    sources:
+      - 第三十二屆金曲獎完整得獎名單（中央社）：https://www.cna.com.tw/news/firstnews/202108215010.aspx
+      - 桑布伊《得力量》專輯介紹（cacao 可口雜誌）：https://cacaomag.co/puluem/
+  - id: ai-tsing-li-pi-gua-siunn-e-koh-khah-ui-tai
+    title: 愛情你比我想的閣較偉大
+    year: 2021
+    era: era-streaming
+    language: 台語
+    credits:
+      lyricist: 黃奇斌
+      composer: 黃奇斌
+      original_singer: 茄子蛋
+    people:
+      - eggplantegg
+    hook: 電影《當男人戀愛時》主題曲，奪第三十三屆金曲獎年度歌曲。
+    listen:
+      - url: https://www.youtube.com/watch?v=0rp3pP2Xwhs
+        label: 茄子蛋官方 MV（茄子蛋 EggPlantEgg 頻道）
+        source_type: official
+        version: original
+    note: 第三十三屆金曲獎（2022）年度歌曲獎；台語歌繼《魚仔》後再登年度歌曲。
+    sources:
+      - 第三十三屆金曲獎完整得獎名單（關鍵評論網）：https://www.thenewslens.com/article/169082
+  - id: ban-tshian-hue-lui-tsu-bio-pi-ai
+    title: 萬千花蕊慈母悲哀
+    year: 2021
+    era: era-streaming
+    language: 台語
+    credits:
+      lyricist: 王家權
+      composer: 王家權
+      original_singer: 珂拉琪
+    hook: 以台語書寫白色恐怖記憶，網路自主擴散爆紅，樂團以出道專輯奪金曲最佳新人。
+    listen:
+      - url: https://www.youtube.com/watch?v=kkUWlcjmOew
+        label: 珂拉琪官方 MV（珂拉琪 Collage 頻道）
+        source_type: official
+        version: original
+    note: 珂拉琪（Collage）獲第三十三屆金曲獎（2022）最佳新人獎；本曲為串流世代「先紅於網路、後入圍金曲」的代表案例。
+    sources:
+      - 珂拉琪與金曲獎報導（Tatler Asia）：https://www.tatlerasia.com/lifestyle/entertainment/golden-melody-collage
+      - 第三十三屆金曲獎完整得獎名單（關鍵評論網）：https://www.thenewslens.com/article/169082
+  - id: chu-zou
+    title: 出走
+    year: 2021
+    era: era-streaming
+    language: 國語
+    credits:
+      lyricist: 蔡健雅
+      composer: 蔡健雅
+      original_singer: 蔡健雅
+    hook: 《DEPART》主打，蔡健雅四度封后並奪年度專輯。
+    listen:
+      - url: https://www.youtube.com/watch?v=zfqiLSjxJ14
+        label: 蔡健雅官方 MV（蔡健雅 Tanya Chua 頻道）
+        source_type: official
+        version: original
+    note: 專輯《DEPART》獲第三十三屆金曲獎（2022）年度專輯、最佳華語女歌手。
+    sources:
+      - 第三十三屆金曲獎完整得獎名單（關鍵評論網）：https://www.thenewslens.com/article/169082
+  - id: zui-hao-de-shi-guang
+    title: 最好的時光
+    year: 2022
+    era: era-streaming
+    language: 國語
+    credits:
+      lyricist: 安溥
+      composer: 安溥
+      original_singer: 安溥
+    hook: 安溥睽違多年復出之作，奪第三十四屆金曲獎年度歌曲。
+    listen:
+      - url: https://www.youtube.com/watch?v=L8IeVzD6Yaw
+        label: 田馥甄 × 安溥官方 Live MV（田馥甄官方專屬頻道）
+        source_type: official
+        version: live
+    note: 收錄於專輯《9522》；第三十四屆金曲獎（2023）年度歌曲獎。
+    sources:
+      - 第三十四屆金曲獎完整得獎名單（關鍵評論網）：https://www.thenewslens.com/article/187871
+  - id: lian-ren-xu-yu
+    title: （……戀人絮語）
+    year: 2022
+    era: era-streaming
+    language: 國語
+    credits:
+      lyricist: 吳青峰
+      composer: 吳青峰
+      original_singer: 吳青峰
+    hook: 出自概念專輯《馬拉美的星期二》，該輯奪金曲年度專輯。
+    listen:
+      - url: https://www.youtube.com/watch?v=WuQPgslOExk
+        label: 吳青峰官方 MV（QingfengwuVEVO 頻道）
+        source_type: official
+        version: original
+    note: 專輯《馬拉美的星期二》獲第三十四屆金曲獎（2023）年度專輯。
+    sources:
+      - 第三十四屆金曲獎完整得獎名單（關鍵評論網）：https://www.thenewslens.com/article/187871
+  - id: zhi-you
+    title: 摯友
+    year: 2022
+    era: era-streaming
+    language: 國語
+    credits:
+      lyricist: 葛大為
+      composer: 周興哲
+      original_singer: A-Lin
+    hook: 《LINK》專輯主打情歌，A-Lin 以該輯封金曲歌后。
+    listen:
+      - url: https://www.youtube.com/watch?v=vGqpGFH3vh8
+        label: A-Lin 官方 MV（A-Lin 官方專屬頻道）
+        source_type: official
+        version: original
+    note: 專輯《LINK》獲第三十四屆金曲獎（2023）最佳華語女歌手。
+    sources:
+      - 第三十四屆金曲獎完整得獎名單（關鍵評論網）：https://www.thenewslens.com/article/187871
+  - id: you-dao-tian-hei
+    title: 又到天黑
+    year: 2023
+    era: era-streaming
+    language: 國語
+    credits:
+      lyricist: 告五人
+      composer: 告五人
+      original_singer: 告五人
+    hook: 宜蘭樂團告五人的串流世代情歌，奪第三十五屆金曲獎年度歌曲。
+    listen:
+      - url: https://www.youtube.com/watch?v=ey7Jph8ndJU
+        label: 告五人官方 MV（相信音樂 BinMusic 頻道）
+        source_type: official
+        version: original
+    note: 第三十五屆金曲獎（2024）年度歌曲獎。
+    sources:
+      - 第三十五屆金曲獎完整得獎名單（中央社）：https://www.cna.com.tw/news/amov/202406295005.aspx
+  - id: dan
+    title: 但
+    year: 2023
+    era: era-streaming
+    language: 國語
+    credits:
+      lyricist: 草東沒有派對
+      composer: 草東沒有派對
+      original_singer: 草東沒有派對
+    hook: 草東睽違七年的《瓦合》之作，該輯橫掃年度專輯與最佳樂團。
+    listen:
+      - url: https://www.youtube.com/watch?v=ovTiSA9T-RU
+        label: 草東沒有派對官方 MV（No Party For Cao Dong 頻道）
+        source_type: official
+        version: original
+    note: 專輯《瓦合》獲第三十五屆金曲獎（2024）年度專輯、最佳華語專輯、最佳樂團。
+    sources:
+      - 第三十五屆金曲獎完整得獎名單（中央社）：https://www.cna.com.tw/news/amov/202406295005.aspx
+  - id: infp
+    title: INFP
+    year: 2023
+    era: era-streaming
+    language: 國語
+    credits:
+      original_singer: 孫盛希
+    hook: 以人格測驗入歌的《BOOMERANG》先行曲，孫盛希以該輯封金曲歌后。
+    listen:
+      - url: https://www.youtube.com/watch?v=uCGnqSf_zFk
+        label: 孫盛希官方 MV（滾石唱片 ROCK RECORDS 頻道）
+        source_type: official
+        version: original
+    note: 專輯《BOOMERANG》獲第三十五屆金曲獎（2024）最佳華語女歌手。
+    sources:
+      - 第三十五屆金曲獎完整得獎名單（中央社）：https://www.cna.com.tw/news/amov/202406295005.aspx
+  - id: xing-qi-wu-wan-shang
+    title: 星期五晚上
+    year: 2024
+    era: era-streaming
+    language: 國語
+    credits:
+      lyricist: 何宇勝、任遲、Oliver Kim
+      composer: Oliver Kim、張簡君偉
+      original_singer: Energy
+    hook: 千禧唱跳團體合體回歸，舞蹈挑戰全網瘋傳，奪金曲年度歌曲。
+    listen:
+      - url: https://www.youtube.com/watch?v=btPv0-d3NbE
+        label: Energy 官方 MV（相信音樂 B'in Music 頻道）
+        source_type: official
+        version: original
+    note: 第三十六屆金曲獎（2025）年度歌曲獎；「E16 蹲」舞蹈挑戰為短影音時代迷因式擴散的代表案例。
+    sources:
+      - 第三十六屆金曲獎完整得獎名單（中央社）：https://www.cna.com.tw/news/amov/202506285004.aspx
+  - id: e-kou
+    title: 惡口
+    year: 2024
+    era: era-streaming
+    language: 國語
+    credits:
+      lyricist: 葛大為
+      composer: 魏如萱、黃少雍、吳獻
+      original_singer: 魏如萱
+    hook: 《珍珠刑》先行曲，魏如萱以該輯二度封金曲歌后。
+    listen:
+      - url: https://www.youtube.com/watch?v=UeSO2yR-_0c
+        label: 魏如萱官方 Topic 音訊（Ru Xuan Wei - Topic）
+        source_type: official
+        version: original
+    note: 專輯《珍珠刑》獲第三十六屆金曲獎（2025）最佳華語女歌手。
+    sources:
+      - 第三十六屆金曲獎完整得獎名單（中央社）：https://www.cna.com.tw/news/amov/202506285004.aspx
+  - id: sui
+    title: 水
+    year: 2024
+    era: era-streaming
+    language: 台語
+    credits:
+      original_singer: 李竺芯
+    hook: 首張全台語創作專輯《Suí 水》同名之作，奪金曲年度專輯。
+    listen:
+      - url: https://www.youtube.com/watch?v=ehl-pc0syCU
+        label: 李竺芯官方影像（李竺芯 Siri Lee 頻道）
+        source_type: official
+        version: original
+    note: 專輯《Suí 水》獲第三十六屆金曲獎（2025）年度專輯、最佳台語專輯、最佳台語女歌手——台語專輯再度站上最高獎。
+    sources:
+      - 第三十六屆金曲獎完整得獎名單（中央社）：https://www.cna.com.tw/news/amov/202506285004.aspx
+  - id: pleasure
+    title: Pleasure
+    year: 2025
+    era: era-streaming
+    language: 國語
+    credits:
+      original_singer: 蔡依林
+    hook: 同名專輯主打，蔡依林以此輯奪年度專輯並封后。
+    listen:
+      - url: https://www.youtube.com/watch?v=j1TTQREaZMg
+        label: 蔡依林官方 MV（JOLIN 蔡依林頻道）
+        source_type: official
+        version: original
+    note: 專輯《Pleasure》獲第三十七屆金曲獎（2026）年度專輯、最佳華語女歌手。
+    sources:
+      - 金曲 37 完整得獎名單（商業周刊）：https://www.businessweekly.com.tw/style/blog/3021360
+  - id: gen-zhe-gan-jue-zou
+    title: 跟著感覺走
+    year: 2025
+    era: era-streaming
+    language: 國語
+    credits:
+      lyricist: 張震嶽
+      composer: 張震嶽
+      original_singer: 張震嶽
+    hook: 睽違十二年的同名專輯之作，出道三十三年首度封金曲歌王。
+    listen:
+      - url: https://www.youtube.com/watch?v=1rau1QDJ9tQ
+        label: 張震嶽官方 MV（滾石唱片 ROCK Records 頻道）
+        source_type: official
+        version: original
+    note: 專輯《跟著感覺走》獲第三十七屆金曲獎（2026）最佳華語男歌手、最佳華語專輯。
+    sources:
+      - 金曲 37 完整得獎名單（商業周刊）：https://www.businessweekly.com.tw/style/blog/3021360
+  - id: xing-fu-zai-ge-chang
+    title: 幸福在歌唱
+    year: 2025
+    era: era-streaming
+    language: 國語
+    credits:
+      lyricist: 林孝謙
+      composer: 李方睿
+      original_singer: A-Lin
+    hook: 電影《陽光女子合唱團》主題曲，奪第三十七屆金曲獎年度歌曲。
+    listen:
+      - url: https://www.youtube.com/watch?v=jeRu6h4XbUU
+        label: A-Lin 官方 MV（Sony Music Taiwan 頻道）
+        source_type: official
+        version: original
+    note: 第三十七屆金曲獎（2026）年度歌曲獎。
+    sources:
+      - 金曲 37 得獎報導（Yahoo 新聞）：https://tw.news.yahoo.com/%E9%87%91%E6%9B%B237-%E5%BE%97%E7%8D%8E%E4%B8%8D%E6%96%B7%E6%9B%B4%E6%96%B0-%E8%88%92%E7%B1%B3%E6%81%A9%E7%8D%B2-%E6%9C%80%E4%BD%B3%E5%8E%9F%E4%BD%8F%E6%B0%91%E8%AA%9E%E6%AD%8C%E6%89%8B%E7%8D%8E-111324439.html
+  - id: tso-tsit-e-sioh-tsing-nng-sim-e-lang
+    title: 做一個惜情軟心的人
+    year: 2025
+    era: era-streaming
+    language: 台語
+    credits:
+      lyricist: 姚若龍
+      composer: 蕭煌奇
+      original_singer: 蕭煌奇
+    hook: 同名專輯主打，蕭煌奇五度拿下金曲台語歌王。
+    listen:
+      - url: https://www.youtube.com/watch?v=WJ_7K6LBets
+        label: 蕭煌奇官方 MV（蕭煌奇 Ricky Hsiao 頻道）
+        source_type: official
+        version: original
+    note: 專輯獲第三十七屆金曲獎（2026）最佳台語專輯、最佳台語男歌手（五度）。
+    sources:
+      - 金曲 37 完整得獎名單（商業周刊）：https://www.businessweekly.com.tw/style/blog/3021360
+  - id: khuann-li-kue-kah-an-ne-gua-to-hong-sim-ah
+    title: 看你過甲按呢我就放心矣
+    year: 2025
+    era: era-streaming
+    language: 台語
+    credits:
+      lyricist: 吳蓓雅
+      composer: 吳蓓雅
+      original_singer: PiA 吳蓓雅
+    hook: 台語「離婚」概念專輯之作，直面婚姻課題，奪金曲台語歌后。
+    listen:
+      - url: https://www.youtube.com/watch?v=-mmh8tV8Fjc
+        label: PiA 吳蓓雅官方 MV（PiA 吳蓓雅頻道）
+        source_type: official
+        version: original
+    note: 專輯《離婚初體驗》獲第三十七屆金曲獎（2026）最佳台語女歌手；樂壇少見直面離婚主題的台語概念專輯。
+    sources:
+      - 金曲 37 完整得獎名單（商業周刊）：https://www.businessweekly.com.tw/style/blog/3021360
+      - PiA《離婚初體驗》專輯報導（Blow 吹音樂）：https://blow.streetvoice.com/84047/
+  - id: mu-chun
+    title: 暮春
+    year: 2025
+    era: era-streaming
+    language: 客語
+    credits:
+      composer: 黃宇寒、雷擎
+      original_singer: 黃宇寒
+    hook: 融合七種語言實驗的《Ngai》先行曲，該輯獲金曲最佳客語專輯。
+    listen:
+      - url: https://www.youtube.com/watch?v=4T93W8HIGd4
+        label: 黃宇寒官方 Visualizer（給樂音樂 Gather Music 發行頻道）
+        source_type: official
+        version: original
+    note: 專輯《Ngai》融客語、台語、英語、粵語、法語、韓語、阿美族語七種語言，獲第三十七屆金曲獎（2026）最佳客語專輯。
+    sources:
+      - 金曲 37 得獎名單（客新聞 HakkaNews）：https://hakkanews.tw/2026/06/27/286770/
+      - 黃宇寒《Ngai》專輯報導（Blow 吹音樂）：https://blow.streetvoice.com/85058/
+  - id: mikerid
+    title: 引路
+    year: 2025
+    era: era-streaming
+    language: 族語(阿美)
+    credits:
+      original_singer: 舒米恩
+    hook: 阿美族吟唱專輯《Mikerid》主打，舒米恩六度入圍終獲金曲肯定。
+    listen:
+      - url: https://www.youtube.com/watch?v=12EVK6HTZnE
+        label: 舒米恩官方 MV（米大創意 Mita Idea 頻道）
+        source_type: official
+        version: original
+    note: 專輯《Mikerid 引路》獲第三十七屆金曲獎（2026）最佳原住民語歌手（六度入圍首度得獎）。
+    sources:
+      - 金曲 37 舒米恩得獎報導（中國時報）：https://www.chinatimes.com/realtimenews/20260627002933-260404

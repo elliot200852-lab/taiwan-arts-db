@@ -10,7 +10,7 @@
     CI／`verify_live.py` 不重複做這件事——歌單外部連結只在這裡管。
 
 驗證項目（SONGS-SPEC §2.2／§6／§7）：
-  1. schema：必填欄、era 僅限 8 個合法 slug 且與分片檔名一致、id 跨片唯一、
+  1. schema：必填欄、era 僅限 9 個合法 slug 且與分片檔名一致、id 跨片唯一、
      hook ≤45 字、listen 1–3 條且欄位齊全、source_type／version 合法值、
      sources ≥1、people slug 存在於 content/people/、每片至少 1 首、
      有 MD 無分片或有分片無 MD 都算 fail。
@@ -48,7 +48,7 @@ PEOPLE = CONTENT / "people"
 
 UA = {"User-Agent": "taiwan-arts-db-check-songs/1.0"}
 
-# 八個合法時代 slug（SONGS-SPEC §1，定案不得自行增刪改名）。
+# 九個合法時代 slug（SONGS-SPEC §1，定案不得自行增刪改名；第九期 David 2026-07-20 拍板新增）。
 ERA_SLUGS = [
     "era-roots",
     "era-78rpm",
@@ -58,6 +58,7 @@ ERA_SLUGS = [
     "era-turning",
     "era-new-taiwanese",
     "era-polyphony",
+    "era-streaming",
 ]
 
 SOURCE_TYPES = {"official", "archive", "broadcaster", "foundation", "other"}
@@ -208,7 +209,7 @@ def validate(no_net: bool) -> list[str]:
         if fm.get("slug") != md_path.stem:
             errors.append(f"{md_path.name}：frontmatter slug（{fm.get('slug')!r}）與檔名不一致")
         elif fm.get("slug") not in ERA_SLUGS:
-            errors.append(f"{md_path.name}：slug `{fm.get('slug')}` 不在合法的 8 個時代 slug 內")
+            errors.append(f"{md_path.name}：slug `{fm.get('slug')}` 不在合法的 9 個時代 slug 內")
 
     all_ids: dict[str, str] = {}
     songs_by_title: dict[str, dict] = {}
@@ -216,7 +217,7 @@ def validate(no_net: bool) -> list[str]:
     for yaml_path in era_yaml_paths:
         slug = yaml_path.stem
         if slug not in ERA_SLUGS:
-            errors.append(f"{yaml_path.name}：檔名 slug 不在合法的 8 個時代 slug 內")
+            errors.append(f"{yaml_path.name}：檔名 slug 不在合法的 9 個時代 slug 內")
         try:
             data = yaml.safe_load(yaml_path.read_text(encoding="utf-8")) or {}
         except yaml.YAMLError as e:
