@@ -861,7 +861,7 @@ PERSON_PAGE = """<!DOCTYPE html>
   <nav class="crumbs"><a href="../index.html#people">← 人物</a> · <a href="../index.html#general">回首頁</a></nav>
 
   <div class="page-wrap">
-    <header class="page-header person-hero immersive" style="background-image:url('../img/scenes/{scene_slug}.jpg')">
+    <header class="page-header person-hero immersive" style="background-image:url('../img/scenes/{scene_slug}.webp')">
       <p class="ph-eyebrow">{field}</p>
       <h1>{name}</h1>
       <p class="ph-years">{years}</p>
@@ -975,7 +975,7 @@ def build_person(md_path: Path, linker: "WorksLinker | None" = None) -> tuple[st
     # 給「一句話定位這個人」用的欄位，比 lede（完整導言段落）更適合當摘要；
     # md_to_plain 剝除 markdown 符號後截斷到 ~100 字。
     description = truncate_desc(md_to_plain(fm["tagline"]))
-    og_image = f"{SITE_BASE}/img/scenes/{slug}.jpg"
+    og_image = f"{SITE_BASE}/img/scenes/{slug}.webp"
     html_out = PERSON_PAGE.format(
         name=esc(fm["name"]),
         scene_slug=esc(slug),
@@ -1052,7 +1052,7 @@ INDEX_PAGE = """<!DOCTYPE html>
     <!-- 總論 -->
     <section class="tab-panel" data-panel="general" role="tabpanel">
       <figure class="home-hero">
-        <img src="img/scenes/site-hero.jpg" alt="">
+        <img src="img/scenes/site-hero.webp" alt="">
       </figure>
       <div class="general-intro">
 {intro}
@@ -1182,7 +1182,7 @@ def build_index(eras: list[dict]) -> str:
     return INDEX_PAGE.format(
         title=esc(fm["title"]),
         description=esc(fm["description"]),
-        og_image=esc(f"{SITE_BASE}/img/scenes/site-hero.jpg"),
+        og_image=esc(f"{SITE_BASE}/img/scenes/site-hero.webp"),
         site_title=esc(fm["site_title"]),
         site_sub=esc(fm["site_sub"]),
         intro="\n".join(intro_parts),
@@ -1368,7 +1368,7 @@ def build_field(
     # 領域頁沒有專屬情境圖（DESIGN-SPEC §9：領域頁 hero 沿用純文字，本來就
     # 沒有 img/scenes/field-*.jpg——2026-07-20 已對 live 站逐一 curl 過確認
     # 404），og:image 不新增素材，改用首頁 hero 圖頂替（唯一保證存在的圖）。
-    og_image = f"{SITE_BASE}/img/scenes/site-hero.jpg"
+    og_image = f"{SITE_BASE}/img/scenes/site-hero.webp"
 
     tag = fm["tag"]
     matched = [p for p in people_meta if tag in p["tags"]]
@@ -1941,7 +1941,7 @@ SONG_ERA_PAGE = """<!DOCTYPE html>
   <nav class="crumbs"><a href="../index.html#songs">← 臺灣歌曲</a> · <a href="../index.html#general">回首頁</a></nav>
 
   <div class="page-wrap">
-    <header class="page-header era-hero immersive" style="background-image:url('../img/scenes/{scene_slug}.jpg')">
+    <header class="page-header era-hero immersive" style="background-image:url('../img/scenes/{scene_slug}.webp')">
       <span class="eh-num">{eh_num}</span>
       <div class="eyebrow">臺灣歌曲</div>
       <h1>{title}</h1>
@@ -2006,7 +2006,7 @@ def build_song_pages(eras: list[dict]) -> int:
         # 直接拿來用（md_to_plain 剝符號雖然 axis 通常不含 markdown，仍統一走
         # 同一支剝除函式保險）。
         description = truncate_desc(md_to_plain(fm["axis"]))
-        og_image = f"{SITE_BASE}/img/scenes/{fm['slug']}.jpg"
+        og_image = f"{SITE_BASE}/img/scenes/{fm['slug']}.webp"
         page_html = SONG_ERA_PAGE.format(
             title=esc(fm["title"]),
             description=esc(description),

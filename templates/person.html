@@ -9,12 +9,13 @@
   <!-- meta description／OG（2026-07-20 A-list #2/#3）：description 取既有
        frontmatter `tagline` 剝除 markdown 符號後截斷 ~100 字（見
        build_pages.py truncate_desc()／md_to_plain()），不新寫文案；
-       og:image 用該人物既有情境圖 img/scenes/<slug>.jpg 的絕對 URL。 -->
+       og:image 用該人物既有情境圖 img/scenes/<slug>.webp 的絕對 URL
+       （hero 大圖 2026-07-20 起 WebP 化，thumbs 卡片縮圖仍為 .jpg）。 -->
   <meta name="description" content="〔tagline 剝符號後截斷 ~100 字〕">
   <meta property="og:title" content="〔姓名〕 — 臺灣人文藝術">
   <meta property="og:description" content="〔同 description〕">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://elliot200852-lab.github.io/taiwan-arts-db/img/scenes/FILL_ME-person-id.jpg">
+  <meta property="og:image" content="https://elliot200852-lab.github.io/taiwan-arts-db/img/scenes/FILL_ME-person-id.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
@@ -25,8 +26,8 @@
 
   <div class="page-wrap">
     <!-- 頁首 hero：Cucinelli 沉浸式深色 hero，滿版出血、情境底圖＋漸層疊加。
-         底圖 ../img/scenes/<slug>.jpg 由 build 依 slug 推導；無圖時 fallback 純 --night 底。 -->
-    <header class="page-header person-hero immersive" style="background-image:url('../img/scenes/FILL_ME-person-id.jpg')">
+         底圖 ../img/scenes/<slug>.webp 由 build 依 slug 推導；無圖時 fallback 純 --night 底。 -->
+    <header class="page-header person-hero immersive" style="background-image:url('../img/scenes/FILL_ME-person-id.webp')">
       <p class="ph-eyebrow">〔領域，如：美術 · 膠彩畫〕</p>
       <h1>〔姓名〕</h1>
       <p class="ph-years">〔1895 — 1947〕</p>

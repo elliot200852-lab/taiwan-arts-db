@@ -11,6 +11,8 @@
 > 圖片 SSOT 在 Drive（repo 不進任何二進位），本機 build 只引用 URL。
 
 > **David 2026-07-19 拍板：頁面不再標示 AI 生成小字**——原「情境插畫 · AI 生成意象」（首頁 hero `.home-hero-note`、人物 hero `.ph-ai-note`）與「卡片與頁首情境圖為 AI 生成之意象插畫…」（`.cards-note`）三處聲明元素已自 `scripts/build_pages.py` 四個內嵌模板與 `templates/*.html` 參考檔移除（CSS 規則留著無害，class 只加不改）。以下 §4／§5／§6 內文中殘留的小字描述僅為改版當時（v1）的歷史規格記述，**現行 build 已不輸出**。**不變**：無肖像者用 AI 生成情境圖、不畫可辨識正面臉孔（背影／剪影／手部特寫替代）；塑像／作品照代打人物照片時，仍必須以 alt/caption 明示非本人——這兩條紀律持續適用，只是不再用頁面小字做「本圖為 AI 生成」的免責聲明。
+>
+> **2026-07-20 hero 圖 WebP 化**：人物頁 hero（67 張）、歌曲時代頁 hero（8 張）、首頁 `site-hero`（1 張，也是首頁與領域頁 og:image 來源）共 76 張大圖，原 `.jpg`（~600KB 級）已全部轉存 `.webp`（cwebp -q80，平均縮小約 67%），與 `.jpg` 並存於 Drive `img/scenes/` 同一夾（不刪 `.jpg`，供舊快取頁面參照）。`scripts/build_pages.py` 與 `templates/*.html` 的 hero／og:image 引用已改指向 `.webp`。**thumbs 卡片縮圖（`img/scenes/thumbs/<slug>.jpg`）不在本次範圍，仍為 `.jpg`**。以下 §4／§5／§6／§7／§8 內文中殘留的 `.jpg` hero 檔名記述為改版當時（v1）歷史規格，現行 build 已改用 `.webp`（thumbs 相關記述不受影響）。
 
 ## 0. 硬規則（實作者必讀）
 
