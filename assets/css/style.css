@@ -1315,6 +1315,22 @@ a.wk-title-link:hover {
   border-color: var(--pale-gold);
   color: var(--cream);
 }
+/* 標題列右側的連播按鈕群：YouTube 連播 ＋ TIDAL 歌單（2026-07-25 新增）。
+   TIDAL 那顆沿用 .era-playall 的藥丸骨架，只換強調色以資區別。 */
+.era-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem .5rem;
+  flex-shrink: 0;
+}
+.era-tidal {
+  color: var(--cream);
+  border-color: rgba(255, 255, 255, .22);
+}
+.era-tidal:hover {
+  border-color: var(--cream);
+}
 @media (max-width: 640px) {
   .songs-of-era-head { flex-direction: column; align-items: flex-start; gap: .3rem; }
+  .era-links { width: 100%; }
 }

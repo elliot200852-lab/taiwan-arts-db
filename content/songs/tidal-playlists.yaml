@@ -1,0 +1,66 @@
+# 由 scripts/tidal_match.py --create-playlists 產生，勿手改。
+# 每期一個 TIDAL 歌單；build_pages.py 讀這裡渲染歌單按鈕。
+eras:
+  era-roots:
+    playlist_id: 71d738c1-e490-4cc8-95ef-fab9a8d77384
+    name: 臺灣歌謠 01・土地的聲音（唱片以前）
+    url: https://tidal.com/browse/playlist/71d738c1-e490-4cc8-95ef-fab9a8d77384
+    added: 18
+    matched: 18
+    total: 21
+  era-78rpm:
+    playlist_id: cc94011e-e351-49d2-ac9f-7f96281a25b5
+    name: 臺灣歌謠 02・曲盤時代（1932–1945）
+    url: https://tidal.com/browse/playlist/cc94011e-e351-49d2-ac9f-7f96281a25b5
+    added: 13
+    matched: 13
+    total: 20
+  era-postwar:
+    playlist_id: 42e7cffb-5912-48ef-abe4-10f7de56dcfa
+    name: 臺灣歌謠 03・戰後的歌與禁歌（1945–1962）
+    url: https://tidal.com/browse/playlist/42e7cffb-5912-48ef-abe4-10f7de56dcfa
+    added: 20
+    matched: 20
+    total: 25
+  era-mandarin:
+    playlist_id: 5ba0aeb0-b28f-4ad1-ae9d-6d19e955b787
+    name: 臺灣歌謠 04・電視與國語歌年代（1962–1975）
+    url: https://tidal.com/browse/playlist/5ba0aeb0-b28f-4ad1-ae9d-6d19e955b787
+    added: 25
+    matched: 25
+    total: 25
+  era-folk:
+    playlist_id: abfd462a-61b2-46e3-887f-ee7d55d4525e
+    name: 臺灣歌謠 05・唱自己的歌（1975–1982）
+    url: https://tidal.com/browse/playlist/abfd462a-61b2-46e3-887f-ee7d55d4525e
+    added: 22
+    matched: 22
+    total: 25
+  era-turning:
+    playlist_id: 7f5ad25c-f5ea-45e9-b669-c631f0eb70ca
+    name: 臺灣歌謠 06・黑色狂潮與轉型（1982–1989）
+    url: https://tidal.com/browse/playlist/7f5ad25c-f5ea-45e9-b669-c631f0eb70ca
+    added: 31
+    matched: 31
+    total: 31
+  era-new-taiwanese:
+    playlist_id: 1840635f-befe-44de-8a91-ec273095e253
+    name: 臺灣歌謠 07・新臺語歌與樂團年代（1987–1999）
+    url: https://tidal.com/browse/playlist/1840635f-befe-44de-8a91-ec273095e253
+    added: 29
+    matched: 29
+    total: 31
+  era-polyphony:
+    playlist_id: fbcdb280-566c-4e30-81ff-6065aecd8a54
+    name: 臺灣歌謠 08・眾聲喧嘩（2000–2019）
+    url: https://tidal.com/browse/playlist/fbcdb280-566c-4e30-81ff-6065aecd8a54
+    added: 26
+    matched: 26
+    total: 28
+  era-streaming:
+    playlist_id: 0f07c1ba-d164-4b92-837e-7e33da709167
+    name: 臺灣歌謠 09・串流世代（2020–2026）
+    url: https://tidal.com/browse/playlist/0f07c1ba-d164-4b92-837e-7e33da709167
+    added: 22
+    matched: 22
+    total: 25

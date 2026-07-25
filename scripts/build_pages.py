@@ -1769,6 +1769,17 @@ def extract_youtube_id(url: str) -> str | None:
     return None
 
 
+def load_tidal_playlists() -> dict:
+    """讀 content/songs/tidal-playlists.yaml（由 scripts/tidal_match.py 產生）。
+    內容是每期一個 TIDAL 歌單的 id／網址／收錄數。檔案不存在就回空 dict——
+    沒跑過比對的環境照樣 build，只是不渲染 TIDAL 按鈕。"""
+    f = SONGS / "tidal-playlists.yaml"
+    if not f.exists():
+        return {}
+    data = yaml.safe_load(f.read_text(encoding="utf-8")) or {}
+    return data.get("eras") or {}
+
+
 def build_era_playall(era: dict) -> dict | None:
     """該期連播清單資料：{'url','count','ids','titles','skipped'}。titles／ids
     為收錄曲目依序清單（同 video ID 去重、保序）；skipped 為登記簿內查無
@@ -1800,17 +1811,29 @@ def build_era_playall(era: dict) -> dict | None:
     }
 
 
-def render_songs_head(playall: dict | None) -> str:
-    """歌單區標題列：可連播數 <2 首（playall 為 None 或 count<2）時只出
-    `<h2>`；否則加 `.era-playall` 連播按鈕（新增 class，配歌曲線深色主題，
-    樣式見 assets/css/style.css 尾端）。"""
-    if playall is None or playall["count"] < 2:
+def render_songs_head(playall: dict | None, tidal: dict | None = None) -> str:
+    """歌單區標題列：兩顆連播按鈕（YouTube 連播、TIDAL 歌單），有幾顆就出幾顆，
+    都沒有就只出 `<h2>`。樣式見 assets/css/style.css（.era-playall／.era-tidal）。"""
+    links = []
+    if playall is not None and playall["count"] >= 2:
+        links.append(
+            f'<a class="era-playall" href="{esc(playall["url"])}" target="_blank" rel="noopener">'
+            f'▶ YouTube 連播本期（{playall["count"]} 首）</a>'
+        )
+    if tidal and tidal.get("url") and (tidal.get("added") or 0) >= 2:
+        links.append(
+            f'<a class="era-playall era-tidal" href="{esc(tidal["url"])}" target="_blank" rel="noopener">'
+            f'♪ TIDAL 歌單（{tidal["added"]} 首）</a>'
+        )
+    if not links:
         return '      <h2>這個時代的歌</h2>'
+    joined = "\n".join(f'          {l}' for l in links)
     return (
         '      <div class="songs-of-era-head">\n'
         '        <h2>這個時代的歌</h2>\n'
-        f'        <a class="era-playall" href="{esc(playall["url"])}" target="_blank" rel="noopener">'
-        f'▶ YouTube 連播本期（{playall["count"]} 首）</a>\n'
+        '        <div class="era-links">\n'
+        f'{joined}\n'
+        '        </div>\n'
         '      </div>'
     )
 
@@ -1991,6 +2014,7 @@ def build_song_pages(eras: list[dict]) -> int:
         print("[build_pages] content/songs/ 尚無時代頁，跳過歌曲線頁面生成")
         return 0
     songs_by_title = build_songs_by_title(eras)
+    tidal_playlists = load_tidal_playlists()
     count = 0
     for idx, era in enumerate(eras):
         md_path, fm = era["md_path"], era["fm"]
@@ -2016,7 +2040,7 @@ def build_song_pages(eras: list[dict]) -> int:
             period=esc(fm["period"]),
             axis=esc(fm["axis"]),
             content=content_html,
-            songs_head=render_songs_head(playall),
+            songs_head=render_songs_head(playall, tidal_playlists.get(fm["slug"])),
             song_items=song_items,
             footnotes=footnotes_html,
             era_nav=render_era_nav(eras, idx),
