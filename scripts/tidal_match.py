@@ -22,7 +22,6 @@ import re
 import subprocess
 import sys
 import unicodedata
-from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import yaml
@@ -30,9 +29,11 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 SONGS_DIR = ROOT / "content" / "songs"
 OUT_DIR = ROOT / "_build"
+TIDAL_PLAYLISTS_YAML = SONGS_DIR / "tidal-playlists.yaml"
 
-# TIDAL 官方 API 併發拉太兇會被限流；3 條夠快也夠客氣
-WORKERS = 3
+# 所有 tidal-cli 呼叫一律序列執行、經 tidal-guard 的跨程序鎖（2026-07-26 審查校準）。
+# tidal-cli 的憑證檔沒有原子寫入，並發呼叫是 A0004 損毀的唯一病因；鎖之下開多條
+# worker 只是排隊搶鎖，反而更容易撞 90 秒 acquire timeout，所以不再用 ThreadPoolExecutor。
 SEARCH_TAKE = 20   # 從搜尋結果取前幾筆進入評分（TIDAL 一次回 20 筆）
 INFO_TAKE = 8      # 其中最多幾筆去查 track info（要拿演唱者）
 
@@ -52,22 +53,60 @@ except Exception:  # pragma: no cover
 CJK = re.compile(r"[㐀-䶿一-鿿豈-﫿]")
 
 
-def run_tidal(args: list[str], timeout: int = 60):
-    """呼叫 tidal-cli --json，失敗回 None（不讓單首炸掉整批）。"""
+class TidalError(RuntimeError):
+    """tidal-cli／tidal-guard 呼叫失敗。任何失敗都要浮上來，不得靜默降級成空結果。"""
+
+
+class TidalCredentialError(TidalError):
+    """偵測到 A0004（憑證檔壞掉）。呼叫端必須整批中止，不得繼續跑、不得降級成 not_found。"""
+
+
+def run_tidal(args: list[str], timeout: int = 280):
+    """經 `tidal-guard run --` 呼叫 tidal-cli --json。
+
+    所有 tidal-cli 呼叫都必須走 tidal-guard 的跨程序鎖——tidal-cli 的憑證檔沒有
+    原子寫入，並發呼叫是 A0004 損毀的唯一病因（2026-07-26 查明，見 music-mcp/README.md
+    與 memory reference_tidal_cli_a0004_storage）。逾時給到 280 秒是刻意留寬：
+    tidal-guard 自己鎖 acquire 上限 90 秒、內部 exec timeout 180 秒，Python 這層的
+    timeout 只是最後防線，不該比它們先觸發（先觸發等於我們自己 SIGKILL 掉正在持鎖的
+    tidal-guard，那正是 README 記的第二個憑證損毀病因）。
+    """
+    cmd = ["tidal-guard", "run", "--", "--json", *args]
     try:
-        p = subprocess.run(
-            ["tidal-cli", "--json", *args],
-            capture_output=True, text=True, timeout=timeout,
+        p = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+    except subprocess.TimeoutExpired as e:
+        raise TidalError(f"tidal-guard 逾時未回應（{timeout}s，指令：{' '.join(args)}）") from e
+    except FileNotFoundError as e:
+        raise TidalError(
+            "找不到 tidal-guard（預期在 ~/.local/bin）。所有 tidal-cli 呼叫都必須經過它的鎖，"
+            "不能直接呼叫 tidal-cli。"
+        ) from e
+
+    stdout = (p.stdout or "").strip()
+    stderr = (p.stderr or "").strip()
+
+    if "A0004" in stderr or "A0004" in stdout:
+        raise TidalCredentialError(
+            "偵測到 A0004（TIDAL 憑證檔壞掉，不是 token 過期）。"
+            "先跑 `tidal-guard doctor` 修復憑證後重來——本次整批已中止。"
+            f"（指令：tidal-cli {' '.join(args)}；stderr：{stderr[:200]}）"
         )
-    except subprocess.TimeoutExpired:
-        return None
-    out = (p.stdout or "").strip()
-    if not out:
-        return None
+
+    if p.returncode != 0:
+        summary = (stderr or stdout)[:200] or "(無輸出)"
+        raise TidalError(
+            f"tidal-cli 失敗（exit {p.returncode}，指令：{' '.join(args)}）：{summary}"
+        )
+
+    if not stdout:
+        raise TidalError(f"tidal-cli 沒有輸出（指令：{' '.join(args)}）")
+
     try:
-        return json.loads(out)
-    except json.JSONDecodeError:
-        return None
+        return json.loads(stdout)
+    except json.JSONDecodeError as e:
+        raise TidalError(
+            f"tidal-cli 輸出不是合法 JSON（指令：{' '.join(args)}）：{stdout[:200]}"
+        ) from e
 
 
 def norm(s: str) -> str:
@@ -310,13 +349,12 @@ def main():
 
     eras = load_eras(args.era)
     total = sum(len(e["songs"]) for e in eras.values())
-    print(f"共 {len(eras)} 期 / {total} 首，開始比對（{WORKERS} 條併發）…\n", flush=True)
+    print(f"共 {len(eras)} 期 / {total} 首，開始比對（序列執行，經 tidal-guard 鎖）…\n", flush=True)
 
     results = {}
     done = 0
     for slug, era in eras.items():
-        with ThreadPoolExecutor(max_workers=WORKERS) as pool:
-            rows = list(pool.map(match_song, era["songs"]))
+        rows = [match_song(s) for s in era["songs"]]
         results[slug] = rows
         done += len(rows)
         hi = sum(1 for r in rows if r.get("confidence") == "high")
@@ -337,10 +375,27 @@ def main():
 
 
 def create_playlists(eras, results):
+    """建立／更新九個歌單。
+
+    冪等設計（2026-07-26 P1 修正，David 拍板）：CLI／MCP 都沒有「讀回歌單曲目」
+    的能力（審查報告 C-3），沒辦法用伺服器端狀態防重複。改用客戶端帳本——
+    上次成功加入的 track id 記在 tidal-playlists.yaml 的 added_track_ids，
+    重跑時只對「還沒記錄成功」的曲目補加，記錄過的一律跳過，不會重複加歌。
+    加歌部分失敗時，那幾首不標進 added_track_ids（下次會再補試一次），
+    也不吞成一個數字——逐首列進 failed 清單並印出來。
+    """
     print("\n=== 建立 TIDAL 歌單 ===")
-    existing = run_tidal(["playlist", "list"]) or []
+    existing = run_tidal(["playlist", "list"])
+    if not isinstance(existing, list):
+        existing = []
     by_name = {p["name"]: p["id"] for p in existing if isinstance(p, dict)}
+
+    prev_eras = {}
+    if TIDAL_PLAYLISTS_YAML.exists():
+        prev_eras = (yaml.safe_load(TIDAL_PLAYLISTS_YAML.read_text(encoding="utf-8")) or {}).get("eras") or {}
+
     out = {}
+    any_failed = False
 
     for slug, era in eras.items():
         # 低信心的一律不進公開歌單：這是要掛在網站上給人點的，寧可漏收也不要放錯歌
@@ -364,34 +419,71 @@ def create_playlists(eras, results):
             created = run_tidal(["playlist", "create", "--name", name, "--desc", desc])
             pid = (created or {}).get("id")
             if not pid:
-                print(f"  ❌ {era['title']}：建立失敗")
+                print(f"  ❌ {era['title']}：建立失敗（回應沒有 id：{created!r}）")
+                any_failed = True
                 continue
             print(f"  {era['title']}：建立 {pid}")
 
-        ok = 0
-        for r in sorted(rows, key=lambda x: (x.get("year") or 0)):
-            res = run_tidal(["playlist", "add-track", "--playlist-id", pid, "--track-id", r["id"]])
-            if res is not None:
-                ok += 1
+        # 只有「上次記錄的也是同一個歌單」才信任那份 added_track_ids；
+        # 歌單換了（例如同名被刪掉重建）就當全新的，全部重補。
+        prev_era = prev_eras.get(slug) or {}
+        already_added = (set(prev_era.get("added_track_ids") or [])
+                          if prev_era.get("playlist_id") == pid else set())
+
+        to_add = [r for r in rows if r["id"] not in already_added]
+        skipped = len(rows) - len(to_add)
+        if skipped:
+            print(f"     已標記加入過 {skipped} 首，跳過只補缺 {len(to_add)} 首")
+
+        newly_added, failed = [], []
+        for r in sorted(to_add, key=lambda x: (x.get("year") or 0)):
+            try:
+                run_tidal(["playlist", "add-track", "--playlist-id", pid, "--track-id", r["id"]])
+                newly_added.append(r["id"])
+            except TidalCredentialError:
+                # 憑證壞掉：繼續加下去只會製造更多壞資料，整批中止。
+                raise
+            except TidalError as e:
+                failed.append({"song_id": r.get("song_id"), "title": r.get("title"),
+                                "tidal_id": r["id"], "error": str(e)[:200]})
+
+        added_ids = sorted(already_added | set(newly_added))
         out[slug] = {"playlist_id": pid, "name": name,
                      "url": f"https://tidal.com/browse/playlist/{pid}",
-                     "added": ok, "matched": len(rows), "total": len(results[slug])}
-        print(f"     加入 {ok}/{len(rows)} 首 → https://tidal.com/browse/playlist/{pid}")
+                     "added": len(added_ids), "added_track_ids": added_ids,
+                     "matched": len(rows), "total": len(results[slug]),
+                     "failed": failed}
+        print(f"     本次新增 {len(newly_added)}/{len(to_add)} 首"
+              f"（累計 {len(added_ids)}/{len(rows)}）→ https://tidal.com/browse/playlist/{pid}")
+        if failed:
+            any_failed = True
+            print(f"     ⚠️  {len(failed)} 首加入失敗（下次重跑會自動補試）：")
+            for f in failed:
+                print(f"        - {f['title']}（tidal id={f['tidal_id']}）：{f['error']}")
 
     (OUT_DIR / "tidal-playlists.json").write_text(
         json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    # 同時寫進 content/（純文字、進 git）：build_pages.py 從這裡讀，才能在
+    # 同時寫進 content/（純文字、進 git）：build_pages.py 從這裡讀 name/url/added，才能在
     # 每期「這個時代的歌」標題列渲染 TIDAL 按鈕。_build/ 那份只是執行紀錄。
-    ypath = SONGS_DIR / "tidal-playlists.yaml"
-    ypath.write_text(
+    TIDAL_PLAYLISTS_YAML.write_text(
         "# 由 scripts/tidal_match.py --create-playlists 產生，勿手改。\n"
-        "# 每期一個 TIDAL 歌單；build_pages.py 讀這裡渲染歌單按鈕。\n"
+        "# 每期一個 TIDAL 歌單；build_pages.py 讀 name/url/added 渲染歌單按鈕。\n"
+        "# added_track_ids／failed 是冪等帳本：重跑只補缺，不會重複加歌（2026-07-26）。\n"
         + yaml.safe_dump({"eras": out}, allow_unicode=True, sort_keys=False),
         encoding="utf-8")
     print(f"\n歌單索引：{OUT_DIR / 'tidal-playlists.json'}")
-    print(f"建置用資料：{ypath}")
+    print(f"建置用資料：{TIDAL_PLAYLISTS_YAML}")
+    if any_failed:
+        print("\n⚠️  本次執行有部分曲目建立/加入失敗，詳見上方清單與 tidal-playlists.json 的 failed 欄位。")
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except TidalCredentialError as e:
+        print(f"\n❌ 中止（憑證損毀）：{e}", file=sys.stderr)
+        sys.exit(1)
+    except TidalError as e:
+        print(f"\n❌ 中止：{e}", file=sys.stderr)
+        sys.exit(1)

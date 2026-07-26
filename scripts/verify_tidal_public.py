@@ -12,10 +12,14 @@
   2. https://tidal.com/browse/playlist/<id> 的 og:title 是歌單名稱
      （取不到時會退成 TIDAL 官網樣板標題）
 
-用法： python3 scripts/verify_tidal_public.py
+用法：
+    python3 scripts/verify_tidal_public.py                    # 讀 arts-db 的 tidal-playlists.yaml
+    python3 scripts/verify_tidal_public.py --playlist-id ID   # 驗任意歌單，可重複多次
+    python3 scripts/verify_tidal_public.py --playlist-id A --playlist-id B
 """
 from __future__ import annotations
 
+import argparse
 import re
 import sys
 import urllib.request
@@ -50,6 +54,37 @@ def check(pid: str) -> tuple[bool, bool, str]:
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument(
+        "--playlist-id", action="append", dest="playlist_ids", metavar="ID",
+        help="直接驗證指定的 TIDAL 歌單 ID（可重複多次）；給了就不讀 arts-db 的 tidal-playlists.yaml",
+    )
+    args = ap.parse_args()
+
+    if args.playlist_ids:
+        pids = args.playlist_ids
+        print(f"檢查 {len(pids)} 個歌單是否對外可及\n")
+        ok = 0
+        for pid in pids:
+            embed_ok, og_ok, og = check(pid)
+            good = embed_ok and og_ok
+            ok += good
+            mark = "✅ 對外可及" if good else "❌ 外人打不開"
+            detail = f"embed={'200' if embed_ok else 'fail'} og={'✓' if og_ok else '✗'}"
+            label = (og if (og_ok and og) else f"(id={pid})")[:34]
+            print(f"  {mark}  {label:<36} {detail}   id={pid}")
+            if not good and og:
+                print(f"      og:title 抓到的是「{og[:46]}」")
+
+        print(f"\n{ok}/{len(pids)} 個對外可及")
+        if ok < len(pids):
+            print(
+                "\n未通過的請在 TIDAL app 開啟該歌單 → 右上「⋯」→ 隱私設定／Privacy →\n"
+                "改成「公開 Public」。改完重跑這支確認。"
+            )
+        return 0 if ok == len(pids) else 1
+
+    # 原本的 arts-db yaml 模式，行為不變。
     if not PLAYLISTS.exists():
         print(f"找不到 {PLAYLISTS}——先跑 scripts/tidal_match.py --create-playlists")
         return 2
