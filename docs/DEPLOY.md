@@ -55,6 +55,8 @@ python scripts/verify_live.py        # 全綠才算部署成功
 上有變動／新增的檔（md5Checksum 比對，不用一律全上傳）→ 觸發／等 CI → 驗 live，
 失敗即停。細節與 Drive folder ID 出處見腳本檔頭註解。
 
+> 公開頁 live 驗收：先 curl 斷言 200，再走 `~/MyWork/_scripts/kitesurf.sh`（markdown 驗文字＋截圖驗版面）；規範見 `~/MyWork/_governance/protocols/live-verification.md`。雲端掛了照舊走本機 Chrome。
+
 ## 為什麼一定要驗 live
 
 內容不在 repo，**CI 綠只代表「當下從 Drive 拉到了東西」**，不代表站是完整的：
