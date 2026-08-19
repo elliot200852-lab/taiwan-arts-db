@@ -18,12 +18,12 @@ SIBLING_REPO="$(cd "$SELF_DIR/.." 2>/dev/null && pwd)/taiwan-geo-db"
 SIBLING_CORE="$SIBLING_REPO/site/js/search-core.js"
 
 if [[ ! -f "$OWN_CORE" ]]; then
-  echo "✗ 找不到 $OWN_CORE，check-search-core-sync 中止。" >&2
+  echo "✗ 找不到 ${OWN_CORE}，check-search-core-sync 中止。" >&2
   exit 1
 fi
 
 if [[ ! -d "$SIBLING_REPO" || ! -f "$SIBLING_CORE" ]]; then
-  echo "⚠ 本機找不到 sibling repo taiwan-geo-db（$SIBLING_REPO）或其 search-core.js，略過同步檢查（CI 環境正常現象）。"
+  echo "⚠ 本機找不到 sibling repo taiwan-geo-db（${SIBLING_REPO}）或其 search-core.js，略過同步檢查（CI 環境正常現象）。"
   exit 0
 fi
 
@@ -31,7 +31,7 @@ if diff -q "$OWN_CORE" "$SIBLING_CORE" >/dev/null 2>&1; then
   echo "✓ search-core.js 與 taiwan-geo-db 一致。"
   exit 0
 else
-  echo "✗ search-core.js 與 taiwan-geo-db（$SIBLING_CORE）版本不一致！修改必須同步兩邊：" >&2
+  echo "✗ search-core.js 與 taiwan-geo-db（${SIBLING_CORE}）版本不一致！修改必須同步兩邊：" >&2
   diff "$OWN_CORE" "$SIBLING_CORE" >&2 || true
   exit 1
 fi

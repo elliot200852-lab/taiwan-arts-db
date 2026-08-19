@@ -65,7 +65,7 @@ local_md5() {
 html_children=$(gws drive files list --params "{\"q\":\"'${HTML_FOLDER_ID}' in parents and trashed = false\",\"fields\":\"files(id,name,mimeType,md5Checksum)\",\"pageSize\":100}")
 PAGES_FOLDER_ID=$(echo "$html_children" | jq -r '[.files[] | select(.name=="pages" and .mimeType=="application/vnd.google-apps.folder")][0].id // empty')
 if [[ -z "$PAGES_FOLDER_ID" ]]; then
-  echo "✗ 在 html 夾（$HTML_FOLDER_ID）底下找不到 pages 子夾，中止。" >&2
+  echo "✗ 在 html 夾（${HTML_FOLDER_ID}）底下找不到 pages 子夾，中止。" >&2
   exit 1
 fi
 pages_children=$(gws drive files list --params "{\"q\":\"'${PAGES_FOLDER_ID}' in parents and trashed = false\",\"fields\":\"files(id,name,mimeType,md5Checksum)\",\"pageSize\":200}")
