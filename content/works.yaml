@@ -535,6 +535,14 @@ works:
     type: play
     pages: [tsai-jui-yueh]
     note: 驗證日 2026-07-19；文中記述返臺船上編作《印度之歌》《咱臺灣》。
+  - title: 光陰的故事
+    url: https://www.youtube.com/watch?v=bIMLcofOM00
+    label: 《光陰的故事》In Our Time 全新數位修復預告（中影數位電影頻道官方頻道）
+    type: film
+    pages: [yang-te-chang, field-film]
+    note: 消歧義條目（2026-09-06）——「光陰的故事」同時是羅大佑 1981 年的歌（在 era 登記簿內），
+      也是 1982 年陶德辰／楊德昌／柯一正／張毅四段式電影。無 pages 限定時全域歌名索引會把電影
+      誤掛成羅大佑那首歌的連結（field-film 頁原本即為此狀態），故以 pages 限定兩個談電影的頁面。
 
 # ---- 2026-07-19 查無合格連結（已查過官方/Topic 頻道與機構典藏；只有個人搬運或全網無，
 # 依 SONGS-SPEC 個人帳號完整作品不收紀律不錄。日後有官方上架再補，不必重查一輪。）----

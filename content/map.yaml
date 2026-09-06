@@ -680,6 +680,77 @@ pins:
     lng: 121.540
     hook: 音樂 · 台語搖滾
 
+  # ————— 2026-09-06 新增 7 人（P4）—————
+  - type: person
+    name: 齊柏林
+    slug: chi-po-lin
+    link: pages/chi-po-lin.html
+    county: hualien
+    locality: 花蓮 · 東海岸
+    lat: 23.990
+    lng: 121.601
+    hook: 電影 · 空拍紀錄片
+
+  - type: person
+    name: 黃春明
+    slug: huang-chun-ming
+    link: pages/huang-chun-ming.html
+    county: yilan-luodong
+    locality: 羅東
+    lat: 24.677
+    lng: 121.766
+    hook: 文學 · 小說與兒童戲劇
+
+  - type: person
+    name: 孫翠鳳
+    slug: sun-tsui-feng
+    link: pages/sun-tsui-feng.html
+    county: pingtung
+    locality: 潮州
+    lat: 22.551
+    lng: 120.542
+    hook: 戲曲偶戲 · 歌仔戲小生
+
+  - type: person
+    name: 楊德昌
+    slug: yang-te-chang
+    link: pages/yang-te-chang.html
+    county: taipei
+    locality: 台北 · 牯嶺街
+    lat: 25.029
+    lng: 121.517
+    hook: 電影 · 導演
+
+  - type: person
+    name: 李泰祥
+    slug: li-tai-hsiang
+    link: pages/li-tai-hsiang.html
+    county: taitung
+    locality: 臺東市馬蘭
+    lat: 22.752
+    lng: 121.135
+    hook: 音樂 · 作曲
+
+  - type: person
+    name: 席德進
+    slug: shiy-de-jinn
+    link: pages/shiy-de-jinn.html
+    county: taichung
+    locality: 大肚山
+    lat: 24.190
+    lng: 120.600
+    hook: 美術 · 油畫與水彩
+
+  - type: person
+    name: 顏水龍
+    slug: yen-shui-long
+    link: pages/yen-shui-long.html
+    county: tainan
+    locality: 下營（紅毛厝）
+    lat: 23.235
+    lng: 120.263
+    hook: 美術 · 工藝設計
+
   # ————— place（25）—————
   - type: place
     name: 北港朝天宮

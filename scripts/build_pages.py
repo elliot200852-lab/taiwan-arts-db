@@ -126,7 +126,8 @@ GEO_SLUG_TO_COUNTY = {
     "nantou": "南投縣", "new-taipei": "新北市", "penghu": "澎湖縣",
     "pingtung": "屏東縣", "taichung": "台中市", "tainan": "台南市",
     "taipei": "台北市", "taitung": "台東縣", "taoyuan": "桃園市",
-    "yilan-yilan": "宜蘭縣", "yilan-yuanshan": "宜蘭縣", "yunlin": "雲林縣",
+    "yilan-yilan": "宜蘭縣", "yilan-yuanshan": "宜蘭縣", "yilan-luodong": "宜蘭縣",
+    "yunlin": "雲林縣",
     "kinmen": "金門縣", "lienchiang": "連江縣", "matsu": "連江縣",
 }
 

@@ -406,6 +406,48 @@ people:
     field: 音樂 · 台語搖滾
     tags: [音樂]
     tagline: 三個台北組團的年輕人，寫出《浪子回頭》，把台語歌唱成新一代的搖滾浪漫。
+  - slug: chi-po-lin
+    name: 齊柏林
+    years: 1964–2017
+    field: 電影 · 空拍紀錄片與空中攝影
+    tags: [電影]
+    tagline: 辭掉只剩三年就能退休的公職、抵押房子，拍出《看見台灣》。
+  - slug: huang-chun-ming
+    name: 黃春明
+    years: 1935–
+    field: 文學 · 小說與兒童戲劇
+    tags: [文學]
+    tagline: 被退學兩次的羅東囝仔，寫盡被時代甩在後頭的小人物。
+  - slug: sun-tsui-feng
+    name: 孫翠鳳
+    years: 1958–
+    field: 戲曲偶戲 · 歌仔戲小生
+    tags: [戲曲偶戲]
+    tagline: 台語講不輪轉的「河北大妞」，二十六歲才學戲，十年後成了明華園當家小生。
+  - slug: yang-te-chang
+    name: 楊德昌
+    years: 1947–2007
+    field: 電影 · 導演
+    tags: [電影]
+    tagline: 當了七年工程師才回台灣學拍片，第一位拿下坎城最佳導演的台灣人。
+  - slug: li-tai-hsiang
+    name: 李泰祥
+    years: 1941–2014
+    field: 音樂 · 作曲
+    tags: [音樂]
+    tagline: 一手寫嚴肅音樂，一手把詩譜成傳唱全臺的歌。
+  - slug: shiy-de-jinn
+    name: 席德進
+    years: 1923–1981
+    field: 美術 · 油畫與水彩
+    tags: [美術]
+    tagline: 從巴黎回來以後，他把畫筆對準臺灣的紅磚古厝與廟簷。
+  - slug: yen-shui-long
+    name: 顏水龍
+    years: 1903–1997
+    field: 美術 · 油畫與工藝設計
+    tags: [美術, 工藝]
+    tagline: 留日又留法的油畫家，後半輩子走遍全臺教人編草蓆、做竹椅。
 ---
 
 ## 總論
