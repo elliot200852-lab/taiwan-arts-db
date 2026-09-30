@@ -1,0 +1,249 @@
+# 由 MyWork/_skills/personal/yt-publish/scripts/arts_db_shorts_sync.py 產生，勿手改。
+# 兩個 YouTube 播放清單的 public 短片 → 人物 slug／歌曲 id；slug/song_id 空＝無對應頁，只上首頁那列。
+channel:
+  title: AI滑得福・大衛師
+  url: https://www.youtube.com/@ai-huadefu-davidteacher
+  subscribe_url: https://www.youtube.com/channel/UCF5ioEFcVbjRxUGaTSHKxzQ?sub_confirmation=1
+artists:
+  playlist_id: PLDgdZwRbRaIU
+  playlist_title: 一分鐘台灣藝術家
+  items:
+  - video_id: zzGYf3fQfEg
+    name: 黃土水
+    subtitle: 她在黑暗裡睡了四十七年
+    slug: huang-tu-shui
+  - video_id: GnwGA70vVDM
+    name: 鄧麗君
+    subtitle: 歌聲飛過人蓋起來的邊界
+    slug: teresa-teng
+  - video_id: g8UrM9pY-e4
+    name: 賴和
+    subtitle: 除夕夜燒掉窮人帳單的醫生
+    slug: lai-he
+  - video_id: aFSS6hkUyAE
+    name: 侯孝賢
+    subtitle: 他們說這樣拍，觀眾不會想看
+    slug: hou-hsiao-hsien
+  - video_id: c04nsvshIKk
+    name: 李天祿
+    subtitle: 不收學費，只開兩個條件
+    slug: li-tien-lu
+  - video_id: jmPWedYAoEc
+    name: 陳澄波
+    subtitle: 背著畫架走遍淡水與嘉義
+    slug: chen-cheng-po
+  - video_id: 7peTTOsdkX4
+    name: 鄧雨賢
+    subtitle: 寫出《望春風》《雨夜花》的歌謠之父
+    slug: deng-yu-hsien
+  - video_id: HAkOtUcjh8k
+    name: 黃俊雄
+    subtitle: 《雲州大儒俠》創下 97% 收視奇蹟
+    slug: huang-chun-hsiung
+  - video_id: xngY8RJ_Q3E
+    name: 楊麗花
+    subtitle: 電視歌仔戲的一代傳奇小生
+    slug: yang-li-hua
+  - video_id: CRrzMP-jpNY
+    name: 林強
+    subtitle: 從《向前走》到坎城影展配樂大師
+    slug: lim-giong
+  - video_id: 2iaMBcXeo_4
+    name: 魏德聖
+    subtitle: 用《海角七號》證明臺灣故事值得拍
+    slug: wei-te-sheng
+  - video_id: xA8mR1zJGt4
+    name: 林懷民
+    subtitle: 台美斷交那天首演的《薪傳》
+    slug: lin-hwai-min
+  - video_id: LehlTRjF_0k
+    name: 李梅樹
+    subtitle: 為家鄉的廟畫了三十六年
+    slug: li-mei-shu
+  - video_id: Y4Q8BusRPS4
+    name: 陳進
+    subtitle: 父母一句「好啊」，送出臺灣第一位女畫家
+    slug: chen-jin
+  - video_id: qUye-ZsKkZk
+    name: 楊逵
+    subtitle: 牢裡寫出的那株壓不扁的玫瑰
+    slug: yang-kui
+  - video_id: 3NZIExjzZDk
+    name: 郭雪湖
+    subtitle: 母親撿菜葉，供他買顏料
+    slug: kuo-hsueh-hu
+  - video_id: _MYfb4NzmFA
+    name: 陳達
+    subtitle: 付不出醫藥費，他抱起月琴唱了一首
+    slug: chen-da
+  - video_id: Zcptg_sF6TQ
+    name: 蔡瑞月
+    subtitle: 回臺灣的船上，她在甲板上跳了起來
+    slug: tsai-jui-yueh
+  - video_id: 4KcNYnCs5-U
+    name: 洪通
+    subtitle: 五十歲那年，他跪求妻子讓他畫畫
+    slug: hung-tung
+  - video_id: XEAfenXzdzo
+    name: 阿爆
+    subtitle: 和媽媽聊天寫出的族語專輯，拿下金曲年度專輯
+    slug: abao
+  - video_id: KxBxwXvwMus
+    name: 尤瑪·達陸
+    subtitle: 她背著本子跑了一百多個部落，把快斷掉的織法問回來
+    slug: yuma-taru
+  - video_id: 6RKCI973X1A
+    name: 朱銘
+    subtitle: 出師第一份薪水四十六塊，他一毛也沒留
+    slug: ju-ming
+  - video_id: ENQJJQhU_mo
+    name: 廖瓊枝
+    subtitle: 為了戲班送的一雙繡花鞋，她去學了歌仔戲
+    slug: liao-chiung-chih
+  - video_id: WrfsrzzlDBs
+    name: 李雙澤
+    subtitle: 他舉起一瓶可樂，問我們自己的歌在哪裡
+    slug: li-shuang-tse
+  - video_id: M9ix3Pjhx2I
+    name: 王大閎
+    subtitle: 哈佛同學是貝聿銘，他把國父紀念館的屋簷翹了起來
+    slug: wang-ta-hung
+  - video_id: Om0ugCA9RTM
+    name: 純純
+    subtitle: 十三歲離家學戲，她成為臺灣第一個被一放再放的女聲
+    slug: chun-chun
+  - video_id: vnVqcdXs23Y
+    name: 鍾理和
+    subtitle: 他在病榻上改稿改到咳血，被叫做倒在血泊裡的筆耕者
+    slug: zhong-li-he
+  - video_id: aQ3WcSbqefM
+    name: 胡德夫
+    subtitle: 台北的咖啡廳只放西洋歌，他在那裡唱起卑南族古調
+    slug: hu-te-fu
+  - video_id: r-9YomQDT18
+    name: 林玉山
+    subtitle: 馬戲團帶來真老虎，他才發現畫上的老虎全不對
+    slug: lin-yu-shan
+  - video_id: wWgltCPkOik
+    name: 文夏
+    subtitle: 電影放到哪家戲院，他就跟到哪家戲院開唱
+    slug: wen-hsia
+  - video_id: QhBvVTKMwjg
+    name: 黃聲遠
+    subtitle: 耶魯畢業後他搬進宜蘭稻田，一蓋就是三十年
+    slug: huang-sheng-yuan
+  - video_id: 6MdTVOOwXCc
+    name: 張雨生
+    subtitle: 正紅時自砸七十三分鐘專輯，只賣一兩萬張
+    slug: chang-yu-sheng
+  - video_id: UddbtEsNdWQ
+    name: 葉王
+    subtitle: 路邊捏泥人被收為徒，釉色配方至今沒人仿得出
+    slug: yeh-wang
+  - video_id: PW39qF44C3I
+    name: 呂泉生
+    subtitle: 皇民化年代把民謠搬上舞台，首演完就被禁演
+    slug: lu-chuan-sheng
+  - video_id: V9pjUfdJHLc
+    name: 陳建年
+    subtitle: 警察身分打敗四大天王封歌王，得獎後調去蘭嶼
+    slug: chen-chien-nien
+  - video_id: ZucCypxv63M
+    name: 楊三郎（畫家）
+    subtitle: 瞞著家人搭船赴日，畫作後來掛進巴黎沙龍
+    slug: null
+  - video_id: y-RITHarG2E
+    name: 江蕙
+    subtitle: 十歲走唱替父還債，日後一張專輯賣破百萬
+    slug: chiang-hui
+  - video_id: GoQZDCYJSJI
+    name: 江文也
+    subtitle: 離鄉十七年，一片水田讓他拿下臺灣首面奧運獎牌
+    slug: chiang-wen-yeh
+  - video_id: 8IJyA7b0dXw
+    name: 鳳飛飛
+    subtitle: 走進加工出口區唱給女工聽，被稱勞工天使
+    slug: feng-fei-fei
+  - video_id: YH6sMbr-TNk
+    name: 林生祥
+    subtitle: 戶頭剩五十七元回鄉，拿下金曲獎卻當場拒領
+    slug: lin-sheng-hsiang
+songs:
+  playlist_id: PLNu9INEUfvXc
+  playlist_title: 一首歌一個時代
+  items:
+  - video_id: TzD0uqGpXTM
+    name: 萬千花蕊慈母悲哀
+    subtitle: 沒有宣傳沒有排行榜，它在耳機裡先紅了
+    song_id: ban-tshian-hue-lui-tsu-bio-pi-ai
+    era: era-streaming
+  - video_id: hdQIpI4wDcg
+    name: 得力量
+    subtitle: 全卑南族語專輯，站上金曲年度專輯
+    song_id: puluem
+    era: era-streaming
+  - video_id: fvDGYGmrgIc
+    name: 但
+    subtitle: 消失七年，回來那晚名字被念了三次
+    song_id: dan
+    era: era-streaming
+  - video_id: SrnxGruA8FM
+    name: 暮春
+    subtitle: 一張專輯裝進七種語言
+    song_id: mu-chun
+    era: era-streaming
+  - video_id: iAKgHn6k0B0
+    name: 桃花泣血記
+    subtitle: 一張電影宣傳單，唱出臺灣第一首流行歌
+    song_id: tho-hoe-khip-hoeh-ki
+    era: era-78rpm
+  - video_id: 0sTzrp1wD2Q
+    name: 雨夜花
+    subtitle: 同一段旋律，昨天是落花，隔天是軍歌
+    song_id: u-ia-hoe
+    era: era-78rpm
+  - video_id: 7pPZ4EOdI9o
+    name: 刻在我心底的名字
+    subtitle: 電影還沒開演，歌先紅遍四個地方
+    song_id: ke-zai-wo-xin-di-de-ming-zi
+    era: era-streaming
+  - video_id: gvJgoPtdIYk
+    name: 補破網
+    subtitle: 臺語裡網和望同音，補的其實是破碎的希望
+    song_id: poo-phoa-bang
+    era: era-postwar
+  - video_id: tfcvatnBeXU
+    name: 玫瑰少年
+    subtitle: 一個沒能長大的孩子，讓臺灣多了一部法律
+    song_id: mei-gui-shao-nian
+    era: era-polyphony
+  - video_id: oNPuQ3F8M3k
+    name: 橄欖樹
+    subtitle: 原本叫小毛驢，改名才躲過審查關卡
+    song_id: gan-lan-shu
+    era: era-folk
+  - video_id: F_jcT5n2Yj8
+    name: 民主阿草
+    subtitle: 歌詞照樣過關，卻被祕密令電台禁播
+    song_id: bin-tsu-a-tshau
+    era: era-new-taiwanese
+  - video_id: ewiryk0mlao
+    name: 丟丟銅仔
+    subtitle: 方言只准演奏不准唱，童謠因此被禁演
+    song_id: tiu-tiu-tang-a
+    era: era-roots
+  - video_id: JWJrW968iZ8
+    name: 家常音樂
+    subtitle: 一張唱換尿布的專輯，抱走三座金曲獎
+    song_id: jia-chang-yin-yue
+    era: era-streaming
+  - video_id: Zmpr25XxhI4
+    name: 何日君再來
+    subtitle: 海峽兩岸都禁播，一邊聽成日軍再來
+    song_id: he-ri-jun-zai-lai
+    era: era-mandarin
+  - video_id: nH_MklhJ7ec
+    name: 伊是咱的寶貝
+    subtitle: 一首哄睡的搖籃曲，被抗爭現場拿來當主題曲
+    song_id: i-si-lan-e-po-pue
+    era: era-new-taiwanese
