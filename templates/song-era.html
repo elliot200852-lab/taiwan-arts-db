@@ -65,7 +65,7 @@
         <a class="era-playall" href="https://www.youtube.com/watch_videos?video_ids=〔ID1,ID2,…〕" target="_blank" rel="noopener">▶ YouTube 連播本期（〔N〕 首）</a>
       </div>
       <ul class="song-list">
-        <li class="song-item">
+        <li class="song-item" id="〔song id，年代頁錨點〕">
           <span class="si-num">01</span>
           <div class="si-main">
             <p class="song-head"><a class="song-title" href="〔listen[0] url〕" target="_blank" rel="noopener">〔歌名〕</a></p>
@@ -73,6 +73,8 @@
             <p class="song-hook">〔hook，一句話，≤45 字，不得含歌詞〕</p>
             <p class="song-banned">禁歌：〔禁歌史一句話，選配〕</p>
             <p class="song-also">另聽：<a href="〔listen[1] url〕" target="_blank" rel="noopener">〔listen[1] label〕</a></p>
+            <!-- 有短片的歌才有（content/shorts.yaml 的 song_id 對得上；build：render_song_short） -->
+            <p class="song-short"><a class="song-short-link" href="https://www.youtube.com/shorts/〔video_id〕" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/〔video_id〕/hqdefault.jpg" alt="" loading="lazy" width="26" height="26"><span>▶ 一首歌一個時代短片</span></a></p>
           </div>
           <span class="si-year">〔1932〕</span>
         </li>

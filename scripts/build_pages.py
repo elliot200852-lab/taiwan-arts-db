@@ -48,6 +48,7 @@ import math
 import re
 import sys
 import urllib.parse
+from functools import lru_cache
 from pathlib import Path
 
 import yaml
@@ -842,6 +843,230 @@ FAB_NAV = """  <nav class="fab-nav" aria-label="頁面快速導航">
   </script>"""
 
 
+# ---------- YouTube 短片嵌入（2026-09-30，click-to-load facade） ----------
+#
+# 資料來源 content/shorts.yaml（由 MyWork yt-publish/scripts/arts_db_shorts_sync.py
+# 產生，勿手改）：artists／songs 兩個播放清單的 public 短片，slug／song_id 空＝
+# 無對應頁、只上首頁那列。嵌入三處：首頁新分頁「一分鐘看臺灣」（#shorts，兩列
+# 橫向捲動卡片）、人物頁 lede 後的直式播放器、年代頁歌卡的短片連結；另首頁
+# 人物卡加「▶ 1 分鐘短片」標記。
+# facade：縮圖外層 <a href=youtube.com/shorts/ID>（無 JS 仍可點去 YouTube），
+# assets/js/shorts.js 在點擊時才把卡片內換成 youtube.com/embed iframe（不用
+# nocookie，要算觀看數）；縮圖 loading=lazy，頁面載入時 0 個 iframe。
+# 容錯：檔案不存在、壞掉或某系列空 → 該區／該標記不出現，build 照舊成功。
+
+SHORTS_YAML = CONTENT / "shorts.yaml"
+_YT_ID_RE = re.compile(r"^[A-Za-z0-9_-]{6,20}$")
+
+
+@lru_cache(maxsize=1)
+def load_shorts() -> dict | None:
+    """讀 content/shorts.yaml → {channel, artists:{playlist_id,title,items}, songs:{…},
+    by_slug, by_song}；items 只留 video_id 合法者。檔缺／壞／兩系列皆空 → None。"""
+    if not SHORTS_YAML.is_file():
+        return None
+    try:
+        raw = yaml.safe_load(SHORTS_YAML.read_text(encoding="utf-8")) or {}
+    except yaml.YAMLError as exc:
+        print(f"[build_pages] WARNING：content/shorts.yaml 解析失敗，略過短片嵌入：{exc}")
+        return None
+    if not isinstance(raw, dict):
+        return None
+    out: dict = {"channel": raw.get("channel") or {}}
+    for series in ("artists", "songs"):
+        sec = raw.get(series) or {}
+        items = [
+            it for it in (sec.get("items") or [])
+            if isinstance(it, dict) and _YT_ID_RE.match(str(it.get("video_id") or ""))
+        ]
+        out[series] = {
+            "playlist_id": sec.get("playlist_id"),
+            "title": sec.get("playlist_title"),
+            "items": items,
+        }
+    if not out["artists"]["items"] and not out["songs"]["items"]:
+        return None
+    out["by_slug"] = {it["slug"]: it for it in out["artists"]["items"] if it.get("slug")}
+    out["by_song"] = {it["song_id"]: it for it in out["songs"]["items"] if it.get("song_id")}
+    return out
+
+
+def yt_thumb_url(vid: str) -> str:
+    return f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg"
+
+
+def yt_shorts_url(vid: str) -> str:
+    return f"https://www.youtube.com/shorts/{vid}"
+
+
+def render_yt_facade(vid: str, label: str, indent: str) -> str:
+    """9:16 click-to-load 播放器外殼；標記為 data-yt（每個外殼一行，供驗收計數）。"""
+    return (
+        f'{indent}<div class="yt-facade" data-yt="{esc(vid)}" data-title="{esc(label)}">\n'
+        f'{indent}  <a class="yt-thumb" href="{yt_shorts_url(vid)}" target="_blank" rel="noopener" '
+        f'aria-label="播放短片：{esc(label)}">\n'
+        f'{indent}    <img src="{yt_thumb_url(vid)}" alt="" loading="lazy" width="480" height="360">\n'
+        f'{indent}    <span class="yt-play" aria-hidden="true"></span>\n'
+        f"{indent}  </a>\n"
+        f"{indent}</div>"
+    )
+
+
+def _shorts_row(
+    sh: dict,
+    series: str,
+    heading: str,
+    blurb: str,
+    known_slugs: set[str],
+    known_songs: dict[str, str],
+) -> str:
+    items = sh[series]["items"]
+    if not items:
+        return ""
+    playlist = sh[series].get("playlist_id")
+    pl_url = f"https://www.youtube.com/playlist?list={esc(playlist)}" if playlist else ""
+    head_more = (
+        f'<a class="shorts-more" href="{pl_url}" target="_blank" rel="noopener">看整個播放清單 ↗</a>'
+        if pl_url else ""
+    )
+    lis: list[str] = []
+    for it in items:
+        vid = it["video_id"]
+        name = it.get("name") or ""
+        sub = it.get("subtitle") or ""
+        meta = [
+            f'              <span class="short-name">{esc(name)}</span>',
+        ]
+        if sub:
+            meta.append(f'              <span class="short-sub">{esc(sub)}</span>')
+        if series == "artists" and it.get("slug") in known_slugs:
+            meta.append(
+                f'              <a class="short-link" href="pages/{esc(it["slug"])}.html">讀他的故事 →</a>'
+            )
+        elif series == "songs" and known_songs.get(it.get("song_id") or "") == it.get("era"):
+            meta.append(
+                f'              <a class="short-link" href="pages/song-{esc(it["era"])}.html#{esc(it["song_id"])}">'
+                "在年代頁看這首 →</a>"
+            )
+        lis.append(
+            '          <li class="short-card">\n'
+            + render_yt_facade(vid, name, "            ") + "\n"
+            '            <div class="short-meta">\n'
+            + "\n".join(meta) + "\n"
+            "            </div>\n"
+            "          </li>"
+        )
+    if pl_url:
+        lis.append(
+            '          <li class="short-card short-end">\n'
+            f'            <a class="short-end-link" href="{pl_url}" target="_blank" rel="noopener">'
+            "看整個播放清單 ↗</a>\n"
+            "          </li>"
+        )
+    return (
+        '        <div class="shorts-block">\n'
+        '          <div class="shorts-row-head">\n'
+        f"            <h3>{esc(heading)}</h3>\n"
+        f'            <span class="shorts-blurb">{esc(blurb)}</span>\n'
+        + (f"            {head_more}\n" if head_more else "")
+        + "          </div>\n"
+        f'          <ul class="shorts-row" aria-label="{esc(heading)}（可左右滑動）">\n'
+        + "\n".join(lis) + "\n"
+        "          </ul>\n"
+        "        </div>"
+    )
+
+
+def build_shorts_tab_button() -> str:
+    """首頁 nav 的第 6 顆分頁按鈕；無短片時回傳空字串（nav 照舊）。"""
+    if not load_shorts():
+        return ""
+    return (
+        '\n    <button type="button" class="geo-tab" data-tab="shorts" role="tab" '
+        'aria-selected="false">一分鐘看臺灣</button>'
+    )
+
+
+def build_shorts_panel(eras: list[dict]) -> str:
+    """首頁「一分鐘看臺灣」分頁（section#shorts）：兩列直式卡片橫向滑動
+    （scroll-snap）＋底部訂閱頻道。無資料 → 空字串（分頁不出現）。"""
+    sh = load_shorts()
+    if not sh:
+        return ""
+    known_slugs = {p.stem for p in (CONTENT / "people").glob("*.md")}
+    known_songs = {s["id"]: era["fm"]["slug"] for era in eras for s in era["songs"]}
+    rows = [
+        _shorts_row(sh, "artists", "一分鐘台灣藝術家", "一位藝術家、一分鐘的故事", known_slugs, known_songs),
+        _shorts_row(sh, "songs", "一首歌一個時代", "一首歌，看見一個時代", known_slugs, known_songs),
+    ]
+    rows = [r for r in rows if r]
+    sub = sh["channel"].get("subscribe_url")
+    ch_title = sh["channel"].get("title") or "YouTube 頻道"
+    foot = ""
+    if sub:
+        foot = (
+            '        <p class="shorts-subscribe">\n'
+            f'          <a class="shorts-sub-btn" href="{esc(sub)}" target="_blank" rel="noopener">'
+            "訂閱頻道</a>\n"
+            f'          <span class="shorts-sub-note">短片發布在 YouTube 頻道「{esc(ch_title)}」</span>\n'
+            "        </p>\n"
+        )
+    return (
+        "\n\n    <!-- 一分鐘看臺灣（2026-09-30）：YouTube 短片 click-to-load 卡片，自 content/shorts.yaml 產生 -->\n"
+        '    <section class="tab-panel" data-panel="shorts" id="shorts" role="tabpanel">\n'
+        '      <div class="shorts-shell">\n'
+        '        <h2 class="shorts-title">一分鐘看臺灣</h2>\n'
+        '        <p class="shorts-sub">把人物與歌曲濃縮成一分鐘的直式短片。點縮圖就地播放，也可以到 YouTube 看完整播放清單。</p>\n'
+        + "\n".join(rows) + "\n"
+        + foot
+        + "      </div>\n"
+        "    </section>"
+    )
+
+
+def shorts_script_tag(prefix: str) -> str:
+    """含 facade 的頁面才載入 assets/js/shorts.js（prefix：首頁 ''、pages/ 下 '../'）。"""
+    return f'\n  <script src="{prefix}assets/js/shorts.js" defer></script>'
+
+
+def render_person_short(slug: str) -> str:
+    """人物頁 lede 之後的直式播放器區；無短片 → 空字串（頁面完全不變）。"""
+    sh = load_shorts()
+    it = (sh or {}).get("by_slug", {}).get(slug)
+    if not it:
+        return ""
+    vid = it["video_id"]
+    sub = it.get("subtitle") or ""
+    sub_html = f'      <p class="ps-caption">{esc(sub)}</p>\n' if sub else ""
+    links = [f'<a href="{yt_shorts_url(vid)}" target="_blank" rel="noopener">在 YouTube 看</a>']
+    if sh["channel"].get("subscribe_url"):
+        links.append(f'<a href="{esc(sh["channel"]["subscribe_url"])}" target="_blank" rel="noopener">訂閱頻道</a>')
+    return (
+        "\n"
+        '    <section class="person-short" aria-label="一分鐘短片">\n'
+        '      <p class="ps-eyebrow">▶ 1 分鐘短片</p>\n'
+        + render_yt_facade(vid, it.get("name") or "", "      ") + "\n"
+        + sub_html
+        + f'      <p class="ps-links">{" · ".join(links)}</p>\n'
+        "    </section>\n"
+    )
+
+
+def render_song_short(song_id: str) -> str:
+    """年代頁歌卡的短片連結（小縮圖＋文字，不打亂歌卡版面）；無短片 → 空字串。"""
+    sh = load_shorts()
+    it = (sh or {}).get("by_song", {}).get(song_id)
+    if not it:
+        return ""
+    vid = it["video_id"]
+    return (
+        f'            <p class="song-short"><a class="song-short-link" href="{yt_shorts_url(vid)}" '
+        'target="_blank" rel="noopener">'
+        f'<img src="{yt_thumb_url(vid)}" alt="" loading="lazy" width="26" height="26">'
+        "<span>▶ 一首歌一個時代短片</span></a></p>"
+    )
+
+
 PERSON_PAGE = """<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -872,7 +1097,7 @@ PERSON_PAGE = """<!DOCTYPE html>
       </div>
     </header>
 
-    <div class="lede"><p>{lede}</p></div>
+    <div class="lede"><p>{lede}</p></div>{short}
 
     <section class="person-sec who">
       <h2>{who_heading}</h2>
@@ -924,7 +1149,7 @@ PERSON_PAGE = """<!DOCTYPE html>
       </div>
     </footer>
   </div>
-{fab_nav}
+{fab_nav}{short_script}
 </body>
 </html>
 """
@@ -1002,6 +1227,8 @@ def build_person(md_path: Path, linker: "WorksLinker | None" = None) -> tuple[st
         license_line=license_line,
         credit=inline(fm["credit"]),
         fab_nav=FAB_NAV,
+        short=render_person_short(slug),
+        short_script=shorts_script_tag("../") if render_person_short(slug) else "",
     )
     return slug, html_out
 
@@ -1045,7 +1272,7 @@ INDEX_PAGE = """<!DOCTYPE html>
     <button type="button" class="geo-tab" data-tab="people" role="tab" aria-selected="false">人物</button>
     <button type="button" class="geo-tab" data-tab="fields" role="tab" aria-selected="false">分領域</button>
     <button type="button" class="geo-tab" data-tab="map" role="tab" aria-selected="false">臺灣藝文地圖</button>
-    <button type="button" class="geo-tab" data-tab="songs" role="tab" aria-selected="false">臺灣歌曲</button>
+    <button type="button" class="geo-tab" data-tab="songs" role="tab" aria-selected="false">臺灣歌曲</button>{shorts_tab_button}
     <a class="geo-tab" href="https://taiwan.md/" target="_blank" rel="noopener" title="臺灣.md — AI 原生的台灣開源知識庫（外部網站）">臺灣.md ↗</a>
   </nav>
 
@@ -1081,13 +1308,13 @@ INDEX_PAGE = """<!DOCTYPE html>
 {map_panel}
 
     <!-- 臺灣歌曲（S1 基建，2026-07-18）：時代卡自 content/songs/era-*.md 產生 -->
-{songs_panel}
+{songs_panel}{shorts_panel}
   </main>
 
 {script}
 {map_script}
   <script src="assets/js/search-core.js" defer></script>
-  <script src="assets/js/search.js" defer></script>
+  <script src="assets/js/search.js" defer></script>{shorts_script}
 </body>
 </html>
 """
@@ -1164,12 +1391,15 @@ def build_index(eras: list[dict]) -> str:
             intro_parts.append(f"        <p>{inline(block)}</p>")
 
     cards: list[str] = []
+    shorts_by_slug = (load_shorts() or {}).get("by_slug", {})
     for p in fm["people"]:
         tags_attr = esc(" ".join(p["tags"]))
         slug = esc(p["slug"])
+        # 有 1 分鐘短片的人物：圖上疊純視覺小標記（不另開連結，整張卡仍連人物頁）。
+        badge = '<span class="pc-short">▶ 1 分鐘短片</span>' if p["slug"] in shorts_by_slug else ""
         cards.append(
             f'        <a class="person-card" href="pages/{slug}.html" data-tags="{tags_attr}">\n'
-            f'          <figure class="pc-art"><img src="img/scenes/thumbs/{slug}.jpg" alt="" loading="lazy"></figure>\n'
+            f'          <figure class="pc-art"><img src="img/scenes/thumbs/{slug}.jpg" alt="" loading="lazy">{badge}</figure>\n'
             '          <div class="pc-body">\n'
             f'            <span class="pc-name">{esc(p["name"])}</span>\n'
             f'            <span class="pc-years">{esc(p["years"])}</span>\n'
@@ -1193,6 +1423,9 @@ def build_index(eras: list[dict]) -> str:
         map_panel=map_panel,
         map_script=map_script,
         songs_panel=build_songs_tab(eras),
+        shorts_tab_button=build_shorts_tab_button(),
+        shorts_panel=build_shorts_panel(eras),
+        shorts_script=shorts_script_tag("") if load_shorts() else "",
         script=extract_index_script(),
     )
 
@@ -1874,8 +2107,12 @@ def render_song_item(song: dict, n: int) -> str:
         )
         main_lines.append(f'            <p class="song-also">另聽：{also}</p>')
 
+    short_html = render_song_short(song["id"])
+    if short_html:
+        main_lines.append(short_html)
+
     return (
-        '        <li class="song-item">\n'
+        f'        <li class="song-item" id="{esc(song["id"])}">\n'
         f'          <span class="si-num">{n:02d}</span>\n'
         '          <div class="si-main">\n'
         + "\n".join(main_lines) + "\n"

@@ -57,6 +57,8 @@
     <button type="button" class="geo-tab" data-tab="fields" role="tab" aria-selected="false">分領域</button>
     <button type="button" class="geo-tab" data-tab="map" role="tab" aria-selected="false">臺灣藝文地圖</button>
     <button type="button" class="geo-tab" data-tab="songs" role="tab" aria-selected="false">臺灣歌曲</button>
+    <!-- 一分鐘看臺灣（2026-09-30）：僅 content/shorts.yaml 存在時才輸出這顆按鈕與下方 #shorts 面板 -->
+    <button type="button" class="geo-tab" data-tab="shorts" role="tab" aria-selected="false">一分鐘看臺灣</button>
     <a class="geo-tab" href="https://taiwan.md/" target="_blank" rel="noopener" title="臺灣.md — AI 原生的台灣開源知識庫（外部網站）">臺灣.md ↗</a>
   </nav>
 
@@ -86,7 +88,7 @@
            data-tags＝frontmatter tags 空白分隔，供 JS 篩選比對（見下方 hash-router script）。 -->
       <div class="person-cards" id="person-cards">
         <a class="person-card" href="pages/FILL_ME-person-id.html" data-tags="美術">
-          <figure class="pc-art"><img src="img/scenes/thumbs/FILL_ME-person-id.jpg" alt="" loading="lazy"></figure>
+          <figure class="pc-art"><img src="img/scenes/thumbs/FILL_ME-person-id.jpg" alt="" loading="lazy"><!-- 有短片的人物才有：<span class="pc-short">▶ 1 分鐘短片</span> --></figure>
           <div class="pc-body">
             <span class="pc-name">〔姓名〕</span>
             <span class="pc-years">〔1895 — 1947〕</span>
@@ -144,17 +146,45 @@
         </div>
       </div>
     </section>
+
+    <!-- 一分鐘看臺灣（2026-09-30）：自 content/shorts.yaml 產生（build_shorts_panel）。
+         facade 只放縮圖＋<a href=youtube shorts>，點擊由 assets/js/shorts.js 換成 iframe；
+         頁面載入時不含任何 <iframe>。兩列：一分鐘台灣藝術家／一首歌一個時代。 -->
+    <section class="tab-panel" data-panel="shorts" id="shorts" role="tabpanel">
+      <div class="shorts-shell">
+        <h2 class="shorts-title">一分鐘看臺灣</h2>
+        <div class="shorts-block">
+          <div class="shorts-row-head"><h3>〔系列名〕</h3><a class="shorts-more" href="https://www.youtube.com/playlist?list=FILL_ME">看整個播放清單 ↗</a></div>
+          <ul class="shorts-row">
+            <li class="short-card">
+              <div class="yt-facade" data-yt="FILL_ME-video-id" data-title="〔名字〕">
+                <a class="yt-thumb" href="https://www.youtube.com/shorts/FILL_ME-video-id" target="_blank" rel="noopener">
+                  <img src="https://i.ytimg.com/vi/FILL_ME-video-id/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+                  <span class="yt-play" aria-hidden="true"></span>
+                </a>
+              </div>
+              <div class="short-meta">
+                <span class="short-name">〔名字〕</span>
+                <span class="short-sub">〔副標〕</span>
+                <a class="short-link" href="pages/FILL_ME-person-id.html">讀他的故事 →</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p class="shorts-subscribe"><a class="shorts-sub-btn" href="FILL_ME-subscribe-url">訂閱頻道</a></p>
+      </div>
+    </section>
   </main>
 
   <script>
-    // 首頁分頁 hash 路由（#general / #people / #fields / #field-<領域> / #map / #songs）。
+    // 首頁分頁 hash 路由（#general / #people / #fields / #field-<領域> / #map / #songs / #shorts）。
     // #field-<領域>：進站或 hashchange 讀到 → 啟動「人物」tab＋套用該領域篩選；
     // 點篩選 chip 會把 hash 換成 #field-<領域>（「全部」回 #people）。
     // #fields（無連字號）＝獨立的「分領域」tab，與 #field-<領域> 篩選 hash 不衝突
-    // （indexOf('field-') 對 'fields' 不命中，見下方 route()）；#map／#songs 同理獨立。
+    // （indexOf('field-') 對 'fields' 不命中，見下方 route()）；#map／#songs／#shorts 同理獨立。
     // 支援瀏覽器上一頁、深連結；照 taiwan-geo-db 首頁同款模式擴充。
     (function () {
-      var TABS = ['general', 'people', 'fields', 'map', 'songs'];
+      var TABS = ['general', 'people', 'fields', 'map', 'songs', 'shorts'];
       var buttons = document.querySelectorAll('.geo-tab[data-tab]');
       var panels = document.querySelectorAll('.tab-panel');
       var fieldChips = document.querySelectorAll('.field-chip[data-field]');
@@ -173,7 +203,7 @@
       }
 
       function activateTab(name) {
-        if (TABS.indexOf(name) < 0) name = 'general';
+        if (TABS.indexOf(name) < 0 || !document.querySelector('.tab-panel[data-panel="' + name + '"]')) name = 'general';
         buttons.forEach(function (b) {
           var on = b.getAttribute('data-tab') === name;
           b.classList.toggle('active', on);

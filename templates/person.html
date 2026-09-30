@@ -41,6 +41,20 @@
     <!-- lede：hero 下方置中優雅導言（上方赭金短 rule） -->
     <div class="lede"><p>〔導語：一段話定位這個人——他跟這片土地的關係、為什麼值得孩子認識。〕</p></div>
 
+    <!-- 有 1 分鐘短片的人物才有（build：render_person_short，資料 content/shorts.yaml）；
+         無短片的人物頁不輸出此區。頁尾另載 assets/js/shorts.js。 -->
+    <section class="person-short" aria-label="一分鐘短片">
+      <p class="ps-eyebrow">▶ 1 分鐘短片</p>
+      <div class="yt-facade" data-yt="FILL_ME-video-id" data-title="〔名字〕">
+        <a class="yt-thumb" href="https://www.youtube.com/shorts/FILL_ME-video-id" target="_blank" rel="noopener">
+          <img src="https://i.ytimg.com/vi/FILL_ME-video-id/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="yt-play" aria-hidden="true"></span>
+        </a>
+      </div>
+      <p class="ps-caption">〔短片副標〕</p>
+      <p class="ps-links"><a href="https://www.youtube.com/shorts/FILL_ME-video-id">在 YouTube 看</a> · <a href="FILL_ME-subscribe-url">訂閱頻道</a></p>
+    </section>
+
     <!-- 他是誰：30 秒版，適合課堂開場或快速查閱 -->
     <section class="person-sec who">
       <h2>他是誰</h2>
