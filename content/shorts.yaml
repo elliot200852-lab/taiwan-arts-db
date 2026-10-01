@@ -247,3 +247,8 @@ songs:
     subtitle: 一首哄睡的搖籃曲，被抗爭現場拿來當主題曲
     song_id: i-si-lan-e-po-pue
     era: era-new-taiwanese
+  - video_id: w_deVo9fu2E
+    name: 安平追想曲
+    subtitle: 傳說中的金小姐，後來被立成雕像面向安平港
+    song_id: an-peng-tui-siong-khek
+    era: era-postwar
