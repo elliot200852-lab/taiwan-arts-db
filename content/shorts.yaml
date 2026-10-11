@@ -172,6 +172,10 @@ artists:
     name: 羅大佑
     subtitle: 在解剖室裡練唱歌，靠一個假副標讓禁歌過審
     slug: lo-ta-yu
+  - video_id: Lg9akdIPjJg
+    name: 楊三郎
+    subtitle: 名字是日本老師取的，即興吹奏藍調變成港都夜雨
+    slug: yang-san-lang
 songs:
   playlist_id: PLNu9INEUfvXc
   playlist_title: 一首歌一個時代
