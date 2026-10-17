@@ -180,6 +180,10 @@ artists:
     name: 楊三郎
     subtitle: 名字是日本老師取的，即興吹奏藍調變成港都夜雨
     slug: yang-san-lang
+  - video_id: hk2e55INe3U
+    name: 陳明章
+    subtitle: 戲棚腳長大沒念音樂系，據說三十分鐘寫成一首歌
+    slug: chen-ming-chang
 songs:
   playlist_id: PLNu9INEUfvXc
   playlist_title: 一首歌一個時代
@@ -269,3 +273,8 @@ songs:
     subtitle: 錄音室搬進老菸樓，唱反水庫運動裡的青年
     song_id: kiuk-fa-ya-hang-kiun
     era: era-polyphony
+  - video_id: yZeeI-x0ovI
+    name: 街頭的流浪
+    subtitle: 唱失業者街頭遊蕩，成了臺灣第一首禁歌
+    song_id: ke-thau-e-liu-long
+    era: era-78rpm
