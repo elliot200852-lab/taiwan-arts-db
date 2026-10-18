@@ -848,15 +848,23 @@ FAB_NAV = """  <nav class="fab-nav" aria-label="頁面快速導航">
 # 資料來源 content/shorts.yaml（由 MyWork yt-publish/scripts/arts_db_shorts_sync.py
 # 產生，勿手改）：artists／songs 兩個播放清單的 public 短片，slug／song_id 空＝
 # 無對應頁、只上首頁那列。嵌入三處：首頁新分頁「一分鐘看臺灣」（#shorts，兩列
-# 橫向捲動卡片）、人物頁 lede 後的直式播放器、年代頁歌卡的短片連結；另首頁
+# 橫向捲動卡片）、人物頁 lede 後的播放器、年代頁歌卡的短片連結；另首頁
 # 人物卡加「▶ 1 分鐘短片」標記。
-# facade：縮圖外層 <a href=youtube.com/shorts/ID>（無 JS 仍可點去 YouTube），
+# 方向（2026-10-18）：每筆有 orientation: vertical|horizontal（sync 腳本寫出；
+# 缺或不認得＝vertical，維持舊行為）。2026-10-12 起新片是 1920×1080 橫幅，
+# horizontal 用 16:9 外殼（class yt-16x9）＋ /watch?v= 連結；vertical 與舊版逐位元相同。
+# facade：縮圖外層 <a href=youtube.com/shorts/ID 或 watch?v=ID>（無 JS 仍可點去 YouTube），
 # assets/js/shorts.js 在點擊時才把卡片內換成 youtube.com/embed iframe（不用
 # nocookie，要算觀看數）；縮圖 loading=lazy，頁面載入時 0 個 iframe。
 # 容錯：檔案不存在、壞掉或某系列空 → 該區／該標記不出現，build 照舊成功。
 
 SHORTS_YAML = CONTENT / "shorts.yaml"
 _YT_ID_RE = re.compile(r"^[A-Za-z0-9_-]{6,20}$")
+
+# 人物頁主片登記（David 2026-10-18 裁定）：楊三郎（作曲家）同時有直式版 Lg9akdIPjJg
+# 與橫幅版 21EFlrXbxSU（兩支並存是 10-12 的決定，首頁那列兩張卡都留）；人物頁固定
+# 用橫幅版，直式版只留首頁那列。只登記這一位；日後別人若也有兩支，再由 David 裁定後加。
+PERSON_PRIMARY_VIDEO = {"yang-san-lang": "21EFlrXbxSU"}
 
 
 @lru_cache(maxsize=1)
@@ -887,6 +895,11 @@ def load_shorts() -> dict | None:
     if not out["artists"]["items"] and not out["songs"]["items"]:
         return None
     out["by_slug"] = {it["slug"]: it for it in out["artists"]["items"] if it.get("slug")}
+    for slug, vid in PERSON_PRIMARY_VIDEO.items():
+        hit = next((it for it in out["artists"]["items"]
+                    if it["video_id"] == vid and it.get("slug") == slug), None)
+        if hit:
+            out["by_slug"][slug] = hit
     out["by_song"] = {it["song_id"]: it for it in out["songs"]["items"] if it.get("song_id")}
     return out
 
@@ -895,15 +908,27 @@ def yt_thumb_url(vid: str) -> str:
     return f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg"
 
 
-def yt_shorts_url(vid: str) -> str:
+def is_horizontal(it: dict) -> bool:
+    """shorts.yaml 該筆是否橫幅（orientation: horizontal）；缺欄或其他值＝vertical。"""
+    return it.get("orientation") == "horizontal"
+
+
+def yt_video_url(it: dict) -> str:
+    """橫幅片 /shorts/ 會被 YouTube 303 轉去 /watch，直接給 /watch?v=；直式維持 /shorts/。"""
+    vid = it["video_id"]
+    if is_horizontal(it):
+        return f"https://www.youtube.com/watch?v={vid}"
     return f"https://www.youtube.com/shorts/{vid}"
 
 
-def render_yt_facade(vid: str, label: str, indent: str) -> str:
-    """9:16 click-to-load 播放器外殼；標記為 data-yt（每個外殼一行，供驗收計數）。"""
+def render_yt_facade(it: dict, label: str, indent: str) -> str:
+    """click-to-load 播放器外殼（vertical 9:16；horizontal 加 yt-16x9 改 16:9）；
+    標記為 data-yt（每個外殼一行，供驗收計數）。"""
+    vid = it["video_id"]
+    cls = "yt-facade yt-16x9" if is_horizontal(it) else "yt-facade"
     return (
-        f'{indent}<div class="yt-facade" data-yt="{esc(vid)}" data-title="{esc(label)}">\n'
-        f'{indent}  <a class="yt-thumb" href="{yt_shorts_url(vid)}" target="_blank" rel="noopener" '
+        f'{indent}<div class="{cls}" data-yt="{esc(vid)}" data-title="{esc(label)}">\n'
+        f'{indent}  <a class="yt-thumb" href="{yt_video_url(it)}" target="_blank" rel="noopener" '
         f'aria-label="播放短片：{esc(label)}">\n'
         f'{indent}    <img src="{yt_thumb_url(vid)}" alt="" loading="lazy" width="480" height="360">\n'
         f'{indent}    <span class="yt-play" aria-hidden="true"></span>\n'
@@ -931,7 +956,6 @@ def _shorts_row(
     )
     lis: list[str] = []
     for it in items:
-        vid = it["video_id"]
         name = it.get("name") or ""
         sub = it.get("subtitle") or ""
         meta = [
@@ -948,9 +972,10 @@ def _shorts_row(
                 f'              <a class="short-link" href="pages/song-{esc(it["era"])}.html#{esc(it["song_id"])}">'
                 "在年代頁看這首 →</a>"
             )
+        card_cls = "short-card short-wide" if is_horizontal(it) else "short-card"
         lis.append(
-            '          <li class="short-card">\n'
-            + render_yt_facade(vid, name, "            ") + "\n"
+            f'          <li class="{card_cls}">\n'
+            + render_yt_facade(it, name, "            ") + "\n"
             '            <div class="short-meta">\n'
             + "\n".join(meta) + "\n"
             "            </div>\n"
@@ -988,7 +1013,7 @@ def build_shorts_tab_button() -> str:
 
 
 def build_shorts_panel(eras: list[dict]) -> str:
-    """首頁「一分鐘看臺灣」分頁（section#shorts）：兩列直式卡片橫向滑動
+    """首頁「一分鐘看臺灣」分頁（section#shorts）：兩列卡片橫向滑動（直式窄卡、橫幅寬卡）
     （scroll-snap）＋底部訂閱頻道。無資料 → 空字串（分頁不出現）。"""
     sh = load_shorts()
     if not sh:
@@ -1016,7 +1041,7 @@ def build_shorts_panel(eras: list[dict]) -> str:
         '    <section class="tab-panel" data-panel="shorts" id="shorts" role="tabpanel">\n'
         '      <div class="shorts-shell">\n'
         '        <h2 class="shorts-title">一分鐘看臺灣</h2>\n'
-        '        <p class="shorts-sub">把人物與歌曲濃縮成一分鐘的直式短片。點縮圖就地播放，也可以到 YouTube 看完整播放清單。</p>\n'
+        '        <p class="shorts-sub">把人物與歌曲濃縮成一分鐘的短片。點縮圖就地播放，也可以到 YouTube 看完整播放清單。</p>\n'
         + "\n".join(rows) + "\n"
         + foot
         + "      </div>\n"
@@ -1030,22 +1055,21 @@ def shorts_script_tag(prefix: str) -> str:
 
 
 def render_person_short(slug: str) -> str:
-    """人物頁 lede 之後的直式播放器區；無短片 → 空字串（頁面完全不變）。"""
+    """人物頁 lede 之後的播放器區（橫幅片加寬）；無短片 → 空字串（頁面完全不變）。"""
     sh = load_shorts()
     it = (sh or {}).get("by_slug", {}).get(slug)
     if not it:
         return ""
-    vid = it["video_id"]
     sub = it.get("subtitle") or ""
     sub_html = f'      <p class="ps-caption">{esc(sub)}</p>\n' if sub else ""
-    links = [f'<a href="{yt_shorts_url(vid)}" target="_blank" rel="noopener">在 YouTube 看</a>']
+    links = [f'<a href="{yt_video_url(it)}" target="_blank" rel="noopener">在 YouTube 看</a>']
     if sh["channel"].get("subscribe_url"):
         links.append(f'<a href="{esc(sh["channel"]["subscribe_url"])}" target="_blank" rel="noopener">訂閱頻道</a>')
     return (
         "\n"
-        '    <section class="person-short" aria-label="一分鐘短片">\n'
+        f'    <section class="{"person-short ps-wide" if is_horizontal(it) else "person-short"}" aria-label="一分鐘短片">\n'
         '      <p class="ps-eyebrow">▶ 1 分鐘短片</p>\n'
-        + render_yt_facade(vid, it.get("name") or "", "      ") + "\n"
+        + render_yt_facade(it, it.get("name") or "", "      ") + "\n"
         + sub_html
         + f'      <p class="ps-links">{" · ".join(links)}</p>\n'
         "    </section>\n"
@@ -1060,7 +1084,7 @@ def render_song_short(song_id: str) -> str:
         return ""
     vid = it["video_id"]
     return (
-        f'            <p class="song-short"><a class="song-short-link" href="{yt_shorts_url(vid)}" '
+        f'            <p class="song-short"><a class="song-short-link" href="{yt_video_url(it)}" '
         'target="_blank" rel="noopener">'
         f'<img src="{yt_thumb_url(vid)}" alt="" loading="lazy" width="26" height="26">'
         "<span>▶ 一首歌一個時代短片</span></a></p>"

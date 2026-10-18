@@ -1390,6 +1390,9 @@ a.wk-title-link:hover {
   height: 100%;
   border: 0;
 }
+/* 橫幅片（orientation: horizontal，2026-10-18）：外殼改 16:9；縮圖同為 hqdefault
+   （4:3 含上下黑邊，cover 剛好裁掉）。 */
+.yt-facade.yt-16x9 { aspect-ratio: 16 / 9; }
 
 /* 首頁「一分鐘看臺灣」分頁 */
 .shorts-shell { max-width: 1100px; margin: 2rem auto 3rem; padding: 0 1rem; }
@@ -1447,6 +1450,8 @@ a.wk-title-link:hover {
   scroll-snap-align: start;
   min-width: 0;
 }
+/* 橫幅卡：寬度約直式卡的 1.8 倍，16:9 縮圖才不會小到看不清楚 */
+.short-card.short-wide { flex-basis: 300px; }
 .short-meta { display: flex; flex-direction: column; gap: .12rem; padding: .6rem .1rem 0; }
 .short-name {
   font-family: var(--serif);
@@ -1507,6 +1512,7 @@ a.wk-title-link:hover {
 .shorts-sub-note { font-size: .82rem; color: var(--ink-soft); }
 @media (min-width: 900px) {
   .short-card { flex-basis: 190px; }
+  .short-card.short-wide { flex-basis: 340px; }
 }
 
 /* 首頁人物卡：有短片標記（純視覺，卡片仍整張連人物頁） */
@@ -1525,8 +1531,9 @@ a.wk-title-link:hover {
   padding: .12rem .6rem;
 }
 
-/* 人物頁 lede 後的直式播放器 */
+/* 人物頁 lede 後的播放器（直式 320px；橫幅片 .ps-wide 加寬） */
 .person-short { max-width: 320px; margin: 1.8rem auto 2rem; }
+.person-short.ps-wide { max-width: 560px; }
 .ps-eyebrow {
   margin: 0 0 .6rem;
   font-family: var(--sans);
