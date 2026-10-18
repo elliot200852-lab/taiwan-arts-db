@@ -319,7 +319,7 @@ songs:
 
   - id: po-niu-un
     title: 報娘恩
-    year: 1930
+    year: 1931
     era: era-roots
     language: 客語
     credits:
@@ -331,7 +331,7 @@ songs:
         label: 蘇萬松演唱之客語勸世歌謠（國立臺灣歷史博物館・臺灣音聲一百年）
         source_type: archive
         version: original
-    note: 日蓄商會改良鷹標出品的客語勸世文歌謠，年份為概數。演唱者蘇萬松是日治時期著名的客家勸世唱片歌手，別稱「別告蘇洲府」。
+    note: 日蓄商會改良鷹標（編號19029）1931年出品的客語勸世文歌謠，年份依臺史博典藏。演唱者蘇萬松是日治時期著名的客家勸世唱片歌手，別稱「別告蘇洲府」。
     sources:
       - 客語勸世唱片、蘇萬松其人：https://audio.nmth.gov.tw/audio/%e5%a0%b1%e5%a8%98%e6%81%a9/
 

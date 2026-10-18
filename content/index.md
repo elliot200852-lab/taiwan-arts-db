@@ -198,7 +198,7 @@ people:
     tagline: 老古蹟的牆、灰、瓦都有他的手跡，人間國寶的泥作司阜。
   - slug: hsieh-ching-lai
     name: 謝景來
-    years: 1910–2011
+    years: 1911–2011
     field: 工藝 · 客家藍衫
     tags: [工藝]
     tagline: 一百多歲仍親手裁布，染出客家藍衫那份「硬頸」的挺。

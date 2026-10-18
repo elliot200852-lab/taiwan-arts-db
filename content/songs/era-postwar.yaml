@@ -155,17 +155,18 @@ songs:
     era: era-postwar
     language: 台語
     credits:
-      lyricist: 呂泉生
+      lyricist: 陳大禹
       composer: 呂泉生
-    hook: 呂泉生寫的勸酒歌，暗喻族群乾杯和解、莫記舊仇。
+    hook: 陳大禹作詞、呂泉生作曲的勸酒歌，暗喻族群乾杯和解、莫記舊仇。
     listen:
       - url: https://www.youtube.com/watch?v=jkwkJwm8DUk
         label: 鄭士嘉演唱・金韻獎版（滾石唱片 ROCK RECORDS 官方頻道）
         source_type: official
         version: famous_cover
-    note: 1949年呂泉生詞曲。歌名意為勸人乾杯、莫留殘酒，藉勸酒寓意二二八後本省與外省族群和解、莫記舊仇。此連結為滾石金韻獎系列鄭士嘉演唱版（呂泉生原版與合唱版僅見個人／教會頻道）。
+    note: 1949年陳大禹作詞、呂泉生作曲。作詞人長年被誤記為呂泉生，2022年呂泉生家屬聲明更正為陳大禹並歸還歌詞版稅。歌名意為勸人乾杯、莫留殘酒，藉勸酒寓意二二八後本省與外省族群和解、莫記舊仇。此連結為滾石金韻獎系列鄭士嘉演唱版（呂泉生原版與合唱版僅見個人／教會頻道）。
     sources:
-      - 杯底不可飼金魚詞曲、1949、族群和解寓意：https://zh.wikipedia.org/zh-tw/%E6%9D%AF%E5%BA%95%E4%B8%8D%E5%8F%AF%E9%A3%BC%E9%87%91%E9%AD%9A
+      - 杯底不可飼金魚詞曲作者（陳大禹作詞、呂泉生作曲）、1949、族群和解寓意：https://zh.wikipedia.org/zh-tw/%E6%9D%AF%E5%BA%95%E4%B8%8D%E5%8F%AF%E9%A3%BC%E9%87%91%E9%AD%9A
+      - 呂泉生家屬2022年聲明更正作詞人為陳大禹並歸還版稅：https://www.cna.com.tw/news/acul/202208180275.aspx
 
   - id: goan-na-phah-khui-sim-lai-e-mng-thang
     title: 阮若打開心內的門窗
@@ -290,7 +291,7 @@ songs:
 
   - id: hong-hun-e-koo-hiong
     title: 黃昏的故鄉
-    year: 1958
+    year: 1959
     era: era-postwar
     language: 台語
     credits:
@@ -303,9 +304,9 @@ songs:
         label: 文夏演唱（官方 Topic 頻道）
         source_type: official
         version: original
-    note: 混血歌——旋律取自日本歌曲（中野忠晴曲），文夏以筆名「愁人」填台語詞並演唱，1958年風行。因思鄉意涵，戒嚴時期在海外台灣同鄉間廣為傳唱，帶有濃厚的離散情感。
+    note: 混血歌——旋律取自日本歌曲（中野忠晴曲），文夏以筆名「愁人」填台語詞並演唱，臺語版為1959年（1958年是日本原曲〈赤い夕陽の故郷〉的年份）。因思鄉意涵，戒嚴時期在海外台灣同鄉間廣為傳唱，帶有濃厚的離散情感。
     sources:
-      - 黃昏的故鄉為日曲台詞混血歌、文夏填詞演唱、1958：https://zh.wikipedia.org/zh-tw/%E9%BB%83%E6%98%8F%E7%9A%84%E6%95%85%E9%84%89
+      - 黃昏的故鄉為日曲台詞混血歌、文夏填詞演唱、臺語版1959（日本原曲1958）：https://zh.wikipedia.org/zh-tw/%E9%BB%83%E6%98%8F%E7%9A%84%E6%95%85%E9%84%89
 
   - id: ma-ma-chhiann-li-ia-po-tiong
     title: 媽媽請你也保重
@@ -369,16 +370,16 @@ songs:
     credits:
       lyricist: 潘英傑
       composer: 周藍萍
-      original_singer: 紫薇
+      最早錄音: 說法不一（晉秦、紀露霞、紫薇三說）
     hook: 1954年的國語抒情名曲，唱給海上綠島般的思念。
     listen:
       - url: https://www.youtube.com/watch?v=IY62CJjGXOw
         label: 蔡琴翻唱（Tsai Chin 官方 Topic 頻道）
         source_type: official
         version: famous_cover
-    note: 周藍萍作曲、潘英傑作詞、紫薇原唱，1954年發表。歌名「綠島」指的是台灣本島（非火燒島／綠島監獄），是最早紅遍華人世界的台灣國語歌之一。原唱紫薇版無官方頻道，此連結為蔡琴演唱版。
+    note: 周藍萍作曲、潘英傑作詞，1954年發表。最早的錄音是誰唱的，說法不一：中文維基列晉秦（金錢唱片）、紀露霞（1957年電影《阿美娜》插曲，中廣《好農村》節目錄音）、紫薇（1958年鳴鳳唱片；1961年四海唱片重灌後才在台灣流行）三說，條目尚待校對，故不具名單一原唱。歌名「綠島」指的是台灣本島（非火燒島／綠島監獄），是最早紅遍華人世界的台灣國語歌之一。此連結為蔡琴演唱版。
     sources:
-      - 綠島小夜曲詞曲、紫薇原唱、綠島指本島、1954：https://zh.wikipedia.org/zh-tw/%E7%B6%A0%E5%B3%B6%E5%B0%8F%E5%A4%9C%E6%9B%B2
+      - 綠島小夜曲詞曲、最早錄音晉秦／紀露霞／紫薇三說並陳、綠島指本島、1954：https://zh.wikipedia.org/zh-tw/%E7%B6%A0%E5%B3%B6%E5%B0%8F%E5%A4%9C%E6%9B%B2
 
   - id: khoo-loan-koa
     title: 苦戀歌
