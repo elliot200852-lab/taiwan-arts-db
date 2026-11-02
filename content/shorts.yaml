@@ -347,3 +347,9 @@ songs:
     orientation: horizontal
     song_id: tsioh-mng-tsit-e
     era: era-streaming
+  - video_id: a1ZMb1XZFvk
+    name: 今天不回家
+    subtitle: 觀眾點唱禁歌她照唱，當場被警察帶走
+    orientation: horizontal
+    song_id: jin-tian-bu-hui-jia
+    era: era-mandarin
