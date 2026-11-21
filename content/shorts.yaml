@@ -363,3 +363,9 @@ songs:
     orientation: horizontal
     song_id: jin-tian-bu-hui-jia
     era: era-mandarin
+  - video_id: iewV5v7aHI8
+    name: 島嶼天光
+    subtitle: 兩天寫完一天錄好，五十萬人在街頭合唱
+    orientation: horizontal
+    song_id: to-su-thinn-kng
+    era: era-polyphony
