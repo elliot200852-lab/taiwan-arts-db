@@ -229,6 +229,16 @@ artists:
     subtitle: 戲棚腳長大沒念音樂系，據說三十分鐘寫成一首歌
     orientation: horizontal
     slug: chen-ming-chang
+  - video_id: HZw38F9OMGM
+    name: 楊德昌
+    subtitle: 替海軍寫了七年潛艦程式，回台灣從頭學拍片
+    orientation: horizontal
+    slug: yang-te-chang
+  - video_id: zbq7xJq4nWs
+    name: 施秀菊
+    subtitle: 傳家寶一顆顆被賣掉，她燒了四十年把它們燒回來
+    orientation: horizontal
+    slug: shih-hsiu-chu
 songs:
   playlist_id: PLNu9INEUfvXc
   playlist_title: 一首歌一個時代
